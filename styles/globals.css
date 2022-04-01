@@ -1,16 +1,29 @@
-html,
+/* define some fonts over here */
+
+@font-face {
+ font-family: "THICCCBOI-Bold";
+ src: url("../assets/fonts/THICCCBOI-Bold.ttf") format("truetype");
+}
+
+@font-face {
+ font-family: "THICCCBOI-Light";
+ src: url("../assets/fonts/THICCCBOI-Light.ttf") format("truetype");
+}
+
+@font-face {
+ font-family: "THICCCBOI-Meduim";
+ src: url("../assets/fonts/THICCCBOI-Medium.ttf") format("truetype");
+}
+
+@font-face {
+ font-family: "THICCCBOI-Regular";
+ src: url("../assets/fonts/THICCCBOI-Regular.ttf") format("truetype");
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+ background-color: #0d0c0f;
+ font-family: "THICCCBOI-Meduim";
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+h1 {
+ font-family: "THICCCBOI-Meduim";
 }
