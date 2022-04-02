@@ -1,10 +1,10 @@
 import css from "./Header.module.css"
 import Image from "next/image"
 
-const Header = () => {
+function Header() {
     return (
         <div className={css.container}>
-            <div className={css.container_default}>
+            <div className="container-default">
                 <div className={css.header_wrapper}>
                     <div className={css.left}>
                         <Image src="https://raka.zone/assets/img/logo.png" className={css.logoimg} alt="a" width={164} height={60} />

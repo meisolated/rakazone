@@ -1,0 +1,25 @@
+.button_primary {
+ padding: 18px 36px;
+ border-radius: 14px;
+ background-color: #f63434;
+ -webkit-transform: scale3d(1, 1, 1.01);
+ transform: scale3d(1, 1, 1.01);
+ -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
+ transition: background-color 300ms ease, -webkit-transform 300ms ease;
+ transition: transform 300ms ease, background-color 300ms ease;
+ transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
+ color: #fff;
+ line-height: 1.125em;
+ font-weight: 700;
+ text-align: center;
+ letter-spacing: 0.02em;
+ -webkit-transform-style: preserve-3d;
+ transform-style: preserve-3d;
+}
+
+.button_primary:hover {
+ background-color: #ce1c1c;
+ -webkit-transform: scale3d(0.98, 0.98, 1.01);
+ transform: scale3d(0.98, 0.98, 1.01);
+ color: #fff;
+}

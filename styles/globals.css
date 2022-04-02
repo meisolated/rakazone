@@ -42,3 +42,26 @@ a {
  color: #fff;
  text-decoration: none;
 }
+
+.container-default {
+ max-width: 1152px;
+ margin-right: auto;
+ margin-left: auto;
+ padding-right: 24px;
+ padding-left: 24px;
+}
+@media screen and (max-width: 991px) {
+ .container-default {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  padding-right: 16px;
+  padding-left: 16px;
+ }
+}

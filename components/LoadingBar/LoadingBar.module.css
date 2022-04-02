@@ -1,0 +1,24 @@
+.loading {
+ position: relative;
+ height: 3px;
+ width: 100%;
+ opacity: 1;
+ animation: fade 1s ease-in forwards;
+ background: #f63434;
+}
+@keyframes fade {
+ 0% {
+  width: 10%;
+ }
+
+ 50% {
+  width: 40%;
+ }
+ 70% {
+  width: 40%;
+  width: 100%;
+ }
+ 100% {
+  opacity: 0;
+ }
+}

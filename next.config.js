@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["raka.zone"]
+    domains: ["raka.zone", "i.ytimg.com"]
   }
 
 }
