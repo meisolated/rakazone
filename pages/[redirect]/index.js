@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 
 function Redirect(props) {
-
+    console.log(props.redirectto)
     let redirect = props.redirectto
     useEffect(() => {
         if (redirect !== "nowhere") window.location.href = redirect
@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
 
     let redirect = context.query.redirect
     let redirectto = redirects[redirect]
+    console.log(redirectto)
 
     if (redirectto) {
         return {
