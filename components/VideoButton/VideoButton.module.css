@@ -15,8 +15,6 @@
 }
 
 .video_button_wrapper {
- height: 73px;
- width: 73px;
  box-shadow: 0 14px 44px 0 rgb(0 0 0 / 45%);
  position: absolute;
  overflow: hidden;

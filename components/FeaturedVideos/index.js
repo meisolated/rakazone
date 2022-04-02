@@ -8,7 +8,7 @@ function FeaturedVideo() {
                 <div className={css.image_wrapper}>
                     <Image className={css.video_item_image} src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg" width={1104} height={620} alt="" />
                     <div className={css.video_featured_filter}></div>
-                    <VideoButton className={css.something} w={25} h={25} />
+                    <VideoButton w={30} h={30} ww={85} hh={85} />
 
                 </div>
             </div>
