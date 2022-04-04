@@ -1,9 +1,14 @@
 .loading {
- position: relative;
- height: 3px;
+ z-index: 2;
+ position: -webkit-sticky;
+ position: sticky;
+ top: 0px;
+ height: 2px;
  width: 100%;
  opacity: 1;
- animation: fade 1s ease-in forwards;
+ color: #0d0c0f;
+ background-color: #0d0c0f;
+ animation: fade 3s ease-in forwards;
  background: #f63434;
 }
 @keyframes fade {
@@ -20,5 +25,16 @@
  }
  100% {
   opacity: 0;
+ }
+}
+@media (max-width: 800px) {
+ .loading {
+  height: 3px;
+ }
+}
+
+@media (max-width: 600px) {
+ .loading {
+  height: 4px;
  }
 }
