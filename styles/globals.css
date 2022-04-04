@@ -85,6 +85,15 @@ h3 {
 .pd-bottom {
  padding-bottom: 10px;
 }
+
+.divider {
+ margin-top: 100px;
+ margin-bottom: 100px;
+ width: 100%;
+ min-height: 1px;
+ background-color: #1e1f24;
+}
+
 @media screen and (max-width: 991px) {
  .container-default {
   -webkit-box-orient: vertical;
