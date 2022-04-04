@@ -26,6 +26,17 @@ body {
  font-family: "THICCCBOI-Meduim";
  max-width: 100%;
  color: white;
+ animation: fadeInAnimation ease 3s;
+ animation-iteration-count: 1;
+ animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+ 0% {
+  opacity: 0;
+ }
+ 100% {
+  opacity: 1;
+ }
 }
 
 * {
@@ -41,6 +52,15 @@ a {
  transition: color 300ms ease;
  color: #fff;
  text-decoration: none;
+}
+
+h2 {
+ margin-top: 0px;
+ margin-bottom: 16px;
+ color: #fff;
+ font-size: 28px;
+ line-height: 1.357em;
+ font-weight: 700;
 }
 
 .container-default {
@@ -63,5 +83,23 @@ a {
   align-items: stretch;
   padding-right: 16px;
   padding-left: 16px;
+ }
+}
+
+@media screen and (max-width: 767px) {
+ .pd-right {
+  padding-right: 20px;
+ }
+ h2 {
+  font-size: 26px;
+ }
+}
+
+@media screen and (max-width: 480px) {
+ .pd-right {
+  padding-right: 10px;
+ }
+ h2 {
+  font-size: 20px;
  }
 }

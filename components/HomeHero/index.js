@@ -1,11 +1,12 @@
 import css from './HomeHero.module.css'
 import Image from 'next/image'
 import Button from '../Button'
+
 function HomeHero() {
     return (<div className={css.home_hero}>
         <div className={css.left}>
             <div className={css.home_hero_channel_image}>
-                <Image src="https://raka.zone/assets/img/instadp.jpeg" className={css.image} alt='' width={91} height={91} />
+                <Image src="https://raka.zone/assets/img/instadp.jpeg" alt='' width={91} height={91} />
             </div>
             <div className='home_hero_channel_about'>
                 <div className={css.channel_about_content_top}>

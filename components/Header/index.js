@@ -1,6 +1,7 @@
 import css from "./Header.module.css"
 import Image from "next/image"
 
+
 function Header() {
     return (
         <div className={css.container}>
