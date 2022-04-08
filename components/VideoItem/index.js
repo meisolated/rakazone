@@ -1,6 +1,9 @@
 import css from "./VideoItem.module.css"
 import Image from "next/image"
-import VideoButton from "../VideoButton"
+import { VideoButton } from "../Button"
+
+
+
 function VideoItem() {
     return (
         <div className={css.video_item}>

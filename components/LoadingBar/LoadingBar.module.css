@@ -3,7 +3,7 @@
  position: -webkit-sticky;
  position: sticky;
  top: 0px;
- height: 2px;
+ height: 4px;
  width: 100%;
  opacity: 1;
  color: #0d0c0f;
@@ -27,7 +27,7 @@
   opacity: 0;
  }
 }
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
  .loading {
   height: 3px;
  }
@@ -37,4 +37,4 @@
  .loading {
   height: 4px;
  }
-}
+} */

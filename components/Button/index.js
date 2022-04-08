@@ -1,9 +1,3 @@
-import css from './Button.module.css'
+export { default as PrimaryButton } from "./Primary"
+export { default as VideoButton } from "./VideoButton"
 
-function Button(promps) {
-
-    return (<a className={css.button_primary} >{promps.text}</a>)
-
-}
-
-export default Button

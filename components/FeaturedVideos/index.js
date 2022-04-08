@@ -1,6 +1,6 @@
 import css from "./FeaturedVideo.module.css"
 import Image from "next/image"
-import VideoButton from "../VideoButton"
+import { VideoButton } from "../Button"
 import VideoItem from "../VideoItem"
 function FeaturedVideo() {
     return (
