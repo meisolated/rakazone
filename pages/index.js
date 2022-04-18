@@ -2,6 +2,7 @@ import css from "./index.module.css"
 import HomeHero from "../components/HomeHero"
 import FeaturedVideo from "../components/FeaturedVideos/index.js"
 import LastestVideos from "../components/LatestVideos/index.js"
+import AboutChannel from "../components/AboutChannel/index.js"
 
 function Home(props) {
     return (
@@ -13,6 +14,7 @@ function Home(props) {
                 <div className="divider"></div>
                 <LastestVideos></LastestVideos>
                 <div className="divider"></div>
+                <AboutChannel></AboutChannel>
             </div>
         </div>
     )

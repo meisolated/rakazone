@@ -1,0 +1,68 @@
+.images_wrapper {
+}
+.images {
+ /* background-image: url("../../assets/img/about_channel_background.png"); */
+ /* background-size: 581px 581px; */
+ /* background-position: left; */
+ /* background-repeat: no-repeat; */
+ position: relative;
+ height: 581px;
+ left: 0px;
+ top: 0px;
+ margin-bottom: 100px;
+}
+.image_one {
+ position: relative;
+ top: 80px;
+ left: 10px;
+ animation: jumptwo 15s infinite linear;
+}
+
+.image_two {
+ position: absolute;
+ top: 180px;
+ left: 330px;
+ animation: jumpThree 15s infinite linear;
+}
+
+.nametext {
+ position: relative;
+ top: 0px;
+ font-size: 80px;
+ background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ transform: rotate(21.95deg);
+}
+
+@keyframes jumptwo {
+ 0% {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+ }
+
+ 40% {
+  -webkit-transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 20px, 0);
+ }
+ 100% {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+ }
+}
+
+@keyframes jumpThree {
+ 0% {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+ }
+
+ 40% {
+  -webkit-transform: translate3d(0, -20px, 0);
+  transform: translate3d(0, -20px, 0);
+ }
+ 100% {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+ }
+}
