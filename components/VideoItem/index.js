@@ -1,6 +1,6 @@
 import css from "./VideoItem.module.css"
 import Image from "next/image"
-import { VideoButton } from "../Button"
+import { VideoButton } from "../Buttons"
 
 
 

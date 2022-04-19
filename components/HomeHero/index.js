@@ -1,6 +1,6 @@
 import css from './HomeHero.module.css'
 import Image from 'next/image'
-import { PrimaryButton } from '../Button'
+import { PrimaryButton } from '../Buttons'
 
 function HomeHero() {
     return (<div className={css.home_hero}>

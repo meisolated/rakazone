@@ -1,6 +1,6 @@
 import css from "./Footer.module.css"
 import Image from "next/image"
-import Primary from "../Button/Primary/index.js"
+import { PrimaryButton } from "../Buttons"
 
 function Footer() {
     return (
@@ -13,7 +13,7 @@ function Footer() {
                         </div>
                         <div className={css.footer_subscribe_wrapper}>
                             <p className={css.footer_subscribe_paragraph}>Want to stay tuned about all videos released every week? Subscribe to my YouTube</p>
-                            <Primary text="Subscribe" />
+                            <PrimaryButton text="Subscribe" />
                         </div>
                     </div>
                     <div className={css.footer_middle_content}></div>
