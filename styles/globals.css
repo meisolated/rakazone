@@ -20,10 +20,25 @@
  src: url("../assets/fonts/THICCCBOI-Regular.ttf") format("truetype");
 }
 
+:root {
+ --background-color: #0d0c0f;
+ --primary-color: #f63434;
+ --bold-primary-font: THICCCBOI-Bold;
+ --light-primary-font: THICCCBOI-Light;
+ --medium-primary-font: THICCCBOI-Meduim;
+ --regular-primary-font: THICCCBOI-Regular;
+ --max-width: 1150px;
+ --divider-color: #1e1f24;
+}
+
+button {
+ font-family: var(--regular-primary-font);
+}
+
 body {
  margin: 0;
- background-color: #0d0c0f;
- font-family: "THICCCBOI-Meduim";
+ background-color: var(--background-color);
+ font-family: var(--regular-primary-font);
  max-width: 100%;
  color: white;
  animation: fadeInAnimation ease 3s;
@@ -45,7 +60,7 @@ body {
  box-sizing: border-box;
 }
 a:hover {
- color: #f63434;
+ color: var(--primary-color);
 }
 a {
  -webkit-transition: color 300ms ease;
@@ -55,7 +70,7 @@ a {
 }
 
 p {
- font-family: "THICCCBOI-Light";
+ font-family: var(--light-primary-font);
 }
 
 h2 {
@@ -76,7 +91,7 @@ h3 {
 }
 
 .container-default {
- max-width: 1152px;
+ max-width: var(--max-width);
  margin-right: auto;
  margin-left: auto;
  padding-right: 24px;
@@ -90,12 +105,17 @@ h3 {
  padding-bottom: 10px;
 }
 
+.bold {
+ font-family: var(--bold-primary-font);
+ font-weight: 700;
+}
+
 .divider {
  margin-top: 100px;
  margin-bottom: 100px;
  width: 100%;
  min-height: 1px;
- background-color: #1e1f24;
+ background-color: var(--divider-color);
 }
 
 @media screen and (max-width: 991px) {

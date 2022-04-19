@@ -15,6 +15,7 @@ function Home(props) {
                 <LastestVideos></LastestVideos>
                 <div className="divider"></div>
                 <AboutChannel></AboutChannel>
+                <div className="divider"></div>
             </div>
         </div>
     )

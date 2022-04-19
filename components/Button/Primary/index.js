@@ -2,7 +2,7 @@ import css from './Primary.module.css'
 
 function Primary(promps) {
 
-    return (<a className={css.button_primary} >{promps.text}</a>)
+    return (<button className={css.button_primary} >{promps.text}</button>)
 
 }
 
