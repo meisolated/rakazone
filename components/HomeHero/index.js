@@ -6,7 +6,7 @@ function HomeHero() {
     return (<div className={css.home_hero}>
         <div className={css.left}>
             <div className={css.home_hero_channel_image}>
-                <Image src="https://raka.zone/assets/img/instadp.jpeg" alt='' width={91} height={91} />
+                <Image src="https://raka.zone/assets/img/instadp.jpeg" alt='' className={css.channel_image} width={91} height={91} />
             </div>
             <div className='home_hero_channel_about'>
                 <div className={css.channel_about_content_top}>

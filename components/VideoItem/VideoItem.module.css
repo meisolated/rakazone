@@ -82,7 +82,7 @@
  opacity: 0.5;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 990px) {
  .video_about {
   font-size: 17px;
  }

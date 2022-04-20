@@ -106,7 +106,24 @@
  }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 1000px) {
+ .shapes {
+  width: 90px;
+ }
+ .image_one {
+  width: 300px;
+ }
+ .image_two {
+  width: 200px;
+  left: 200px;
+ }
+ .nametext {
+  top: 250px;
+  font-size: 50px;
+ }
+}
+
+@media screen and (max-width: 990px) {
  .about_channel_grid {
   grid-row-gap: 20px;
   -ms-grid-columns: 1fr;
@@ -124,6 +141,33 @@
  .image_two {
   top: 150px;
   left: 150px;
+ }
+
+ .about_channel_left {
+  text-align: center;
+ }
+
+ .shapes {
+  top: 40px;
+  left: 10px;
+  width: 90px;
+ }
+}
+
+@media screen and (max-width: 370px) {
+ .nametext {
+  left: 0px;
+  top: 200px;
+  font-size: 40px;
+ }
+
+ .image_one {
+  width: 250px;
+ }
+ .image_two {
+  top: 150px;
+  left: 150px;
+  width: 150px;
  }
 
  .about_channel_left {

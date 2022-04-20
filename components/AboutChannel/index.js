@@ -4,7 +4,7 @@ import about_channel_image_one from "../../assets/img/about_channel_image_one.pn
 import about_channel_image_two from "../../assets/img/about_channel_image_two.png"
 // import about_channel_background from "../../assets/img/144.svg"
 import art_146 from "../../assets/img/146.svg"
-import { GreyButton } from "../Buttons"
+import { GreyMedium } from "../Buttons"
 
 export default function AboutChannel(params) {
     return (
@@ -17,7 +17,7 @@ export default function AboutChannel(params) {
                         standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
                         into electronic typesetting, remaining essentially unchanged.{" "}
                     </p>
-                    <GreyButton text="More about me" />
+                    <GreyMedium text="More about me" />
                 </div>
                 <div className={css.about_channel_right}>
                     <div className={css.images_wrapper}>

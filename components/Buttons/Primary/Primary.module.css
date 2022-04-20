@@ -3,7 +3,7 @@
  border-radius: 10px;
  border-style: none;
  box-sizing: border-box;
- background-color: #f63434;
+ background-color: var(--primary-color);
  -webkit-transform: scale3d(1, 1, 1.01);
  transform: scale3d(1, 1, 1.01);
  -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
@@ -17,13 +17,14 @@
  letter-spacing: 0.02em;
  -webkit-transform-style: preserve-3d;
  transform-style: preserve-3d;
- font-weight: 700;
- font-family: var(--bold-primary-font);
+ font-family: var(--regular-primary-font);
  font-size: 15px;
+
+ text-transform: uppercase;
 }
 
 .button_primary:hover {
- background-color: #ce1c1c;
+ background-color: var(--primary-color);
  -webkit-transform: scale3d(0.98, 0.98, 1.01);
  transform: scale3d(0.98, 0.98, 1.01);
  color: #fff;

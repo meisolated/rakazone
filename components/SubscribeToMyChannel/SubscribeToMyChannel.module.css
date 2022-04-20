@@ -1,0 +1,37 @@
+.subscribe_to_my_channel {
+ padding: 60px 45px;
+ background-color: var(--grey);
+ width: inherit;
+ height: 680px;
+ border-radius: 40px;
+}
+.subscribetext {
+ margin: 0px;
+}
+.subscribetext_sub {
+ font-family: var(--regular-primary-font);
+ color: var(--light-grey);
+}
+
+.subscribe_button {
+ padding-bottom: 40px;
+}
+
+@media screen and (max-width: 520px) {
+ .subscribe_to_my_channel {
+  padding: 40px 25px;
+  height: auto;
+ }
+
+ .subscribe_button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+ }
+}

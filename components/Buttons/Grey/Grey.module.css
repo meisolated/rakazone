@@ -1,5 +1,5 @@
 /* CSS */
-.button_1 {
+.button {
  background-color: #2a2a2e;
  border-radius: 10px;
  border-style: none;
@@ -14,7 +14,7 @@
  list-style: none;
 
  outline: none;
- padding: 10px 16px;
+
  position: relative;
  text-align: center;
  text-decoration: none;
@@ -35,9 +35,26 @@
  transform-style: preserve-3d;
 }
 
-.button_1:hover,
-.button_1:focus {
+.button:hover,
+.button:focus {
  -webkit-transform: scale3d(0.98, 0.98, 1.01);
  transform: scale3d(0.98, 0.98, 1.01);
  background-color: var(--primary-color);
+}
+
+.GreySmall {
+ font-size: 20px;
+ padding: 0 10px;
+}
+
+.GreyMedium {
+ height: 50px;
+ font-size: 15px;
+ padding: 0 20px;
+}
+.GreyBig {
+ border-radius: 15px;
+ height: 60px;
+ font-size: 20px;
+ padding: 0 30px;
 }

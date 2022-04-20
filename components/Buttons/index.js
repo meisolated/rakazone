@@ -1,3 +1,5 @@
 export { default as PrimaryButton } from "./Primary"
 export { default as VideoButton } from "./VideoButton"
-export { default as GreyButton } from "./Grey"
+export { GreySmall } from "./Grey"
+export { GreyMedium } from "./Grey"
+export { GreyBig } from "./Grey"

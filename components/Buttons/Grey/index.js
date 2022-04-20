@@ -1,11 +1,15 @@
-import css from './Grey.module.css'
+import css from "./Grey.module.css"
 
-function Grey(promps) {
 
-    return (<button className={css.button_1} >{promps.text}</button>)
-
+export function GreySmall(promps) {
+    return <button className={`${css.GreySmall} ${css.button}`}>{promps.text}</button>
 }
 
-export default Grey
+export function GreyMedium(promps) {
+    return <button className={`${css.GreyMedium} ${css.button}`}>{promps.text}</button>
+}
 
+export function GreyBig(promps) {
+    return <button className={`${css.GreyBig} ${css.button}`}>{promps.text}</button>
+}
 
