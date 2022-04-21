@@ -1,7 +1,6 @@
 import css from "./Header.module.css"
 import Image from "next/image"
 import { useState } from "react"
-import art_146 from "../../assets/img/146.svg"
 
 export default function Header() {
     let [isOpen, setIsOpen] = useState(false)
@@ -32,10 +31,13 @@ export default function Header() {
                                         <a>About</a>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>Blog</a>
+                                        <a>Store</a>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>Products</a>
+                                        <a>Vlog</a>
+                                    </li>
+                                    <li className={css.nav_item_wrapper}>
+                                        <a>Contact</a>
                                     </li>
                                 </ul>
                             </nav>

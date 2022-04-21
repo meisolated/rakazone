@@ -1,8 +1,8 @@
 .subscribe_to_my_channel {
  padding: 60px 45px;
- background-color: var(--grey);
+ background-color: var(--grey-color);
  width: inherit;
- height: 680px;
+ height: 100%;
  border-radius: 40px;
 }
 .subscribetext {
@@ -10,7 +10,7 @@
 }
 .subscribetext_sub {
  font-family: var(--regular-primary-font);
- color: var(--light-grey);
+ color: var(--light-grey-color);
 }
 
 .subscribe_button {

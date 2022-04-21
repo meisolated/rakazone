@@ -16,7 +16,17 @@ function Footer() {
                             <PrimaryButton text="Subscribe" />
                         </div>
                     </div>
-                    <div className={css.footer_middle_content}></div>
+
+                    <div className={css.footer_middle_content}>
+                        <div className={css.footer_middle_content_left}>
+                            <h1>Get Every Latest News </h1>
+                            <div className={css.email_input}>
+                                <input className={css.input} placeholder="Enter your mail address" />
+                                <span className={`${css.left_icon} material-symbols-outlined`}>drafts</span>
+                                <span className={`${css.right_icon} material-symbols-outlined`}>send</span>
+                            </div>
+                        </div>
+                    </div>
                     <div className={css.footer_content_bottom}>
                         <div className={css.footer_copyright}>
                             Copyright © 2022 &nbsp;
@@ -33,7 +43,6 @@ function Footer() {
                             <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_linkedin}  ${css.footer_social_button}`}></a>
                             <a href="https://www.twitch.tv/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></a>
                             <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_tiktok}  ${css.footer_social_button}`}></a>
-
                         </div>
                     </div>
                 </div>

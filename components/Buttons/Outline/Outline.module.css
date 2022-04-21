@@ -1,0 +1,62 @@
+/* CSS */
+.button {
+ background-color: transparent;
+ border: 1px solid #636268;
+ border-radius: 10px;
+ border-style: solid;
+ box-sizing: border-box;
+ color: #ffffff;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 14px;
+ font-weight: 500;
+ height: 40px;
+ line-height: 20px;
+ list-style: none;
+
+ outline: none;
+
+ position: relative;
+ text-align: center;
+ text-decoration: none;
+
+ vertical-align: baseline;
+ user-select: none;
+ -webkit-user-select: none;
+ touch-action: manipulation;
+
+ -webkit-transform: scale3d(1, 1, 1.01);
+ transform: scale3d(1, 1, 1.01);
+ -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
+ transition: background-color 300ms ease, -webkit-transform 300ms ease;
+ transition: transform 300ms ease, background-color 300ms ease;
+ transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
+
+ -webkit-transform-style: preserve-3d;
+ transform-style: preserve-3d;
+}
+
+.button:hover,
+.button:focus {
+ border-style: none;
+ -webkit-transform: scale3d(0.98, 0.98, 1.01);
+ transform: scale3d(0.98, 0.98, 1.01);
+ background-color: var(--primary-color);
+}
+
+.OutlineSmall {
+ font-size: 20px;
+ padding: 0 10px;
+}
+
+.OutlineMedium {
+ height: 50px;
+ font-size: 15px;
+ padding: 0 30px;
+}
+.OutlineBig {
+ border-radius: 15px;
+ height: 60px;
+ font-size: 20px;
+ padding: 0 30px;
+}
