@@ -1,6 +1,6 @@
 import css from './HomeHero.module.css'
 import Image from 'next/image'
-import { PrimaryButton } from '../Buttons'
+import { Primary } from '../Buttons'
 
 function HomeHero() {
     return (<div className={css.home_hero}>
@@ -17,7 +17,7 @@ function HomeHero() {
             </div>
         </div>
         <div className={css.right}>
-            <PrimaryButton text={"Subscribe"} />
+            <Primary text={"Subscribe"} />
         </div>
     </div>)
 }

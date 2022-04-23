@@ -1,6 +1,6 @@
 import css from "./Footer.module.css"
 import Image from "next/image"
-import { PrimaryButton } from "../Buttons"
+import { Primary } from "../Buttons"
 import insta1 from "../../assets/img/insta07.png"
 import insta2 from "../../assets/img/insta02.png"
 import insta3 from "../../assets/img/insta15.png"
@@ -16,38 +16,45 @@ function Footer() {
                         </div>
                         <div className={css.footer_subscribe_wrapper}>
                             <p className={css.footer_subscribe_paragraph}>Want to stay tuned about all videos released every week? Subscribe to my YouTube</p>
-                            <PrimaryButton text="Subscribe" />
+                            <Primary text="Subscribe" />
                         </div>
                     </div>
 
                     <div className={css.footer_middle_content}>
                         <div className={css.footer_middle_content_left}>
                             <h2>Get Every Latest News </h2>
-                            <div className={css.email_input}>
-                                <input className={css.input} placeholder="Enter your mail address" />
-                                <span className={`${css.left_icon} material-symbols-outlined`}>drafts</span>
-                                <span className={`${css.right_icon} material-symbols-outlined`}>send</span>
+                            <div className={css.blog_newsletter_form_block}>
+                                <input type="email" className={`${css.input} ${css.blog_newsletter_form}`} name="email" placeholder="Enter email address" />
+                                <input type="submit" value="Subscribe" className={`${css.button_primary} ${css.blog_newsletter_form_button} ${css.iso_button}`} />
+
+                            </div>
+
+                            <div className={`${css.success_message} ${css.iso_form_done}`} aria-label="Email Form success">
+                                <div>Thanks for joining our newsletter.</div>
+                            </div>
+                            <div className={`${css.error_message} ${css.iso_form_fail}`} aria-label="Email Form failure">
+                                <div>Oops! Something went wrong.</div>
                             </div>
                         </div>
                         <div className={css.footer_middle_content_right}>
                             <h2>Follow me on Instagram</h2>
                             <div className={`${css.footer_instagram_gallery_grid}`}>
                                 <div className={css.insta_img}>
-                                    <Image src={insta1} alt="a" width={120} height={120} ima />
+                                    <Image src={insta1} alt="a" width={120} height={120} />
                                     <div className={css.img_filter} >
-                                        <Image src={link_icon} alt="a" width={20} height={120} />
+                                        <Image src={link_icon} alt="a" width={19} height={120} />
                                     </div>
                                 </div>
                                 <div className={css.insta_img}>
                                     <Image src={insta2} alt="a" width={120} height={120} />
                                     <div className={css.img_filter}>
-                                        <Image src={link_icon} alt="a" width={20} height={120} />
+                                        <Image src={link_icon} alt="a" width={19} height={120} />
                                     </div>
                                 </div>
                                 <div className={css.insta_img}>
                                     <Image src={insta3} alt="a" width={120} height={120} />
                                     <div className={css.img_filter}>
-                                        <Image src={link_icon} alt="a" width={20} height={120} />
+                                        <Image src={link_icon} alt="a" width={19} height={120} />
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react"
-import { useRouter } from "next/router"
 import css from './LoadingBar.module.css'
 function LoadingBar() {
     //     const router = useRouter()

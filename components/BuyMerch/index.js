@@ -30,15 +30,12 @@ export default function BuyMerch() {
                 {show ? (
                     <div className={css.temp_alert}>
                         <div className={css.temp_type_alert}>
-                            {" "}
                             <p>note</p>
                         </div>
                         <p className={css.temp_alert_text}>We are currently trying to get in touch with RakaZone to make merch available for you.</p>
                         <Image src={cross} width={40} height={30} alt="cross" className={css.cross_btn} onClick={removeAlert} />
                     </div>
-                ) : (
-                    <></>
-                )}
+                ) : <></>}
                 <div className="pd-bottom-high" />
                 <OutlineMedium text="Browse Merch" />
                 <div className="pd-bottom-high" />

@@ -6,7 +6,7 @@ import AboutChannel from "../components/AboutChannel/index.js"
 import SubscribeToMyChannel from "../components/SubscribeToMyChannel/index.js"
 import BuyMerch from "../components/BuyMerch/index.js"
 
-function Home(props) {
+function Home({ props }) {
     return (
 
         <div className={css.main}>

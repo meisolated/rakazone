@@ -105,6 +105,9 @@ h3 {
  font-weight: 700;
 }
 
+input {
+ font-family: var(--regular-primary-font);
+}
 .container-default {
  max-width: var(--max-width);
  margin-right: auto;

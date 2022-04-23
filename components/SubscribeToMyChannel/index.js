@@ -2,7 +2,7 @@ import css from "./SubscribeToMyChannel.module.css"
 import youtube_logo from "../../assets/img/youtube_logo.svg"
 import Image from "next/image"
 import VideoItem from "../VideoItem"
-import { PrimaryButton } from "../Buttons/index.js"
+import { Primary } from "../Buttons/index.js"
 export default function SubscribeToMyChannel() {
     return (
         <>
@@ -11,7 +11,7 @@ export default function SubscribeToMyChannel() {
                 <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
                 <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
                 <div className={css.subscribe_button}>
-                    <PrimaryButton text="Subscribe" />
+                    <Primary text="Subscribe" />
                 </div>
                 <VideoItem type="empty"></VideoItem>
             </div>

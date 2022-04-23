@@ -6,4 +6,10 @@ function Primary(promps) {
 
 }
 
-export default Primary
+function PrimarySmall(promps) {
+
+    return (<button className={css.button_primary_small} >{promps.text}</button>)
+
+}
+
+export { Primary, PrimarySmall }
