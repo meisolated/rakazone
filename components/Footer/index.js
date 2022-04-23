@@ -1,7 +1,10 @@
 import css from "./Footer.module.css"
 import Image from "next/image"
 import { PrimaryButton } from "../Buttons"
-
+import insta1 from "../../assets/img/insta07.png"
+import insta2 from "../../assets/img/insta02.png"
+import insta3 from "../../assets/img/insta15.png"
+import link_icon from "../../assets/icons/open_link_icon.svg"
 function Footer() {
     return (
         <>
@@ -19,12 +22,36 @@ function Footer() {
 
                     <div className={css.footer_middle_content}>
                         <div className={css.footer_middle_content_left}>
-                            <h1>Get Every Latest News </h1>
+                            <h2>Get Every Latest News </h2>
                             <div className={css.email_input}>
                                 <input className={css.input} placeholder="Enter your mail address" />
                                 <span className={`${css.left_icon} material-symbols-outlined`}>drafts</span>
                                 <span className={`${css.right_icon} material-symbols-outlined`}>send</span>
                             </div>
+                        </div>
+                        <div className={css.footer_middle_content_right}>
+                            <h2>Follow me on Instagram</h2>
+                            <div className={`${css.footer_instagram_gallery_grid}`}>
+                                <div className={css.insta_img}>
+                                    <Image src={insta1} alt="a" width={120} height={120} ima />
+                                    <div className={css.img_filter} >
+                                        <Image src={link_icon} alt="a" width={20} height={120} />
+                                    </div>
+                                </div>
+                                <div className={css.insta_img}>
+                                    <Image src={insta2} alt="a" width={120} height={120} />
+                                    <div className={css.img_filter}>
+                                        <Image src={link_icon} alt="a" width={20} height={120} />
+                                    </div>
+                                </div>
+                                <div className={css.insta_img}>
+                                    <Image src={insta3} alt="a" width={120} height={120} />
+                                    <div className={css.img_filter}>
+                                        <Image src={link_icon} alt="a" width={20} height={120} />
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div className={css.footer_content_bottom}>
