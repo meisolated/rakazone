@@ -1,19 +1,29 @@
 import css from "./Test.module.css"
+import { VideoBtnSmall } from "../../components/Buttons/VideoButton/index.js"
+import Image from "next/image"
 export default function Text(params) {
     return (
         <>
             <div className="container-default">
-                <div className={css.blog_newsletter_form_block}>
-                    <input type="email" className={`${css.input} ${css.blog_newsletter_form}`} name="email" data-name="Email" placeholder="Enter email address" id="email" required="" />
-                    <input type="submit" value="Subscribe" className={`${css.button_primary} ${css.blog_newsletter_form_button} ${css.iso_button}`} />
-
-                </div>
-
-                <div className={`${css.success_message} ${css.iso_form_done}`} aria-label="Email Form success">
-                    <div>Thanks for joining our newsletter.</div>
-                </div>
-                <div className={`${css.error_message} ${css.iso_form_fail}`} aria-label="Email Form failure">
-                    <div>Oops! Something went wrong.</div>
+                <div className={css.video_item}>
+                    <div className={css.image_wrapper}>
+                        <Image className={css.video_item_image} src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg" width={540} height={300} alt="" />
+                        <div className={css.video_filter}></div>
+                        <VideoBtnSmall />
+                    </div>
+                    <div className={css.video_content}>
+                        <div>
+                            <h3 className={css.title}>iOS 15 is now released: Top 5 new features!</h3>
+                            <div className={css.video_about}>
+                                <div className={css.video_duration}>
+                                    <div>12</div>
+                                    <div>&nbsp;min</div>
+                                </div>
+                                <div className={css.video_about_divider}></div>
+                                <div>15/9/21</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

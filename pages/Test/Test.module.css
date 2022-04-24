@@ -1,119 +1,111 @@
-.blog_newsletter_form_block {
+.video_item {
+ padding-left: 300px;
+ padding-right: 300px;
+}
+.image_wrapper {
  position: relative;
- display: -webkit-box;
- display: -webkit-flex;
- display: -ms-flexbox;
- display: flex;
- -webkit-box-align: center;
- -webkit-align-items: center;
- -ms-flex-align: center;
+ justify-content: center;
  align-items: center;
- width: 100%;
- max-width: 446px;
- margin-bottom: 0px;
-}
-
-.input {
- width: 100%;
- min-height: 56px;
- margin-bottom: 0px;
- padding-right: 19px;
- padding-left: 19px;
- border: 0px solid #000;
- border-radius: 12px;
- background-color: #26272c;
- -webkit-transition: background-color 300ms ease;
- transition: background-color 300ms ease;
- color: #dadadf;
- font-size: 16px;
-}
-.blog_newsletter_form {
- position: relative;
- display: -webkit-box;
- display: -webkit-flex;
- display: -ms-flexbox;
+ flex-direction: column;
  display: flex;
- -webkit-box-align: center;
- -webkit-align-items: center;
- -ms-flex-align: center;
- align-items: center;
- padding-right: 128px;
- padding-left: 52px;
- background-image: url("../../assets/icons/email.svg");
- background-position: 21px 50%;
- background-size: auto;
- background-repeat: no-repeat;
- color: #fff;
-}
-.button_primary {
- padding: 18px 36px;
- border-radius: 14px;
- background-color: #f63434;
- -webkit-transform: scale3d(1, 1, 1.01);
- transform: scale3d(1, 1, 1.01);
- -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
- color: #fff;
- line-height: 1.125em;
- font-weight: 700;
- text-align: center;
- letter-spacing: 0.02em;
- -webkit-transform-style: preserve-3d;
- transform-style: preserve-3d;
 }
 
-.blog_newsletter_form_button {
- position: absolute;
- right: 8px;
- padding: 12px 16px;
- border-radius: 12px;
-}
+.video_item_image {
+ width: 100%;
+ -o-object-fit: cover;
+ object-fit: cover;
 
-.iso_button {
  display: inline-block;
- padding: 9px 15px;
- color: white;
+ vertical-align: middle;
  border: 0;
- line-height: inherit;
- text-decoration: none;
- cursor: pointer;
+ max-width: 100%;
+ border-radius: 44px;
+}
+.video_filter {
+ position: absolute;
+ left: 0%;
+ top: 0%;
+ right: 0%;
+ bottom: 0%;
+ border-radius: 44px;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.08)), to(rgba(0, 0, 0, 0.84)));
+ background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.84));
 }
 
-.success_message {
+.video_content {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-box-orient: vertical;
+ -webkit-box-direction: normal;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-flex: 1;
+ -webkit-flex: 1;
+ -ms-flex: 1;
+ flex: 1;
+}
+.title {
  margin-top: 10px;
- margin-bottom: 10px;
- border-radius: 15px;
- background-color: #f63434;
- font-weight: 500;
- text-align: center;
+ margin-bottom: 4px;
 }
-
-.iso_form_done {
- display: none;
- padding: 20px;
- text-align: center;
- background-color: #dddddd;
-}
-
-.error_message {
- margin-top: 15px;
- padding: 15px 20px;
- -webkit-align-self: stretch;
- -ms-flex-item-align: stretch;
- -ms-grid-row-align: stretch;
- align-self: stretch;
- border-radius: 15px;
- background-color: #f63434;
+.video_about {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-box-align: center;
+ -webkit-align-items: center;
+ -ms-flex-align: center;
+ align-items: center;
  color: #fff;
+ font-size: 20px;
+ line-height: 1.1em;
  font-weight: 500;
- text-align: center;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
 }
 
-.iso_form_fail {
- display: none;
- margin-top: 10px;
- padding: 10px;
- background-color: #ffdede;
+.video_duration {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-wrap: wrap;
+ -ms-flex-wrap: wrap;
+ flex-wrap: wrap;
+}
+.video_about_divider {
+ width: 17px;
+ min-height: 1px;
+ margin-right: 10px;
+ margin-left: 10px;
+ background-color: #fff;
+ opacity: 0.5;
+}
+
+@media screen and (max-width: 990px) {
+ .video_about {
+  font-size: 17px;
+ }
+ .image_wrapper {
+  margin-bottom: 20px;
+ }
+}
+
+@media screen and (max-width: 600px) {
+ .video_filter {
+  border-radius: 20px;
+ }
+ .video_item_image {
+  border-radius: 20px;
+ }
+}
+
+@media screen and (max-width: 480px) {
+ .video_about {
+  font-size: 18px;
+ }
 }

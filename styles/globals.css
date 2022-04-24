@@ -93,6 +93,7 @@ p {
 }
 
 h2 {
+ margin: 0;
  color: #fff;
  font-size: 28px;
  line-height: 1.357em;

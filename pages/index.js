@@ -5,19 +5,18 @@ import LastestVideos from "../components/LatestVideos/index.js"
 import AboutChannel from "../components/AboutChannel/index.js"
 import SubscribeToMyChannel from "../components/SubscribeToMyChannel/index.js"
 import BuyMerch from "../components/BuyMerch/index.js"
-
-function Home({ props }) {
+import axios from "axios"
+function Home(props) {
     return (
-
         <div className={css.main}>
             <div className="container-default">
-                <HomeHero />
-                <FeaturedVideo />
-                <div className="divider"></div>
-                <LastestVideos></LastestVideos>
-                <div className="divider"></div>
-                <AboutChannel></AboutChannel>
-                <div className="divider"></div>
+                <HomeHero data={props.serverdata.userdata} />
+                <FeaturedVideo data={{ "livedata": props.serverdata.livedata, "somevideos": props.serverdata.somevideos }} />
+                <div className="divider" />
+                <LastestVideos data={props.serverdata.somevideos} />
+                <div className="divider" />
+                <AboutChannel />
+                <div className="divider" />
                 <div className={css.support_channel_grid}>
                     <SubscribeToMyChannel />
                     <BuyMerch />
@@ -28,8 +27,14 @@ function Home({ props }) {
 }
 
 export async function getServerSideProps(context) {
-    return { props: {} }
+    let { data } = await axios
+        .get("http://10.69.69.201:3000/api/v1/all")
 
+    if (data.message === "success") {
+        return { props: { serverdata: data.data } }
+
+    }
+    else return { props: {} }
 }
 
 export default Home

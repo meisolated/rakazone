@@ -4,9 +4,9 @@ import { VideoButton } from "../Buttons"
 
 
 
-function VideoItem(promps) {
+function VideoItem(props) {
 
-    if (promps.type === "empty") {
+    if (props.type === "empty") {
         return (
             <div className={css.video_item}>
                 <div className={css.image_wrapper}>
@@ -18,16 +18,19 @@ function VideoItem(promps) {
         )
     }
     else {
+        let videoData = props.data
+        console.log(videoData)
+        let youtube_thumnail = `https://i.ytimg.com/vi/${videoData.videoId}/maxresdefault.jpg`
         return (
             <div className={css.video_item}>
                 <div className={css.image_wrapper}>
-                    <Image className={css.video_item_image} src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg" width={540} height={300} alt="" />
+                    <Image className={css.video_item_image} src={youtube_thumnail} width={540} height={300} alt="" />
                     <div className={css.video_filter}></div>
                     <VideoButton w={30} h={30} ww={85} hh={85} />
                 </div>
                 <div className={css.video_content}>
                     <div>
-                        <h3 className={css.title}>iOS 15 is now released: Top 5 new features!</h3>
+                        <h3 className={css.title}>{videoData.title}</h3>
                         <div className={css.video_about}>
                             <div className={css.video_duration}>
                                 <div>12</div>

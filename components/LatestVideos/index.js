@@ -1,7 +1,11 @@
 import css from "./LatestVideos.module.css"
 import VideoItem from "../VideoItem"
 
-function LastestVideos() {
+function LastestVideos(props) {
+    console.log(props)
+    let mostLiked = props.data.mostLiked[0]
+    let mostViewed = props.data.mostViewed[0]
+    let mostCommented = props.data.mostLiked[0]
     return (
 
         <>
@@ -17,12 +21,12 @@ function LastestVideos() {
                 </div>
             </div>
             <div className={css.latest_video_grid}>
-                <VideoItem />
-                <VideoItem />
-                <VideoItem />
-                <VideoItem />
-                <VideoItem />
-                <VideoItem />
+                <VideoItem data={mostLiked} />
+                <VideoItem data={mostViewed} />
+                <VideoItem data={mostCommented} />
+                <VideoItem data={mostLiked} />
+                <VideoItem data={mostViewed} />
+                <VideoItem data={mostCommented} />
             </div>
         </>
     )

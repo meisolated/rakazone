@@ -2,7 +2,9 @@ import css from './HomeHero.module.css'
 import Image from 'next/image'
 import { Primary } from '../Buttons'
 
-function HomeHero() {
+function HomeHero(props) {
+    let userData = props.data[0]
+
     return (<div className={css.home_hero}>
         <div className={css.left}>
             <div className={css.home_hero_channel_image}>
@@ -11,7 +13,7 @@ function HomeHero() {
             <div className='home_hero_channel_about'>
                 <div className={css.channel_about_content_top}>
                     <h1 className={css.title}>Rakazone</h1>
-                    <div className={css.subscriber_count}>485K Subscriber</div>
+                    <div className={css.subscriber_count}>{`${userData.yt_subscribers_count} SUBSCRIBERS`}</div>
                 </div>
                 <p className={css.about}> <span className={css.bold}>Rishab Karanwal</span>  most of you know me as Raka, I am a vairty streamer. If you say so. </p>
             </div>

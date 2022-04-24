@@ -1,15 +1,18 @@
 import css from "./Grey.module.css"
+import Link from "next/link"
 
-
-export function GreySmall(promps) {
-    return <button className={`${css.GreySmall} ${css.button}`}>{promps.text}</button>
+export function GreySmall(props) {
+    let link = props.where || "/"
+    return <Link href={link} passHref> <button className={`${css.GreySmall} ${css.button}`}>{props.text}</button></Link>
 }
 
-export function GreyMedium(promps) {
-    return <button className={`${css.GreyMedium} ${css.button}`}>{promps.text}</button>
+export function GreyMedium(props) {
+    let link = props.where || "/"
+    return <Link href={link} passHref><button className={`${css.GreyMedium} ${css.button}`}>{props.text}</button></Link>
 }
 
-export function GreyBig(promps) {
-    return <button className={`${css.GreyBig} ${css.button}`}>{promps.text}</button>
+export function GreyBig(props) {
+    let link = props.where || "/"
+    return <Link href={link} passHref> <button className={`${css.GreyBig} ${css.button}`}>{props.text}</button></Link>
 }
 
