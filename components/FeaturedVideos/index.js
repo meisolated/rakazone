@@ -1,14 +1,17 @@
 import css from "./FeaturedVideo.module.css"
 import Image from "next/image"
-import { VideoButton } from "../Buttons"
+import { VideoBtnBig } from "../Buttons"
 import VideoItem from "../VideoItem"
 function FeaturedVideo(props) {
     let liveData = props.data.livedata[0]
     let mostLiked = props.data.somevideos.mostLiked[0]
     let mostViewed = props.data.somevideos.mostViewed[0]
     let mostCommented = props.data.somevideos.mostLiked[0]
-    let whatToShow = (liveData.status === "notlive") ? mostLiked : liveData
+
+
+    let whatToShow = (liveData.status === "offline") ? mostLiked : liveData
     let youtube_thumnail = `https://i.ytimg.com/vi/${whatToShow.videoId}/maxresdefault.jpg`
+    youtube_thumnail = (liveData.status === "offline") ? youtube_thumnail : liveData.thumbnail
 
 
     return (
@@ -17,7 +20,7 @@ function FeaturedVideo(props) {
                 <div className={css.image_wrapper}>
                     <Image className={css.video_item_image} src={youtube_thumnail} width={1104} height={620} alt="" />
                     <div className={css.video_featured_filter}></div>
-                    <VideoButton w={30} h={30} ww={85} hh={85} />
+                    <VideoBtnBig w={30} h={30} ww={85} hh={85} />
                     <div className={css.video_featured_text}>Featured</div>
                 </div>
 

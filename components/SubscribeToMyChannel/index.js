@@ -2,7 +2,7 @@ import css from "./SubscribeToMyChannel.module.css"
 import youtube_logo from "../../assets/img/youtube_logo.svg"
 import Image from "next/image"
 import VideoItem from "../VideoItem"
-import { Primary } from "../Buttons/index.js"
+import { Primary } from "../Buttons"
 export default function SubscribeToMyChannel() {
     return (
         <>

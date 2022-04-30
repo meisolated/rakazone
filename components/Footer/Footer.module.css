@@ -360,7 +360,7 @@
  }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 860px) {
  .footer_middle_content {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -370,6 +370,15 @@
   -ms-flex-direction: column;
   flex-direction: column;
  }
+ .footer_middle_content_left {
+  padding-bottom: 50px;
+ }
+ .footer_instagram_gallery_grid {
+  width: 440px;
+ }
+}
+
+@media screen and (max-width: 540px) {
  .footer_subscribe_paragraph {
   margin-bottom: 20px;
  }

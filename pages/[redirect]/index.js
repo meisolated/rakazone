@@ -18,9 +18,6 @@ export async function getServerSideProps(context) {
     if (data.message === "success") {
         let redirects = data.data
         let redirectto = redirects.find((x) => x.from_where === context.query.redirect)
-        redirectto = redirectto["to_where"]
-        console.log(redirectto)
-
         if (redirectto) {
             return {
                 props: { redirectto },

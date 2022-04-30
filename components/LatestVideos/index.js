@@ -2,7 +2,6 @@ import css from "./LatestVideos.module.css"
 import VideoItem from "../VideoItem"
 
 function LastestVideos(props) {
-    console.log(props)
     let mostLiked = props.data.mostLiked[0]
     let mostViewed = props.data.mostViewed[0]
     let mostCommented = props.data.mostLiked[0]

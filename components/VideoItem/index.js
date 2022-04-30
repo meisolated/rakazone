@@ -1,6 +1,6 @@
 import css from "./VideoItem.module.css"
 import Image from "next/image"
-import { VideoButton } from "../Buttons"
+import { VideoBtnSmall } from "../Buttons"
 
 
 
@@ -12,21 +12,20 @@ function VideoItem(props) {
                 <div className={css.image_wrapper}>
                     <Image className={css.video_item_image} src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg" width={540} height={300} alt="" />
                     <div className={css.video_filter}></div>
-                    <VideoButton w={30} h={30} ww={85} hh={85} />
+                    <VideoBtnSmall w={30} h={30} ww={85} hh={85} />
                 </div>
             </div>
         )
     }
     else {
         let videoData = props.data
-        console.log(videoData)
         let youtube_thumnail = `https://i.ytimg.com/vi/${videoData.videoId}/maxresdefault.jpg`
         return (
             <div className={css.video_item}>
                 <div className={css.image_wrapper}>
                     <Image className={css.video_item_image} src={youtube_thumnail} width={540} height={300} alt="" />
                     <div className={css.video_filter}></div>
-                    <VideoButton w={30} h={30} ww={85} hh={85} />
+                    <VideoBtnSmall w={30} h={30} ww={85} hh={85} />
                 </div>
                 <div className={css.video_content}>
                     <div>

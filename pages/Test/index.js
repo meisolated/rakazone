@@ -1,5 +1,5 @@
 import css from "./Test.module.css"
-import { VideoBtnSmall } from "../../components/Buttons/VideoButton/index.js"
+import { VideoBtnSmall } from "../../components/Buttons/"
 import Image from "next/image"
 export default function Text(params) {
     return (
