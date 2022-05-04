@@ -38,37 +38,32 @@ function Footer() {
                         </div>
                         <div className={css.footer_middle_content_right}>
                             <h2>Follow me on Instagram</h2>
-                            <div className={`${css.footer_instagram_gallery_grid}`}>
-                                <div className={css.insta_img}>
-                                    <Image src={insta1} alt="a" width={120} height={120} />
-                                    <div className={css.img_filter} >
-                                        <Image src={link_icon} alt="a" width={19} height={120} />
+                            <div className={css.footer_instagram_gallery_grid_wrapper}>
+                                <div className={`${css.footer_instagram_gallery_grid}`}>
+                                    <div className={css.insta_img}>
+                                        <Image src={insta1} alt="a" width={120} height={120} />
+                                        <div className={css.img_filter} >
+                                            <Image src={link_icon} alt="a" width={19} height={120} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={css.insta_img}>
-                                    <Image src={insta2} alt="a" width={120} height={120} />
-                                    <div className={css.img_filter}>
-                                        <Image src={link_icon} alt="a" width={19} height={120} />
+                                    <div className={css.insta_img}>
+                                        <Image src={insta2} alt="a" width={120} height={120} />
+                                        <div className={css.img_filter}>
+                                            <Image src={link_icon} alt="a" width={19} height={120} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={css.insta_img}>
-                                    <Image src={insta3} alt="a" width={120} height={120} />
-                                    <div className={css.img_filter}>
-                                        <Image src={link_icon} alt="a" width={19} height={120} />
+                                    <div className={css.insta_img}>
+                                        <Image src={insta3} alt="a" width={120} height={120} />
+                                        <div className={css.img_filter}>
+                                            <Image src={link_icon} alt="a" width={19} height={120} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className={css.footer_content_bottom}>
-                        <div className={css.footer_copyright}>
-                            Copyright © 2022 &nbsp;
-                            <a href="https://www.instagram.com/rakazonegaming/" className={css.footer_link}>
-                                RakaZone
-                            </a>
-                            .&nbsp;All rights reserved.
-                        </div>
+
                         <div className={`${css.footer_social_buttons}`}>
                             <a href="https://www.youtube.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}></a>
                             <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></a>
@@ -77,6 +72,13 @@ function Footer() {
                             <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_linkedin}  ${css.footer_social_button}`}></a>
                             <a href="https://www.twitch.tv/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></a>
                             <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_tiktok}  ${css.footer_social_button}`}></a>
+                        </div>
+                        <div className={css.footer_copyright}>
+                            Copyright © 2022 &nbsp;
+                            <a href="https://www.instagram.com/rakazonegaming/" className={css.footer_link}>
+                                RakaZone
+                            </a>
+                            .&nbsp;All rights reserved.
                         </div>
                     </div>
                 </div>

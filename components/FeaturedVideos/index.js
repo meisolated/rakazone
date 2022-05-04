@@ -2,14 +2,22 @@ import css from "./FeaturedVideo.module.css"
 import Image from "next/image"
 import { VideoBtnBig } from "../Buttons"
 import VideoItem from "../VideoItem"
+import { convertToInternationalCurrencySystem } from "../../util/functions.js"
 function FeaturedVideo(props) {
+
+
     let liveData = props.data.livedata[0]
     let mostLiked = props.data.somevideos.mostLiked[0]
     let mostViewed = props.data.somevideos.mostViewed[0]
     let mostCommented = props.data.somevideos.mostLiked[0]
+    let recent = props.data.somevideos.recent[0]
 
 
-    let whatToShow = (liveData.status === "offline") ? mostLiked : liveData
+
+    let whatToShow = (liveData.status === "offline") ? recent : liveData
+    let date = new Date(whatToShow.publishedAt * 1000)
+    date = date.toLocaleDateString("en-US")
+
     let youtube_thumnail = `https://i.ytimg.com/vi/${whatToShow.videoId}/maxresdefault.jpg`
     youtube_thumnail = (liveData.status === "offline") ? youtube_thumnail : liveData.thumbnail
 
@@ -21,7 +29,7 @@ function FeaturedVideo(props) {
                     <Image className={css.video_item_image} src={youtube_thumnail} width={1104} height={620} alt="" />
                     <div className={css.video_featured_filter}></div>
                     <VideoBtnBig w={30} h={30} ww={85} hh={85} />
-                    <div className={css.video_featured_text}>Featured</div>
+                    <div className={css.video_featured_text}>{whatToShow.type}</div>
                 </div>
 
                 <div className={css.video_featured_content}>
@@ -32,11 +40,11 @@ function FeaturedVideo(props) {
                         <h2 className={css.title}>{whatToShow.title}</h2>
                         <div className={css.video_featured_about}>
                             <div className={css.video_featured_duration}>
-                                <div>12</div>
-                                <div>&nbsp;min</div>
+                                <div>{convertToInternationalCurrencySystem(whatToShow.viewCount)}</div>
+                                <div>&nbsp;Views</div>
                             </div>
                             <div className={css.video_feature_about_divider}></div>
-                            <div>15/9/21</div>
+                            <div>{date}</div>
                         </div>
                     </div>
                 </div>

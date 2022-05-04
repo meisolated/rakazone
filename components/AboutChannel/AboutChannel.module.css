@@ -8,7 +8,7 @@
  grid-template-columns: 1fr 1fr;
  -ms-grid-rows: auto;
  grid-template-rows: auto;
- -webkit-align-items: center;
+
  -ms-flex-align: center;
  /* align-items: center; */
 }

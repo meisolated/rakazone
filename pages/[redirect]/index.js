@@ -5,7 +5,7 @@ import axios from "axios"
 function Redirect(props) {
     let redirect = props.redirectto
     useEffect(() => {
-        if (redirect !== "nowhere") window.location.href = redirect
+        (redirect !== "nowhere") ? window.open(redirect, "_blank") : window.location.href = "/404"
     }, [redirect])
 
     return <>{props.redirectto}</>
@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
         let redirectto = redirects.find((x) => x.from_where === context.query.redirect)
         if (redirectto) {
             return {
-                props: { redirectto },
+                props: { "redirectto": redirectto.to_where },
             }
         } else {
             return { props: { redirectto: "nowhere" } }

@@ -5,6 +5,10 @@ function LastestVideos(props) {
     let mostLiked = props.data.mostLiked[0]
     let mostViewed = props.data.mostViewed[0]
     let mostCommented = props.data.mostLiked[0]
+    mostLiked.title = mostLiked.title.length > 60 ? mostLiked.title.substring(0, 60) + "..." : mostLiked.title
+    mostViewed.title = mostViewed.title.length > 60 ? mostViewed.title.substring(0, 60) + "..." : mostViewed.title
+    mostCommented.title = mostCommented.title.length > 60 ? mostCommented.title.substring(0, 60) + "..." : mostCommented.title
+
     return (
 
         <>

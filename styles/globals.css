@@ -23,14 +23,14 @@
  font-family: "Material Symbols Outlined";
  font-style: normal;
  font-weight: 100 700;
- src: url(https://fonts.gstatic.com/s/sandbox/materialsymbolsoutlined/v7/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsLjBuVY.woff2) format("woff2");
+ src: url("../assets/fonts/Material_Outline.woff2") format("woff2");
 }
 
 .material-symbols-outlined {
  font-family: "Material Symbols Outlined";
  font-weight: normal;
  font-style: normal;
- font-size: 24px;
+ font-size: 15px;
  line-height: 1;
  letter-spacing: normal;
  text-transform: none;
@@ -167,17 +167,15 @@ input {
 
 @media screen and (max-width: 991px) {
  .container-default {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-align: stretch;
-  -webkit-align-items: stretch;
-  -ms-flex-align: stretch;
   align-items: stretch;
   padding-right: 20px;
   padding-left: 20px;
+ }
+
+ .divider {
+  margin-top: 50px;
+  margin-bottom: 50px;
  }
 }
 
