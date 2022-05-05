@@ -1,5 +1,4 @@
 import css from "./index.module.css"
-import LastestVideos from "../components/LatestVideos/index.js"
 import AboutChannel from "../components/AboutChannel/index.js"
 import SubscribeToMyChannel from "../components/SubscribeToMyChannel/index.js"
 import BuyMerch from "../components/BuyMerch/index.js"
@@ -24,14 +23,11 @@ function Home(props) {
     mostViewed.title = mostViewed.title.length > 60 ? mostViewed.title.substring(0, 60) + "..." : mostViewed.title
     mostCommented.title = mostCommented.title.length > 60 ? mostCommented.title.substring(0, 60) + "..." : mostCommented.title
 
-
-
-
-    let whatToShow = (liveData.status === "offline") ? recent : liveData
+    let whatToShow = liveData.status === "offline" ? recent : liveData
     let ago = moment(whatToShow.publishedAt * 1000).fromNow()
 
     let youtube_thumnail = `https://i.ytimg.com/vi/${whatToShow.videoId}/maxresdefault.jpg`
-    youtube_thumnail = (liveData.status === "offline") ? youtube_thumnail : liveData.thumbnail
+    youtube_thumnail = liveData.status === "offline" ? youtube_thumnail : liveData.thumbnail
 
     return (
         <div className={css.main}>
@@ -40,17 +36,23 @@ function Home(props) {
                 <div className={css.home_hero}>
                     <div className={css.home_hero_left}>
                         <div className={css.home_hero_channel_image}>
-                            <Image src="https://raka.zone/assets/img/instadp.jpeg" alt='' className={css.channel_image} width={91} height={91} />
+                            <Image src="https://raka.zone/assets/img/instadp.jpeg" alt="" className={css.channel_image} width={91} height={91} />
                         </div>
-                        <div className='home_hero_channel_about'>
+                        <div className="home_hero_channel_about">
                             <div className={css.channel_about_content_top}>
                                 <h1 className={css.title}>RakaZone</h1>
                                 <div className={css.subscriber_count}>{`${userdata.yt_subscribers_count} SUBSCRIBERS`}</div>
                             </div>
-                            <p className={css.about}> <span className={css.bold}>Rishab Karanwal</span>  most of you know me as Raka, I am a vairty streamer. If you say so. </p>
+                            <p className={css.about}>
+
+                                <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
+                            </p>
                         </div>
                     </div>
-                    <p className={css.mobile_about}> <span className={css.bold}>Rishab Karanwal</span>  most of you know me as Raka, I am a vairty streamer. If you say so. </p>
+                    <p className={css.mobile_about}>
+
+                        <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
+                    </p>
                     <div className={css.home_hero_right}>
                         <Primary text={"Subscribe"} />
                     </div>
@@ -101,7 +103,6 @@ function Home(props) {
                     <div className={css.latest_videos_right}>
                         <a href="https://www.youtube.com/" className={css.latest_videos_arrow_link}>
                             <div className={css.latest_videos_arrow_link_text}>Browse more videos</div>
-
                         </a>
                     </div>
                 </div>
@@ -121,21 +122,17 @@ function Home(props) {
                     <SubscribeToMyChannel />
                     <BuyMerch />
                 </div>
-
             </div>
         </div>
     )
 }
 
 export async function getServerSideProps(context) {
-    let { data } = await axios
-        .get("http://10.69.69.201:3000/api/v1/all")
+    let { data } = await axios.get("http://10.69.69.201:3000/api/v1/all")
 
     if (data.message === "success") {
         return { props: { serverdata: data.data } }
-
-    }
-    else return { props: {} }
+    } else return { props: {} }
 }
 
 export default Home
