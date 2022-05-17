@@ -10,11 +10,18 @@
  },
  "dependencies": {
   "axios": "^0.26.1",
+  "cookies-next": "^2.0.4",
+  "dotenv": "^16.0.1",
   "isomorphic-fetch": "^3.0.0",
+  "jsonwebtoken": "^8.5.1",
+  "lodash": "^4.17.21",
   "moment": "^2.29.3",
   "next": "12.1.4",
+  "passport": "^0.5.3",
+  "passport-google-oauth2": "^0.2.0",
   "react": "18.0.0",
-  "react-dom": "18.0.0"
+  "react-dom": "18.0.0",
+  "sharp": "^0.30.4"
  },
  "devDependencies": {
   "eslint": "8.12.0",
