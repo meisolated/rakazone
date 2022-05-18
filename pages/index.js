@@ -34,7 +34,7 @@ function Home(props) {
     return (
         <div className={css.main}>
             <div className="container-default">
-                <Link href="/api/google">
+                <Link href="http://localhost:3001/api/v1/auth/google">
                     <a>Login</a>
                 </Link>
 
@@ -132,9 +132,9 @@ function Home(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-    let sortedVideos = await axios.get("http://10.69.69.201:3000/api/v1/sortedVideos").then((res) => res.data)
-    let streamerData = await axios.get("http://10.69.69.201:3000/api/v1/streamerData").then((res) => res.data)
-    let liveData = await axios.get("http://10.69.69.201:3000/api/v1/liveData").then((res) => res.data)
+    let sortedVideos = await axios.get(process.env.SERVER_URL + "sortedVideos").then(res => res.data)
+    let streamerData = await axios.get(process.env.SERVER_URL + "streamerData").then(res => res.data)
+    let liveData = await axios.get(process.env.SERVER_URL + "liveData").then(res => res.data)
 
     if (sortedVideos.message === "success" && streamerData.message === "success" && liveData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos
