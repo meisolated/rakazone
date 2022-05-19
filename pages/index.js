@@ -1,35 +1,59 @@
-import { convertToInternationalCurrencySystem } from "../util/functions.js"
-import SubscribeToMyChannel from "../components/SubscribeToMyChannel"
-import BuyMerch from "../components/BuyMerch/index.js"
-import AboutChannel from "../components/AboutChannel"
-import { VideoBtnBig } from "../components/Buttons"
-import VideoItem from "../components/VideoItem"
-import { Primary } from "../components/Buttons"
-import css from "./index.module.css"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import moment from "moment"
 import axios from "axios"
-import _ from "lodash"
+
+//other components
+import { convertToInternationalCurrencySystem } from "../util/functions.js"
+import css from "./index.module.css"
+
+// components
+import { OutlineMedium } from "../components/Buttons"
+import { Primary } from "../components/Buttons"
+import AboutChannel from "../components/AboutChannel"
+import { VideoBtnBig } from "../components/Buttons"
+import VideoItem from "../components/VideoItem"
+
+// assets 
+import bag from "../assets/img/bag.svg"
+import cross from "../assets/img/cross.svg"
+import merch1 from "../assets/img/merch1.png"
+import merch2 from "../assets/img/merch2.png"
+import merch3 from "../assets/img/merch3.png"
+import youtube_logo from "../assets/img/youtube_logo.svg"
+
 
 function Home(props) {
     let streamerData = props.streamerData
-    let liveData = props.liveData
-    let mostLiked = props.sortedVideos.mostLikedVideo[_.random(0, props.sortedVideos.mostLikedVideo.length - 1)]
-    let mostViewed = props.sortedVideos.mostViewedVideo[_.random(0, props.sortedVideos.mostViewedVideo.length - 1)]
-    let mostRecent = props.sortedVideos.mostRecentVideo[_.random(0, props.sortedVideos.mostRecentVideo.length - 1)]
-    let mostRecentFunny = props.sortedVideos.mostRecentFunny[_.random(0, props.sortedVideos.mostRecentFunny.length - 1)]
-    let mostCommented = props.sortedVideos.mostCommentedVideo[_.random(0, props.sortedVideos.mostCommentedVideo.length - 1)]
+    let featuredPrimary = props.sortedVideos.featuredPrimary
+    let featuredSecondary = props.sortedVideos.featuredSecondary
+    let featuredTertiary = props.sortedVideos.featuredTertiary
+    let latest = props.sortedVideos.latest
 
-    mostLiked.title = mostLiked.title.length > 60 ? mostLiked.title.substring(0, 60) + "..." : mostLiked.title
-    mostViewed.title = mostViewed.title.length > 60 ? mostViewed.title.substring(0, 60) + "..." : mostViewed.title
-    mostCommented.title = mostCommented.title.length > 60 ? mostCommented.title.substring(0, 60) + "..." : mostCommented.title
+    featuredPrimary.title = featuredPrimary.title.length > 60 ? featuredPrimary.title.substring(0, 60) + "..." : featuredPrimary.title
+    featuredSecondary.title = featuredSecondary.title.length > 60 ? featuredSecondary.title.substring(0, 60) + "..." : featuredSecondary.title
+    featuredTertiary.title = featuredTertiary.title.length > 60 ? featuredTertiary.title.substring(0, 60) + "..." : featuredTertiary.title
 
-    let whatToShow = liveData.status === "offline" ? mostRecent : liveData
+    let whatToShow = featuredPrimary
     let ago = moment(whatToShow.publishedAt * 1000).fromNow()
 
     let youtube_thumnail = `https://i.ytimg.com/vi/${whatToShow.videoId}/maxresdefault.jpg`
-    youtube_thumnail = liveData.status === "offline" ? youtube_thumnail : liveData.thumbnail
+    youtube_thumnail = whatToShow.thumbnail ? whatToShow.thumbnail : youtube_thumnail
+    whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
+    whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
+
+
+    const [show, setShow] = useState(true)
+
+    function removeAlert() {
+        if (show) {
+            setShow(false)
+        } else {
+            setShow(true)
+        }
+    }
+
 
     return (
         <div className={css.main}>
@@ -44,7 +68,7 @@ function Home(props) {
                         <div className={css.home_hero_channel_image}>
                             <Image src="https://raka.zone/assets/img/instadp.jpeg" alt="" className={css.channel_image} width={91} height={91} />
                         </div>
-                        <div className="home_hero_channel_about">
+                        <div className={css.home_hero_channel_about}>
                             <div className={css.channel_about_content_top}>
                                 <h1 className={css.title}>RakaZone</h1>
                                 <div className={css.subscriber_count}>{`${streamerData.yt_subscribers_count} SUBSCRIBERS`}</div>
@@ -90,10 +114,10 @@ function Home(props) {
                     </div>
                     <div className={`${css.video_featured_secondary_grid} pd-bottom `}>
                         <div className={css.video_featured_secondary_wrapper}>
-                            <VideoItem data={mostViewed} />
+                            <VideoItem data={featuredSecondary} />
                         </div>
                         <div className={css.video_featured_secondary_wrapper}>
-                            <VideoItem data={mostCommented} />
+                            <VideoItem data={featuredTertiary} />
                         </div>
                     </div>
                 </div>
@@ -111,20 +135,65 @@ function Home(props) {
                     </div>
                 </div>
                 <div className={css.latest_video_grid}>
-                    <VideoItem data={mostLiked} />
-                    <VideoItem data={mostViewed} />
-                    <VideoItem data={mostCommented} />
-                    <VideoItem data={mostLiked} />
-                    <VideoItem data={mostViewed} />
-                    <VideoItem data={mostCommented} />
+                    <VideoItem data={latest.One} />
+                    <VideoItem data={latest.Two} />
+                    <VideoItem data={latest.Three} />
+                    <VideoItem data={latest.Four} />
+                    <VideoItem data={latest.Five} />
+                    <VideoItem data={latest.Six} />
                 </div>
                 {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
                 <div className="divider" />
                 <AboutChannel />
                 <div className="divider" />
+                {/* SUBSCRIBER TO MY CHANNEL */}
                 <div className={css.support_channel_grid}>
-                    <SubscribeToMyChannel />
-                    <BuyMerch />
+                    <div className={css.subscribe_to_my_channel}>
+                        <Image src={youtube_logo} width={150} height={50} alt="youtube logo" />
+                        <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
+                        <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+                        <div className={css.subscribe_button}>
+                            <Primary text="Subscribe" />
+                        </div>
+                        <VideoItem type="empty"></VideoItem>
+                    </div>
+                    {/* BUY MERCH */}
+                    <div className={css.merch_main}>
+                        <div className={css.buy_merch}>
+                            <div className={css.merch_oneblock}>
+                                <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
+                                <h1 className={`${css.merch_oneblock} pd-left`}>Store</h1>
+                            </div>
+                            <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
+                            <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+                            {show ? (
+                                <div className={css.merch_temp_alert}>
+                                    <div className={css.merch_temp_type_alert}>
+                                        <p>note</p>
+                                    </div>
+                                    <p className={css.merch_temp_alert_text}>We are currently trying to get in touch with RakaZone to make merch available for you.</p>
+                                    <Image src={cross} width={40} height={30} alt="cross" className={css.merch_cross_btn} onClick={removeAlert} />
+                                </div>
+                            ) : <></>}
+                            <div className="pd-bottom-high" />
+                            <OutlineMedium text="Browse Merch" />
+                            <div className="pd-bottom-high" />
+                        </div>
+                        <div className={css.merch_gallery}>
+                            <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
+                                <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                            </div>
+
+                            <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
+                                <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,15 +201,13 @@ function Home(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-    let sortedVideos = await axios.get(process.env.SERVER_URL + "sortedVideos").then(res => res.data)
+    let sortedVideos = await axios.get(process.env.SERVER_URL + "content").then(res => res.data)
     let streamerData = await axios.get(process.env.SERVER_URL + "streamerData").then(res => res.data)
-    let liveData = await axios.get(process.env.SERVER_URL + "liveData").then(res => res.data)
 
-    if (sortedVideos.message === "success" && streamerData.message === "success" && liveData.message === "success") {
+    if (sortedVideos.message === "success" && streamerData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos
         streamerData = streamerData.data.streamerData
-        liveData = liveData.data.liveData
-        return { props: { sortedVideos, streamerData, liveData } }
+        return { props: { sortedVideos, streamerData } }
     } else return { props: {} }
 }
 

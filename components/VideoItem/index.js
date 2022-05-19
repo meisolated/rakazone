@@ -1,12 +1,10 @@
 import css from "./VideoItem.module.css"
 import Image from "next/image"
 import { VideoBtnSmall } from "../Buttons"
-import moment from 'moment'
+import moment from "moment"
 import { convertToInternationalCurrencySystem } from "../../util/functions.js"
 
 function VideoItem(props) {
-
-
     if (props.type === "empty") {
         return (
             <div className={css.video_item}>
@@ -17,10 +15,10 @@ function VideoItem(props) {
                 </div>
             </div>
         )
-    }
-    else {
+    } else {
         let videoData = props.data
-        let ago = moment(videoData.publishedAt * 1000).fromNow()
+        let publishedAt = videoData["publishedAt"]
+        let ago = moment(publishedAt * 1000).fromNow()
         let views = convertToInternationalCurrencySystem(videoData.viewCount)
         let youtube_thumnail = `https://i.ytimg.com/vi/${videoData.videoId}/maxresdefault.jpg`
         return (
@@ -35,16 +33,12 @@ function VideoItem(props) {
                         <h3 className={css.title}>{videoData.title}</h3>
                         <div className={css.video_about}>
                             <div className={css.video_duration}>
-                                <div className="material-symbols-outlined">
-                                    visibility
-                                </div>
+                                <div className="material-symbols-outlined">visibility</div>
                                 <div>&nbsp;{views}</div>
                                 <div>&nbsp;views</div>
                             </div>
                             <div className={css.video_about_divider}></div>
-                            <div className="material-symbols-outlined">
-                                schedule
-                            </div>
+                            <div className="material-symbols-outlined">schedule</div>
                             <div>&nbsp;{ago}</div>
                         </div>
                     </div>
