@@ -1,4 +1,4 @@
-import { useRouter } from "next/router"
+
 import { useEffect } from "react"
 import axios from "axios"
 
@@ -14,13 +14,12 @@ function Redirect(props) {
 export default Redirect
 
 export async function getServerSideProps(context) {
-    let { data } = await axios.get("http://10.69.69.201:3000/api/v1/redirectdata")
+    let { data } = await axios.get(`${process.env.SERVER_URL}redirects`)
     if (data.message === "success") {
-        let redirects = data.data
-        let redirectto = redirects.find((x) => x.from_where === context.query.redirect)
-        if (redirectto) {
+        let redirects = data.data.redirects
+        if (redirects) {
             return {
-                props: { "redirectto": redirectto.to_where },
+                props: { "redirectto": redirects[context.query.redirect] },
             }
         } else {
             return { props: { redirectto: "nowhere" } }

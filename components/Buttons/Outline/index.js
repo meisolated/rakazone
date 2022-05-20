@@ -3,7 +3,9 @@ import Link from "next/link"
 
 export function OutlineSmall(props) {
     let link = props.where || "/"
-    return <Link href={link} passHref ><button className={`${css.OutlineSmall} ${css.button}`}>{props.text}</button> </Link>
+    if (props.background) return <Link href={link} passHref ><button style={{ backgroundImage: "url(" + `${props.background}` + ")", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }} className={`${css.OutlineSmall} ${css.button}`}>{props.text}</button></Link >
+    return <Link href={link} passHref ><button className={`${css.OutlineSmall} ${css.button}`}>{props.text}</button></Link >
+
 }
 
 export function OutlineMedium(props) {

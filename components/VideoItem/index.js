@@ -20,11 +20,10 @@ function VideoItem(props) {
         let publishedAt = videoData["publishedAt"]
         let ago = moment(publishedAt * 1000).fromNow()
         let views = convertToInternationalCurrencySystem(videoData.viewCount)
-        let youtube_thumnail = `https://i.ytimg.com/vi/${videoData.videoId}/maxresdefault.jpg`
         return (
             <div className={css.video_item}>
                 <div className={css.image_wrapper}>
-                    <Image className={css.video_item_image} src={youtube_thumnail} width={540} height={300} alt="" />
+                    <Image className={css.video_item_image} src={videoData.thumbnail} width={540} height={300} alt="" />
                     <div className={css.video_filter}></div>
                     <VideoBtnSmall w={30} h={30} ww={85} hh={85} />
                 </div>

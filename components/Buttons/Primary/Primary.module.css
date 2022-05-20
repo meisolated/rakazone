@@ -33,7 +33,8 @@
 .button_primary_small {
  padding: 18px 36px;
  border-radius: 14px;
- background-color: #f63434;
+ border-style: none;
+ background-color: var(--primary-color);
  -webkit-transform: scale3d(1, 1, 1.01);
  transform: scale3d(1, 1, 1.01);
  -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
