@@ -28,6 +28,9 @@
 }
 
 .home_hero_channel_image {
+ stroke: black;
+ stroke-width: 8;
+ stroke-dasharray: 288.5;
  max-height: 91px;
  min-width: 91px;
  margin-right: 20px;
@@ -35,6 +38,30 @@
  border-radius: 100px;
  background: conic-gradient(#f58529, #feda77, #dd2a7b, #515bd4, #8134af, #f58529);
 }
+/* 
+@keyframes pathStroke {
+ 0% {
+  stroke-dashoffset: -288.5;
+ }
+ 40%,
+ 70% {
+  stroke-dashoffset: 0;
+ }
+ 100% {
+  stroke-dashoffset: 288.5;
+ }
+}
+@keyframes pathRotate {
+ 0% {
+  transform: rotate(0deg);
+ }
+ 50% {
+  transform: rotate(-540deg);
+ }
+ 100% {
+  transform: rotate(-1080deg);
+ }
+} */
 .channel_image {
  border-radius: 100px;
 }
@@ -564,7 +591,7 @@
   font-size: 12px;
  }
  .video_featured_about {
-  font-size: 18px;
+  font-size: 14px;
  }
 }
 

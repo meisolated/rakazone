@@ -1,5 +1,5 @@
 .loading {
- z-index: 101;
+ z-index: 102;
  position: -webkit-sticky;
  position: sticky;
  top: 0px;
@@ -36,11 +36,11 @@
  left: 0;
  background: var(--background-color);
  z-index: 101;
- transition: transform 2s ease;
+ transition: transform 1s ease;
 }
 
 .test_active {
- transform: translateY(calc(100% + 10px));
+ transform: translateX(calc(100% + 10px));
 }
 
 .test_loading_image {
@@ -63,6 +63,16 @@
  width: 100%;
  position: absolute;
  animation: verticalflapup 1s;
+}
+.quote {
+ width: 100%;
+ opacity: 50%;
+ text-align: center;
+ margin: 0;
+ position: fixed;
+ bottom: -15px;
+ font-size: 40px;
+ overflow: hidden;
 }
 
 @keyframes verticalflapup {
@@ -92,7 +102,20 @@
  }
 }
 
+@media screen and (min-width: 1024px) {
+ .test_loading {
+  background-image: url("../../assets/img/splash_screen.png");
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+ }
+}
+
 @media screen and (max-width: 768px) {
+ .quote {
+  bottom: 10px;
+  font-size: 15px;
+ }
  .test_loading {
   background-image: url("../../assets/img/wallpaper_dark.png");
   background-position: 50% 50%;

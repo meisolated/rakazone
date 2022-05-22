@@ -45,6 +45,7 @@ function Home(props) {
     let youtube_thumnail = whatToShow.thumbnail
     whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
+    let views = whatToShow.status == "live" ? "watching now" : "views"
 
 
     const [show, setShow] = useState(true)
@@ -104,7 +105,7 @@ function Home(props) {
                                     <div className={css.video_featured_about}>
                                         <div className={css.video_featured_duration}>
                                             <div>{convertToInternationalCurrencySystem(whatToShow.viewCount)}</div>
-                                            <div>&nbsp;views</div>
+                                            <div>&nbsp;{views}</div>
                                         </div>
                                         <div className={css.video_about_divider}></div>
                                         <div>{ago}</div>
