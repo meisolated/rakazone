@@ -6,7 +6,7 @@
  top: 0px;
  padding-top: 10px;
  padding-bottom: 10px;
- background-color: #0d0c0f;
+ background-color: var(--background-color);
 }
 
 .header_wrapper {

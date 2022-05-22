@@ -20,21 +20,87 @@
   width: 40%;
  }
  70% {
-  width: 40%;
   width: 100%;
  }
  100% {
   opacity: 0;
  }
 }
-/* @media (max-width: 800px) {
- .loading {
-  height: 3px;
+
+/* TEST */
+
+.test_loading {
+ position: fixed;
+ height: 100%;
+ width: 100%;
+ left: 0;
+ background: var(--background-color);
+ z-index: 101;
+ transition: transform 2s ease;
+}
+
+.test_active {
+ transform: translateY(calc(100% + 10px));
+}
+
+.test_loading_image {
+ font-size: 60px;
+ color: #fff;
+ margin: 0;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 200px;
+ height: 220px;
+ transform: translate(-50%, -50%);
+}
+
+.test_loading_progress {
+ height: 11px;
+ background: var(--background-color);
+ top: -11px;
+ bottom: 0;
+ width: 100%;
+ position: absolute;
+ animation: verticalflapup 1s;
+}
+
+@keyframes verticalflapup {
+ 0% {
+  transform: translateX(0%);
+ }
+ 100% {
+  transform: translateX(100%);
+ }
+}
+@keyframes identifier {
+ 0% {
+  transform: translateY(calc(0% + 0px));
+ }
+
+ 10% {
+  transform: translateY(calc(0% + 0px));
+ }
+ 20% {
+  transform: translateY(calc(0% + 0px));
+ }
+ 80% {
+  transform: translateY(calc(0% + 0px));
+ }
+ 100% {
+  transform: translateY(calc(100% + 10px));
  }
 }
 
-@media (max-width: 600px) {
- .loading {
-  height: 4px;
+@media screen and (max-width: 768px) {
+ .test_loading {
+  background-image: url("../../assets/img/wallpaper_dark.png");
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
  }
-} */
+ .test_loading_image {
+  width: 135px;
+  height: 150px;
+ }
+}

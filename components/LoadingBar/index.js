@@ -1,27 +1,22 @@
 import css from './LoadingBar.module.css'
+import Image from "next/image"
+import LogoWithOutText from "../../assets/img/logowithouttext.png"
+import { useState, useEffect } from "react"
 function LoadingBar() {
-    //     const router = useRouter()
+    let [active, setActive] = useState(false)
 
-    //     const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        setTimeout(() => {
+            setActive(true)
+        }, 3000)
+    }, [])
 
-    //     useEffect(() => {
-    //         const handleStart = (url) => (url !== router.asPath) && setLoading(true)
-    //         const handleComplete = (url) => (url === router.asPath) && setLoading(false)
-
-    //         router.events.on('routeChangeStart', handleStart)
-    //         router.events.on('routeChangeComplete', handleComplete)
-    //         router.events.on('routeChangeError', handleComplete)
-
-    //         return () => {
-    //             console.log(loading)
-    //             router.events.off('routeChangeStart', handleStart)
-    //             router.events.off('routeChangeComplete', handleComplete)
-    //             router.events.off('routeChangeError', handleComplete)
-    //         }
-    //     })
-
-    //     return loading && (<div>Loading....{/*I have an animation here*/}</div>)
-    return <div className={css.loading} />
+    return <div className={`${css.test_loading} ${active ? css.test_active : []}`} >
+        <div className={css.test_loading_image}>
+            {/* <Image src={LogoWithOutText} width={900} height={1000} alt="" /> */}
+        </div>
+        <div className={css.test_loading_progress}></div>
+    </div>
 }
 
 export default LoadingBar
