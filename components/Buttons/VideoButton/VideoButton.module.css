@@ -27,7 +27,7 @@
  transition: all 0.2s ease-in-out;
 }
 .video_button_wrapper_big:hover {
- transform: scale(0.9);
+ transform: scale3d(0.92, 0.92, 1);
 }
 .button_wrapper_big {
  width: 32%;

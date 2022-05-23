@@ -78,6 +78,43 @@
  overflow: hidden;
 }
 
+.story_about_me {
+ margin-top: 50px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-box-pack: justify;
+ -webkit-justify-content: space-between;
+ -ms-flex-pack: justify;
+ justify-content: space-between;
+}
+
+.story_about_titles {
+ font-family: var(--bold-primary-font);
+ font-size: 35px;
+ color: var(--white-color);
+}
+.story_about_me_image_left,
+.story_about_me_image_right {
+ margin: 20px;
+}
+.story_about_me_left {
+ max-width: 518px;
+ margin-top: 64px;
+ margin-right: 40px;
+}
+.story_about_me_right {
+ max-width: 518px;
+}
+
+.story_about_img_left {
+ border-radius: 32px 124px;
+}
+.story_about_img_right {
+ border-radius: 32px 124px;
+}
+
 @media screen and (max-width: 790px) {
  .padding {
   margin-bottom: 20px;

@@ -4,19 +4,28 @@
  align-items: center;
  flex-direction: column;
  display: flex;
+ overflow: hidden;
+ border-radius: 44px;
 }
 
 .video_item_image {
  width: 100%;
  -o-object-fit: cover;
  object-fit: cover;
-
  display: inline-block;
  vertical-align: middle;
  border: 0;
  max-width: 100%;
  border-radius: 44px;
+ transition: all 0.3s ease-in-out;
 }
+.image_active {
+ transform: scale3d(1.04, 1.04, 1);
+}
+.image_inactive {
+ transform: scale3d(1, 1, 1);
+}
+
 .video_filter {
  position: absolute;
  left: 0%;
@@ -140,5 +149,89 @@
 @media screen and (max-width: 480px) {
  .video_about {
   font-size: 12px;
+ }
+}
+
+/* Video Button CSS */
+.video_button_big {
+ position: absolute;
+ left: 0%;
+ top: 0%;
+ right: 0%;
+ bottom: 0%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-style: solid;
+ border-width: 1px;
+ border-color: hsla(0, 0%, 100%, 0.49);
+ border-radius: 100%;
+ background-color: hsla(0, 0%, 100%, 0.32);
+}
+
+.video_button_wrapper_big {
+ box-shadow: 0 14px 44px 0 rgb(0 0 0 / 45%);
+ position: absolute;
+ overflow: hidden;
+ justify-content: center;
+ align-items: center;
+ border-radius: 1000000000px;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 100%, 0.64)), color-stop(71%, hsla(0, 0%, 100%, 0)));
+ background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.64), hsla(0, 0%, 100%, 0) 20%);
+ box-shadow: 0 8px 25px 0 rgb(0 0 0 / 45%);
+ transition: all 0.2s ease-in-out;
+}
+/* .video_button_wrapper_big:hover .video_item_image {
+ transform: scale3d(0.92, 0.92, 1);
+} */
+
+.active {
+ transform: scale3d(0.92, 0.92, 1);
+}
+.inactive {
+ transform: scale3d(1.08, 1.08, 1);
+}
+
+.button_wrapper_big {
+ width: 32%;
+ height: 32%;
+}
+.video_button_icon_big {
+ width: 100%;
+ height: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+ .video_button_wrapper_big {
+  width: 95px;
+  height: 95px;
+ }
+}
+
+@media screen and (max-width: 1000px) {
+ .video_button_wrapper_big {
+  width: 100px;
+  height: 100px;
+ }
+}
+
+@media screen and (max-width: 900px) {
+ .video_button_wrapper_big {
+  width: 90px;
+  height: 90px;
+ }
+}
+
+@media screen and (max-width: 700px) {
+ .video_button_wrapper_big {
+  width: 70px;
+  height: 70px;
+ }
+}
+
+@media screen and (max-width: 500px) {
+ .video_button_wrapper_big {
+  width: 60px;
+  height: 60px;
  }
 }

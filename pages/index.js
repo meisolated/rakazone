@@ -23,6 +23,7 @@ import merch1 from "../assets/img/merch1.png"
 import merch2 from "../assets/img/merch2.png"
 import merch3 from "../assets/img/merch3.png"
 import youtube_logo from "../assets/img/youtube_logo.svg"
+import Head from "next/head"
 
 
 function Home(props) {
@@ -59,7 +60,10 @@ function Home(props) {
     }
 
 
-    return (
+    return (<>
+        <Head>
+            <title>RakaZone</title>
+        </Head>
         <Layout isLoggedIn={isLoggedIn} userData={userData}>
             <div className={css.main}>
                 <div className="container-default">
@@ -199,6 +203,7 @@ function Home(props) {
                 </div>
             </div>
         </Layout>
+    </>
     )
 }
 

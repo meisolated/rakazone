@@ -6,16 +6,15 @@
  height: 4px;
  width: 100%;
  opacity: 1;
- color: #0d0c0f;
- background-color: #0d0c0f;
+ color: var(--background-color);
+ background-color: var(--background-color);
  animation: fade 3s ease-in forwards;
- background: #f63434;
+ background: var(--primary-color);
 }
 @keyframes fade {
  0% {
   width: 10%;
  }
-
  50% {
   width: 40%;
  }
@@ -104,7 +103,7 @@
 
 @media screen and (min-width: 1024px) {
  .test_loading {
-  background-image: url("../../assets/img/splash_screen.png");
+  background-image: url("../../assets/img/wallpaper_dark_desktop.png");
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -117,7 +116,7 @@
   font-size: 15px;
  }
  .test_loading {
-  background-image: url("../../assets/img/wallpaper_dark.png");
+  background-image: url("../../assets/img/wallpaper_dark_mobile.png");
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
