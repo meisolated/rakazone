@@ -8,6 +8,9 @@ import instagram_icon from "../../assets/icons/instagram.svg"
 import youtube_icon from "../../assets/icons/youtube.svg"
 import Insta15 from "../../assets/img/insta15.png"
 import Insta from "../../assets/img/insta.jpg"
+import insta1 from "../../assets/img/insta07.png"
+import insta2 from "../../assets/img/insta02.png"
+import insta3 from "../../assets/img/insta15.png"
 import Head from "next/head"
 function About() {
     return (
@@ -95,6 +98,26 @@ function About() {
                             </div>
                         </div>
                     </div>
+                    <div className="divider" />
+                </div>
+                <div className={css.instagram_showcase_grid}>
+                    <div className={css.instagram_showcase_grid_item_image}>
+                        <Image src={insta1} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+                        <div className={css.instagram_image_filter} />
+                    </div>
+                    <div className={css.instagram_showcase_grid_item_image}>
+                        <Image src={insta2} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+                        <div className={css.instagram_image_filter} />
+                    </div>
+                    <div className={css.instagram_showcase_grid_item_image}>
+                        <Image src={insta3} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+                        <div className={css.instagram_image_filter} />
+                    </div>
+                    <div className={css.instagram_showcase_grid_item_image}>
+                        <Image src={insta2} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+                        <div className={css.instagram_image_filter} />
+                    </div>
+
                 </div>
             </Layout>
         </>

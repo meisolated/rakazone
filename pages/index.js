@@ -12,11 +12,10 @@ import css from "./index.module.css"
 import { OutlineMedium } from "../components/Buttons"
 import { Primary } from "../components/Buttons"
 import AboutChannel from "../components/AboutChannel"
-import { VideoBtnBig } from "../components/Buttons"
-import VideoItem from "../components/VideoItem"
-import Layout from '../components/Layout'
+import { EmptyVideoItem, VideoItemRegular } from "../components/VideoItem"
+import Layout from "../components/Layout"
 
-// assets 
+// assets
 import bag from "../assets/img/bag.svg"
 import cross from "../assets/img/cross.svg"
 import merch1 from "../assets/img/merch1.png"
@@ -24,7 +23,7 @@ import merch2 from "../assets/img/merch2.png"
 import merch3 from "../assets/img/merch3.png"
 import youtube_logo from "../assets/img/youtube_logo.svg"
 import Head from "next/head"
-
+import playicon from "../assets/img/playicon.svg"
 
 function Home(props) {
     let userData = props.userData
@@ -48,8 +47,8 @@ function Home(props) {
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
     let views = whatToShow.status == "live" ? "watching now" : "views"
 
-
     const [show, setShow] = useState(true)
+    const [active, setActive] = useState(false)
 
     function removeAlert() {
         if (show) {
@@ -59,19 +58,19 @@ function Home(props) {
         }
     }
 
+    return (
+        <>
+            <Head>
+                <title>RakaZone</title>
+            </Head>
+            <Layout isLoggedIn={isLoggedIn} userData={userData}>
 
-    return (<>
-        <Head>
-            <title>RakaZone</title>
-        </Head>
-        <Layout isLoggedIn={isLoggedIn} userData={userData}>
-            <div className={css.main}>
                 <div className="container-default">
                     {/* –––––––––––––––––––––––––– HOME HERO –––––––––––––––––––––––––– */}
                     <div className={css.home_hero}>
                         <div className={css.home_hero_left}>
                             <div className={css.home_hero_channel_image}>
-                                <Image src="https://raka.zone/assets/img/instadp.jpeg" alt="" className={css.channel_image} width={91} height={91} />
+                                <Image src={`${props.SERVER_URL}assets/img/instadp.jpeg`} alt="" className={css.channel_image} width={91} height={91} />
                             </div>
                             <div className={css.home_hero_channel_about}>
                                 <div className={css.channel_about_content_top}>
@@ -94,15 +93,23 @@ function Home(props) {
                     <div className={css.video_featured_grid}>
                         <div className={css.video_featured_wrapper}>
                             <div className={css.image_wrapper}>
-                                <Image className={css.video_item_image} src={youtube_thumnail} width={1104} height={620} alt="" />
+                                <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumnail} width={1104} height={620} alt="" />
                                 <div className={css.video_featured_filter}></div>
-                                <VideoBtnBig w={30} h={30} ww={85} hh={85} />
+                                <Link href={"/"} passHref>
+                                    <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
+                                        <div className={css.video_featured_button}>
+                                            <div className={css.video_featured_button_icon_wrapper}>
+                                                <Image src={playicon} className={css.video_featured_button_icon_big} layout="responsive" height={30} width={30} alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
                                 <div className={css.video_featured_text}>{whatToShow.type}</div>
                             </div>
 
                             <div className={css.video_featured_content}>
                                 <div className={`pd-right ${css.video_featured_channel_image}`}>
-                                    <Image className={css.video_featured_channel_image} src="https://raka.zone/assets/img/instadp.jpeg" width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
+                                    <Image className={css.video_featured_channel_image} src={`${props.SERVER_URL}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
                                 </div>
                                 <div>
                                     <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
@@ -117,12 +124,13 @@ function Home(props) {
                                 </div>
                             </div>
                         </div>
+                        {/*  */}
                         <div className={`${css.video_featured_secondary_grid} pd-bottom `}>
                             <div className={css.video_featured_secondary_wrapper}>
-                                <VideoItem data={featuredSecondary} />
+                                <VideoItemRegular data={featuredSecondary} />
                             </div>
                             <div className={css.video_featured_secondary_wrapper}>
-                                <VideoItem data={featuredTertiary} />
+                                <VideoItemRegular data={featuredTertiary} />
                             </div>
                         </div>
                     </div>
@@ -140,84 +148,88 @@ function Home(props) {
                         </div>
                     </div>
                     <div className={css.latest_video_grid}>
-                        <VideoItem data={latest.One} />
-                        <VideoItem data={latest.Two} />
-                        <VideoItem data={latest.Three} />
-                        <VideoItem data={latest.Four} />
-                        <VideoItem data={latest.Five} />
-                        <VideoItem data={latest.Six} />
+                        <VideoItemRegular data={latest.One} />
+                        <VideoItemRegular data={latest.Two} />
+                        <VideoItemRegular data={latest.Three} />
+                        <VideoItemRegular data={latest.Four} />
+                        <VideoItemRegular data={latest.Five} />
+                        <VideoItemRegular data={latest.Six} />
                     </div>
                     {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
                     <div className="divider" />
                     <AboutChannel />
                     <div className="divider" />
                     {/* SUBSCRIBER TO MY CHANNEL */}
-                    <div className={css.support_channel_grid}>
-                        <div className={css.subscribe_to_my_channel}>
-                            <Image src={youtube_logo} width={150} height={50} alt="youtube logo" />
-                            <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
-                            <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
-                            <div className={css.subscribe_button}>
-                                <Primary text="Subscribe" />
-                            </div>
-                            <VideoItem type="empty"></VideoItem>
-                        </div>
-                        {/* BUY MERCH */}
-                        <div className={css.merch_main}>
-                            <div className={css.buy_merch}>
-                                <div className={css.merch_oneblock}>
-                                    <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
-                                    <h1 className={`${css.merch_oneblock} pd-left`}>Store</h1>
+                    <section className="pd-bottom-high">
+                        <div className={css.support_channel_grid}>
+                            <div className={css.subscribe_to_my_channel}>
+                                <Image src={youtube_logo} width={150} height={50} alt="youtube logo" />
+                                <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
+                                <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+                                <div className={css.subscribe_button}>
+                                    <Primary text="Subscribe" />
                                 </div>
-                                <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
-                                <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
-                                {show ? (
-                                    <div className={css.merch_temp_alert}>
-                                        <div className={css.merch_temp_type_alert}>
-                                            <p>note</p>
-                                        </div>
-                                        <p className={css.merch_temp_alert_text}>We are currently trying to get in touch with RakaZone to make merch available for you.</p>
-                                        <Image src={cross} width={40} height={30} alt="cross" className={css.merch_cross_btn} onClick={removeAlert} />
-                                    </div>
-                                ) : <></>}
-                                <div className="pd-bottom-high" />
-                                <OutlineMedium text="Browse Merch" />
-                                <div className="pd-bottom-high" />
+                                <EmptyVideoItem type="empty" />
                             </div>
-                            <div className={css.merch_gallery}>
-                                <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
-                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                            {/* BUY MERCH */}
+                            <div className={css.merch_main}>
+                                <div className={css.buy_merch}>
+                                    <div className={css.merch_oneblock}>
+                                        <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
+                                        <h1 className={`${css.merch_oneblock} pd-left`}>Store</h1>
+                                    </div>
+                                    <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
+                                    <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+                                    {show ? (
+                                        <div className={css.merch_temp_alert}>
+                                            <div className={css.merch_temp_type_alert}>
+                                                <p>note</p>
+                                            </div>
+                                            <p className={css.merch_temp_alert_text}>We are currently trying to get in touch with RakaZone to make merch available for you.</p>
+                                            <Image src={cross} width={40} height={30} alt="cross" className={css.merch_cross_btn} onClick={removeAlert} />
+                                        </div>
+                                    ) : (
+                                        <></>
+                                    )}
+                                    <div className="pd-bottom-high" />
+                                    <OutlineMedium text="Browse Merch" />
+                                    <div className="pd-bottom-high" />
+                                </div>
+                                <div className={css.merch_gallery}>
+                                    <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
+                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    </div>
+
+                                    <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
+                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    </div>
                                 </div>
 
-                                <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
-                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-            </div>
-        </Layout>
-    </>
+            </Layout>
+        </>
     )
 }
 
 export async function getServerSideProps({ req, res }) {
-    axios.defaults.headers.common['Cookie'] = req.headers.cookie ? req.headers.cookie : ''
-    let userData = await axios.get(`${process.env.SERVER_URL}userData`, { withCredentials: true }).then(res => res.data)
-    let sortedVideos = await axios.get(`${process.env.SERVER_URL}content`, { withCredentials: true }).then(res => res.data)
-    let streamerData = await axios.get(`${process.env.SERVER_URL}streamerData`, { withCredentials: true }).then(res => res.data)
+    axios.defaults.headers.common["Cookie"] = req.headers.cookie ? req.headers.cookie : ""
+    let userData = await axios.get(`${process.env.API_URL}userData`, { withCredentials: true }).then((res) => res.data)
+    let sortedVideos = await axios.get(`${process.env.API_URL}content`, { withCredentials: true }).then((res) => res.data)
+    let streamerData = await axios.get(`${process.env.API_URL}streamerData`, { withCredentials: true }).then((res) => res.data)
     let isLoggedIn = userData.code == 401 ? false : true
     if (sortedVideos.message === "success" && streamerData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos
         streamerData = streamerData.data.streamerData
         userData = isLoggedIn ? userData.data.user : {}
-        return { props: { isLoggedIn, userData, sortedVideos, streamerData } }
+        return { props: { isLoggedIn, userData, sortedVideos, streamerData, SERVER_URL: process.env.SERVER_URL } }
     } else return { props: {} }
 }
 

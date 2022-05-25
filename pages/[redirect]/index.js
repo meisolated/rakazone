@@ -14,10 +14,10 @@ function Redirect(props) {
 export default Redirect
 
 export async function getServerSideProps(context) {
-    let { data } = await axios.get(`${process.env.SERVER_URL}redirects`)
+    let { data } = await axios.get(`${process.env.API_URL}redirects`)
     if (data.message === "success") {
         let redirects = data.data.redirects
-        if (redirects) {
+        if (redirects[context.query.redirect]) {
             return {
                 props: { "redirectto": redirects[context.query.redirect] },
             }
