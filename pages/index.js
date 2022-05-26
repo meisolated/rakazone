@@ -26,9 +26,6 @@ import Head from "next/head"
 import playicon from "../assets/img/playicon.svg"
 
 function Home(props) {
-    let userData = props.userData
-    let isLoggedIn = props.isLoggedIn
-
     let streamerData = props.streamerData
     let featuredPrimary = props.sortedVideos.featuredPrimary
     let featuredSecondary = props.sortedVideos.featuredSecondary
@@ -63,164 +60,161 @@ function Home(props) {
             <Head>
                 <title>RakaZone</title>
             </Head>
-            <Layout isLoggedIn={isLoggedIn} userData={userData}>
-
-                <div className="container-default">
-                    {/* –––––––––––––––––––––––––– HOME HERO –––––––––––––––––––––––––– */}
-                    <div className={css.home_hero}>
-                        <div className={css.home_hero_left}>
-                            <div className={css.home_hero_channel_image}>
-                                <Image src={`${props.SERVER_URL}assets/img/instadp.jpeg`} alt="" className={css.channel_image} width={91} height={91} />
-                            </div>
-                            <div className={css.home_hero_channel_about}>
-                                <div className={css.channel_about_content_top}>
-                                    <h1 className={css.title}>RakaZone</h1>
-                                    <div className={css.subscriber_count}>{`${streamerData.yt_subscribers_count} SUBSCRIBERS`}</div>
-                                </div>
-                                <p className={css.about}>
-                                    <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
-                                </p>
-                            </div>
+            <div className="container-default">
+                {/* –––––––––––––––––––––––––– HOME HERO –––––––––––––––––––––––––– */}
+                <div className={css.home_hero}>
+                    <div className={css.home_hero_left}>
+                        <div className={css.home_hero_channel_image}>
+                            <Image src={`${props.SERVER_URL}assets/img/instadp.jpeg`} alt="" className={css.channel_image} width={91} height={91} />
                         </div>
-                        <p className={css.mobile_about}>
-                            <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
-                        </p>
-                        <div className={css.home_hero_right}>
-                            <Primary text={"Subscribe"} />
+                        <div className={css.home_hero_channel_about}>
+                            <div className={css.channel_about_content_top}>
+                                <h1 className={css.title}>RakaZone</h1>
+                                <div className={css.subscriber_count}>{`${streamerData.yt_subscribers_count} SUBSCRIBERS`}</div>
+                            </div>
+                            <p className={css.about}>
+                                <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
+                            </p>
                         </div>
                     </div>
-                    {/* ––––––––––––––––––––––––––––––––––––––––Featured Video–––––––––––––––––––––––––––––––––––––––––––– */}
-                    <div className={css.video_featured_grid}>
-                        <div className={css.video_featured_wrapper}>
-                            <div className={css.image_wrapper}>
-                                <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumnail} width={1104} height={620} alt="" />
-                                <div className={css.video_featured_filter} />
-                                <Link href={"/"} passHref>
-                                    <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
-                                        <div className={css.video_featured_button}>
-                                            <div className={css.video_featured_button_icon_wrapper}>
-                                                <Image src={playicon} className={css.video_featured_button_icon_big} layout="responsive" height={30} width={30} alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                                <div className={css.video_featured_text}>{whatToShow.type}</div>
-                            </div>
-
-                            <div className={css.video_featured_content}>
-                                <div className={`pd-right ${css.video_featured_channel_image}`}>
-                                    <Image className={css.video_featured_channel_image} src={`${props.SERVER_URL}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
-                                </div>
-                                <div>
-                                    <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
-                                    <div className={css.video_featured_about}>
-                                        <div className={css.video_featured_duration}>
-                                            <div>{convertToInternationalCurrencySystem(whatToShow.viewCount)}</div>
-                                            <div>&nbsp;{views}</div>
-                                        </div>
-                                        <div className={css.video_about_divider}></div>
-                                        <div>{ago}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*  */}
-                        <div className={`${css.video_featured_secondary_grid} pd-bottom `}>
-                            <div className={css.video_featured_secondary_wrapper}>
-                                <VideoItemRegular data={featuredSecondary} />
-                            </div>
-                            <div className={css.video_featured_secondary_wrapper}>
-                                <VideoItemRegular data={featuredTertiary} />
-                            </div>
-                        </div>
+                    <p className={css.mobile_about}>
+                        <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
+                    </p>
+                    <div className={css.home_hero_right}>
+                        <Primary text={"Subscribe"} />
                     </div>
-                    {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
-                    <div className="divider" />
-                    {/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– LATEST VIDEOS –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
-                    <div className={css.home_latest_videos}>
-                        <div className={css.latest_videos_left}>
-                            <h2 className={css.latest_videos_title}>Latest videos</h2>
-                        </div>
-                        <div className={css.latest_videos_right}>
-                            <a href="https://www.youtube.com/" className={css.latest_videos_arrow_link}>
-                                <div className={css.latest_videos_arrow_link_text}>Browse more videos</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div className={css.latest_video_grid}>
-                        <VideoItemRegular data={latest.One} />
-                        <VideoItemRegular data={latest.Two} />
-                        <VideoItemRegular data={latest.Three} />
-                        <VideoItemRegular data={latest.Four} />
-                        <VideoItemRegular data={latest.Five} />
-                        <VideoItemRegular data={latest.Six} />
-                    </div>
-                    {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
-                    <div className="divider" />
-                    <AboutChannel />
-                    <div className="divider" />
-                    {/* SUBSCRIBER TO MY CHANNEL */}
-                    <section className="pd-bottom-high">
-                        <div className={css.support_channel_grid}>
-                            <div className={css.subscribe_to_my_channel}>
-                                <Image src={youtube_logo} width={150} height={50} alt="youtube logo" />
-                                <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
-                                <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
-                                <div className={css.subscribe_button}>
-                                    <Primary text="Subscribe" />
-                                </div>
-                                <EmptyVideoItem type="empty" />
-                            </div>
-                            {/* BUY MERCH */}
-                            <div className={css.merch_main}>
-                                <div className={css.buy_merch_notice}>We are currently trying to get in touch with RakaZone to make merch available for you.</div>
-                                <div className="pd-bottom" />
-                                <div className={css.buy_merch}>
-                                    <div className={css.merch_oneblock}>
-                                        <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
-                                        <h1 className={`${css.merch_oneblock} pd-left`}>Store</h1>
-                                    </div>
-                                    <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
-                                    <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
-
-                                    <div className="pd-bottom" />
-                                    <OutlineMedium text="Browse Merch" />
-                                    <div className="pd-bottom" />
-                                </div>
-                                <div className={css.merch_gallery}>
-                                    <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
-                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    </div>
-
-                                    <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
-                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
                 </div>
-            </Layout>
+                {/* ––––––––––––––––––––––––––––––––––––––––Featured Video–––––––––––––––––––––––––––––––––––––––––––– */}
+                <div className={css.video_featured_grid}>
+                    <div className={css.video_featured_wrapper}>
+                        <div className={css.image_wrapper}>
+                            <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumnail} width={1104} height={620} alt="" />
+                            <div className={css.video_featured_filter} />
+                            <Link href={"/"} passHref>
+                                <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
+                                    <div className={css.video_featured_button}>
+                                        <div className={css.video_featured_button_icon_wrapper}>
+                                            <Image src={playicon} className={css.video_featured_button_icon_big} layout="responsive" height={30} width={30} alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                            <div className={css.video_featured_text}>{whatToShow.type}</div>
+                        </div>
+
+                        <div className={css.video_featured_content}>
+                            <div className={`pd-right ${css.video_featured_channel_image}`}>
+                                <Image className={css.video_featured_channel_image} src={`${props.SERVER_URL}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
+                            </div>
+                            <div>
+                                <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
+                                <div className={css.video_featured_about}>
+                                    <div className={css.video_featured_duration}>
+                                        <div>{convertToInternationalCurrencySystem(whatToShow.viewCount)}</div>
+                                        <div>&nbsp;{views}</div>
+                                    </div>
+                                    <div className={css.video_about_divider}></div>
+                                    <div>{ago}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/*  */}
+                    <div className={`${css.video_featured_secondary_grid} pd-bottom `}>
+                        <div className={css.video_featured_secondary_wrapper}>
+                            <VideoItemRegular data={featuredSecondary} />
+                        </div>
+                        <div className={css.video_featured_secondary_wrapper}>
+                            <VideoItemRegular data={featuredTertiary} />
+                        </div>
+                    </div>
+                </div>
+                {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
+                <div className="divider" />
+                {/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– LATEST VIDEOS –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
+                <div className={css.home_latest_videos}>
+                    <div className={css.latest_videos_left}>
+                        <h2 className={css.latest_videos_title}>Latest videos</h2>
+                    </div>
+                    <div className={css.latest_videos_right}>
+                        <a href="https://www.youtube.com/" className={css.latest_videos_arrow_link}>
+                            <div className={css.latest_videos_arrow_link_text}>Browse more videos</div>
+                        </a>
+                    </div>
+                </div>
+                <div className={css.latest_video_grid}>
+                    <VideoItemRegular data={latest.One} />
+                    <VideoItemRegular data={latest.Two} />
+                    <VideoItemRegular data={latest.Three} />
+                    <VideoItemRegular data={latest.Four} />
+                    <VideoItemRegular data={latest.Five} />
+                    <VideoItemRegular data={latest.Six} />
+                </div>
+                {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
+                <div className="divider" />
+                <AboutChannel />
+                <div className="divider" />
+                {/* SUBSCRIBER TO MY CHANNEL */}
+                <section className="pd-bottom-high">
+                    <div className={css.support_channel_grid}>
+                        <div className={css.subscribe_to_my_channel}>
+                            <Image src={youtube_logo} width={150} height={50} alt="youtube logo" />
+                            <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
+                            <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+                            <div className={css.subscribe_button}>
+                                <Primary text="Subscribe" />
+                            </div>
+                            <EmptyVideoItem type="empty" />
+                        </div>
+                        {/* BUY MERCH */}
+                        <div className={css.merch_main}>
+                            <div className={css.buy_merch_notice}>We are currently trying to get in touch with RakaZone to make merch available for you.</div>
+                            <div className="pd-bottom" />
+                            <div className={css.buy_merch}>
+                                <div className={css.merch_oneblock}>
+                                    <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
+                                    <h1 className={`${css.merch_oneblock} pd-left`}>Store</h1>
+                                </div>
+                                <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
+                                <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+
+                                <div className="pd-bottom" />
+                                <OutlineMedium text="Browse Merch" />
+                                <div className="pd-bottom" />
+                            </div>
+                            <div className={css.merch_gallery}>
+                                <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
+                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                </div>
+
+                                <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
+                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </>
     )
 }
 
 export async function getServerSideProps({ req, res }) {
     axios.defaults.headers.common["Cookie"] = req.headers.cookie ? req.headers.cookie : ""
-    let userData = await axios.get(`${process.env.API_URL}userData`, { withCredentials: true }).then((res) => res.data)
+    // let userData = await axios.get(`${process.env.API_URL}userData`, { withCredentials: true }).then((res) => res.data)
     let sortedVideos = await axios.get(`${process.env.API_URL}content`, { withCredentials: true }).then((res) => res.data)
     let streamerData = await axios.get(`${process.env.API_URL}streamerData`, { withCredentials: true }).then((res) => res.data)
-    let isLoggedIn = userData.code == 401 ? false : true
+    // let isLoggedIn = userData.code == 401 ? false : true
     if (sortedVideos.message === "success" && streamerData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos
         streamerData = streamerData.data.streamerData
-        userData = isLoggedIn ? userData.data.user : {}
-        return { props: { isLoggedIn, userData, sortedVideos, streamerData, SERVER_URL: process.env.SERVER_URL } }
+        // userData = isLoggedIn ? userData.data.user : {}
+        return { props: { sortedVideos, streamerData, SERVER_URL: process.env.SERVER_URL } }
     } else return { props: {} }
 }
 

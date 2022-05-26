@@ -6,7 +6,7 @@ function Layout(props) {
     return (<>
         <LoadingBar />
         <div className={css.layout}>
-            <Header isLoggedIn={props.isLoggedIn} userData={props.userData} />
+            <Header />
             <main>{props.children}</main>
             <Footer />
         </div>

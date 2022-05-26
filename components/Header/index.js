@@ -5,6 +5,7 @@ import { OutlineSmall } from "../Buttons"
 import Link from "next/link"
 
 export default function Header({ isLoggedIn, userData }) {
+    isLoggedIn = false
     let [isOpen, setIsOpen] = useState(false)
     function menuBtnClick() {
         if (isOpen) {
