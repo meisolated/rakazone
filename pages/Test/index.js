@@ -12,13 +12,9 @@ import insta2 from "../../assets/img/insta02.png"
 import insta3 from "../../assets/img/insta15.png"
 export default function Text(params) {
 
-    let [active, setActive] = useState(false)
+    let [active, setActive] = useState("")
 
-    useEffect(() => {
-        setTimeout(() => {
-            setActive(true)
-        }, 3000)
-    }, [])
+
 
     let videoData = {
         "title": "Test Title",
@@ -34,14 +30,14 @@ export default function Text(params) {
     let views = convertToInternationalCurrencySystem(videoData.viewCount)
     let link = "/"
 
+
+
     return (
         <>
             <Layout>
                 <div className="container-default">
                     <div className={`${css.image_container_2}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
-
-                        <Image
-                            src={insta1} className={`${active ? css.image_active : css.image_inactive}`} alt="logo" width={600} height={600} />
+                        <Image src={insta1} className={`${active ? css.image_active : css.image_inactive}`} alt="logo" width={600} height={600} />
                     </div>
                 </div>
             </Layout>

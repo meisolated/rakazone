@@ -1,6 +1,7 @@
 /* FINAL VIDEO ITEAM CSS */
 
 .image_wrapper {
+ transform: translateZ(0);
  position: relative;
  justify-content: center;
  align-items: center;

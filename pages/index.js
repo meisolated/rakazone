@@ -94,7 +94,7 @@ function Home(props) {
                         <div className={css.video_featured_wrapper}>
                             <div className={css.image_wrapper}>
                                 <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumnail} width={1104} height={620} alt="" />
-                                <div className={css.video_featured_filter}></div>
+                                <div className={css.video_featured_filter} />
                                 <Link href={"/"} passHref>
                                     <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
                                         <div className={css.video_featured_button}>

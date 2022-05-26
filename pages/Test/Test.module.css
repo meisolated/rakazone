@@ -16,6 +16,7 @@
  height: 250px;
  overflow: hidden;
  width: 250px;
+ transform: translateZ(0);
 }
 
 .image_container_2 img {
