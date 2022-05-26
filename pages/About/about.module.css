@@ -68,10 +68,11 @@
 .social_icon_image_wrapper {
  border-radius: 100px;
  background-color: #fff;
- padding: 1px;
- max-width: 60px;
- max-height: 60px;
+ padding: 2px;
+ width: 60px;
+ height: 60px;
  margin-bottom: 10px;
+ overflow: hidden;
 }
 .social {
  border-radius: 100px;

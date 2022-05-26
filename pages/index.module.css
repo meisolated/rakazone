@@ -75,6 +75,7 @@
  text-transform: uppercase;
 }
 .title {
+ font-weight: lighter;
  font-size: 29px;
  margin: 0;
  margin-right: 10px;
@@ -468,6 +469,7 @@
   position: static;
  }
  .image_wrapper {
+  border-radius: 25px;
   margin-bottom: 20px;
  }
  .video_featured_about {
@@ -526,6 +528,7 @@
   display: contents;
  }
  .title {
+  font-size: 25px;
   margin-bottom: 10px;
  }
  .subscriber_count {
@@ -591,6 +594,10 @@
 }
 
 @media screen and (max-width: 430px) {
+ .title {
+  font-weight: bold;
+  font-size: 30px;
+ }
  .temp_alert_text {
   font-size: 9px;
  }
