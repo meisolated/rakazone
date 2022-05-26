@@ -2,6 +2,7 @@ import css from "./Header.module.css"
 import Image from "next/image"
 import { useState } from "react"
 import { OutlineSmall } from "../Buttons"
+import Link from "next/link"
 
 export default function Header({ isLoggedIn, userData }) {
     let [isOpen, setIsOpen] = useState(false)
@@ -25,19 +26,29 @@ export default function Header({ isLoggedIn, userData }) {
                             <nav className={css.nav_menu}>
                                 <ul className={css.header_navigation}>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>Home</a>
+                                        <Link href={"/"} passHref>
+                                            <a>Home</a>
+                                        </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>About</a>
+                                        <Link href={"/About"} passHref>
+                                            <a>About</a>
+                                        </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>Store</a>
+                                        <Link href={"/Store"} passHref>
+                                            <a>Store</a>
+                                        </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>Vlog</a>
+                                        <Link href={"/Vlog"} passHref>
+                                            <a>Vlog</a>
+                                        </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <a>Contact</a>
+                                        <Link href={"/Contact"} passHref>
+                                            <a>Contact</a>
+                                        </Link>
                                     </li>
                                     {isLoggedIn ? (
                                         <li className={css.nav_item_wrapper}>
@@ -67,11 +78,16 @@ export default function Header({ isLoggedIn, userData }) {
             <div className={`${css.slidebar} ${isOpen ? css.open : css.close}`}>
                 <div className={css.slidebar_content}>
                     <div className={css.nav_left}>
-                        <a className={css.nav_item}> Home</a>
-                        <a className={css.nav_item}> About</a>
-                        <a className={css.nav_item}> Store</a>
-                        <a className={css.nav_item}> Vlog</a>
-                        <a className={css.nav_item}> Contact</a>
+                        <Link href={"/"} passHref>
+                            <a className={css.nav_item}> Home</a></Link>
+                        <Link href={"/About"} passHref>
+                            <a className={css.nav_item}> About</a></Link>
+                        <Link href={"/Store"} passHref>
+                            <a className={css.nav_item}> Store</a></Link>
+                        <Link href={"/Vlog"} passHref>
+                            <a className={css.nav_item}> Vlog</a></Link>
+                        <Link href={"/Contact"} passHref>
+                            <a className={css.nav_item}> Contact</a></Link>
                         {/* <a href="#settings"><span className={css.nav_item}> Settings</a>
                 <a href="#credits"><span className={css.nav_item}> Credits</a> */}
                     </div>

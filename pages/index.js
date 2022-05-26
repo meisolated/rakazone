@@ -173,6 +173,8 @@ function Home(props) {
                             </div>
                             {/* BUY MERCH */}
                             <div className={css.merch_main}>
+                                <div className={css.buy_merch_notice}>We are currently trying to get in touch with RakaZone to make merch available for you.</div>
+                                <div className="pd-bottom" />
                                 <div className={css.buy_merch}>
                                     <div className={css.merch_oneblock}>
                                         <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
@@ -180,20 +182,10 @@ function Home(props) {
                                     </div>
                                     <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
                                     <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
-                                    {show ? (
-                                        <div className={css.merch_temp_alert}>
-                                            <div className={css.merch_temp_type_alert}>
-                                                <p>note</p>
-                                            </div>
-                                            <p className={css.merch_temp_alert_text}>We are currently trying to get in touch with RakaZone to make merch available for you.</p>
-                                            <Image src={cross} width={40} height={30} alt="cross" className={css.merch_cross_btn} onClick={removeAlert} />
-                                        </div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                    <div className="pd-bottom-high" />
+
+                                    <div className="pd-bottom" />
                                     <OutlineMedium text="Browse Merch" />
-                                    <div className="pd-bottom-high" />
+                                    <div className="pd-bottom" />
                                 </div>
                                 <div className={css.merch_gallery}>
                                     <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
@@ -209,7 +201,6 @@ function Home(props) {
                                         <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </section>
