@@ -2,28 +2,28 @@
 
 @font-face {
  font-family: "THICCCBOI-Bold";
- src: url("../assets/fonts/THICCCBOI-Bold.ttf") format("truetype");
+ src: url("../assets/fonts/THICCCBOI-Bold.woff2") format("woff2");
 }
 
 @font-face {
  font-family: "THICCCBOI-Light";
- src: url("../assets/fonts/THICCCBOI-Light.ttf") format("truetype");
+ src: url("../assets/fonts/THICCCBOI-Light.woff2") format("woff2");
 }
 
 @font-face {
  font-family: "THICCCBOI-Meduim";
- src: url("../assets/fonts/THICCCBOI-Medium.ttf") format("truetype");
+ src: url("../assets/fonts/THICCCBOI-Medium.woff2") format("woff2");
 }
 
 @font-face {
  font-family: "THICCCBOI-Regular";
- src: url("../assets/fonts/THICCCBOI-Regular.ttf") format("truetype");
+ src: url("../assets/fonts/THICCCBOI-Regular.woff2") format("woff2");
 }
 @font-face {
  font-family: "Material Symbols Outlined";
  font-style: normal;
  font-weight: 100 700;
- src: url("../assets/fonts/Material_Outline.woff2") format("woff2");
+ src: url("https://fonts.gstatic.com/s/materialiconsoutlined/v104/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcel5euIg.woff2") format("woff2");
 }
 
 .material-symbols-outlined {

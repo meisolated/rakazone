@@ -31,8 +31,8 @@ const { publicRuntimeConfig } = getConfig()
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 function Home(props) {
-    const { data, error } = useSWR("http://raka.zone:9875/api/v1/streamerData", fetcher)
-    console.log(data)
+    // const { data, error } = useSWR("http://raka.zone:9875/api/v1/streamerData", fetcher)
+    // console.log(data)
     let streamerData = props.streamerData
     let featuredPrimary = props.sortedVideos.featuredPrimary
     let featuredSecondary = props.sortedVideos.featuredSecondary
