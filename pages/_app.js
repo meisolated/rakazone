@@ -1,9 +1,9 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
-import { BehaviorSubject } from "rxjs"
 import { useEffect, useState } from "react"
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
+
     let data = {
       isLoggedIn: false,
       userData: {

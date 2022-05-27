@@ -80,15 +80,15 @@ export default function Header({ isLoggedIn, userData }) {
                 <div className={css.slidebar_content}>
                     <div className={css.nav_left}>
                         <Link href={"/"} passHref>
-                            <a className={css.nav_item}> Home</a></Link>
+                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> Home</a></Link>
                         <Link href={"/About"} passHref>
-                            <a className={css.nav_item}> About</a></Link>
+                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> About</a></Link>
                         <Link href={"/Store"} passHref>
-                            <a className={css.nav_item}> Store</a></Link>
+                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> Store</a></Link>
                         <Link href={"/Vlog"} passHref>
-                            <a className={css.nav_item}> Vlog</a></Link>
+                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> Vlog</a></Link>
                         <Link href={"/Contact"} passHref>
-                            <a className={css.nav_item}> Contact</a></Link>
+                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> Contact</a></Link>
                         {/* <a href="#settings"><span className={css.nav_item}> Settings</a>
                 <a href="#credits"><span className={css.nav_item}> Credits</a> */}
                     </div>
