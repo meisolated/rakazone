@@ -22,7 +22,7 @@ export default function AboutChannel(params) {
                 <div className={css.about_channel_right}>
                     <div className={css.images_wrapper}>
                         {/* <div className={css.images_bg_wrapper}>
-                            <Image src={about_channel_background} className={css.images_bg} alt="" width={500} height={500} /></div> */}
+                            <Image  placeholder="blur" src={about_channel_background} className={css.images_bg} alt="" width={500} height={500} /></div> */}
                         <div className={css.images}>
                             <div className={css.shapes}>
                                 <Image src={art_146} alt="" width={120} height={104} />

@@ -15,7 +15,7 @@ function LoadingBar() {
         <>
             <div className={css.loading} />
             <div className={`${css.test_loading} ${active ? css.test_active : []}`}>
-                <div className={css.test_loading_image}>{/* <Image src={LogoWithOutText} width={900} height={1000} alt="" /> */}</div>
+                <div className={css.test_loading_image}>{/* <Image  placeholder="blur" src={LogoWithOutText} width={900} height={1000} alt="" /> */}</div>
                 <div className={css.test_loading_progress} />
                 {/* <h1 className={css.quote}>{quotes}</h1> */}
             </div>
