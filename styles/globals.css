@@ -3,27 +3,54 @@
 @font-face {
  font-family: "THICCCBOI-Bold";
  src: url("../assets/fonts/THICCCBOI-Bold.woff2") format("woff2");
+ font-display: swap;
 }
 
 @font-face {
  font-family: "THICCCBOI-Light";
  src: url("../assets/fonts/THICCCBOI-Light.woff2") format("woff2");
+ font-display: swap;
 }
 
 @font-face {
  font-family: "THICCCBOI-Meduim";
  src: url("../assets/fonts/THICCCBOI-Medium.woff2") format("woff2");
+ font-display: swap;
 }
 
 @font-face {
  font-family: "THICCCBOI-Regular";
  src: url("../assets/fonts/THICCCBOI-Regular.woff2") format("woff2");
+ font-display: swap;
 }
+
+/* @font-face {
+ font-family: "THICCCBOI-Bold";
+ src: url("https://github.com/wonderunit/font-thicccboi/raw/master/fonts/Webfont/THICCCBOI-Bold.woff2") format("woff2");
+}
+
+@font-face {
+ font-family: "THICCCBOI-Light";
+ src: url("https://github.com/wonderunit/font-thicccboi/raw/master/fonts/Webfont/THICCCBOI-Light.woff2") format("woff2");
+}
+
+@font-face {
+ font-family: "THICCCBOI-Meduim";
+ src: url("https://github.com/wonderunit/font-thicccboi/raw/master/fonts/Webfont/THICCCBOI-Medium.woff2") format("woff2");
+}
+
+@font-face {
+ font-family: "THICCCBOI-Regular";
+ src: url("https://github.com/wonderunit/font-thicccboi/raw/master/fonts/Webfont/THICCCBOI-Regular.woff2") format("woff2");
+} */
+
+/* ICONS FONT */
 @font-face {
  font-family: "Material Symbols Outlined";
  font-style: normal;
  font-weight: 100 700;
  src: url("https://fonts.gstatic.com/s/materialiconsoutlined/v104/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcel5euIg.woff2") format("woff2");
+ font-display: swap;
 }
 
 .material-symbols-outlined {
@@ -111,6 +138,9 @@ h3 {
  color: #fff;
  font-size: 22px;
  line-height: 1.455em;
+}
+h4 {
+ margin: 0;
 }
 
 input {

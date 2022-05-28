@@ -1,10 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import moment from "moment"
 import axios from "axios"
 import getConfig from "next/config"
-import useSWR from "swr"
 
 //other components
 import { convertToInternationalCurrencySystem } from "../util/functions.js"
@@ -15,11 +14,9 @@ import { OutlineMedium } from "../components/Buttons"
 import { Primary } from "../components/Buttons"
 import AboutChannel from "../components/AboutChannel"
 import { EmptyVideoItem, VideoItemRegular } from "../components/VideoItem"
-import Layout from "../components/Layout"
 
 // assets
 import bag from "../assets/img/bag.svg"
-import cross from "../assets/img/cross.svg"
 import merch1 from "../assets/img/merch1.png"
 import merch2 from "../assets/img/merch2.png"
 import merch3 from "../assets/img/merch3.png"
@@ -30,9 +27,11 @@ import playicon from "../assets/img/playicon.svg"
 const { publicRuntimeConfig } = getConfig()
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
+// use other youtube thumbnail urls to check a valid url or not
+
 function Home(props) {
-    // const { data, error } = useSWR("http://raka.zone:9875/api/v1/streamerData", fetcher)
-    // console.log(data)
+
+
     let streamerData = props.streamerData
     let featuredPrimary = props.sortedVideos.featuredPrimary
     let featuredSecondary = props.sortedVideos.featuredSecondary
@@ -52,6 +51,7 @@ function Home(props) {
     let views = whatToShow.status == "live" ? "watching now" : "views"
 
     const [active, setActive] = useState(false)
+
 
     return (
         <>
@@ -203,15 +203,13 @@ function Home(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-    // axios.defaults.headers.common["Cookie"] = req.headers.cookie ? req.headers.cookie : ""
-    // let userData = await axios.get(`${process.env.API_URL}userData`, { withCredentials: true }).then((res) => res.data)
+
     let sortedVideos = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
     let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerData`, { withCredentials: true }).then((res) => res.data)
-    // let isLoggedIn = userData.code == 401 ? false : true
+
     if (sortedVideos.message === "success" && streamerData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos
         streamerData = streamerData.data.streamerData
-        // userData = isLoggedIn ? userData.data.user : {}
         return { props: { sortedVideos, streamerData, SERVER_URL: publicRuntimeConfig.serverUrl } }
     } else return { props: {} }
 }

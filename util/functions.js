@@ -1,4 +1,4 @@
-export function convertToInternationalCurrencySystem(labelValue) {
+export const convertToInternationalCurrencySystem = (labelValue) => {
     // Nine Zeroes for Billions
     let value =
         Math.abs(Number(labelValue)) >= 1.0e9
@@ -15,8 +15,7 @@ export function convertToInternationalCurrencySystem(labelValue) {
 }
 
 
-export function get_random(list) {
+export const get_random = (list) => {
     return list[Math.floor(Math.random() * list.length)]
 }
-
 

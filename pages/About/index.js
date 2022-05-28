@@ -1,6 +1,6 @@
 import Image from "next/image"
 import css from "./about.module.css"
-import { Primary } from "../../components/Buttons/index.js"
+import { Primary } from "../../components/Buttons"
 import facebook_icon from "../../assets/icons/facebook.svg"
 import twitter_icon from "../../assets/icons/twitter.svg"
 import instagram_icon from "../../assets/icons/instagram.svg"

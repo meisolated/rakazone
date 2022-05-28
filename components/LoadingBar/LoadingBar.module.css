@@ -11,6 +11,7 @@
  animation: fade 3s ease-in forwards;
  background: var(--primary-color);
 }
+
 @keyframes fade {
  0% {
   width: 10%;
@@ -27,6 +28,10 @@
 }
 
 /* TEST */
+.bg_img {
+ object-fit: cover;
+ position: fixed !important;
+}
 
 .test_loading {
  position: fixed;
@@ -103,7 +108,7 @@
 
 @media screen and (min-width: 1024px) {
  .test_loading {
-  background-image: url("../../assets/img/wallpaper_dark_desktop.png");
+  /* background-image: url("../../assets/img/wallpaper_dark_desktop.png"); */
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -116,7 +121,7 @@
   font-size: 15px;
  }
  .test_loading {
-  background-image: url("../../assets/img/wallpaper_dark_mobile.png");
+  /* background-image: url("../../assets/img/wallpaper_dark_mobile.png"); */
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
