@@ -1,5 +1,7 @@
 import css from "./Disclamer.module.css"
 import { Primary } from "../Buttons"
+import Link from "next/link"
+
 export default function fullScreen(props) {
     let title = "Disclaimer"
     let message = <div><h4>This website is not being managed, moderated, or owned by Rishab Karanwal AKA Rakazone as of this moment.</h4>
@@ -28,7 +30,7 @@ export default function fullScreen(props) {
                     <div className={css.notification_content}>
                         <div className={css.notification_title}>{title}</div>
                         <div className={css.message_wrapper}><div className={css.notification_message}>{message}</div></div>
-                        <div className={css.notification_buttons}> <Primary text={button} /></div>
+                        <div className={css.notification_buttons} > <Primary text={button} /></div>
                     </div>
                 </div>
             </div>

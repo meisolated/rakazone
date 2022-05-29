@@ -9,24 +9,11 @@
  animation: pulse ease 1s;
  animation-iteration-count: 1;
  animation-fill-mode: forwards;
- /* display: none; */
-}
-
-@keyframes pulse {
- 0% {
-  transform: scale(1);
- }
- 50% {
-  transform: scale(1.1);
- }
- 100% {
-  transform: scale(1);
- }
 }
 
 .notification_container {
  position: absolute;
- padding: 30px;
+ /* padding: 30px; */
  top: 50%;
  left: 50%;
  transform: translate(-50%, -50%);
@@ -47,35 +34,25 @@
 }
 
 .notification_title {
+ padding: 10px;
  top: 0;
  position: sticky;
+ width: 100%;
+ height: 50px;
  background-color: var(--divider-color);
  font-size: 28px;
  font-weight: 700;
 }
 
 .message_wrapper {
- /* height: 300px; */
  text-align: left;
- position: relative;
- overflow: hidden;
 }
-.message_wrapper::before {
- content: "";
- width: 100%;
- height: 100%;
- position: absolute;
- left: 0;
- top: 0;
- /* background: linear-gradient(transparent 150px, var(--divider-color)); */
-}
+
 .notification_message {
- display: flex;
- justify-content: space-between;
- margin: 0 auto;
- padding: 10px 0;
+ padding: 30px;
 }
 .notification_buttons {
+ padding-bottom: 20px;
  position: sticky;
  bottom: 0;
 }
@@ -92,5 +69,17 @@
   font-size: 15px;
   width: 90%;
   height: 90%;
+ }
+}
+
+@keyframes pulse {
+ 0% {
+  transform: scale(1);
+ }
+ 50% {
+  transform: scale(1.1);
+ }
+ 100% {
+  transform: scale(1);
  }
 }

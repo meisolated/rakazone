@@ -4,15 +4,19 @@ import Link from "next/link"
 import { Primary } from "../../components/Buttons/index.js"
 import { useState, useEffect } from "react"
 import css from "./Test.module.css"
-export default function Test(params) {
-    const [loading, setLoading] = useState(false)
+import Head from "next/head"
 
-
+export default function Test(props) {
+    const [show, setShow] = useState(false)
     return (
         <>
-            <a onClick={() => setLoading(true)}> nothing</a>
-            {loading ? <Disclamer /> : <></>}
-            <div className="container-default"></div>
+            <Head>
+                <title>Test - RakaZone</title>
+            </Head>
+            <div className="container-default">
+                <a onClick={() => setShow(true)}>nothing</a>
+                {show ? <Disclamer setOpen={setShow} /> : <></>}
+            </div>
         </>
     )
 }
