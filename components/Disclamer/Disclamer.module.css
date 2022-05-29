@@ -6,9 +6,14 @@
  height: 100%;
  background-color: rgba(0, 0, 0, 0.5);
  z-index: 100;
- animation: pulse ease 1s;
+ animation: pulse ease-in 1s;
  animation-iteration-count: 1;
  animation-fill-mode: forwards;
+ display: block;
+}
+.hide {
+ animation: pulse ease-in 1s;
+ display: none;
 }
 
 .notification_container {

@@ -1,8 +1,9 @@
 import css from "./Disclamer.module.css"
 import { Primary } from "../Buttons"
 import Link from "next/link"
-
+import { useState } from "react"
 export default function fullScreen(props) {
+    let [show, setShow] = useState(true)
     let title = "Disclaimer"
     let message = <div><h4>This website is not being managed, moderated, or owned by Rishab Karanwal AKA Rakazone as of this moment.</h4>
         <br />Any content or data, provided or shown on this website is publicly available and owned by Rakazone. <br />
@@ -25,12 +26,12 @@ export default function fullScreen(props) {
 
     return (
         <>
-            <div className={css.notification}>
+            <div className={`${css.notification} ${show ? css.show : css.hide}`}>
                 <div className={css.notification_container}>
                     <div className={css.notification_content}>
                         <div className={css.notification_title}>{title}</div>
                         <div className={css.message_wrapper}><div className={css.notification_message}>{message}</div></div>
-                        <div className={css.notification_buttons} > <Primary text={button} /></div>
+                        <div className={css.notification_buttons} onClick={() => setShow(false)}><Primary text={button} /></div>
                     </div>
                 </div>
             </div>
