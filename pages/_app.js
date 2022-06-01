@@ -1,5 +1,6 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
+// import "../styles/uicons-solid-rounded.css"
 import { useEffect, useState } from "react"
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

@@ -19,3 +19,5 @@ export const get_random = (list) => {
     return list[Math.floor(Math.random() * list.length)]
 }
 
+
+export const fetcher = (...args) => fetch(...args).then((res) => res.json())
