@@ -43,19 +43,19 @@ function Footer() {
                                     <div className={css.insta_img}>
                                         <Image src={insta1} alt="a" width={120} height={120} />
                                         <div className={css.img_filter} >
-                                            <Image src={link_icon} alt="a" width={19} height={120} />
+                                            <Image className={css.link_icon} src={link_icon} alt="a" width={19} height={120} />
                                         </div>
                                     </div>
                                     <div className={css.insta_img}>
                                         <Image src={insta2} alt="a" width={120} height={120} />
                                         <div className={css.img_filter}>
-                                            <Image src={link_icon} alt="a" width={19} height={120} />
+                                            <Image className={css.link_icon} src={link_icon} alt="a" width={19} height={120} />
                                         </div>
                                     </div>
                                     <div className={css.insta_img}>
                                         <Image src={insta3} alt="a" width={120} height={120} />
                                         <div className={css.img_filter}>
-                                            <Image src={link_icon} alt="a" width={19} height={120} />
+                                            <Image className={css.link_icon} src={link_icon} alt="a" width={19} height={120} />
                                         </div>
                                     </div>
                                 </div>

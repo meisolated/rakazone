@@ -8,7 +8,7 @@ import { fetcher } from "../../util/functions.js"
 import Loading from "../../components/Loading"
 
 
-export default function ({ onClose }) {
+export default function PopUps({ onClose }) {
 
 
     const [show, setShow] = useState(true)

@@ -157,6 +157,21 @@
  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.84));
 }
 
+.instagram_image_filter:hover {
+ opacity: 0.66;
+ animation-name: opac;
+ animation-timing-function: ease;
+}
+
+@keyframes opac {
+ from {
+  opacity: 0;
+ }
+ to {
+  opacity: 0.66;
+ }
+}
+
 @media screen and (max-width: 790px) {
  .padding {
   margin-bottom: 20px;
