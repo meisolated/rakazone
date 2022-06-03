@@ -446,9 +446,7 @@
  .channel_about_content_top {
   justify-content: flex-start;
  }
- .title {
-  padding-right: 10px;
- }
+
  .home_hero_channel_image {
   width: 91px;
   max-height: 91px;
@@ -503,6 +501,7 @@
   grid-template-columns: 1fr;
  }
  .title {
+  margin-right: 0;
   font-size: 20px;
  }
 }

@@ -148,6 +148,7 @@
  transition: all 0.3s ease-in-out;
 }
 .instagram_image_filter {
+ opacity: 0;
  position: absolute;
  left: 0%;
  top: 0%;
@@ -155,6 +156,9 @@
  bottom: 0%;
  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.08)), to(rgba(0, 0, 0, 0.84)));
  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.84));
+ animation-duration: 0.5s;
+ animation-iteration-count: 1;
+ transform-origin: bottom;
 }
 
 .instagram_image_filter:hover {

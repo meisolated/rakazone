@@ -9,10 +9,10 @@ import Head from "next/head"
 
 export default function Test(props) {
     useEffect(() => {
-        let first_pop = localStorage.getItem("pop_status")
-        if (first_pop) {
-            setFirst(false)
-        }
+        // let first_pop = localStorage.getItem("pop_status")
+        // if (first_pop) {
+        //     setFirst(false)
+        // }
     }, [])
     const [show, setShow] = useState(false)
     const [first, setFirst] = useState(true)
