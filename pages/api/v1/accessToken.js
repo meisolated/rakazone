@@ -1,6 +1,7 @@
 import { createHmac } from "crypto"
 import jwt from "jsonwebtoken"
 export default async function handle(req, res) {
+
     try {
         jwt.sign(
             {

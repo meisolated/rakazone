@@ -6,6 +6,7 @@ import twitter_icon from "../../assets/icons/twitter.svg"
 import instagram_icon from "../../assets/icons/instagram.svg"
 import youtube_icon from "../../assets/icons/youtube.svg"
 import Insta15 from "../../assets/img/insta15.png"
+import instaIcon from "../../assets/insta.svg"
 import Insta from "../../assets/img/insta.jpg"
 import insta1 from "../../assets/img/insta07.png"
 import insta2 from "../../assets/img/insta02.png"
@@ -108,19 +109,55 @@ function About() {
             <div className={css.instagram_showcase_grid}>
                 <div className={css.instagram_showcase_grid_item_image}>
                     <Image src={insta1} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter} />
+                    <div className={css.instagram_image_filter}>
+                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
+                            <div className={css.video_button}>
+                                <img
+                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={css.instagram_showcase_grid_item_image}>
                     <Image src={insta2} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter} />
+                    <div className={css.instagram_image_filter}>
+                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
+                            <div className={css.video_button}>
+                                <img
+                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={css.instagram_showcase_grid_item_image}>
                     <Image src={insta3} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter} />
+                    <div className={css.instagram_image_filter}>
+                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
+                            <div className={css.video_button}>
+                                <img
+                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={css.instagram_showcase_grid_item_image}>
                     <Image src={insta2} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter} />
+                    <div className={css.instagram_image_filter}>
+                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
+                            <div className={css.video_button}>
+                                <img
+                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
