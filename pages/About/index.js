@@ -112,9 +112,10 @@ function About() {
                     <div className={css.instagram_image_filter}>
                         <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
                             <div className={css.video_button}>
-                                <img
-                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                <Image
+                                    src={instaIcon}
                                     className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                    alt=""
                                 />
                             </div>
                         </div>
@@ -125,9 +126,10 @@ function About() {
                     <div className={css.instagram_image_filter}>
                         <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
                             <div className={css.video_button}>
-                                <img
-                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                <Image
+                                    src={instaIcon}
                                     className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                    alt=""
                                 />
                             </div>
                         </div>
@@ -138,9 +140,10 @@ function About() {
                     <div className={css.instagram_image_filter}>
                         <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
                             <div className={css.video_button}>
-                                <img
-                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                <Image
+                                    src={instaIcon}
                                     className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                    alt=""
                                 />
                             </div>
                         </div>
@@ -151,9 +154,10 @@ function About() {
                     <div className={css.instagram_image_filter}>
                         <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
                             <div className={css.video_button}>
-                                <img
-                                    src="https://assets.website-files.com/613b673e4173314657551861/613f9e73ba900637fba1e1b6_icon-%20instagram-gallery-video-x-template.svg"
+                                <Image
+                                    src={instaIcon}
                                     className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                                    alt=""
                                 />
                             </div>
                         </div>
