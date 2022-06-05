@@ -1,2 +1,2 @@
 export { default as HeaderNotification } from "./Header"
-export { default as Popup } from "./Popup.js"
+export { default as Popup } from "./Toast.js"

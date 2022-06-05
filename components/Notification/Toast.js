@@ -1,6 +1,6 @@
 import Image from "next/image"
 import added_to_cart from "../../assets/bag-tick.svg"
-import css from "./Popup.module.css"
+import css from "./Toast.module.css"
 import { useState } from "react"
 export default function Popup({ popupText, popupType }) {
     let [show, setShow] = useState(true)
