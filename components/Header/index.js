@@ -37,8 +37,8 @@ export default function Header({ isLoggedIn, userData }) {
                                         </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <Link href={"/Store"} passHref>
-                                            <a>Store</a>
+                                        <Link href={"/Shop"} passHref>
+                                            <a>Shop</a>
                                         </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
@@ -83,8 +83,8 @@ export default function Header({ isLoggedIn, userData }) {
                             <a className={css.nav_item} onClick={() => setIsOpen(false)}> Home</a></Link>
                         <Link href={"/About"} passHref>
                             <a className={css.nav_item} onClick={() => setIsOpen(false)}> About</a></Link>
-                        <Link href={"/Store"} passHref>
-                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> Store</a></Link>
+                        <Link href={"/Shop"} passHref>
+                            <a className={css.nav_item} onClick={() => setIsOpen(false)}> Shop</a></Link>
                         <Link href={"/Vlog"} passHref>
                             <a className={css.nav_item} onClick={() => setIsOpen(false)}> Vlog</a></Link>
                         <Link href={"/Contact"} passHref>

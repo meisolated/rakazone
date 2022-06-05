@@ -229,6 +229,10 @@
 }
 
 @media screen and (max-width: 790px) {
+ .instagram_showcase_grid {
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+ }
  .padding {
   margin-bottom: 20px;
  }

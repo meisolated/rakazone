@@ -11,6 +11,7 @@ import Insta from "../../assets/img/insta.jpg"
 import insta1 from "../../assets/img/insta07.png"
 import insta2 from "../../assets/img/insta02.png"
 import insta3 from "../../assets/img/insta15.png"
+import insta4 from "../../assets/img/insta06.png"
 import Head from "next/head"
 function About() {
     return (
@@ -27,7 +28,7 @@ function About() {
                         <div className={css.padding}></div>
                         <h1 className={css.about_title}>
                             I&#8216;m <span className="bold">Rishab Karanwal </span> AKA <span className="bold">RakaZone.</span>
-                            <br /> Gamer and Content Creator for VLT{" "}
+                            <br /> Gamer and Content Creator for <span className="bold">VLT</span>
                         </h1>
                         <p className={css.about_description}>
                             Hi, My Name is Rishab Karanwal. I&#8216;m 29 & I live in India.
@@ -150,7 +151,7 @@ function About() {
                     </div>
                 </div>
                 <div className={css.instagram_showcase_grid_item_image}>
-                    <Image src={insta2} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+                    <Image src={insta4} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
                     <div className={css.instagram_image_filter}>
                         <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
                             <div className={css.video_button}>

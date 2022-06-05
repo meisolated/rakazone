@@ -1,42 +1,38 @@
 import { useState, useEffect } from "react"
+import getConfig from "next/config"
 import Image from "next/image"
+import Head from "next/head"
 import Link from "next/link"
 import moment from "moment"
 import axios from "axios"
-import getConfig from "next/config"
 
 //other components
 import { convertToInternationalCurrencySystem } from "../util/functions.js"
 import css from "./index.module.css"
 
 // components
-import { OutlineMedium } from "../components/Buttons"
-import { Primary } from "../components/Buttons"
 import { EmptyVideoItem, VideoItemRegular } from "../components/VideoItem"
+import { OutlineMedium } from "../components/Buttons"
+import Notification, { Popup } from "../components/Notification"
+import { GreyMedium } from "../components/Buttons"
+import { Primary } from "../components/Buttons"
 
 // assets
-import bag from "../assets/img/bag.svg"
+import about_channel_image_one from "../assets/img/about_channel_image_one.png"
+import about_channel_image_two from "../assets/img/about_channel_image_two.png"
+import youtube_logo from "../assets/img/youtube_logo.svg"
+import playicon from "../assets/img/playicon.svg"
 import merch1 from "../assets/img/merch1.png"
 import merch2 from "../assets/img/merch2.png"
 import merch3 from "../assets/img/merch3.png"
-import youtube_logo from "../assets/img/youtube_logo.svg"
-import Head from "next/head"
-import playicon from "../assets/img/playicon.svg"
-
-import about_channel_image_one from "../assets/img/about_channel_image_one.png"
-import about_channel_image_two from "../assets/img/about_channel_image_two.png"
 import art_146 from "../assets/img/146.svg"
-import { GreyMedium } from "../components/Buttons"
-
+import bag from "../assets/img/bag.svg"
 
 const { publicRuntimeConfig } = getConfig()
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 // use other youtube thumbnail urls to check a valid url or not
 
 function Home(props) {
-
-
     let streamerData = props.streamerData
     let featuredPrimary = props.sortedVideos.featuredPrimary
     let featuredSecondary = props.sortedVideos.featuredSecondary
@@ -57,12 +53,12 @@ function Home(props) {
 
     const [active, setActive] = useState(false)
 
-
     return (
         <>
             <Head>
                 <title>RakaZone</title>
             </Head>
+            <Popup notificationText={"nothing"} />
             <div className="container-default">
                 {/* –––––––––––––––––––––––––– HOME HERO –––––––––––––––––––––––––– */}
                 <div className={css.home_hero}>
@@ -122,7 +118,7 @@ function Home(props) {
                             </div>
                         </div>
                     </div>
-                    <div className={`${css.video_featured_secondary_grid} pd-bottom `}>
+                    <div className={`${css.video_featured_secondary_grid} pd-bottom`}>
                         <div className={css.video_featured_secondary_wrapper}>
                             <VideoItemRegular data={featuredSecondary} />
                         </div>
@@ -166,7 +162,6 @@ function Home(props) {
                     </div>
                     <div className={css.about_channel_right}>
                         <div className={css.about_images_wrapper}>
-
                             <div className={css.about_images}>
                                 <div className={css.about_shapes}>
                                     <Image src={art_146} alt="" width={120} height={104} />
@@ -234,7 +229,6 @@ function Home(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-
     let sortedVideos = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
     let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerData`, { withCredentials: true }).then((res) => res.data)
 
