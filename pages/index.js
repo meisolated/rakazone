@@ -52,13 +52,22 @@ function Home(props) {
     let views = whatToShow.status == "live" ? "watching now" : "views"
 
     const [active, setActive] = useState(false)
+    const [noti, setNoti] = useState([])
 
+    // setInterval(() => {
+    //     setNoti([...noti, "something new"])
+    // }, 6000)
     return (
         <>
             <Head>
                 <title>RakaZone</title>
             </Head>
-            <Popup popupText={"Item added to your Cart!"} />
+            {
+                noti.map((n, i) => {
+                    console.log(noti)
+                    return <><Popup popupText={n} /></>
+                })
+            }
             <div className="container-default">
                 {/* –––––––––––––––––––––––––– HOME HERO –––––––––––––––––––––––––– */}
                 <div className={css.home_hero}>
@@ -79,7 +88,7 @@ function Home(props) {
                     <p className={css.mobile_about}>
                         <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
                     </p>
-                    <div className={css.home_hero_right}>
+                    <div onClick={() => { setNoti([...noti, "something new"]) }} className={css.home_hero_right}>
                         <Primary text={"Subscribe"} />
                     </div>
                 </div>

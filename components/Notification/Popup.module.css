@@ -6,7 +6,10 @@
     display: flex;
     z-index: 9999;
     bottom: -1000px;
-
+    -webkit-animation: slide-in 5s forwards;
+    -webkit-animation-delay: 1s;
+    animation: slide-in 5s forwards;
+    animation-delay: 1s;
 }
 
 .popup_main {
@@ -26,40 +29,30 @@
     margin-right: 10px;
 }
 
-.show_popup {
-    -webkit-animation: slide-in 0.3s forwards;
-    -webkit-animation-delay: 1s;
-    animation: slide-in 0.5s forwards;
-    animation-delay: 1s;
-}
-
-.hide_popup {
-    -webkit-animation: slide-out 0.3s forwards;
-    -webkit-animation-delay: 1s;
-    animation: slide-out 0.5s forwards;
-    animation-delay: 1s;
-}
-
 @-webkit-keyframes slide-in {
-    100% {
+    10% {
         bottom: 30px;
+    }
+
+    90% {
+        bottom: 30px;
+    }
+
+    100% {
+        bottom: -1000px;
     }
 }
 
 @keyframes slide-in {
-    100% {
+    10% {
         bottom: 30px;
     }
-}
 
-@-webkit-keyframes slide-out {
-    100% {
-        bottom: -500px;
+    90% {
+        bottom: 30px;
     }
-}
 
-@keyframes slide-out {
     100% {
-        bottom: -500px;
+        bottom: -1000px;
     }
 }
