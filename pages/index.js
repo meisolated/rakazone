@@ -58,7 +58,7 @@ function Home(props) {
             <Head>
                 <title>RakaZone</title>
             </Head>
-            <Popup notificationText={"nothing"} />
+            <Popup popupText={"Item added to your Cart!"} />
             <div className="container-default">
                 {/* –––––––––––––––––––––––––– HOME HERO –––––––––––––––––––––––––– */}
                 <div className={css.home_hero}>

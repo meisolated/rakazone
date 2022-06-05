@@ -137,7 +137,7 @@ function Shop() {
                             <div key={product.id}>
                                 <div className={css.shop_item}>
                                     <div className={css.shop_item_image}>
-                                        <Image src={product.image} alt="" />
+                                        <Image src={product.image} alt="" width={300} height={300} />
                                         <div className={css.shop_item_product_price}>{product.price}</div>
                                     </div>
                                     <div className={css.shop_item_product_content}>
