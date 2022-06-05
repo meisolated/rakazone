@@ -1,10 +1,10 @@
 import css from "./Footer.module.css"
 import Image from "next/image"
 import { Primary } from "../Buttons"
-import insta1 from "../../assets/img/insta07.png"
-import insta2 from "../../assets/img/insta02.png"
-import insta3 from "../../assets/img/insta15.png"
-import link_icon from "../../assets/icons/open_link_icon.svg"
+import insta1 from "../../assets/img/png/insta07.png"
+import insta2 from "../../assets/img/png/insta02.png"
+import insta3 from "../../assets/img/png/insta15.png"
+import link_icon from "../../assets/svg/open_link_icon.svg"
 function Footer() {
     return (
         <>

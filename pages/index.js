@@ -18,15 +18,15 @@ import { GreyMedium } from "../components/Buttons"
 import { Primary } from "../components/Buttons"
 
 // assets
-import about_channel_image_one from "../assets/img/about_channel_image_one.png"
-import about_channel_image_two from "../assets/img/about_channel_image_two.png"
-import youtube_logo from "../assets/img/youtube_logo.svg"
-import playicon from "../assets/img/playicon.svg"
-import merch1 from "../assets/img/merch1.png"
-import merch2 from "../assets/img/merch2.png"
-import merch3 from "../assets/img/merch3.png"
-import art_146 from "../assets/img/146.svg"
-import bag from "../assets/img/bag.svg"
+import about_channel_image_one from "../assets/img/png/about_channel_image_one.png"
+import about_channel_image_two from "../assets/img/png/about_channel_image_two.png"
+import youtube_logo from "../assets/svg/youtube_logo.svg"
+import playicon from "../assets/svg/playicon.svg"
+import merch1 from "../assets/img/png/merch1.png"
+import merch2 from "../assets/img/png/merch2.png"
+import merch3 from "../assets/img/png/merch3.png"
+import art_146 from "../assets/svg/146.svg"
+import bag from "../assets/svg/bag.svg"
 
 const { publicRuntimeConfig } = getConfig()
 

@@ -2,31 +2,31 @@
 
 @font-face {
     font-family: "THICCCBOI-Bold";
-    src: url("../assets/fonts/THICCCBOI-Bold.woff2") format("woff2");
+    src: url("../assets/fonts/woff2/THICCCBOI-Bold.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "THICCCBOI-Extra-Bold";
-    src: url("../assets/fonts/THICCCBOI-ExtraBold.woff2") format("woff2");
+    src: url("../assets/fonts/woff2/THICCCBOI-ExtraBold.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "THICCCBOI-Light";
-    src: url("../assets/fonts/THICCCBOI-Light.woff2") format("woff2");
+    src: url("../assets/fonts/woff2/THICCCBOI-Light.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "THICCCBOI-Meduim";
-    src: url("../assets/fonts/THICCCBOI-Medium.woff2") format("woff2");
+    src: url("../assets/fonts/woff2/THICCCBOI-Medium.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "THICCCBOI-Regular";
-    src: url("../assets/fonts/THICCCBOI-Regular.woff2") format("woff2");
+    src: url("../assets/fonts/woff2/THICCCBOI-Regular.woff2") format("woff2");
     font-display: swap;
 }
 

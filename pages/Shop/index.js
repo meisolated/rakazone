@@ -1,8 +1,8 @@
 import css from "./shop.module.css"
 import Image from "next/image"
-import merch1 from "../../assets/img/merch1.png"
-import merch2 from "../../assets/img/merch2.png"
-import merch3 from "../../assets/img/merch3.png"
+import merch1 from "../../assets/img/png/merch1.png"
+import merch2 from "../../assets/img/png/merch2.png"
+import merch3 from "../../assets/img/png/merch3.png"
 import { HeaderNotification } from "../../components/Notification"
 function Shop() {
     let sample_product_list = [

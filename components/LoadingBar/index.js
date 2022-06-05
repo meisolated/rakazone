@@ -1,8 +1,8 @@
 import css from "./LoadingBar.module.css"
 import Image from "next/image"
 // import LogoWithOutText from "../../assets/img/logowithouttext.png"
-import desktop from "../../assets/img/wallpaper_dark_desktop.png"
-import mobile from "../../assets/img/wallpaper_dark_mobile.png"
+import desktop from "../../assets/img/png/wallpaper_dark_desktop.png"
+import mobile from "../../assets/img/png/wallpaper_dark_mobile.png"
 
 import { useState, useEffect } from "react"
 function LoadingBar() {

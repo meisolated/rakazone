@@ -1,5 +1,5 @@
 import Image from "next/image"
-import added_to_cart from "../../assets/bag-tick.svg"
+import added_to_cart from "../../assets/svg/bag-tick.svg"
 import css from "./Toast.module.css"
 import { useState } from "react"
 export default function Popup({ popupText, popupType }) {
