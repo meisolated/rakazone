@@ -21,3 +21,15 @@ export const get_random = (list) => {
 
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
+
+export function makeid(length) {
+    var result = ''
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var charactersLength = characters.length
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength))
+    }
+    return result
+}

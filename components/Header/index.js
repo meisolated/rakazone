@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { OutlineSmall } from "../Buttons"
 import Link from "next/link"
-
+import shoppingCart from "../../assets/svg/bag-2.svg"
 export default function Header({ isLoggedIn, userData }) {
     isLoggedIn = false
     let [isOpen, setIsOpen] = useState(false)
@@ -51,6 +51,10 @@ export default function Header({ isLoggedIn, userData }) {
                                             <a>Contact</a>
                                         </Link>
                                     </li>
+                                    <li className={css.nav_item_wrapper}>
+                                        <Image src={shoppingCart} />
+                                    </li>
+
                                     {isLoggedIn ? (
                                         <li className={css.nav_item_wrapper}>
                                             <OutlineSmall where="http://localhost:3001/api/v1/auth/google" background={userData.profile_pic} text={userData.name} />

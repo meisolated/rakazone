@@ -1,19 +1,24 @@
-import css from "./PopUps.module.css"
-import { Primary } from "../Buttons"
-import { useState, useEffect } from "react"
-import getConfig from "next/config"
-const { publicRuntimeConfig } = getConfig()
-import useSWR from "swr"
 import { fetcher } from "../../util/functions.js"
-import Loading from "../../components/Loading"
+import Loading from "../Loading"
+import { useState, useEffect } from "react"
+import css from "./OnLoadPopUps.module.css"
+import { Primary } from "../Buttons"
+import useSWR from "swr"
 
 
-export default function PopUps({ onClose }) {
+export default function OnLoadPopUps({ onClose }) {
 
 
     const [show, setShow] = useState(true)
     const [visible, setVisible] = useState(false)
+    const [_data, setData] = useState({})
     const { data, error } = useSWR("api/v1/popups", fetcher)
+
+    useEffect(() => {
+        if (data) {
+            setData(data.data.popups.filter(pop => pop.status == "true" && pop.type == "onload")[0])
+        }
+    }, [data])
 
 
     useEffect(() => {
@@ -30,13 +35,12 @@ export default function PopUps({ onClose }) {
             onClose()
         }, 500)
     }
-
-    const title = data ? data.data.popups.title : "Loading..."
-    const message = data ? data.data.popups.message : "Loading..."
-    const button = data ? data.data.popups.close_btn_text : "Loading..."
+    console.log(_data)
+    const title = data ? _data.title : "Loading..."
+    const message = data ? _data.message : "Loading..."
+    const button = data ? _data.close_btn_text : "Loading..."
 
     if (error) return <></>
-    if (data ? !data.data.popups.status : "active") return <></>
     if (!visible) return <></>
     return (
         <>

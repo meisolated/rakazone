@@ -1,8 +1,7 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
 import { motion } from "framer-motion"
-// import "../styles/uicons-solid-rounded.css"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 function MyApp({ Component, pageProps, router }) {
   useEffect(() => {
     let data = {
@@ -13,9 +12,7 @@ function MyApp({ Component, pageProps, router }) {
       },
     }
     localStorage.setItem("user", JSON.stringify(data))
-    return console.log(JSON.parse(localStorage.getItem("user")))
   }, [])
-
   const slideRight = {
     name: "Slide Right",
     variants: {
