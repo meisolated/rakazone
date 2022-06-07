@@ -115,9 +115,9 @@ button {
     box-sizing: border-box;
 }
 
-a:hover {
+/* a:hover {
     color: var(--primary-color);
-}
+} */
 
 a {
     -webkit-transition: color 300ms ease;

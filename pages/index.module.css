@@ -539,7 +539,13 @@
 }
 
 
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 1080px) {
+    .buy_merch_notice {
+        bottom: -10px;
+    }
+}
+
+@media screen and (min-width: 1100px) {
     .buy_merch_notice {
         bottom: -31px;
     }

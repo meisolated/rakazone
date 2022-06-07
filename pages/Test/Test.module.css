@@ -1,0 +1,36 @@
+.bottom_navbar_container {
+
+    z-index: 100;
+    width: 100%;
+    position: fixed;
+    bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+}
+
+.bottom_navbar {
+    padding: 8px 8px 5px 5px;
+    border-radius: 20px;
+    width: min-content;
+    display: flex;
+    background-color: var(--divider-color);
+    border: 1px solid rgb(33, 30, 30);
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+
+}
+
+.clicked {
+    color: var(--primary-color);
+}
+
+.nav_buttom {
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: grid;
+    width: 70px;
+    height: 60px;
+}
