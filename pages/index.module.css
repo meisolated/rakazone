@@ -368,7 +368,7 @@
 }
 
 .buy_merch {
-    padding: 20px 45px;
+    padding: 60px 45px;
     display: block !important;
 }
 
@@ -418,13 +418,15 @@
 }
 
 .buy_merch_notice {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 30px;
+    border-top: rgb(45, 45, 45) solid 1px;
     font-size: small;
     text-align: center;
-    margin: 0;
+    margin: -2px;
+    bottom: auto;
     padding: 10px 40px 10px 40px;
-    background-color: var(--light-dark-color);
-    /* position: relative; */
-    transition: fadeInAnimation 0.2s ease-in-out;
+    background-color: var(--light-primary);
+    position: relative;
 }
 
 /* –––––––––––––––––––––––––––––– ABOUT CHANNEL ––––––––––––––––––––––––––– */
@@ -461,7 +463,6 @@
     position: relative;
     left: 0px;
     top: 0px;
-    animation: rotate-s-loader 10s linear infinite;
 }
 
 .about_images_wrapper {
@@ -537,17 +538,15 @@
     }
 }
 
-@keyframes rotate-s-loader {
-    from {
-        transform: rotate(0);
-    }
 
-    to {
-        transform: rotate(360deg);
+@media screen and (min-width: 1020px) {
+    .buy_merch_notice {
+        bottom: -31px;
     }
 }
 
 @media screen and (max-width: 1000px) {
+
     .about_shapes {
         width: 90px;
     }
@@ -822,9 +821,9 @@
         font-size: 14px;
     }
 
-    /* .buy_merch {
-  padding: 40px 25px;
- } */
+    .buy_merch {
+        padding: 40px 25px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -840,6 +839,7 @@
     .video_featured_about {
         font-size: 14px;
     }
+
 }
 
 @media screen and (max-width: 430px) {
@@ -851,4 +851,11 @@
     .temp_alert_text {
         font-size: 9px;
     }
+
+    .merch_gallery_item {
+        max-width: 200px;
+        max-height: 200px;
+
+    }
+
 }

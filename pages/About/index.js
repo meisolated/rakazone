@@ -13,7 +13,30 @@ import insta2 from "../../assets/img/png/insta02.png"
 import insta3 from "../../assets/img/png/insta15.png"
 import insta4 from "../../assets/img/png/insta06.png"
 import Head from "next/head"
+import { useState } from "react"
+
+function InstaImage({ img }) {
+    let [insta, setInsta] = useState(false)
+    return <div className={css.instagram_showcase_grid_item_image}>
+        <Image src={img} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+        <div className={css.instagram_image_filter} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}></div>
+        <div className={`${css.video_button_wrapper} ${css.instagram_image} ${insta ? css.show : css.hide}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)} >
+            <div className={css.video_button}>
+                <Image
+                    src={instaIcon}
+                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
+                    alt=""
+                />
+            </div>
+        </div>
+    </div>
+}
+
 function About() {
+
+    let [insta, setInsta] = useState(false)
+    let toggleInsta = () => setInsta(!insta)
+
     return (
         <>
             <Head>
@@ -108,62 +131,10 @@ function About() {
                 <div className="divider" />
             </div>
             <div className={css.instagram_showcase_grid}>
-                <div className={css.instagram_showcase_grid_item_image}>
-                    <Image src={insta1} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter}>
-                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
-                            <div className={css.video_button}>
-                                <Image
-                                    src={instaIcon}
-                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={css.instagram_showcase_grid_item_image}>
-                    <Image src={insta2} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter}>
-                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
-                            <div className={css.video_button}>
-                                <Image
-                                    src={instaIcon}
-                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={css.instagram_showcase_grid_item_image}>
-                    <Image src={insta3} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter}>
-                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
-                            <div className={css.video_button}>
-                                <Image
-                                    src={instaIcon}
-                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={css.instagram_showcase_grid_item_image}>
-                    <Image src={insta4} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-                    <div className={css.instagram_image_filter}>
-                        <div className={`${css.video_button_wrapper} ${css.instagram_image}`}>
-                            <div className={css.video_button}>
-                                <Image
-                                    src={instaIcon}
-                                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <InstaImage img={insta1} />
+                <InstaImage img={insta2} />
+                <InstaImage img={insta3} />
+                <InstaImage img={insta4} />
             </div>
         </>
     )

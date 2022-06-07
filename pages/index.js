@@ -25,7 +25,7 @@ import merch1 from "../assets/img/png/merch1.png"
 import merch2 from "../assets/img/png/merch2.png"
 import merch3 from "../assets/img/png/merch3.png"
 import art_146 from "../assets/svg/146.svg"
-import bag from "../assets/svg/bag.svg"
+import bag from "../assets/svg/bag-3.svg"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -190,8 +190,6 @@ function Home(props) {
                         </div>
                         {/* BUY MERCH */}
                         <div className={css.merch_main}>
-                            <div className={css.buy_merch_notice}>We are currently trying to get in touch with RakaZone to make merch available for you.</div>
-                            <div className="pd-bottom" />
                             <div className={css.buy_merch}>
                                 <div className={css.merch_oneblock}>
                                     <Image src={bag} width={45} height={45} alt="bag" className={css.merch_oneblock} />
@@ -218,6 +216,7 @@ function Home(props) {
                                     <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
                                 </div>
                             </div>
+                            <div className={css.buy_merch_notice}>All these products are just for demonstration and does not represent	an actual product as of now.</div>
                         </div>
                     </div>
                 </section>

@@ -121,7 +121,7 @@ function Shop() {
 
     return (
         <>
-            <HeaderNotification notificationText={"We are currently fetching these products details from redwolf.in. Checkout is currently disabled as we are not accepting any payments from any user."} />
+            <HeaderNotification notificationText={"Checkout is currently disabled as we are not accepting any payments from any user and we do not manufacture any of these products nor we have these products in stock."} />
             <div className="pd-bottom-high" />
             <div className="pd-bottom-high" />
             <div className="container-default">

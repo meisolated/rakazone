@@ -1,291 +1,362 @@
 .about {
- width: 100%;
- align-items: center;
+    width: 100%;
+    align-items: center;
 }
+
 .padding {
- margin-bottom: 50px;
+    margin-bottom: 50px;
 }
+
 .about_main {
- margin-top: 50px;
- width: 100%;
- height: 100%;
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 .about_title {
- margin: 0;
- text-align: center;
- font-size: 35px;
- font-family: var(--light-primary-font);
- color: var(--white-color);
+    margin: 0;
+    text-align: center;
+    font-size: 35px;
+    font-family: var(--light-primary-font);
+    color: var(--white-color);
 }
+
 .about_description {
- text-align: center;
+    text-align: center;
 }
 
 .about_streamer_channel_image {
- display: table-caption;
- /* width: auto; */
- height: 130px;
- width: 130px;
- margin-right: 20px;
- padding: 5px;
- border-radius: 100px;
- background: conic-gradient(#f58529, #feda77, #dd2a7b, #515bd4, #8134af, #f58529);
+    display: table-caption;
+    /* width: auto; */
+    height: 130px;
+    width: 130px;
+    margin-right: 20px;
+    padding: 5px;
+    border-radius: 100px;
+    background: conic-gradient(#f58529, #feda77, #dd2a7b, #515bd4, #8134af, #f58529);
 }
 
 .channel_image {
- border-radius: 100px;
+    border-radius: 100px;
 }
 
 .about_streamer_achievement {
- width: 100%;
- grid-column-gap: 24px;
- grid-row-gap: 24px;
- -ms-grid-columns: 1fr 1fr 1fr 1fr;
- grid-template-columns: 1fr 1fr 1fr 1fr;
- -ms-grid-rows: auto;
- grid-template-rows: auto;
+    width: 100%;
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
 }
+
 .card {
- display: grid;
- padding: 60px 31px 50px;
- border-radius: 32px;
- background-color: var(--grey-color);
- overflow: hidden;
+    display: grid;
+    padding: 60px 31px 50px;
+    border-radius: 32px;
+    background-color: var(--grey-color);
+    overflow: hidden;
 }
 
 .about_streamer_achievement_count {
- font-family: var(--bold-primary-font);
- margin-bottom: 2px;
- color: #fff;
- font-size: 52px;
- line-height: 1.077em;
- font-weight: 700;
+    font-family: var(--bold-primary-font);
+    margin-bottom: 2px;
+    color: #fff;
+    font-size: 52px;
+    line-height: 1.077em;
+    font-weight: 700;
 }
+
 .social_icon_image_wrapper {
- border-radius: 100px;
- background-color: #fff;
- padding: 2px;
- width: 60px;
- height: 60px;
- margin-bottom: 10px;
- overflow: hidden;
+    border-radius: 100px;
+    background-color: #fff;
+    padding: 2px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    overflow: hidden;
 }
+
 .social {
- border-radius: 100px;
- overflow: hidden;
+    border-radius: 100px;
+    overflow: hidden;
 }
 
 .story_about_me {
- margin-top: 50px;
- display: -webkit-box;
- display: -webkit-flex;
- display: -ms-flexbox;
- display: flex;
- -webkit-box-pack: justify;
- -webkit-justify-content: space-between;
- -ms-flex-pack: justify;
- justify-content: space-between;
+    margin-top: 50px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 }
 
 .story_about_titles {
- font-family: var(--bold-primary-font);
- font-size: 35px;
- color: var(--white-color);
+    font-family: var(--bold-primary-font);
+    font-size: 35px;
+    color: var(--white-color);
 }
+
 .story_about_me_image_left,
 .story_about_me_image_right {
- margin: 20px;
+    margin: 20px;
 }
+
 .story_about_me_left {
- max-width: 518px;
- margin-top: 64px;
- margin-right: 40px;
+    max-width: 518px;
+    margin-top: 64px;
+    margin-right: 40px;
 }
+
 .story_about_me_right {
- max-width: 518px;
+    max-width: 518px;
 }
 
 .story_about_img_left {
- border-radius: 32px 124px;
+    border-radius: 32px 124px;
 }
+
 .story_about_img_right {
- border-radius: 32px 124px;
+    border-radius: 32px 124px;
 }
 
 .instagram_showcase_grid {
- margin: 0;
- display: -ms-grid;
- display: grid;
- grid-auto-columns: 1fr;
- grid-column-gap: 0px;
- grid-row-gap: 0px;
- -ms-grid-columns: 1fr 1fr 1fr 1fr;
- grid-template-columns: 1fr 1fr 1fr 1fr;
- -ms-grid-rows: auto;
- grid-template-rows: auto;
+    margin: 0;
+    display: -ms-grid;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
 }
+
 .instagram_showcase_grid_item_image {
- position: relative;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- display: flex;
- overflow: hidden;
- justify-content: center;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
 }
+
 .instagram_showcase_grid_item_image_img {
- width: 100%;
- -o-object-fit: cover;
- object-fit: cover;
- display: inline-block;
- vertical-align: middle;
- border: 0;
- max-width: 100%;
- transition: all 0.3s ease-in-out;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+    max-width: 100%;
+    transition: all 0.3s ease-in-out;
 }
+
 .instagram_image_filter {
- opacity: 0;
- position: absolute;
- width: 100%;
- height: 100%;
- background-color: #000;
- animation-duration: 0.5s;
- animation-iteration-count: 1;
- transform-origin: bottom;
- align-items: center;
- justify-content: center;
- display: flex;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.08)), to(rgba(0, 0, 0, 0.84)));
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.84)); */
+    background-color: black;
+    animation-duration: 0.66s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .instagram_image_filter:hover {
- opacity: 1;
- animation-name: opac;
- animation-timing-function: ease;
+    opacity: 0.66;
+    animation-name: opac;
+    animation-timing-function: ease;
 }
+
+.show {
+    animation-name: scale;
+    animation-timing-function: ease;
+    display: flex !important;
+}
+
+.hide {
+    animation-name: scale;
+    animation-timing-function: ease;
+    display: none !important;
+}
+
 @keyframes opac {
- from {
-  opacity: 0;
- }
- to {
-  opacity: 1;
- }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.66;
+    }
+}
+
+@-webkit-keyframes opac {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.66;
+    }
+}
+
+@keyframes scale {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes scale {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
 }
 
 .video_button_wrapper {
- position: absolute;
- display: -webkit-box;
- display: -webkit-flex;
- display: -ms-flexbox;
- display: flex;
- overflow: hidden;
- width: 73px;
- max-height: 73px;
- min-height: 73px;
- min-width: 73px;
- -webkit-box-pack: center;
- -webkit-justify-content: center;
- -ms-flex-pack: center;
- justify-content: center;
- -webkit-box-align: center;
- -webkit-align-items: center;
- -ms-flex-align: center;
- align-items: center;
- color: white;
- border-radius: 1000000000px;
- background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 100%, 0.64)), color-stop(71%, hsla(0, 0%, 100%, 0)));
- background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.64), hsla(0, 0%, 100%, 0) 71%);
- box-shadow: 0 8px 25px 0 rgb(0 0 0 / 45%);
+    animation-duration: 0.2s;
+    position: absolute;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    width: 73px;
+    max-height: 73px;
+    min-height: 73px;
+    min-width: 73px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: white;
+    border-radius: 1000000000px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 100%, 0.64)), color-stop(71%, hsla(0, 0%, 100%, 0)));
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.64), hsla(0, 0%, 100%, 0) 71%);
+    box-shadow: 0 8px 25px 0 rgb(0 0 0 / 45%);
 }
+
 .video_button {
- position: absolute;
- left: 0%;
- top: 0%;
- right: 0%;
- bottom: 0%;
- display: -webkit-box;
- display: -webkit-flex;
- display: -ms-flexbox;
- display: flex;
- -webkit-box-pack: center;
- -webkit-justify-content: center;
- -ms-flex-pack: center;
- justify-content: center;
- -webkit-box-align: center;
- -webkit-align-items: center;
- -ms-flex-align: center;
- align-items: center;
- border-style: solid;
- border-width: 1px;
- border-color: hsla(0, 0%, 100%, 0.49);
- border-radius: 1000000000000px;
- background-color: hsla(0, 0%, 100%, 0.32);
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: hsla(0, 0%, 100%, 0.49);
+    border-radius: 1000000000000px;
+    background-color: hsla(0, 0%, 100%, 0.32);
 }
+
 .image.video_button_icon.instagram_image {
- max-width: 48%;
+    max-width: 48%;
 }
 
 @media screen and (max-width: 790px) {
- .instagram_showcase_grid {
-  grid-template-columns: 1fr 1fr;
-  -ms-grid-columns: 1fr 1fr;
- }
- .padding {
-  margin-bottom: 20px;
- }
- .about_streamer_channel_image {
-  width: 130px;
-  max-height: 130px;
-  min-height: 130px;
-  min-width: 130px;
-  margin-bottom: 15px;
- }
- .about_streamer_achievement {
-  width: 100%;
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
- }
- .card {
-  display: -webkit-box;
-  text-align: center;
- }
- .card_content {
-  margin-left: 8px;
- }
+    .instagram_showcase_grid {
+        grid-template-columns: 1fr 1fr;
+        -ms-grid-columns: 1fr 1fr;
+    }
+
+    .padding {
+        margin-bottom: 20px;
+    }
+
+    .about_streamer_channel_image {
+        width: 130px;
+        max-height: 130px;
+        min-height: 130px;
+        min-width: 130px;
+        margin-bottom: 15px;
+    }
+
+    .about_streamer_achievement {
+        width: 100%;
+        grid-column-gap: 24px;
+        grid-row-gap: 24px;
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    }
+
+    .card {
+        display: -webkit-box;
+        text-align: center;
+    }
+
+    .card_content {
+        margin-left: 8px;
+    }
 }
+
 @media screen and (max-width: 600px) {
- .padding {
-  margin-bottom: 10px;
- }
- .about_streamer_achievement {
-  width: 100%;
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-  -ms-grid-columns: 1fr;
-  grid-template-columns: 1fr;
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
- }
+    .padding {
+        margin-bottom: 10px;
+    }
+
+    .about_streamer_achievement {
+        width: 100%;
+        grid-column-gap: 24px;
+        grid-row-gap: 24px;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    }
 }
 
 @media screen and (max-width: 530px) {
- .about_streamer_channel_image {
-  width: 90px;
-  max-height: 90px;
-  min-height: 90px;
-  min-width: 90px;
-  margin-bottom: 15px;
- }
+    .about_streamer_channel_image {
+        width: 90px;
+        max-height: 90px;
+        min-height: 90px;
+        min-width: 90px;
+        margin-bottom: 15px;
+    }
 }
+
 @media screen and (max-width: 450px) {
- .story_about_me {
-  display: table;
- }
+    .story_about_me {
+        display: table;
+    }
 }

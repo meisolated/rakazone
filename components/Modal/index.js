@@ -12,7 +12,6 @@ export default function Modal({ onClose, whatToShow, ...props }) {
         }, 500)
     }
 
-
     const title = "Sponser Me"
     const message = `💲 UPI • rakazonegaming@oksbi <br/> 💲 Sponsor • <a href="https://raka.zone/join" target="_blank"> raka.zone/join </a> <br/> 💲 Donation Via PayPal • <a href="https://raka.zone/paypal" target="_blank">raka.zone/paypal </a> <br/>  <br/> <div style="text-align:center"> Every Tip Is Appreciated 🙏 </div>`
     const button = "Later"
