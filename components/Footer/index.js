@@ -4,7 +4,7 @@ import { Primary } from "../Buttons"
 import insta1 from "../../assets/img/png/insta07.png"
 import insta2 from "../../assets/img/png/insta02.png"
 import insta3 from "../../assets/img/png/insta15.png"
-import link_icon from "../../assets/svg/open_link_icon.svg"
+import link_icon from "../../assets/svg/src/open_link_icon.svg"
 function Footer() {
     return (
         <>
@@ -69,9 +69,9 @@ function Footer() {
                             <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></a>
                             <a href="https://twitter.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}></a>
                             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}></a>
-                            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_linkedin}  ${css.footer_social_button}`}></a>
+
                             <a href="https://www.twitch.tv/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></a>
-                            <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_tiktok}  ${css.footer_social_button}`}></a>
+
                         </div>
                         <div className={css.footer_copyright}>
                             Copyright © 2022 &nbsp;

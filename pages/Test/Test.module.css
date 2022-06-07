@@ -1,5 +1,4 @@
 .bottom_navbar_container {
-
     z-index: 100;
     width: 100%;
     position: fixed;
@@ -25,12 +24,44 @@
     color: var(--primary-color);
 }
 
+.clicked_underline {
+    margin-top: 1px;
+    border-radius: 50px;
+    width: 50%;
+    height: 3px;
+    background-color: rgb(104, 98, 98);
+    animation-name: scale;
+    animation-timing-function: ease;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+}
+
 .nav_buttom {
     padding: 5px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    display: grid;
+    display: flow-root;
     width: 70px;
     height: 60px;
+}
+
+@keyframes scale {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes scale {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }

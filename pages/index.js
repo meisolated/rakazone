@@ -19,13 +19,13 @@ import { Primary } from "../components/Buttons"
 // assets
 import about_channel_image_one from "../assets/img/png/about_channel_image_one.png"
 import about_channel_image_two from "../assets/img/png/about_channel_image_two.png"
-import youtube_logo from "../assets/svg/youtube_logo.svg"
-import playicon from "../assets/svg/playicon.svg"
+import youtube_logo from "../assets/svg/src/youtube_logo.svg"
+import playicon from "../assets/svg/src/playicon.svg"
 import merch1 from "../assets/img/png/merch1.png"
 import merch2 from "../assets/img/png/merch2.png"
 import merch3 from "../assets/img/png/merch3.png"
-import art_146 from "../assets/svg/146.svg"
-import bag from "../assets/svg/bag-3.svg"
+import art_146 from "../assets/svg/src/146.svg"
+import bag from "../assets/svg/src/bag-3.svg"
 
 const { publicRuntimeConfig } = getConfig()
 

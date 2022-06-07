@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { OutlineSmall } from "../Buttons"
 import Link from "next/link"
-import shoppingCart from "../../assets/svg/bag-2.svg"
+import shoppingCart from "../../assets/svg/src/bag-2.svg"
 export default function Header({ isLoggedIn, userData }) {
     isLoggedIn = false
     let [isOpen, setIsOpen] = useState(false)

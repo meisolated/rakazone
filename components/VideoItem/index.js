@@ -3,7 +3,7 @@ import Image from "next/image"
 import moment from "moment"
 import { convertToInternationalCurrencySystem } from "../../util/functions.js"
 import Link from "next/link"
-import playicon from "../../assets/svg/playicon.svg"
+import playicon from "../../assets/svg/src/playicon.svg"
 import { useState } from "react"
 
 export function EmptyVideoItem(props) {

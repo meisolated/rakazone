@@ -1,6 +1,6 @@
 import Image from "next/image"
 import css from "./401.module.css"
-import img404 from "../../assets/svg/401.svg"
+import img404 from "../../assets/svg/src/401.svg"
 import { Primary } from "../../components/Buttons"
 function Page404() {
     return (

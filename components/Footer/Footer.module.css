@@ -78,7 +78,7 @@
     align-items: center;
     padding-right: 128px;
     padding-left: 52px;
-    background-image: url("../../assets/svg/email.svg");
+    background-image: url("../../assets/svg/src/email.svg");
     background-position: 21px 50%;
     background-size: auto;
     background-repeat: no-repeat;
@@ -259,7 +259,7 @@
     margin-right: 14px;
     margin-bottom: 14px;
     border-radius: 7px;
-    background-image: url("https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg");
+    background-image: url("../../assets/svg/src/place-holder.svg");
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -276,32 +276,25 @@
 }
 
 .footer_social_button_icon_youtube {
-    background-image: url("../../assets/svg/youtube.svg");
+    background-image: url("../../assets/svg/src/youtube.svg");
 }
 
 .footer_social_button_icon_facebook {
-    background-image: url("../../assets/svg/facebook.svg");
+    background-image: url("../../assets/svg/src/facebook.svg");
 }
 
 .footer_social_button_icon_twitter {
-    background-image: url("../../assets/svg/twitter.svg");
+    background-image: url("../../assets/svg/src/twitter.svg");
 }
 
 .footer_social_button_icon_instagram {
-    background-image: url("../../assets/svg/instagram.svg");
-}
-
-.footer_social_button_icon_linkedin {
-    background-image: url("../../assets/svg/linkedin.svg");
+    background-image: url("../../assets/svg/src/instagram.svg");
 }
 
 .footer_social_button_icon_twitch {
-    background-image: url("../../assets/svg/twitch.svg");
+    background-image: url("../../assets/svg/src/twitch.svg");
 }
 
-.footer_social_button_icon_tiktok {
-    background-image: url("../../assets/svg/tiktok.svg");
-}
 
 /* CSS ACCORDING TO SCREEN SIZE */
 @media screen and (max-width: 991px) {

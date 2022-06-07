@@ -1,5 +1,5 @@
 import Image from "next/image"
-import added_to_cart from "../../assets/svg/bag-tick.svg"
+import added_to_cart from "../../assets/svg/src/bag-tick.svg"
 import css from "./Toast.module.css"
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/router"

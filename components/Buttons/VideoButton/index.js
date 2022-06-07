@@ -1,6 +1,6 @@
 import Image from "next/image"
 import css from "./VideoButton.module.css"
-import playicon from "../../../assets/svg/playicon.svg"
+import playicon from "../../../assets/svg/src/playicon.svg"
 import Link from "next/link"
 export function VideoBtnBig(props) {
     let link = props.where || "/"
