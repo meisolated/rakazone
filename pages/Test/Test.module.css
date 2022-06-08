@@ -20,11 +20,11 @@
 
 }
 
-.clicked {
+.bottom_navbar_clicked {
     color: var(--primary-color);
 }
 
-.clicked_underline {
+.bottom_navbar_clicked_underline {
     margin-top: 1px;
     border-radius: 50px;
     width: 50%;
@@ -36,7 +36,7 @@
     animation-iteration-count: 1;
 }
 
-.nav_buttom {
+.bottom_navbar_button {
     padding: 5px;
     justify-content: center;
     align-items: center;

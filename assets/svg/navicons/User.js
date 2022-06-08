@@ -1,12 +1,11 @@
-import * as React from "react";
+import * as React from "react"
 
-const SvgUser = (props) => (
+const SvgUser = () => (
   <svg
     width={24}
     height={24}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
   >
     <path
       d="M18.14 21.62c-.88.26-1.92.38-3.14.38H9c-1.22 0-2.26-.12-3.14-.38.22-2.6 2.89-4.65 6.14-4.65 3.25 0 5.92 2.05 6.14 4.65Z"
@@ -30,6 +29,6 @@ const SvgUser = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
 
-export default SvgUser;
+export default SvgUser

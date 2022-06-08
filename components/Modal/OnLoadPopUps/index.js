@@ -1,8 +1,8 @@
-import { fetcher } from "../../util/functions.js"
-import Loading from "../Loading"
+import { fetcher } from "../../../util/functions.js"
+import Loading from "../../Loading"
 import { useState, useEffect } from "react"
 import css from "./OnLoadPopUps.module.css"
-import { Primary } from "../Buttons"
+import { Primary } from "../../Buttons"
 import useSWR from "swr"
 
 

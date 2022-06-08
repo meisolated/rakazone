@@ -4,7 +4,7 @@ import css from "./Toast.module.css"
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/router"
 import PropTypes from "prop-types"
-import { toastService, ToastType } from "../../handler/toast.handler.js"
+import { toastService } from "../../handler/toast.handler.js"
 export { Toast }
 
 Toast.propTypes = {
@@ -87,27 +87,6 @@ function Toast({ id, fade }) {
             // remove toast
             setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
         }
-    }
-
-    function cssClasses(toast) {
-        if (!toast) return
-
-        const classes = ["toast", "toast-dismissable"]
-
-        const toastTypeClass = {
-            [ToastType.Success]: "toast-success",
-            [ToastType.Error]: "toast-danger",
-            [ToastType.Info]: "toast-info",
-            [ToastType.Warning]: "toast-warning",
-        }
-
-        classes.push(toastTypeClass[toast.type])
-
-        if (toast.fade) {
-            classes.push("fade")
-        }
-
-        return classes.join(" ")
     }
 
     if (!toasts.length) return null

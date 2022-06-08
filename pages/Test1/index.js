@@ -1,4 +1,4 @@
-import OnLoadPopUps from "../../components/OnLoadPopUps/index.js"
+import OnLoadPopUps from "../../components/Modal/OnLoadPopUps"
 import Head from "next/head"
 import { useState } from "react"
 

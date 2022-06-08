@@ -17,7 +17,7 @@ export const ToastType = {
 const toastSubject = new Subject()
 const defaultId = "default-toast"
 
-// enable subscribing to toasts observable
+// enable subscribing to toasts observablez
 function onToast(id = defaultId) {
     return toastSubject.asObservable().pipe(filter((x) => x && x.id === id))
 }
