@@ -9,8 +9,8 @@ const nextConfig = {
     apiUrl:
       process.env.NODE_ENV === "development"
         ? "http://10.69.69.201:3001/api/v1/" // development api
-        : "http://raka.zone:9875/api/v1/", // production api
-    serverUrl: process.env.NODE_ENV === "development" ? "http://10.69.69.201/" : "https://raka.zone/",
+        : "http://10.69.69.201:3001/api/v1/", // production api
+    serverUrl: process.env.NODE_ENV === "development" ? "http://10.69.69.201/" : "http://10.69.69.201/",
   }
 }
 

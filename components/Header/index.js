@@ -104,6 +104,7 @@ export default function Header({ isLoggedIn, userData }) {
             default:
                 break
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -143,7 +144,7 @@ export default function Header({ isLoggedIn, userData }) {
                                         </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <Image src={shoppingCart} />
+                                        <Image src={shoppingCart} alt="" />
                                     </li>
 
                                     {isLoggedIn ? (
