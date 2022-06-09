@@ -41,6 +41,38 @@ const tabs = [
     },
 ]
 
+const exploreTabs = [
+    {
+        name: "About",
+        path: "/About",
+        active: false,
+        icon: Home,
+        iconClicked: HomeClicked,
+    },
+    {
+        name: "Wallpaper",
+        path: "/Wallpaper",
+        active: false,
+        icon: Home,
+        iconClicked: HomeClicked,
+    },
+    {
+        name: "Uploads",
+        path: "/Uploads",
+        active: false,
+        icon: Home,
+        iconClicked: HomeClicked,
+    },
+    {
+        name: "Trending",
+        path: "/Trending",
+        active: false,
+        icon: Home,
+        iconClicked: HomeClicked,
+    },
+
+]
+
 export default function Header({ isLoggedIn, userData }) {
     const router = useRouter()
     const pathname = router.pathname
@@ -77,6 +109,7 @@ export default function Header({ isLoggedIn, userData }) {
             active: false,
         },
     })
+    let [subNavbar, setSubNavbar] = useState(false)
 
     const OnNavClicked = (tab) => {
         let newClicked = { ...clicked }
@@ -84,6 +117,13 @@ export default function Header({ isLoggedIn, userData }) {
             newClicked[key].active = false
         }
         newClicked[tab].active = true
+        if (tab === "Explore") {
+            setSubNavbar(!subNavbar)
+
+        } else {
+            setSubNavbar(false)
+            router.push(newClicked[tab].path)
+        }
         setClicked(newClicked)
     }
 
@@ -162,22 +202,42 @@ export default function Header({ isLoggedIn, userData }) {
                     </div>
                 </div>
             </div>
-            <div className={`${css.bottom_navbar_container} ${(windowSize.width > 788) ? css.bottom_navbar_hide : (scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show)}`}>
-                <div className={css.bottom_navbar}>
-                    {tabs.map((tab, index) => {
-                        let active = clicked[tab.name].active
-                        return (
-                            <Link href={tab.path} passHref key={index}>
-                                <div className={`${css.home_button} ${css.bottom_navbar_button} ${active ? css.bottom_navbar_clicked : []}`} key={index} onClick={() => OnNavClicked(tab.name)}>
+
+            <div className={css.bottom_navbar_wrapper} >
+                <div className={`${css.bottom_navbar_container} ${(windowSize.width > 788) ? css.bottom_navbar_hide : (scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show)}`}>
+                    <div className={css.bottom_navbar}>
+                        {tabs.map((tab, index) => {
+                            let active = clicked[tab.name].active
+                            return (
+                                <div className={`${css.bottom_navbar_button} ${css.bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
                                     {active ? <tab.iconClicked /> : <tab.icon />}
                                     <a>{tab.name}</a>
                                     <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
                                         <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                                     </div>
                                 </div>
-                            </Link>
-                        )
-                    })}
+                            )
+                        })}
+
+                    </div>
+                </div>
+                <div className={`${css.sub_bottom_navbar_container} ${(subNavbar) ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : []}`}>
+                    <div className={css.sub_bottom_navbar}>
+                        {exploreTabs.map((tab, index) => {
+                            let active = false
+                            return (
+                                <Link href={tab.path} passHref key={index}>
+                                    <div className={`${css.sub_bottom_navbar_button} ${css.sub_bottom_navbar_common_container} ${active ? css.sub_bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
+                                        {active ? <tab.iconClicked /> : <tab.icon />}
+                                        <a>{tab.name}</a>
+                                        <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
+                                            <div className={`${active ? css.sub_bottom_navbar_clicked_underline : []}`} />
+                                        </div>
+                                    </div>
+                                </Link>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </>

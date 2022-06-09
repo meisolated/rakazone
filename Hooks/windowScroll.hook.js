@@ -8,12 +8,14 @@ export default function windowScroll() {
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
-            if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
+            if (window.scrollY > lastScrollY) {
+                // if scroll down hide the navbar
                 scrollY.increasing = true
                 setLastScrollY(window.scrollY)
                 setScrollY({ Y: window.scrollY, increasing: true })
 
-            } else { // if scroll up show the navbar
+            } else {
+                // if scroll up show the navbar
                 setLastScrollY(window.scrollY)
                 setScrollY({ Y: window.scrollY, increasing: false })
             }
@@ -29,7 +31,7 @@ export default function windowScroll() {
                 window.removeEventListener('scroll', controlNavbar)
             }
         }
-    }, [lastScrollY])
+    })
 
     return scrollY
 }
