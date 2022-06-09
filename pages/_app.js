@@ -1,20 +1,8 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
 import { motion } from "framer-motion"
-import { useEffect } from "react"
 function MyApp({ Component, pageProps, router }) {
-  useEffect(() => {
-    let data = {
-      isLoggedIn: false,
-      userData: {
-        name: "",
-        profile_pic: "",
-      },
-    }
-    localStorage.setItem("user", JSON.stringify(data))
-  }, [])
   const slideRight = {
-    name: "Slide Right",
     variants: {
       initial: {
         opacity: 0,
@@ -36,6 +24,8 @@ function MyApp({ Component, pageProps, router }) {
       duration: 0.7,
     },
   }
+
+
 
   return (
     <>

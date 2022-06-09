@@ -5,8 +5,9 @@ import { OutlineSmall } from "../Buttons"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import shoppingCart from "../../assets/svg/src/bag-2.svg"
-import { Bag1, Bag1Clicked, Home, HomeClicked, Profile, ProfileClicked, User, UserClicked } from "../../assets/svg/navicons"
-
+import { Explore, ExploreClicked, Bag1, Bag1Clicked, Home, HomeClicked, Profile, ProfileClicked } from "../../assets/svg/navicons"
+import useWindowSize from "../../Hooks/windowResize.hook.js"
+import windowScroll from "../../Hooks/windowScroll.hook.js"
 
 const tabs = [
     {
@@ -18,10 +19,10 @@ const tabs = [
     },
 
     {
-        name: "About",
-        icon: User,
-        iconClicked: UserClicked,
-        path: "/About",
+        name: "Explore",
+        icon: Explore,
+        iconClicked: ExploreClicked,
+        path: "/Explore",
         active: false,
     },
     {
@@ -44,8 +45,8 @@ export default function Header({ isLoggedIn, userData }) {
     const router = useRouter()
     const pathname = router.pathname
     isLoggedIn = false
-    const [width, setWidth] = useState(0)
-    let [isOpen, setIsOpen] = useState(false)
+    const windowSize = useWindowSize()
+    const scrollY = windowScroll()
     let [clicked, setClicked] = useState({
         Home: {
             name: "Home",
@@ -54,11 +55,11 @@ export default function Header({ isLoggedIn, userData }) {
             path: "/",
             active: false,
         },
-        About: {
-            name: "About",
-            icon: User,
-            iconClicked: UserClicked,
-            path: "/About",
+        Explore: {
+            name: "Explore",
+            icon: Explore,
+            iconClicked: ExploreClicked,
+            path: "/Explore",
             active: false,
         },
         Shop: {
@@ -86,14 +87,6 @@ export default function Header({ isLoggedIn, userData }) {
         setClicked(newClicked)
     }
 
-
-    function menuBtnClick() {
-        if (isOpen) {
-            setIsOpen(false)
-        } else {
-            setIsOpen(true)
-        }
-    }
     useEffect(() => {
         switch (pathname) {
             case "/":
@@ -110,12 +103,7 @@ export default function Header({ isLoggedIn, userData }) {
                 break
             default:
                 break
-
         }
-
-        window.addEventListener("resize", () => {
-            setWidth(window.innerWidth)
-        })
     }, [])
 
     return (
@@ -169,88 +157,28 @@ export default function Header({ isLoggedIn, userData }) {
                                     )}
                                 </ul>
                             </nav>
-
-                            <div className={`${css.menu_button}`} onClick={menuBtnClick}>
-                                <div className={css.header_menu_button_icon_wrapper}>
-                                    <div className={css.icon_wrapper}>
-                                        <div className={css.header_menu_button_icon_top}></div>
-                                        <div className={css.header_menu_button_icon_middle}></div>
-                                        <div className={css.header_menu_button_icon_bottom}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={`${css.bottom_navbar_container} ${(windowSize.width > 788) ? css.bottom_navbar_hide : (scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show)}`}>
+                <div className={css.bottom_navbar}>
+                    {tabs.map((tab, index) => {
+                        let active = clicked[tab.name].active
+                        return (
+                            <Link href={tab.path} passHref key={index}>
+                                <div className={`${css.home_button} ${css.bottom_navbar_button} ${active ? css.bottom_navbar_clicked : []}`} key={index} onClick={() => OnNavClicked(tab.name)}>
+                                    {active ? <tab.iconClicked /> : <tab.icon />}
+                                    <a>{tab.name}</a>
+                                    <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
+                                        <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </Link>
+                        )
+                    })}
                 </div>
             </div>
-            <div className={`${css.slidebar} ${isOpen ? css.open : css.close}`}>
-                <div className={css.slidebar_content}>
-                    <div className={css.nav_left}>
-                        <Link href={"/"} passHref>
-                            <a className={css.nav_item} onClick={() => setIsOpen(false)}>
-                                Home
-                            </a>
-                        </Link>
-                        <Link href={"/About"} passHref>
-                            <a className={css.nav_item} onClick={() => setIsOpen(false)}>
-                                About
-                            </a>
-                        </Link>
-                        <Link href={"/Shop"} passHref>
-                            <a className={css.nav_item} onClick={() => setIsOpen(false)}>
-                                Shop
-                            </a>
-                        </Link>
-                        <Link href={"/Vlog"} passHref>
-                            <a className={css.nav_item} onClick={() => setIsOpen(false)}>
-                                Vlog
-                            </a>
-                        </Link>
-                        <Link href={"/Contact"} passHref>
-                            <a className={css.nav_item} onClick={() => setIsOpen(false)}>
-                                Contact
-                            </a>
-                        </Link>
-                    </div>
-                    <div className={css.nav_bottom}>
-                        <a>Copyright © 2022 RakaZone. All rights reserved.</a>
-                    </div>
-                </div>
-            </div>
-            {width < 800 ? (
-                <>
-                    <div className={css.bottom_navbar_container}>
-                        <div className={css.bottom_navbar}>
-                            {tabs.map((tab, index) => {
-                                let active = clicked[tab.name].active
-                                return (
-                                    <Link href={tab.path} passHref key={index}>
-                                        <div className={`${css.home_button} ${css.bottom_navbar_button} ${active ? css.bottom_navbar_clicked : []}`} key={index} onClick={() => OnNavClicked(tab.name)}>
-                                            {active ? <tab.iconClicked /> : <tab.icon />}
-                                            <a>{tab.name}</a>
-                                            <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
-                                                <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
-                                            </div>
-                                        </div>
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </>
-            ) : null}
         </>
-    )
-}
-
-function NavElement({ name, icon, icon_clicked, onClick }) {
-    return (
-        <div className={`${css.home_button} ${css.bottom_navbar_button} ${clicked ? css.bottom_navbar_clicked : []}`}>
-            {svg}
-            <a>{name}</a>
-            <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
-                <div className={`${clicked ? css.bottom_navbar_clicked_underline : []}`} />
-            </div>
-        </div>
     )
 }
