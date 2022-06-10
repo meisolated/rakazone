@@ -231,11 +231,6 @@
 }
 
 /* –––––––––––––––––––––––––––––––––––––––––––––––––Bottom NavBar Common –––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-
-
-/* –––––––––––––––––––––––––––––––––––––––––––––––––Bottom NavBar –––––––––––––––––––––––––––––––––––––––––––––––––*/
-
 .bottom_navbar_container {
     z-index: 100;
     bottom: 0;
@@ -249,7 +244,6 @@
 
 .bottom_navbar {
     padding: 8px 8px 5px 5px;
-    /* border-radius: 20px; */
     width: 100%;
     display: flex;
     background-color: var(--divider-color);
@@ -258,11 +252,10 @@
 
 }
 
+
 .bottom_navbar_clicked {
     color: var(--primary-color);
 }
-
-
 
 .bottom_navbar_clicked_underline {
     margin-top: 1px;
@@ -283,6 +276,11 @@
     width: 100%;
     height: auto;
 }
+
+/* –––––––––––––––––––––––––––––––––––––––––––––––––Bottom NavBar –––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+
 
 
 .bottom_navbar_show {
@@ -360,56 +358,6 @@
 }
 
 /* –––––––––––––––––––––––––––––––––––––––––––––––––Sub Bottom NavBar –––––––––––––––––––––––––––––––––––––––––––––––––*/
-.sub_bottom_navbar_container {
-    z-index: 99;
-    width: 100%;
-    bottom: -100px;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-
-}
-
-.sub_bottom_navbar {
-    padding: 8px 8px 5px 5px;
-    width: 100%;
-    display: flex;
-    background-color: var(--divider-color);
-    border: 1px solid rgb(33, 30, 30);
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-
-}
-
-.sub_bottom_navbar_clicked {
-    color: var(--primary-color);
-}
-
-
-
-.sub_bottom_navbar_clicked_underline {
-    margin-top: 1px;
-    border-radius: 50px;
-    width: 50%;
-    height: 3px;
-    background-color: rgb(255, 255, 255);
-    animation-name: sub_scale;
-    animation-timing-function: ease;
-    animation-duration: 0.2s;
-    animation-iteration-count: 1;
-}
-
-.sub_bottom_navbar_button {
-    padding: 5px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    place-items: center;
-    display: grid;
-    width: 100%;
-    height: 100%;
-}
-
 
 .sub_bottom_navbar_show {
     bottom: -100px;

@@ -70,7 +70,6 @@ const exploreTabs = [
         icon: Home,
         iconClicked: HomeClicked,
     },
-
 ]
 
 export default function Header({ isLoggedIn, userData }) {
@@ -112,6 +111,7 @@ export default function Header({ isLoggedIn, userData }) {
     let [subNavbar, setSubNavbar] = useState(false)
 
     const OnNavClicked = (tab) => {
+        if (!clicked[tab]) return
         let newClicked = { ...clicked }
         for (let key in newClicked) {
             newClicked[key].active = false
@@ -119,7 +119,6 @@ export default function Header({ isLoggedIn, userData }) {
         newClicked[tab].active = true
         if (tab === "Explore") {
             setSubNavbar(!subNavbar)
-
         } else {
             setSubNavbar(false)
             router.push(newClicked[tab].path)
@@ -198,13 +197,16 @@ export default function Header({ isLoggedIn, userData }) {
                                     )}
                                 </ul>
                             </nav>
+                            {windowSize.width < 788 ? <div className={css.nav_item_wrapper}>
+                                <Image src={shoppingCart} alt="" />
+                            </div> : []}
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className={css.bottom_navbar_wrapper} >
-                <div className={`${css.bottom_navbar_container} ${(windowSize.width > 788) ? css.bottom_navbar_hide : (scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show)}`}>
+            <div className={css.bottom_navbar_wrapper}>
+                <div className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show}`}>
                     <div className={css.bottom_navbar}>
                         {tabs.map((tab, index) => {
                             let active = clicked[tab.name].active
@@ -218,20 +220,23 @@ export default function Header({ isLoggedIn, userData }) {
                                 </div>
                             )
                         })}
-
                     </div>
                 </div>
-                <div className={`${css.sub_bottom_navbar_container} ${(subNavbar) ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : []}`}>
-                    <div className={css.sub_bottom_navbar}>
+                <div style={{ zIndex: 99 }} className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide}`}>
+                    <div className={css.bottom_navbar}>
                         {exploreTabs.map((tab, index) => {
-                            let active = false
+                            let active = true
                             return (
-                                <Link href={tab.path} passHref key={index}>
-                                    <div className={`${css.sub_bottom_navbar_button} ${css.sub_bottom_navbar_common_container} ${active ? css.sub_bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
+                                <Link href={tab.path} passHref key={"t-" + index}>
+                                    <div
+                                        className={`${css.bottom_navbar_button} ${css.sub_bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`}
+                                        key={"t-" + index}
+                                        onClick={() => OnNavClicked(tab.name)}
+                                    >
                                         {active ? <tab.iconClicked /> : <tab.icon />}
                                         <a>{tab.name}</a>
                                         <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
-                                            <div className={`${active ? css.sub_bottom_navbar_clicked_underline : []}`} />
+                                            <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                                         </div>
                                     </div>
                                 </Link>

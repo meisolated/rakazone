@@ -1,5 +1,4 @@
 import css from './Primary.module.css'
-import Link from 'next/link'
 function Primary(props) {
 
     return (<button className={css.button_primary} >  {props.text}</button>)

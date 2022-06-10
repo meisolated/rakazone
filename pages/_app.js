@@ -1,6 +1,7 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
 import { motion } from "framer-motion"
+import { Toast } from "../components/Notification"
 function MyApp({ Component, pageProps, router }) {
   const slideRight = {
     variants: {
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps, router }) {
   return (
     <>
       <Layout>
+        <Toast fade={true} />
         <motion.div key={router.route} initial="initial" animate="animate" transition={slideRight.transition} variants={slideRight.variants}>
           <Component {...pageProps} />
         </motion.div>

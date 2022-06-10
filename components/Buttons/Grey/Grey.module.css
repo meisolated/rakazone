@@ -1,55 +1,59 @@
 /* CSS */
 .button {
- background-color: #2a2a2e;
- border-radius: 10px;
- border-style: none;
- box-sizing: border-box;
- color: #ffffff;
- cursor: pointer;
- display: inline-block;
- font-size: 14px;
- font-weight: 500;
- height: 40px;
- line-height: 20px;
- list-style: none;
- outline: none;
- position: relative;
- text-align: center;
- text-decoration: none;
- vertical-align: baseline;
- user-select: none;
- -webkit-user-select: none;
- touch-action: manipulation;
- -webkit-transform: scale3d(1, 1, 1.01);
- transform: scale3d(1, 1, 1.01);
- -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
- -webkit-transform-style: preserve-3d;
- transform-style: preserve-3d;
+    background-color: #2a2a2e;
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    outline: none;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    -webkit-transform: scale3d(1, 1, 1.01);
+    transform: scale3d(1, 1, 1.01);
+    -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
+    transition: background-color 300ms ease, -webkit-transform 300ms ease;
+    transition: transform 300ms ease, background-color 300ms ease;
+    transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
 }
 
 .button:hover,
 .button:focus {
- -webkit-transform: scale3d(0.98, 0.98, 1.01);
- transform: scale3d(0.98, 0.98, 1.01);
- background-color: var(--primary-color);
+    -webkit-transform: scale3d(0.98, 0.98, 1.01);
+    transform: scale3d(0.98, 0.98, 1.01);
+    background-color: var(--primary-color);
 }
 
 .GreySmall {
- font-size: 20px;
- padding: 0 10px;
+    width: inherit;
+    font-size: 20px;
+    padding: 0 10px;
 }
 
 .GreyMedium {
- height: 50px;
- font-size: 15px;
- padding: 0 20px;
+    width: inherit;
+    height: 50px;
+    font-size: 15px;
+    padding: 0 20px;
 }
+
 .GreyBig {
- border-radius: 15px;
- height: 60px;
- font-size: 20px;
- padding: 0 30px;
+    width: inherit;
+    border-radius: 15px;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 30px;
 }

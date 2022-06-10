@@ -98,6 +98,9 @@
 }
 
 body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
     margin: 0;
     background-color: var(--background-color);
     font-family: var(--regular-primary-font);
@@ -197,6 +200,13 @@ input {
     background-color: var(--divider-color);
 }
 
+
+.divider-small {
+    margin: 50px 0px 50px 0px;
+    width: 100%;
+    min-height: 1px;
+    background-color: var(--divider-color);
+}
 
 .iso-layout-grid {
     display: -ms-grid;

@@ -1,4 +1,4 @@
-export default constants = {
+const constants = {
     // ecommerce
     order_placed: "Order Placed Successfully",
     order_cancelled: "Order Cancelled Successfully",
@@ -6,6 +6,10 @@ export default constants = {
     order_cancel_in_progress: "Order Cancellation in progress",
     order_cancel_failed: "Unable to cancel order at this time",
     order_cancel_success: "Order Cancelled Successfully",
+    size_not_in_stock: "Size not in stock",
+    added_to_cart: "Added to cart",
+    checking_pincode: "Checking Pincode",
+
     // dynamic constants
     welcomeback_with_name(name) {
         return `Welcome back ${name}`
@@ -25,3 +29,4 @@ export default constants = {
 
 
 }
+export default constants

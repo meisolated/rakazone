@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import { toastService } from "../../handler/toast.handler.js"
-export { Toast }
+
 
 Toast.propTypes = {
     id: PropTypes.string,
@@ -17,7 +17,7 @@ Toast.defaultProps = {
     fade: true,
 }
 
-function Toast({ id, fade }) {
+export default function Toast({ id, fade }) {
     const mounted = useRef(false)
     const router = useRouter()
     const [toasts, setToasts] = useState([])
@@ -82,7 +82,7 @@ function Toast({ id, fade }) {
             // remove toast after faded out
             setTimeout(() => {
                 setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
-            }, 250)
+            }, 500)
         } else {
             // remove toast
             setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
@@ -93,16 +93,16 @@ function Toast({ id, fade }) {
 
     return (
         <>
-            {toasts.map((toast, index) => (
-                <>
-                    <div className={`${css.popup_wrapper}`} key={index}>
+            {toasts.map((toast, index) => {
+                return (
+                    <div className={`${css.popup_wrapper} ${toast.fade ? css.hide : css.show} `} key={index}>
                         <div className={css.popup_main}>
                             <div className={css.popup_text} dangerouslySetInnerHTML={{ __html: toast.message }} />
                             <Image style={{ padding: "5px" }} alt="" src={added_to_cart} width={30} height={30} />
                         </div>
                     </div>
-                </>
-            ))}
+                )
+            })}
         </>
     )
 }
