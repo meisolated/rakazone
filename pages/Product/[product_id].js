@@ -32,7 +32,6 @@ export default function Product(props) {
     const { query } = useRouter()
     const { product_id } = query
 
-
     return (
         <>
             <HeaderNotification
@@ -69,10 +68,21 @@ export default function Product(props) {
                                 <div className={css.size_selector_item}>
                                     {sample_product.size.map((_size, index) => {
                                         if (sample_product.size_not_in_stock.includes(_size)) {
-                                            return (<div className={`${_size == size ? css.size_selector_item_text_selected : css.size_selector_item_text} ${css.size_selector_item_text}`} key={"size-" + index} onClick={() => setSize(_size)}>{_size}</div>)
+                                            return (
+                                                <div
+                                                    className={`${_size == size ? css.size_selector_item_text_selected : css.size_selector_item_text} ${css.size_selector_item_text}`}
+                                                    key={"size-" + index}
+                                                    onClick={() => setSize(_size)}
+                                                >
+                                                    {_size}
+                                                </div>
+                                            )
                                         } else {
-
-                                            return (<div className={`${css.size_selector_item_text} ${css.size_selector_product_not_instock}`} key={"size-" + index} onClick={() => toastService.error(constants.size_not_in_stock)}>{_size}</div>)
+                                            return (
+                                                <div className={`${css.size_selector_item_text} ${css.size_selector_product_not_instock}`} key={"size-" + index} onClick={() => toastService.error(constants.size_not_in_stock)}>
+                                                    {_size}
+                                                </div>
+                                            )
                                         }
                                     })}
                                 </div>
@@ -90,25 +100,25 @@ export default function Product(props) {
                         </div>
                         <div className={css.delivery_to_pincode}>
                             <div className={css.delivery_to_pincode_lables}>
-                                <div className={css.delivery_to_pincode_icon}> <Routing /> </div>
-                                <div className={css.delivery_to_pincode_label}>
-                                    Delivery to Pincode</div>
+                                <div className={css.delivery_to_pincode_icon}>
+                                    <Routing />
+                                </div>
+                                <div className={css.delivery_to_pincode_label}>Delivery to Pincode</div>
                             </div>
                             <div className={css.delivery_to_pincode_input}>
                                 <input type="text" placeholder="Enter Pincode" className={css.input} />
-                                <a className={css.delivery_to_pincode_btn} onClick={() => toastService.success(constants.checking_pincode)}>Check</a>
+                                <a className={css.delivery_to_pincode_btn} onClick={() => toastService.success(constants.checking_pincode)}>
+                                    Check
+                                </a>
                             </div>
                         </div>
-                        <div className={css.product_add_to_cart} onClick={() => toastService.success(constants.added_to_cart)} >
+                        <div className={css.product_add_to_cart} onClick={() => toastService.success(constants.added_to_cart)}>
                             <GreyBig text="Add to cart" />
                         </div>
                     </div>
                 </div>
-
                 <div className="divider-small" />
             </div>
-
-
         </>
     )
 }
