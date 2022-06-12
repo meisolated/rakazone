@@ -75,6 +75,65 @@
     -webkit-font-smoothing: antialiased;
 }
 
+/* fallback */
+@font-face {
+    font-family: "Material Icons";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://fonts.gstatic.com/s/materialicons/v129/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2") format("woff2");
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+    font-family: "Material Icons Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../assets/fonts/woff2/material-icons-round.woff2") format("woff2"), url("../assets/fonts/woff2/material-icons-round.woff2") format("woff");
+}
+
+.material-icons-round {
+    font-family: "Material Icons Round";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga";
+}
+
+/* ------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
 :root {
     --bold-primary-font: THICCCBOI-Bold;
     --light-primary-font: THICCCBOI-Light;
@@ -90,11 +149,11 @@
     --light-grey-color: #b9babf;
     --dark-color: #09090a;
     --light-dark-color: #161519;
-    --light-primary: #19191A;
+    --light-primary: #19191a;
     --white-color: #ffffff;
     --text-color: #ffffff;
-    --green-color: #36AE7C
-        /* Light Theme */
+    --green-color: #36ae7c;
+    /* Light Theme */
 }
 
 body {
@@ -163,6 +222,10 @@ input {
     font-family: var(--regular-primary-font);
 }
 
+video::-webkit-media-controls {
+    display: none !important;
+}
+
 .container-default {
     max-width: var(--max-width);
     margin-right: auto;
@@ -207,7 +270,6 @@ input {
     min-height: 1px;
     background-color: var(--divider-color);
 }
-
 
 .divider-small {
     margin: 50px 0px 50px 0px;
