@@ -10,7 +10,7 @@ export default function OnLoadPopUps({ onClose }) {
 
 
     const [show, setShow] = useState(true)
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(true)
     const [_data, setData] = useState({})
     const { data, error } = useSWR("api/v1/popups", fetcher)
 
@@ -21,13 +21,13 @@ export default function OnLoadPopUps({ onClose }) {
     }, [data])
 
 
-    useEffect(() => {
-        let pop_status = localStorage.getItem("pop_status")
-        if (!pop_status) {
-            setVisible(true)
-            localStorage.setItem("pop_status", 1)
-        }
-    }, [])
+    // useEffect(() => {
+    //     let pop_status = localStorage.getItem("pop_status")
+    //     if (!pop_status) {
+    //         setVisible(true)
+    //         localStorage.setItem("pop_status", 1)
+    //     }
+    // }, [])
 
     const closeHandler = () => {
         setShow(false)
@@ -35,7 +35,6 @@ export default function OnLoadPopUps({ onClose }) {
             onClose()
         }, 500)
     }
-    console.log(_data)
     const title = data ? _data.title : "Loading..."
     const message = data ? _data.message : "Loading..."
     const button = data ? _data.close_btn_text : "Loading..."

@@ -171,6 +171,14 @@ input {
     padding-left: 24px;
 }
 
+.container-medium {
+    max-width: 798px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
 .pd-right {
     padding-right: 20px;
 }

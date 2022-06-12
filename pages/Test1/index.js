@@ -6,7 +6,6 @@ export default function Test(props) {
     const [show, setShow] = useState(false)
     const [first, setFirst] = useState(true)
     const onClose = () => setShow(!show)
-
     return (
         <>
             <Head>

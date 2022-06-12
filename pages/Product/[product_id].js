@@ -11,24 +11,110 @@ import { GreyBig, GreySmall } from "../../components/Buttons"
 import { useState, useEffect } from "react"
 import { toastService } from "../../handler/toast.handler.js"
 import constants from "../../constants"
-export default function Product(props) {
-    const sample_product = {
+import SvgSecurityCard from "../../assets/svg/SecurityCard.js"
+import { FastShipping, SecurePayment, ServiceGuarantee } from "../../assets/svg"
+import fastshipping_img from "../../assets/img/png/fast_shipping.png"
+import securepayment_img from "../../assets/img/png/secure_payment.png"
+import serviceguarantee_img from "../../assets/img/png/service_guarantee.png"
+const sample_product = {
+    id: 1,
+    name: "Product 1",
+    actual_price: "$100",
+    price: "$10",
+    images: [merch1, merch2, merch3, merch4],
+    description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    color: ["red", "blue", "green", "yellow"],
+    size: ["S", "M", "L", "XL"],
+    size_not_in_stock: ["S", "M"],
+    quantity: 1,
+    in_cart: false,
+    total: 0,
+}
+const similar_products = [
+    {
         id: 1,
         name: "Product 1",
         actual_price: "$100",
         price: "$10",
         images: [merch1, merch2, merch3, merch4],
-        description: "This is a sample product description",
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         color: ["red", "blue", "green", "yellow"],
         size: ["S", "M", "L", "XL"],
         size_not_in_stock: ["S", "M"],
         quantity: 1,
         in_cart: false,
         total: 0,
-    }
+    },
+    {
+        id: 2,
+        name: "Product 2",
+        actual_price: "$100",
+        price: "$10",
+        images: [merch1, merch2, merch3, merch4],
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        color: ["red", "blue", "green", "yellow"],
+        size: ["S", "M", "L", "XL"],
+        size_not_in_stock: ["S", "M"],
+        quantity: 1,
+        in_cart: false,
+        total: 0,
+    },
+    {
+        id: 2,
+        name: "Product 3",
+        actual_price: "$100",
+        price: "$10",
+        images: [merch1, merch2, merch3, merch4],
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        color: ["red", "blue", "green", "yellow"],
+        size: ["S", "M", "L", "XL"],
+        size_not_in_stock: ["S", "M"],
+        quantity: 1,
+        in_cart: false,
+        total: 0,
+    },
+    {
+        id: 3,
+        name: "Product 4",
+        actual_price: "$100",
+        price: "$10",
+        images: [merch1, merch2, merch3, merch4],
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        color: ["red", "blue", "green", "yellow"],
+        size: ["S", "M", "L", "XL"],
+        size_not_in_stock: ["S", "M"],
+        quantity: 1,
+        in_cart: false,
+        total: 0,
+    },
+    {
+        id: 4,
+        name: "Product",
+        actual_price: "$100",
+        price: "$10",
+        images: [merch1, merch2, merch3, merch4],
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        color: ["red", "blue", "green", "yellow"],
+        size: ["S", "M", "L", "XL"],
+        size_not_in_stock: ["S", "M"],
+        quantity: 1,
+        in_cart: false,
+        total: 0,
+    },
+]
+
+
+export default function Product(props) {
+    const [product, setProduct] = useState(props.product || sample_product)
+    const [activeThumb, setActiveThumb] = useState(product.images[0])
     const [quantity, setQuantity] = useState(1)
-    const [activeThumb, setActiveThumb] = useState(sample_product.images[0])
     const [size, setSize] = useState("")
+    const [activeTab, setActiveTab] = useState("PRODUCT")
     const { query } = useRouter()
     const { product_id } = query
 
@@ -41,33 +127,33 @@ export default function Product(props) {
                 <div className={css.product_wrapper}>
                     <div className={css.product_images}>
                         <div className={css.main_image_wrapper}>
-                            <Image src={activeThumb} alt={sample_product.name} />
+                            <Image src={activeThumb} alt={product.name} />
                         </div>
                         <div className={css.thumbnail_images_grid}>
-                            {sample_product.images.map((image, index) => {
+                            {product.images.map((image, index) => {
                                 return (
                                     <div key={"image-" + index} className={`${css.thumbnail_image_wrapper} ${activeThumb == image ? css.activeThumb : []}`} onClick={() => setActiveThumb(image)}>
-                                        <Image src={image} alt={sample_product.name} />
+                                        <Image src={image} alt={product.name} />
                                     </div>
                                 )
                             })}
                         </div>
                     </div>
                     <div className={css.product_details}>
-                        <div className={css.product_name}>{sample_product.name}</div>
+                        <div className={css.product_name}>{product.name}</div>
                         <div className={css.product_price}>
-                            <div className={css.actual_price}>{sample_product.actual_price}</div>
-                            <div className={css.price}>{sample_product.price}</div>
+                            <div className={css.actual_price}>{product.actual_price}</div>
+                            <div className={css.price}>{product.price}</div>
                         </div>
 
-                        <div className={css.product_description}>{sample_product.description}</div>
+                        <div className={css.product_description}>{product.description}</div>
                         <div className={css.product_quantity}>
                             <div className="divider-small" />
                             <div className={css.select_size}>Select Size</div>
                             <div className={css.size_selector}>
                                 <div className={css.size_selector_item}>
-                                    {sample_product.size.map((_size, index) => {
-                                        if (sample_product.size_not_in_stock.includes(_size)) {
+                                    {product.size.map((_size, index) => {
+                                        if (product.size_not_in_stock.includes(_size)) {
                                             return (
                                                 <div
                                                     className={`${_size == size ? css.size_selector_item_text_selected : css.size_selector_item_text} ${css.size_selector_item_text}`}
@@ -115,6 +201,89 @@ export default function Product(props) {
                         <div className={css.product_add_to_cart} onClick={() => toastService.success(constants.added_to_cart)}>
                             <GreyBig text="Add to cart" />
                         </div>
+                    </div>
+                </div>
+                <div className="divider-small" />
+                <div className={css.about_product_tabs}>
+                    <div className={`${css.product_tab} ${activeTab == "PRODUCT" ? css.active_tab : []}`} onClick={() => setActiveTab("PRODUCT")}>
+                        PRODUCT
+                    </div>
+                    <div className={`${css.product_tab} ${activeTab == "SHIPPING" ? css.active_tab : []}`} onClick={() => setActiveTab("SHIPPING")}>
+                        SHIPPING
+                    </div>
+                    <div className={`${css.product_tab} ${activeTab == "MORE" ? css.active_tab : []}`} onClick={() => setActiveTab("MORE")}>
+                        MORE
+                    </div>
+                </div>
+
+                {/* TO BE DONE */}
+                <div className={`${css.about_product_tab_content} container-medium`}>
+                    {activeTab == "PRODUCT" && (
+                        <>
+                            <div className={css.product_tab_content}>
+                                <div className={css.product_tab_content_title}>Product Details</div>
+                                <div className={css.product_tab_content_description} dangerouslySetInnerHTML={{ __html: product.description }} />
+                            </div>
+                        </>
+                    )}
+                </div>
+                <div className="divider-small" />
+                <div className={css.service_wrapper}>
+                    <div className={css.service_title}>
+                        <h1 className={css.service_title_text}>All the orders include:</h1>
+                        <div className={css.service_sub_title}>
+                            Our all orders include the best service,from ordering your favorite product <br /> to getting it delivered to your place.
+                        </div>
+                    </div>
+                    <div className={css.service_list}>
+                        <div className={css.service_list_item}>
+                            <div className={css.service_list_item_icon_wrapper}>
+                                <div className={css.service_list_item_icon}>
+                                    <Image src={fastshipping_img} alt="Fast Shipping" />
+                                </div>
+                            </div>
+                            <div className={css.service_list_item_content}>
+                                <div className={css.service_list_item_title}>Delivery to Pincode</div>
+                                <div className={css.service_list_item_description}>We deliver to your Pincode.</div>
+                            </div>
+                        </div>
+                        <div className={css.service_list_item}>
+                            <div className={css.service_list_item_icon_wrapper}>
+                                <div className={css.service_list_item_icon}>
+                                    <Image src={securepayment_img} alt="Secure Payment" />
+                                </div>
+                            </div>
+                            <div className={css.service_list_item_content}>
+                                <div className={css.service_list_item_title}>Delivery to Pincode</div>
+                                <div className={css.service_list_item_description}>We deliver to your Pincode.</div>
+                            </div>
+                        </div>
+                        <div className={css.service_list_item}>
+                            <div className={css.service_list_item_icon_wrapper}>
+                                <div className={css.service_list_item_icon}>
+                                    <Image src={serviceguarantee_img} alt="Service Guarantee" />
+                                </div>
+                            </div>
+                            <div className={css.service_list_item_content}>
+                                <div className={css.service_list_item_title}>Delivery to Pincode</div>
+                                <div className={css.service_list_item_description}>We deliver to your Pincode.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="divider-small" />
+                <div className={css.similar_products_wrapper}>
+                    <div className={css.similar_products_title}>
+                        <h1 className={css.similar_products_title_text}>Similar Products</h1>
+                    </div>
+                    <div className={css.similar_products_list}>
+                        {similar_products.map((product, index) => {
+                            return (<div className={css.similar_products_item} key={index}>
+                                <div className={css.similar_products_item_image}>
+                                    <Image src={product.images[0]} alt={product.name} />
+                                </div>
+                            </div>)
+                        })}
                     </div>
                 </div>
                 <div className="divider-small" />
