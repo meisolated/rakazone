@@ -93,7 +93,7 @@ export default function VideoPlayer() {
     return (
         <div >
             <div className={css.video_wrapper} ref={videoPlayer}>
-                <div className={css.controls_wrapper}>
+                <div className={`${css.controls_wrapper} ${isPlaying ? [] : css.show_controls}`} >
                     <div className={css.controls}>
                         <div className={css.timeline_wrapper}>
                             <div className={css.preview_image_wrapper}>
@@ -104,7 +104,7 @@ export default function VideoPlayer() {
                         <div className={css.bottom_controls}>
                             <div className={css.controls_left}>
                                 <div className={css.pause_play_btn}>
-                                    <div className={`${css.settings_btn} material-icons-round`} onClick={() => videoPlayPause()}>{isPlaying ? "pause" : "play_arrow"}</div>
+                                    <div className={`${css.play_pause} material-icons-round`} onClick={() => videoPlayPause()}>{isPlaying ? "pause" : "play_arrow"}</div>
                                 </div>
                                 <div className={`${css.volume_wrap} ${showVolume ? css.volume_show : []}`} onMouseEnter={() => setShowVolume(true)} onMouseLeave={() => setShowVolume(false)}>
                                     <div className={`${css.volume_btn} material-icons-round`}>{"volume_up"} </div>
@@ -136,7 +136,7 @@ export default function VideoPlayer() {
                         </div>
                     </div>
                 </div>
-                <video ref={videoController} className={css.video} src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
+                <video onClick={() => videoPlayPause()} ref={videoController} className={css.video} src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
             </div>
         </div>
     )
