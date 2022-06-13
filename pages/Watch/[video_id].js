@@ -2,6 +2,8 @@ import VideoPlayer from "../../components/VideoPlayer/index.js"
 export default function Watch() {
 
     return (
-        <VideoPlayer />
+        <div className="container-default">
+            <VideoPlayer />
+        </div>
     )
 }

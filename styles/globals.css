@@ -157,9 +157,9 @@
 }
 
 body {
-    user-select: none;
+    /* user-select: none;
     -webkit-user-select: none;
-    -moz-user-select: none;
+    -moz-user-select: none; */
     margin: 0;
     background-color: var(--background-color);
     font-family: var(--regular-primary-font);
@@ -221,6 +221,7 @@ h4 {
 input {
     font-family: var(--regular-primary-font);
 }
+
 
 video::-webkit-media-controls {
     display: none !important;
