@@ -1,7 +1,7 @@
 .video_wrapper {
     overflow: hidden;
     border-radius: 20px;
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
     position: relative;
     display: flex;
@@ -55,11 +55,7 @@
     opacity: 1;
 }
 
-.line {
-    height: 4px;
-    background-color: red;
-    width: 100%;
-}
+
 
 .bottom_controls {
     display: flex;
@@ -154,9 +150,141 @@
     background: white;
 }
 
+
+
+
+/* Duration Wrapper */
+.duration {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
 /* Buttons */
 
-.pause_play_btn {
-
+.btn {
+    width: 24px;
+    height: 24px;
     cursor: pointer;
+}
+
+.pause_play_btn {
+    cursor: pointer;
+}
+
+.settings_btn {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Timeline */
+
+.timeline_wrap {
+    width: 100%;
+}
+
+.timeline_wrap {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.timeline_wrap.timeline_show button {
+    color: white;
+}
+
+.timeline_wrap.timeline_show .timeline_panel {
+    width: 100%;
+}
+
+.timeline_wrap .timeline_panel {
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    transition: width 0.2s;
+    cursor: pointer;
+}
+
+.timeline_wrap .timeline_panel .timeline_slider {
+    position: relative;
+    height: 100%;
+}
+
+.timeline_wrap .timeline_panel .timeline_slider_track {
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -1px;
+    background: #fff;
+}
+
+.timeline_wrap .timeline_panel .timeline_slider_progress {
+    height: 100%;
+    width: 50%;
+    background: red;
+    position: relative;
+}
+
+.timeline_wrap:hover .timeline_panel .timeline_slider_handle {
+    height: 12px;
+    width: 12px;
+    border-radius: 100px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    background: white;
+}
+
+
+/* settings popup */
+.settings_popup {
+    right: 20px;
+    bottom: 100px;
+    padding: 10px;
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 10px;
+    background: rgba(28, 28, 28, .9);
+    text-shadow: 0 0 2px rgb(0 0 0 / 50%);
+    -webkit-transition: opacity .1s cubic-bezier(0, 0, 0.2, 1);
+    transition: opacity .1s cubic-bezier(0, 0, 0.2, 1);
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    display: none;
+    animation: show_settings .5s ease-in-out;
+}
+
+@keyframes show_settings {
+
+    0% {
+        border-radius: 0%;
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        border-radius: 10px;
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.settings_item {
+    padding-top: 10px;
+    align-items: center;
+    gap: 5px;
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 32px 32px;
+    -moz-background-size: 32px 32px;
+    -webkit-background-size: 32px 32px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIj48cGF0aCBkPSJtIDEyLjU5LDIwLjM0IDQuNTgsLTQuNTkgLTQuNTgsLTQuNTkgMS40MSwtMS40MSA2LDYgLTYsNiB6IiBmaWxsPSIjZmZmIiAvPjwvc3ZnPg==);
 }
