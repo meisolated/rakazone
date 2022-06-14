@@ -4,7 +4,7 @@ import { toastService } from "../../handler/toast.handler.js"
 import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
-export default function VideoPlayer() {
+export default function VideoPlayerDesktop() {
     const videoId = "lyb-COpIrYY"
     const baseUrl = "https://raka.zone/assets/output/"
     let num = 1
@@ -161,6 +161,7 @@ export default function VideoPlayer() {
             setIsPlaying(false)
         })
 
+        // handle key strokes
         document.onkeydown = (e) => {
             if (e.key === " ") {
                 e.preventDefault()
@@ -269,3 +270,7 @@ export default function VideoPlayer() {
         </div>
     )
 }
+
+
+
+
