@@ -1,0 +1,144 @@
+.video_wrapper {
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    height: auto;
+    background-color: black;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+.controls_wrapper {
+    width: 100%;
+    height: 100%;
+
+}
+
+.controls {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 20px 20px;
+}
+
+/* TOP CONTROLS */
+.top_controls {
+    height: 100%;
+    width: 100%;
+}
+
+.settings {
+    margin-top: 10px;
+    margin-right: 10px;
+    float: right;
+}
+
+/* MIDDLE CONTROLS */
+.middle_controls {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.play_pause_btn {
+    font-size: 50px;
+}
+
+/* BOTTOM CONTROLS */
+.bottom_controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+/* Duration */
+.duration_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.duration {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+/* Timeline */
+
+.timeline_wrap {
+    width: 100%;
+}
+
+.timeline_wrap {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.timeline_wrap.timeline_show button {
+    color: white;
+}
+
+.timeline_wrap.timeline_show .timeline_panel {
+    width: 100%;
+}
+
+.timeline_wrap .timeline_panel {
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    transition: width 0.2s;
+    cursor: pointer;
+}
+
+.timeline_wrap .timeline_panel .timeline_slider {
+    position: relative;
+    height: 100%;
+}
+
+.timeline_wrap .timeline_panel .timeline_slider_track {
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -1px;
+    background: #fff;
+}
+
+.timeline_wrap .timeline_panel .timeline_slider_progress {
+    height: 100%;
+    width: 50%;
+    background: red;
+    position: relative;
+}
+
+.timeline_wrap:hover .timeline_panel .timeline_slider_handle {
+    height: 12px;
+    width: 12px;
+    border-radius: 100px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    background: white;
+}
