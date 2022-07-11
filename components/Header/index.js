@@ -5,9 +5,12 @@ import { OutlineSmall } from "../Buttons"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import shoppingCart from "../../assets/svg/src/bag-2.svg"
+import getConfig from "next/config"
 import { Explore, ExploreClicked, Bag1, Bag1Clicked, Home, HomeClicked, Profile, ProfileClicked } from "../../assets/svg/navicons"
 import useWindowSize from "../../Hooks/windowResize.hook.js"
 import windowScroll from "../../Hooks/windowScroll.hook.js"
+const { publicRuntimeConfig } = getConfig()
+import axios from "axios"
 
 const tabs = [
     {
@@ -127,6 +130,17 @@ export default function Header({ isLoggedIn, userData }) {
     }
 
     useEffect(() => {
+
+        axios.get(`${publicRuntimeConfig.apiUrl}userdata`).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+
+
+
+
         switch (pathname) {
             case "/":
                 OnNavClicked("Home")
@@ -188,11 +202,11 @@ export default function Header({ isLoggedIn, userData }) {
 
                                     {isLoggedIn ? (
                                         <li className={css.nav_item_wrapper}>
-                                            <OutlineSmall where="http://localhost:3001/api/v1/auth/google" background={userData.profile_pic} text={userData.name} />
+                                            <OutlineSmall link={publicRuntimeConfig.apiUrl + "auth/google"} background={userData.profile_pic} text={userData.name} />
                                         </li>
                                     ) : (
                                         <li className={css.nav_item_wrapper}>
-                                            <OutlineSmall where="http://localhost:3001/api/v1/auth/google" text="Login" />
+                                            <OutlineSmall link={publicRuntimeConfig.apiUrl + "auth/google"} text="Login" />
                                         </li>
                                     )}
                                 </ul>

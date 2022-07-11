@@ -43,7 +43,7 @@ function LoadingBar() {
             <div className={css.loading} />
             {/* <a>{windowSize.width}</a> */}
             <div className={`${css.test_loading} ${active ? css.test_active : []}`}>
-                <Image src={windowSize.width > 1024 ? desktop : mobile} className={css.bg_img} alt="" />
+                <Image src={windowSize.width > 1024 ? desktop : mobile} className={css.bg_img} alt="" quality={100} />
                 <div className={css.test_loading_image}>{/* <Image  placeholder="blur" src={LogoWithOutText} width={900} height={1000} alt="" /> */}</div>
                 <div className={css.test_loading_progress} />
                 {/* <h1 className={css.quote}>{quotes}</h1> */}

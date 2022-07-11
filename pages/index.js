@@ -49,8 +49,9 @@ function Home(props) {
     whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
     let views = whatToShow.status == "live" ? "watching now" : "views"
-
+    const link = "https://www.youtube.com/watch?v=" + whatToShow.videoId
     const [active, setActive] = useState(false)
+
     return (
         <>
             <Head>
@@ -78,7 +79,7 @@ function Home(props) {
                         <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
                     </p>
                     <div className={css.home_hero_right}>
-                        <Primary text={"Subscribe"} />
+                        <Primary link={"/yt"} text={"Subscribe"} />
                     </div>
                 </div>
                 {/* ––––––––––––––––––––––––––––––––––––––––Featured Video–––––––––––––––––––––––––––––––––––––––––––– */}
@@ -87,7 +88,7 @@ function Home(props) {
                         <div className={css.image_wrapper}>
                             <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumnail} width={1104} height={620} alt="" />
                             <div className={css.video_featured_filter} />
-                            <Link href={"/"} passHref>
+                            <Link href={link} passHref>
                                 <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
                                     <div className={css.video_featured_button}>
                                         <div className={css.video_featured_button_icon_wrapper}>
@@ -154,7 +155,7 @@ function Home(props) {
                         <p>
                             My name is <span className="bold">Rishab Karanwal,</span> I&lsquo;m Content Creator, is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&lsquo;s
                             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially unchanged.{" "}
+                            into electronic typesetting, remaining essentially unchanged.
                         </p>
                         <GreyMedium text="More about me" />
                     </div>
@@ -184,9 +185,9 @@ function Home(props) {
                             <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
                             <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
                             <div className={css.subscribe_button}>
-                                <Primary text="Subscribe" />
+                                <Primary link={"/yt"} text="Subscribe" />
                             </div>
-                            <EmptyVideoItem type="empty" />
+                            <EmptyVideoItem type="empty" link={"/yt"} />
                         </div>
                         {/* BUY MERCH */}
                         <div className={css.merch_main}>
@@ -199,24 +200,38 @@ function Home(props) {
                                 <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
 
                                 <div className="pd-bottom" />
-                                <OutlineMedium text="Browse Merch" />
+                                <OutlineMedium link={"/Shop"} text="Browse Merch" />
                                 <div className="pd-bottom" />
                             </div>
                             <div className={css.merch_gallery}>
                                 <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
-                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    <div>
+                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                    </div>
+                                    <div>
+                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                    </div>
+                                    <div>
+                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    </div>
                                 </div>
 
                                 <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
-                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    <div>
+                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    </div>
+                                    <div>
+                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                    </div>
+                                    <div>
+                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                    </div>
+                                    <div>
+                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    </div>
                                 </div>
                             </div>
-                            <div className={css.buy_merch_notice}>All these products are just for demonstration and does not represent	an actual product as of now.</div>
+                            <div className={css.buy_merch_notice}>All these products are just for demonstration and does not represent an actual product as of now.</div>
                         </div>
                     </div>
                 </section>

@@ -8,7 +8,7 @@ import { useState } from "react"
 
 export function EmptyVideoItem(props) {
     const [active, setActive] = useState(false)
-    const link = props.link || "/"
+    const link = props.link
     return (
         <div className={css.video_item}>
             <div className={`${css.image_wrapper}`}>
@@ -34,7 +34,7 @@ export const VideoItemRegular = (props) => {
     let publishedAt = videoData["publishedAt"]
     let ago = moment(publishedAt * 1000).fromNow()
     let views = convertToInternationalCurrencySystem(videoData.viewCount)
-    let link = "/"
+    let link = "https://www.youtube.com/watch?v=" + videoData.videoId
     return (
         <div className={css.video_item}>
             <div className={css.image_wrapper}>

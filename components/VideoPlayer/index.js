@@ -184,11 +184,11 @@ export function VideoPlayerDesktop() {
             <div className={desktop_style.video_wrapper} ref={videoPlayer}>
                 <div className={desktop_style.settings_popup} style={showSettings ? { display: "block" } : []}>
                     <div className={`${desktop_style.settings_item}`}>
-                        <div className={`${desktop_style.quanlity_selector} material-icons-round`}>tune</div>
-                        Quanlity
+                        <div className={`${desktop_style.quality_selector} material-icons-round`}>tune</div>
+                        Quality
                     </div>
                     <div className={`${desktop_style.settings_item}`}>
-                        <div className={`${desktop_style.quanlity_selector} material-icons-round`}>slow_motion_video</div>
+                        <div className={`${desktop_style.quality_selector} material-icons-round`}>slow_motion_video</div>
                         Playback Speed
                     </div>
                 </div>
@@ -236,13 +236,13 @@ export function VideoPlayerDesktop() {
                                 </div>
                             </div>
                             <div className={desktop_style.controls_right}>
-                                <div className={`${desktop_style.miniplayer_container} ${desktop_style.btn}`}>
+                                <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
                                     <div className={`${desktop_style.settings_btn} material-icons-round`} style={showSettings ? { transform: "rotateZ(30deg)" } : []} onClick={() => setShowSettings(!showSettings)}>
                                         settings
                                     </div>
                                 </div>
-                                <div className={`${desktop_style.miniplayer_container} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.miniplayer_btn} material-icons-round`} onClick={() => handlePictureInPicture()}>
+                                <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
+                                    <div className={`${desktop_style.mini_player_btn} material-icons-round`} onClick={() => handlePictureInPicture()}>
                                         branding_watermark
                                     </div>
                                 </div>

@@ -872,6 +872,7 @@
     .buy_merch {
         padding: 40px 25px;
     }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -888,6 +889,8 @@
         font-size: 14px;
     }
 
+
+
 }
 
 @media screen and (max-width: 430px) {
@@ -899,11 +902,7 @@
     .temp_alert_text {
         font-size: 9px;
     }
-
-    .merch_gallery_item {
-        max-width: 200px;
-        max-height: 200px;
-
-    }
-
 }
+
+
+/* Testing Elements */
