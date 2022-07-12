@@ -3,14 +3,14 @@ const nextConfig = {
   reactStrictMode: true,
   disableStaticImages: true,
   images: {
-    domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "10.69.69.201"],
+    domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "localhost"],
   },
   publicRuntimeConfig: {
     apiUrl:
       process.env.NODE_ENV === "development"
-        ? "http://10.69.69.201:3001/api/v1/" // development api
-        : "http://10.69.69.201:3001/api/v1/", // production api
-    serverUrl: process.env.NODE_ENV === "development" ? "http://10.69.69.201/" : "http://10.69.69.201/",
+        ? "http://localhost:3001/api/v1/" // development api
+        : "http://localhost:3001/api/v1/", // production api
+    serverUrl: process.env.NODE_ENV === "development" ? "http://localhost/" : "http://localhost/",
   }
 }
 

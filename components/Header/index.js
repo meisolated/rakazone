@@ -9,9 +9,8 @@ import getConfig from "next/config"
 import { Explore, ExploreClicked, Bag1, Bag1Clicked, Home, HomeClicked, Profile, ProfileClicked } from "../../assets/svg/navicons"
 import useWindowSize from "../../Hooks/windowResize.hook.js"
 import windowScroll from "../../Hooks/windowScroll.hook.js"
-const { publicRuntimeConfig } = getConfig()
 import axios from "axios"
-
+const { publicRuntimeConfig } = getConfig()
 const tabs = [
     {
         name: "Home",
@@ -75,12 +74,13 @@ const exploreTabs = [
     },
 ]
 
-export default function Header({ isLoggedIn, userData }) {
+export default function Header() {
     const router = useRouter()
     const pathname = router.pathname
-    isLoggedIn = false
     const windowSize = useWindowSize()
     const scrollY = windowScroll()
+    let [userData, setUserData] = useState({ name: null, email: null, profile_pic: null })
+
     let [clicked, setClicked] = useState({
         Home: {
             name: "Home",
@@ -131,15 +131,12 @@ export default function Header({ isLoggedIn, userData }) {
 
     useEffect(() => {
 
-        axios.get(`${publicRuntimeConfig.apiUrl}userdata`).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
+        axios.get("/api/v1/userData").then((response) => {
+            let user = response.data.data.user
+            setUserData({ email: user.email, name: user.name, profile_pic: user.profile_pic })
+        }).catch((error) => {
+            console.log(error)
         })
-
-
-
-
 
         switch (pathname) {
             case "/":
@@ -200,7 +197,7 @@ export default function Header({ isLoggedIn, userData }) {
                                         <Image src={shoppingCart} alt="" />
                                     </li>
 
-                                    {isLoggedIn ? (
+                                    {userData.name ? (
                                         <li className={css.nav_item_wrapper}>
                                             <OutlineSmall link={publicRuntimeConfig.apiUrl + "auth/google"} background={userData.profile_pic} text={userData.name} />
                                         </li>

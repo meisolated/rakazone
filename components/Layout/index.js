@@ -4,10 +4,8 @@ import LoadingBar from "../LoadingBar"
 import Footer from '../Footer'
 import React from 'react'
 import getConfig from 'next/config.js'
-const { publicRuntimeConfig } = getConfig()
+
 function Layout(props) {
-
-
     return (<>
         <LoadingBar />
         <div className={css.layout}>

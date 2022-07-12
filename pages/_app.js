@@ -2,7 +2,9 @@ import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
 import { motion } from "framer-motion"
 import { Toast } from "../components/Notification"
-function MyApp({ Component, pageProps, router }) {
+import App from "next/app"
+
+function MyApp({ Component, pageProps, router, }) {
   const slideRight = {
     variants: {
       initial: {
