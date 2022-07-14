@@ -5,6 +5,7 @@ import insta1 from "../../assets/img/png/insta07.png"
 import insta2 from "../../assets/img/png/insta02.png"
 import insta3 from "../../assets/img/png/insta15.png"
 import link_icon from "../../assets/svg/src/open_link_icon.svg"
+import Link from "next/link.js"
 function Footer() {
     return (
         <>
@@ -26,7 +27,6 @@ function Footer() {
                             <div className={css.blog_newsletter_form_block}>
                                 <input type="email" className={`${css.input} ${css.blog_newsletter_form}`} name="email" placeholder="Enter email address" />
                                 <input type="submit" value="Subscribe" className={`${css.button_primary} ${css.blog_newsletter_form_button} ${css.iso_button}`} />
-
                             </div>
 
                             <div className={`${css.success_message} ${css.iso_form_done}`} aria-label="Email Form success">
@@ -42,7 +42,7 @@ function Footer() {
                                 <div className={`${css.footer_instagram_gallery_grid}`}>
                                     <div className={css.insta_img}>
                                         <Image src={insta1} alt="a" width={120} height={120} />
-                                        <div className={css.img_filter} >
+                                        <div className={css.img_filter}>
                                             <Image className={css.link_icon} src={link_icon} alt="a" width={19} height={120} />
                                         </div>
                                     </div>
@@ -63,15 +63,23 @@ function Footer() {
                         </div>
                     </div>
                     <div className={css.footer_content_bottom}>
-
                         <div className={`${css.footer_social_buttons}`}>
-                            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}></a>
-                            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></a>
-                            <a href="https://twitter.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}></a>
-                            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}></a>
-
-                            <a href="https://www.twitch.tv/" target="_blank" rel="noreferrer" className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></a>
-
+                            {/* target="_blank" rel="noreferrer" */}
+                            <Link href="/yt">
+                                <a className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}></a>
+                            </Link>
+                            <Link href="/fb">
+                                <a className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></a>
+                            </Link>
+                            <Link href="/twitter">
+                                <a className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}></a>
+                            </Link>
+                            <Link href="/insta">
+                                <a className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}></a>
+                            </Link>
+                            <Link href="/twitch">
+                                <a className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></a>
+                            </Link>
                         </div>
                         <div className={css.footer_copyright}>
                             Copyright © 2022 &nbsp;

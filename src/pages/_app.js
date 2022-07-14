@@ -1,11 +1,11 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
-import { motion } from "framer-motion"
+import { AnimatePresence, domAnimation, LazyMotion, motion } from "framer-motion"
 import { Toast } from "../components/Notification"
 import App from "next/app"
 
 function MyApp({ Component, pageProps, router, }) {
-  const slideRight = {
+  const fade = {
     variants: {
       initial: {
         opacity: 0,
@@ -24,9 +24,11 @@ function MyApp({ Component, pageProps, router, }) {
       },
     },
     transition: {
-      duration: 0.7,
+      duration: 0.2,
     },
   }
+
+
 
 
 
@@ -34,9 +36,13 @@ function MyApp({ Component, pageProps, router, }) {
     <>
       <Layout>
         <Toast fade={true} />
-        <motion.div key={router.route} initial="initial" animate="animate" transition={slideRight.transition} variants={slideRight.variants}>
-          <Component {...pageProps} />
-        </motion.div>
+        <LazyMotion features={domAnimation}>
+          <AnimatePresence exitBeforeEnter={true}>
+            <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
+              <Component {...pageProps} />
+            </motion.div>
+          </AnimatePresence>
+        </LazyMotion>
       </Layout>
     </>
   )
