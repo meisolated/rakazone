@@ -5,8 +5,8 @@ import getConfig from "next/config"
 const { publicRuntimeConfig } = getConfig()
 function Redirect(props) {
     const router = useRouter()
-    let redirect = props.redirectto
-    let text = props.redirectto.split("//")[1].split(".")[1].toUpperCase()
+    let redirect = props.redirectto || "/"
+    let text = props.redirectto ? props.redirectto.split("//")[1].split(".")[1].toUpperCase() : "Home"
     useEffect(() => {
         setTimeout(() => {
             // (redirect !== "nowhere") ? window.open(redirect) : window.location.href = "/404"
@@ -15,7 +15,7 @@ function Redirect(props) {
                     pathname: redirect,
                     query: { returnUrl: redirect }
                 })
-        }, 3000)
+        }, 2000)
     })
 
     return (
@@ -28,7 +28,6 @@ function Redirect(props) {
 export default Redirect
 
 export async function getServerSideProps(context) {
-    console.log(`${publicRuntimeConfig.apiUrl}redirects`)
     let { data } = await axios.get(`${publicRuntimeConfig.apiUrl}redirects`)
     if (data.message === "success") {
         let redirects = data.data.redirects
@@ -37,7 +36,7 @@ export async function getServerSideProps(context) {
                 props: { redirectto: redirects[context.query.redirect] },
             }
         } else {
-            return { props: { redirectto: "nowhere" } }
+            return { props: { redirectto: null } }
         }
-    } else return { props: { redirectto: "nowhere" } }
+    } else return { props: { redirectto: null } }
 }

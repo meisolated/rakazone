@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import shoppingCart from "../../assets/svg/src/bag-2.svg"
 import getConfig from "next/config"
-import { Explore, ExploreClicked, Bag1, Bag1Clicked, Home, HomeClicked, Profile, ProfileClicked } from "../../assets/svg/navicons"
+import { Explore, ExploreClicked, Bag1, Bag1Clicked, Home, HomeClicked, Profile, ProfileClicked, AboutMe, AboutMeClicked, Wallpaper, WallpaperClicked } from "../../assets/svg/navicons"
 import useWindowSize from "../../Hooks/windowResize.hook.js"
 import windowScroll from "../../Hooks/windowScroll.hook.js"
 import axios from "axios"
@@ -48,15 +48,15 @@ const exploreTabs = [
         name: "About",
         path: "/About",
         active: false,
-        icon: Home,
-        iconClicked: HomeClicked,
+        icon: AboutMe,
+        iconClicked: AboutMeClicked,
     },
     {
         name: "Wallpaper",
         path: "/Wallpaper",
         active: false,
-        icon: Home,
-        iconClicked: HomeClicked,
+        icon: Wallpaper,
+        iconClicked: WallpaperClicked,
     },
     {
         name: "Uploads",
@@ -81,7 +81,7 @@ export default function Header() {
     const scrollY = windowScroll()
     let [userData, setUserData] = useState({ name: null, email: null, profile_pic: null })
 
-    let [clicked, setClicked] = useState({
+    const [clicked, setClicked] = useState({
         Home: {
             name: "Home",
             icon: Home,
@@ -111,9 +111,40 @@ export default function Header() {
             active: false,
         },
     })
+    const [exploreClicked, setExploreClicked] = useState({
+        About: {
+            name: "About",
+            path: "/About",
+            active: false,
+            icon: AboutMe,
+            iconClicked: AboutMeClicked,
+        },
+        Wallpaper: {
+            name: "Wallpaper",
+            path: "/Wallpaper",
+            active: true,
+            icon: Wallpaper,
+            iconClicked: WallpaperClicked,
+        },
+        Uploads: {
+            name: "Uploads",
+            path: "/Uploads",
+            active: false,
+            icon: Home,
+            iconClicked: HomeClicked,
+        },
+        Trending: {
+            name: "Trending",
+            path: "/Trending",
+            active: false,
+            icon: Home,
+            iconClicked: HomeClicked,
+        }
+    })
     let [subNavbar, setSubNavbar] = useState(false)
 
     const OnNavClicked = (tab) => {
+        console.log(tab)
         if (!clicked[tab]) return
         let newClicked = { ...clicked }
         for (let key in newClicked) {
@@ -127,6 +158,17 @@ export default function Header() {
             router.push(newClicked[tab].path)
         }
         setClicked(newClicked)
+    }
+    const OnExploreClicked = (tab) => {
+
+        if (!exploreClicked[tab]) return
+        let newExploreClicked = { ...exploreClicked }
+        for (let key in newExploreClicked) {
+            newExploreClicked[key].active = false
+        }
+        newExploreClicked[tab].active = true
+        router.push(newExploreClicked[tab].path)
+        setExploreClicked(newExploreClicked)
     }
 
     useEffect(() => {
@@ -151,10 +193,18 @@ export default function Header() {
             case "/Profile":
                 OnNavClicked("Profile")
                 break
+            case "/Wallpaper":
+                OnExploreClicked("Wallpaper")
+                break
+            case "/Uploads":
+                OnExploreClicked("Uploads")
+                break
+            case "/Trending":
+                OnExploreClicked("Trending")
+                break
             default:
                 break
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -236,9 +286,9 @@ export default function Header() {
                 <div style={{ zIndex: 99 }} className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide}`}>
                     <div className={css.bottom_navbar}>
                         {exploreTabs.map((tab, index) => {
-                            let active = true
+                            let active = exploreClicked[tab.name].active
                             return (
-                                <Link href={tab.path} passHref key={"t-" + index}>
+                                <div href={tab.path} key={"t-" + index} onClick={() => OnExploreClicked(tab.name)} className={css.bottom_navbar_expore_button}>
                                     <div
                                         className={`${css.bottom_navbar_button} ${css.sub_bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`}
                                         key={"t-" + index}
@@ -250,7 +300,7 @@ export default function Header() {
                                             <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             )
                         })}
                     </div>

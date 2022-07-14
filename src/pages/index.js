@@ -71,12 +71,12 @@ function Home(props) {
                                 <div className={css.subscriber_count}>{`${streamerData.yt_subscribers_count} SUBSCRIBERS`}</div>
                             </div>
                             <p className={css.about}>
-                                <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
+                                <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a variety streamer. If you say so.
                             </p>
                         </div>
                     </div>
                     <p className={css.mobile_about}>
-                        <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a vairty streamer. If you say so.{" "}
+                        <span className={css.bold}>Rishab Karanwal</span> most of you know me as Raka, I am a variety streamer. If you say so.
                     </p>
                     <div className={css.home_hero_right}>
                         <Primary link={"/yt"} text={"Subscribe"} />
