@@ -37,13 +37,29 @@ export default function Watch() {
                         </div>
                         <div className={css.video_other_details}>
                             <div className={css.video_other_details_item}>
-                            <div className={`material-icons-round ${css.video_other_details_icons}`}>thumb_up</div>
-                            <div className={css.video_other_details_text}>{videoData.likes}</div>
+                                <div className={`material-icons-round ${css.video_other_details_icons}`}>thumb_up</div>
+                                <div className={css.video_other_details_text}>{videoData.likes}</div>
                             </div>
                             <div className={css.video_other_details_item}>
-                            <div className={`material-icons-round ${css.video_other_details_icons}`}>thumb_down</div>
-                            <div className={css.video_other_details_text}>{videoData.dislikes}</div>
+                                <div className={`material-icons-round ${css.video_other_details_icons}`}>thumb_down</div>
+                                <div className={css.video_other_details_text}>{videoData.dislikes}</div>
                             </div>
+                            <div className={css.video_other_details_item}>
+                                <div className={`material-icons-round ${css.video_other_details_icons}`}>share</div>
+                                <div className={css.video_other_details_text}>Share</div>
+                            </div>
+                            <div className={css.video_other_details_item}>
+                                <div className={`material-icons-round ${css.video_other_details_icons}`}>attach_money</div>
+                                <div className={css.video_other_details_text}>Thanks</div>
+                            </div>
+                        </div>
+                        <div className={"divider"} />
+                        <div className={css.video_description}>
+                            <a>💲 UPI • rakazonegaming@oksbi <br />
+                                💲 Sponsor • https://raka.zone/sponsor<br />
+                                💲 Donation Via PayPal • https://raka.zone/paypal<br />
+                                🙏Every Tip Is Appreciated </a>
+                            <p>{videoData.description}</p>
                         </div>
                     </div>
                 </div>

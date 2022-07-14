@@ -4,9 +4,8 @@ import { toastService } from "../../handler/toast.handler.js"
 import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
-    
-export function VideoPlayerMobile() {
 
+export function VideoPlayerMobile() {
     const videoId = "lyb-COpIrYY"
     const baseUrl = "https://raka.zone/assets/output/"
     let num = 1
@@ -18,10 +17,8 @@ export function VideoPlayerMobile() {
     const [fullscreen, setFullscreen] = useState(false)
     const [showEndScreen, setShowEndScreen] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
-    const [showControls, setShowControls] = useState(false)
+    const [showControls, setShowControls] = useState(true)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
-
-
 
     const calculateSlider = (click, elm) => {
         const volume_width = elm.offsetWidth
@@ -48,14 +45,16 @@ export function VideoPlayerMobile() {
         setFullscreen(true)
     }
 
-
     const handlePlayPause = () => {
-        if (showSettings) {
-            return setShowSettings(false)
-        }
+        if (!showControls) return
+        if (showSettings) return setShowSettings(false)
+
         if (videoController.current.paused) {
             setIsPlaying(true)
             videoController.current.play()
+            setTimeout(() => {
+                setShowControls(false)
+            }, 1000)
         } else {
             setIsPlaying(false)
             videoController.current.pause()
@@ -67,7 +66,6 @@ export function VideoPlayerMobile() {
         document.removeEventListener("mousemove", handleTimelineSlider)
         document.removeEventListener("mouseup", handleTimeline)
     }
-
 
     const handleTimelineSlider = (e) => {
         e.preventDefault()
@@ -114,27 +112,22 @@ export function VideoPlayerMobile() {
             toastService.success("Video ended")
             setIsPlaying(false)
         })
-
-
     }, [])
     return (
-        <div className={mobile_style.video_wrapper} ref={videoPlayer} >
-            <div className={`${mobile_style.controls} ${showControls ? [] : mobile_style.show_controls}`} onClick={() => setShowControls(!showControls)}>
+        <div className={mobile_style.video_wrapper} ref={videoPlayer}>
+            <div style={showControls ? { zIndex: 0 } : { zIndex: 101 }} className={mobile_style.touch_resister} onClick={() => setShowControls(!showControls)} />
+            <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}>
                 <div className={mobile_style.top_controls}>
-                    <div className={`${mobile_style.settings} material-icons-round`} >
+                    <div onClick={() => setShowSettings(true)} className={`${mobile_style.settings} material-icons-round`}>
                         settings
                     </div>
                 </div>
                 <div className={mobile_style.middle_controls}>
-                    <div className={`${mobile_style.skip_previous_btn} material-icons-round`}>
-                        skip_previous
-                    </div>
+                    <div className={`${mobile_style.skip_previous_btn} material-icons-round`}>skip_previous</div>
                     <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => handlePlayPause()}>
                         {isPlaying ? "pause" : "play_arrow"}
                     </div>
-                    <div className={`${mobile_style.skip_next_btn} material-icons-round`}>
-                        skip_next
-                    </div>
+                    <div className={`${mobile_style.skip_next_btn} material-icons-round`}>skip_next</div>
                 </div>
                 <div className={mobile_style.bottom_controls}>
                     <div className={mobile_style.duration_wrapper}>
@@ -158,6 +151,27 @@ export function VideoPlayerMobile() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            {showSettings && <div className={`${mobile_style.bottom_settings_popup_wrapper}`} onClick={() => setShowSettings(false)}></div>}
+            <div className={`${mobile_style.bottom_settings_popup} ${showSettings && mobile_style.show_setting}`}>
+                <div className={mobile_style.settings_popup_header}>
+                    <a className={mobile_style.settings_popup_title}>Settings</a>
+                </div>
+                <div className={mobile_style.settings_popup_body}>
+                    <div className={mobile_style.settings_popup_body_item}>
+                        <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
+                            tune
+                        </div>
+                        <a className={mobile_style.settings_popup_body_item_text}>Quality</a>
+                    </div>
+                    <div className={mobile_style.settings_popup_body_item}>
+                        <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
+                            slow_motion_video
+                        </div>
+                        <a className={mobile_style.settings_popup_body_item_text}>Playback Speed</a>
+                    </div>
+                    <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
                 </div>
             </div>
             <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src="https://raka.zone/assets/output/lyb-COpIrYY/output.mp4" />
