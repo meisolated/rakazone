@@ -4,6 +4,7 @@ import { toastService } from "../../handler/toast.handler.js"
 import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
+import Loading from "components/Loading"
 
 export function VideoPlayerMobile() {
     const videoId = "lyb-COpIrYY"
@@ -18,6 +19,7 @@ export function VideoPlayerMobile() {
     const [showEndScreen, setShowEndScreen] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [showControls, setShowControls] = useState(true)
+    const [loading, setLoading] = useState(true)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
 
     const calculateSlider = (click, elm) => {
@@ -80,9 +82,14 @@ export function VideoPlayerMobile() {
         setDuration({ currentDuration: formatDuration(videoController.current.currentTime), totalDuration: formatDuration(videoController.current.duration), percentage: percent })
     }
 
+    const onPressForwardOrBackward = (number) => {
+        videoController.current.currentTime = videoController.current.currentTime + number
+    }
+
     useEffect(() => {
-        // Event Listners
+        // Event Listeners
         videoController.current.addEventListener("timeupdate", () => {
+            setLoading(false)
             setDuration({
                 currentDuration: formatDuration(videoController.current.currentTime),
                 totalDuration: formatDuration(videoController.current.duration),
@@ -104,6 +111,7 @@ export function VideoPlayerMobile() {
                 return handleTimeline()
             })
         })
+
         timelineController.current.addEventListener("click", (e) => {
             handleTimelineSlider(e)
         })
@@ -111,6 +119,9 @@ export function VideoPlayerMobile() {
         videoController.current.addEventListener("ended", () => {
             toastService.success("Video ended")
             setIsPlaying(false)
+        })
+        videoController.current.addEventListener("waiting", () => {
+            setLoading(true)
         })
     }, [])
     return (
@@ -123,11 +134,16 @@ export function VideoPlayerMobile() {
                     </div>
                 </div>
                 <div className={mobile_style.middle_controls}>
-                    <div className={`${mobile_style.skip_previous_btn} material-icons-round`}>skip_previous</div>
-                    <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => handlePlayPause()}>
-                        {isPlaying ? "pause" : "play_arrow"}
-                    </div>
-                    <div className={`${mobile_style.skip_next_btn} material-icons-round`}>skip_next</div>
+                    {loading ? <Loading w={"70px"} h={"70px"} /> :
+                        <>
+                            <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(-10)}>replay_10</div>
+                            <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => handlePlayPause()}>
+                                {isPlaying ? "pause" : "play_arrow"}
+                            </div>
+                            <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(+10)}>forward_10</div>
+                        </>}
+
+
                 </div>
                 <div className={mobile_style.bottom_controls}>
                     <div className={mobile_style.duration_wrapper}>
@@ -174,7 +190,7 @@ export function VideoPlayerMobile() {
                     <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
                 </div>
             </div>
-            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src="https://raka.zone/assets/output/lyb-COpIrYY/output.mp4" />
+            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src="http://localhost:8000/video" />
         </div>
     )
 }
