@@ -6,7 +6,7 @@ import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "../Loading"
-export function VideoPlayerDesktop() {
+export function VideoPlayerDesktop(props) {
     const videoId = "lyb-COpIrYY"
     const baseUrl = "https://raka.zone/assets/output/"
     let num = 1
@@ -121,11 +121,13 @@ export function VideoPlayerDesktop() {
     }
 
     useEffect(() => {
+
         setDuration({
             currentDuration: formatDuration(videoController.current.currentTime),
             totalDuration: formatDuration(videoController.current.duration),
             percentage: (videoController.current.currentTime / videoController.current.duration) * 100,
         })
+
         // Event Listeners
         videoController.current.addEventListener("timeupdate", () => {
             setLoading(false)
@@ -193,6 +195,7 @@ export function VideoPlayerDesktop() {
 
     return (
         <div>
+
             <div className={desktop_style.video_wrapper} ref={videoPlayer}>
                 <div className={desktop_style.settings_popup} style={showSettings ? { display: "block" } : []}>
                     <div className={`${desktop_style.settings_item}`}>
@@ -273,7 +276,7 @@ export function VideoPlayerDesktop() {
                         </div>
                     </div>
                 </div>
-                <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src="http://localhost:8000/video" />
+                <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={"http://localhost:8090/video/" + props.videoId} />
             </div>
         </div>
     )

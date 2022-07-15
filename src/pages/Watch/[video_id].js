@@ -1,11 +1,14 @@
 import DonateModal from "components/Modal/donate.modal.js"
 import useWindowSize from "Hooks/windowResize.hook.js"
 import moment from "moment"
+import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
 import { VideoPlayerDesktop, VideoPlayerMobile } from "../../components/VideoPlayer/index.js"
 import css from "./Watch.module.css"
 export default function Watch() {
-    let windowResize = useWindowSize
+    const router = useRouter()
+    let videoId = router.query.video_id
+    let windowResize = useWindowSize()
     const videoData = {
         title: "The best video player ever",
         views: "1.2M",
@@ -26,9 +29,10 @@ export default function Watch() {
     }, [windowResize])
 
 
+
     return (
         <div className="container-default">
-            <div className={css.player_wrapper}>{isMobile ? <VideoPlayerMobile /> : <VideoPlayerDesktop />}</div>
+            <div className={css.player_wrapper}>{isMobile ? <VideoPlayerMobile videoId={videoId} /> : <VideoPlayerDesktop videoId={videoId} />}</div>
             {isMobile ? mobileVideoDetails(videoData, setShowDonateModal) : desktopVideoDetails(videoData, setShowDonateModal)}
             {showDonateModal && <DonateModal show={true} onClose={() => setShowDonateModal(false)} />}
         </div>

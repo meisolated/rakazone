@@ -36,13 +36,9 @@ function MyApp({ Component, pageProps, router, }) {
     <>
       <Layout>
         <Toast fade={true} />
-        <LazyMotion features={domAnimation}>
-          <AnimatePresence exitBeforeEnter={true}>
-            <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
-              <Component {...pageProps} />
-            </motion.div>
-          </AnimatePresence>
-        </LazyMotion>
+        <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
+          <Component {...pageProps} />
+        </motion.div>
       </Layout>
     </>
   )

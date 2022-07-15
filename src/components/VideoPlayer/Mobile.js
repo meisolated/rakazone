@@ -6,7 +6,7 @@ import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "components/Loading"
 
-export function VideoPlayerMobile() {
+export function VideoPlayerMobile(props) {
     const videoId = "lyb-COpIrYY"
     const baseUrl = "https://raka.zone/assets/output/"
     let num = 1
@@ -98,6 +98,7 @@ export function VideoPlayerMobile() {
         })
         videoController.current.addEventListener("loadeddata", () => {
             // videoController.current.volume = 50 / 100
+            setLoading(false)
             setDuration({
                 currentDuration: formatDuration(videoController.current.currentTime),
                 totalDuration: formatDuration(videoController.current.duration),
@@ -190,7 +191,7 @@ export function VideoPlayerMobile() {
                     <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
                 </div>
             </div>
-            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src="http://localhost:8000/video" />
+            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={"http://localhost:8090/video/" + props.videoId} />
         </div>
     )
 }
