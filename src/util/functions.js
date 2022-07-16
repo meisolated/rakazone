@@ -1,5 +1,6 @@
 export const convertToInternationalCurrencySystem = (labelValue) => {
     // Nine Zeroes for Billions
+    if (typeof labelValue !== "number") return labelValue
     let value =
         Math.abs(Number(labelValue)) >= 1.0e9
             ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"

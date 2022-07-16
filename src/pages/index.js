@@ -49,7 +49,8 @@ function Home(props) {
     whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
     let views = whatToShow.status == "live" ? "watching now" : "views"
-    const link = "https://www.youtube.com/watch?v=" + whatToShow.videoId
+    let isLive = whatToShow.status == "live" ? true : false
+    const link = "/Watch/" + whatToShow.videoId
     const [active, setActive] = useState(false)
 
     return (
@@ -97,7 +98,11 @@ function Home(props) {
                                     </div>
                                 </div>
                             </Link>
-                            <div className={css.video_featured_text}>{whatToShow.type}</div>
+                            <div className={`${isLive ? css.video_featured_live_text : css.video_featured_text}`}>
+                                {isLive && <span className="material-icons-round">
+                                    stream
+                                </span>}
+                                {whatToShow.type}</div>
                         </div>
 
                         <div className={css.video_featured_content}>
@@ -134,7 +139,7 @@ function Home(props) {
                         <h2 className={css.latest_videos_title}>Latest videos</h2>
                     </div>
                     <div className={css.latest_videos_right}>
-                        <a href="https://www.youtube.com/" className={css.latest_videos_arrow_link}>
+                        <a href="/yt" className={css.latest_videos_arrow_link}>
                             <div className={css.latest_videos_arrow_link_text}>Browse more videos</div>
                         </a>
                     </div>

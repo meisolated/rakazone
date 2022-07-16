@@ -2,6 +2,12 @@
  "name": "RakaZone",
  "version": "0.1.1",
  "private": true,
+ "homepage": "https://raka.zone",
+ "author": {
+  "name": "Vivek Mudgal",
+  "email": "isolatedbot@gmail.com",
+  "url": "https://github.com/meisolated"
+ },
  "scripts": {
   "dev": "NODE_ENV=development next dev",
   "build": "NODE_ENV=production next build",
@@ -33,6 +39,8 @@
  "devDependencies": {
   "@svgr/cli": "^6.2.1",
   "eslint": "^8.19.0",
+  "gulp": "^4.0.2",
+  "gulp-header": "^2.0.9",
   "eslint-config-next": "^12.1.6",
   "eslint-plugin-react": "^7.30.0"
  }

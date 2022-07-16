@@ -63,7 +63,6 @@ export function VideoPlayerMobile(props) {
         }
     }
 
-
     const handleTimeline = () => {
         document.removeEventListener("mousemove", handleTimelineSlider)
         document.removeEventListener("mouseup", handleTimeline)
@@ -85,6 +84,7 @@ export function VideoPlayerMobile(props) {
     const onPressForwardOrBackward = (number) => {
         videoController.current.currentTime = videoController.current.currentTime + number
     }
+
 
     useEffect(() => {
         // Event Listeners
@@ -124,27 +124,41 @@ export function VideoPlayerMobile(props) {
         videoController.current.addEventListener("waiting", () => {
             setLoading(true)
         })
+        videoPlayer.current.addEventListener("click", (e) => {
+            console.log(e.path[0].classList)
+            if (e.pointerType === "touch") {
+                if (e.path[0].classList[0] == mobile_style.touch_resister) {
+                    console.log("touch resister")
+                    setShowControls(true)
+                }
+            }
+        })
     }, [])
     return (
         <div className={mobile_style.video_wrapper} ref={videoPlayer}>
-            <div style={showControls ? { zIndex: 0 } : { zIndex: 101 }} className={mobile_style.touch_resister} onClick={() => setShowControls(!showControls)} />
-            <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}>
+            <div style={showControls ? { zIndex: 0 } : { zIndex: 101 }} className={mobile_style.touch_resister} />
+            <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}  >
                 <div className={mobile_style.top_controls}>
                     <div onClick={() => setShowSettings(true)} className={`${mobile_style.settings} material-icons-round`}>
                         settings
                     </div>
                 </div>
                 <div className={mobile_style.middle_controls}>
-                    {loading ? <Loading w={"70px"} h={"70px"} /> :
+                    {loading ? (
+                        <Loading w={"70px"} h={"70px"} />
+                    ) : (
                         <>
-                            <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(-10)}>replay_10</div>
+                            <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(-10)}>
+                                replay_10
+                            </div>
                             <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => handlePlayPause()}>
                                 {isPlaying ? "pause" : "play_arrow"}
                             </div>
-                            <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(+10)}>forward_10</div>
-                        </>}
-
-
+                            <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(+10)}>
+                                forward_10
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className={mobile_style.bottom_controls}>
                     <div className={mobile_style.duration_wrapper}>
@@ -191,7 +205,7 @@ export function VideoPlayerMobile(props) {
                     <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
                 </div>
             </div>
-            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={"http://localhost:8090/video/" + props.videoId} />
+            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={"http://10.69.69.201:8090/video/" + props.videoId} />
         </div>
     )
 }

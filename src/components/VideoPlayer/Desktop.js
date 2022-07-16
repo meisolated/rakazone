@@ -41,16 +41,19 @@ export function VideoPlayerDesktop(props) {
             setFullscreen(false)
             return document.exitFullscreen()
         }
-        if (videoPlayer.current.requestFullscreen) {
-            videoPlayer.current.requestFullscreen()
-        } else if (videoPlayer.current.webkitRequestFullscreen) {
-            videoPlayer.current.webkitRequestFullscreen()
-        } else if (videoPlayer.current.mozRequestFullScreen) {
-            videoPlayer.current.mozRequestFullScreen()
-        } else if (videoPlayer.current.msRequestFullscreen) {
-            videoPlayer.current.msRequestFullscreen()
+        else {
+            if (videoPlayer.current.requestFullscreen) {
+                videoPlayer.current.requestFullscreen()
+            } else if (videoPlayer.current.webkitRequestFullscreen) {
+                videoPlayer.current.webkitRequestFullscreen()
+            } else if (videoPlayer.current.mozRequestFullScreen) {
+                videoPlayer.current.mozRequestFullScreen()
+            } else if (videoPlayer.current.msRequestFullscreen) {
+                videoPlayer.current.msRequestFullscreen()
+            }
+            setFullscreen(true)
         }
-        setFullscreen(true)
+
     }
 
     const handlePictureInPicture = () => {
@@ -121,13 +124,6 @@ export function VideoPlayerDesktop(props) {
     }
 
     useEffect(() => {
-
-        setDuration({
-            currentDuration: formatDuration(videoController.current.currentTime),
-            totalDuration: formatDuration(videoController.current.duration),
-            percentage: (videoController.current.currentTime / videoController.current.duration) * 100,
-        })
-
         // Event Listeners
         videoController.current.addEventListener("timeupdate", () => {
             setLoading(false)
@@ -140,6 +136,7 @@ export function VideoPlayerDesktop(props) {
         videoController.current.addEventListener("loadeddata", () => {
             setLoading(false)
             // videoController.current.volume = 50 / 100
+            if (!videoController.current?.currentTime) return
             setDuration({
                 currentDuration: formatDuration(videoController.current.currentTime),
                 totalDuration: formatDuration(videoController.current.duration),
@@ -176,6 +173,12 @@ export function VideoPlayerDesktop(props) {
         videoController.current.addEventListener("waiting", () => {
             setLoading(true)
         })
+
+        videoPlayer.current.addEventListener("dblclick", () => {
+            handleFullScreen()
+        })
+
+
         // handle key strokes
         document.onkeydown = (e) => {
             if (e.key === " ") {
@@ -191,7 +194,7 @@ export function VideoPlayerDesktop(props) {
                 handleMute()
             }
         }
-    }, [])
+    }, [videoController])
 
     return (
         <div>
@@ -276,7 +279,7 @@ export function VideoPlayerDesktop(props) {
                         </div>
                     </div>
                 </div>
-                <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={"http://localhost:8090/video/" + props.videoId} />
+                <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={"http://10.69.69.201:8090/video/" + props.videoId} />
             </div>
         </div>
     )

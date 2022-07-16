@@ -19,7 +19,7 @@ function InstaImage({ img }) {
     let [insta, setInsta] = useState(false)
     return <div className={css.instagram_showcase_grid_item_image}>
         <Image src={img} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-        <div className={css.instagram_image_filter} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}></div>
+        <div className={`${css.instagram_image_filter} ${insta && css.instagram_image_filter_hover_state}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}></div>
         <div className={`${css.video_button_wrapper} ${css.instagram_image} ${insta ? css.show : css.hide}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)} >
             <div className={css.video_button}>
                 <Image

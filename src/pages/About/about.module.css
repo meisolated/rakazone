@@ -175,6 +175,12 @@
     display: flex;
 }
 
+.instagram_image_filter_hover_state {
+    opacity: 0.66;
+    animation-name: opac;
+    animation-timing-function: ease;
+}
+
 .instagram_image_filter:hover {
     opacity: 0.66;
     animation-name: opac;
