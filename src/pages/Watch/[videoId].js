@@ -45,16 +45,13 @@ export default function Watch(props) {
     useEffect(() => {
         if (typeof window === "undefined") return
 
-
         if (windowResize.width === undefined || windowResize.width === null) return
         if (windowResize.width < 768) {
             setIsMobile(true)
         } else {
             setIsMobile(false)
         }
-
-    }, [windowResize])
-
+    }, [windowResize, showDonateModal])
 
     let component = {
         desktop: <VideoPlayerDesktop videoId={videoId} />,
@@ -64,13 +61,13 @@ export default function Watch(props) {
     return (
         <div className="container-default">
             <div className={css.player_wrapper}>{isMobile !== null && isMobile ? component.mobile : component.desktop}</div>
-            {isMobile ? mobileVideoDetails(videoData, setShowDonateModal) : desktopVideoDetails(videoData, setShowDonateModal)}
-            {showDonateModal && <DonateModal show={true} onClose={() => setShowDonateModal(false)} />}
+            {isMobile ? <MobileVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} /> : <DesktopVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} />}
+            {<DonateModal show={showDonateModal} onClose={() => setShowDonateModal(false)} />}
         </div>
     )
 }
 
-const mobileVideoDetails = (videoData, setShowDonateModal) => {
+const MobileVideoDetails = ({ videoData, setShowDonateModal }) => {
     return (
         <div className={css.mobile_video_details}>
             <div className={css.mobile_video_details_wrapper}>
@@ -119,7 +116,7 @@ const mobileVideoDetails = (videoData, setShowDonateModal) => {
     )
 }
 
-const desktopVideoDetails = (videoData, setShowDonateModal) => {
+const DesktopVideoDetails = ({ videoData, setShowDonateModal }) => {
     return (
         <div className={css.desktop_video_details}>
             <div className={css.desktop_video_details_wrapper_main}>

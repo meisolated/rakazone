@@ -125,7 +125,6 @@ export function VideoPlayerMobile(props) {
             setLoading(true)
         })
         videoPlayer.current.addEventListener("click", (e) => {
-            console.log(e.path[0].classList)
             if (e.pointerType === "touch") {
                 if (e.path[0].classList[0] == mobile_style.touch_resister) {
                     console.log("touch resister")
@@ -205,7 +204,7 @@ export function VideoPlayerMobile(props) {
                     <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
                 </div>
             </div>
-            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={"http://10.69.69.201:8090/video/" + props.videoId} />
+            <video playsInline onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={"http://10.69.69.201:8090/video/" + props.videoId} />
         </div>
     )
 }
