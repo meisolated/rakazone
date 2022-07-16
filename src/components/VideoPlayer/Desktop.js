@@ -6,6 +6,7 @@ import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "../Loading"
+import { Hls } from "../../../public/_hls.js"
 
 
 export function VideoPlayerDesktop(props) {
