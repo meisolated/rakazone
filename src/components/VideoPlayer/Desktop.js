@@ -211,7 +211,6 @@ export function VideoPlayerDesktop(props) {
             if (showSettings) setShowSettings(false)
             if (e.target.classList.contains(desktop_style.video)) {
                 handleFullScreen()
-                console.log(e)
             }
         })
 

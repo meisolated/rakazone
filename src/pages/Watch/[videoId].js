@@ -168,7 +168,6 @@ export async function getServerSideProps(context) {
     const UA = context.req.headers["user-agent"]
     const isMobile = Boolean(UA.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i))
     const isIOS = Boolean(UA.match(/iPhone/i))
-    console.log(isIOS)
     const { videoId } = context.query
     let videoData = await axios.get(`${publicRuntimeConfig.apiUrl}videoData?videoId=${videoId}`, { withCredentials: true }).then((res) => res.data)
     return {
