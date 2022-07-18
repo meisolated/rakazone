@@ -99,10 +99,9 @@ function Home(props) {
                                 </div>
                             </Link>
                             <div className={`${isLive ? css.video_featured_live_text : css.video_featured_text}`}>
-                                {isLive && <span className="material-icons-round">
-                                    stream
-                                </span>}
-                                {whatToShow.type}</div>
+                                {isLive && <span className="material-icons-round">stream</span>}
+                                {whatToShow.type}
+                            </div>
                         </div>
 
                         <div className={css.video_featured_content}>
@@ -251,6 +250,7 @@ export async function getServerSideProps({ req, res }) {
     // console.log(ip)
     let sortedVideos = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
     let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerData`, { withCredentials: true }).then((res) => res.data)
+
 
     if (sortedVideos.message === "success" && streamerData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos

@@ -1,133 +1,144 @@
 .loading {
- z-index: 102;
- position: -webkit-sticky;
- position: absolute;
- top: 0px;
- height: 4px;
- width: 100%;
- opacity: 1;
- color: var(--background-color);
- background-color: var(--background-color);
- animation: fade 3s ease-in forwards;
- background: var(--primary-color);
+    z-index: 102;
+    position: -webkit-sticky;
+    position: absolute;
+    top: 0px;
+    height: 4px;
+    width: 100%;
+    opacity: 1;
+    color: var(--background-color);
+    background-color: var(--background-color);
+    animation: fade 3s ease-in forwards;
+    background: var(--primary-color);
 }
 
 @keyframes fade {
- 0% {
-  width: 10%;
- }
- 50% {
-  width: 40%;
- }
- 70% {
-  width: 100%;
- }
- 100% {
-  opacity: 0;
- }
+    0% {
+        width: 10%;
+    }
+
+    50% {
+        width: 40%;
+    }
+
+    70% {
+        width: 100%;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /* TEST */
 .bg_img {
- object-fit: cover;
- position: fixed !important;
+    object-fit: cover;
+    position: fixed !important;
 }
 
 .test_loading {
- position: fixed;
- height: 100%;
- width: 100%;
- left: 0;
- background: var(--background-color);
- z-index: 101;
- transition: transform 1s ease;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background: var(--background-color);
+    z-index: 101;
+    transition: transform 1s ease;
 }
 
 .test_active {
- transform: translateX(calc(100% + 10px));
+    transform: translateX(calc(100% + 10px));
 }
 
 .test_loading_image {
- font-size: 60px;
- color: #fff;
- margin: 0;
- position: absolute;
- top: 50%;
- left: 50%;
- width: 200px;
- height: 220px;
- transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: #fff;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 220px;
+    transform: translate(-50%, -50%);
 }
 
 .test_loading_progress {
- height: 11px;
- background: var(--background-color);
- top: -11px;
- bottom: 0;
- width: 100%;
- position: absolute;
- animation: verticalflapup 1s;
+    height: 11px;
+    background: var(--background-color);
+    top: -11px;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    animation: verticalflapup 1s;
 }
+
 .quote {
- width: 100%;
- opacity: 50%;
- text-align: center;
- margin: 0;
- position: fixed;
- bottom: -15px;
- font-size: 40px;
- overflow: hidden;
+    width: 100%;
+    opacity: 50%;
+    text-align: center;
+    margin: 0;
+    position: fixed;
+    bottom: -15px;
+    font-size: 40px;
+    overflow: hidden;
 }
 
 @keyframes verticalflapup {
- 0% {
-  transform: translateX(0%);
- }
- 100% {
-  transform: translateX(100%);
- }
-}
-@keyframes identifier {
- 0% {
-  transform: translateY(calc(0% + 0px));
- }
+    0% {
+        transform: translateX(0%);
+    }
 
- 10% {
-  transform: translateY(calc(0% + 0px));
- }
- 20% {
-  transform: translateY(calc(0% + 0px));
- }
- 80% {
-  transform: translateY(calc(0% + 0px));
- }
- 100% {
-  transform: translateY(calc(100% + 10px));
- }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes identifier {
+    0% {
+        transform: translateY(calc(0% + 0px));
+    }
+
+    10% {
+        transform: translateY(calc(0% + 0px));
+    }
+
+    20% {
+        transform: translateY(calc(0% + 0px));
+    }
+
+    80% {
+        transform: translateY(calc(0% + 0px));
+    }
+
+    100% {
+        transform: translateY(calc(100% + 10px));
+    }
 }
 
 @media screen and (min-width: 1024px) {
- .test_loading {
-  /* background-image: url("../../assets/img/wallpaper_dark_desktop.png"); */
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
- }
+    .test_loading {
+        /* background-image: url("../../assets/img/wallpaper_dark_desktop.png"); */
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 }
 
 @media screen and (max-width: 768px) {
- .quote {
-  bottom: 10px;
-  font-size: 15px;
- }
- .test_loading {
-  /* background-image: url("../../assets/img/wallpaper_dark_mobile.png"); */
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
- }
- .test_loading_image {
-  width: 135px;
-  height: 150px;
- }
+    .quote {
+        bottom: 10px;
+        font-size: 15px;
+    }
+
+    .test_loading {
+        /* background-image: url("../../assets/img/wallpaper_dark_mobile.png"); */
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .test_loading_image {
+        width: 135px;
+        height: 150px;
+    }
 }

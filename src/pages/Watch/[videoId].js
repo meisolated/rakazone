@@ -1,14 +1,16 @@
 import axios from "axios"
 import DonateModal from "components/Modal/donate.modal.js"
-import useWindowSize from "Hooks/windowResize.hook.js"
 import moment from "moment"
+import Head from "next/head.js"
 import { useEffect, useState } from "react"
 import { convertToInternationalCurrencySystem } from "util/functions.js"
 import { publicRuntimeConfig } from "../../../next.config.js"
 import { VideoPlayerDesktop, VideoPlayerMobile } from "../../components/VideoPlayer/index.js"
+
+//IPHONE : Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Mobile/15E148 Safari/604.1
+// SAFARI APPLE M1 : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Safari/605.1.15
 import css from "./Watch.module.css"
 export default function Watch(props) {
-    let windowResize = useWindowSize()
     let videoData = props.videoData.data
     let videoId = videoData.videoId
     let publishedAt = moment.unix(videoData.publishedAt)
@@ -40,22 +42,13 @@ export default function Watch(props) {
     • New Delhi, India<br/>`
 
     const [showDonateModal, setShowDonateModal] = useState(false)
-    const [isMobile, setIsMobile] = useState(null)
+    const [isMobile, setIsMobile] = useState(props.isMobile)
     const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        if (typeof window === "undefined") return
 
-        if (windowResize.width === undefined || windowResize.width === null) return
-        if (windowResize.width < 768) {
-            setIsMobile(true)
-        } else {
-            setIsMobile(false)
-        }
-    }, [windowResize])
 
     let component = {
-        desktop: <VideoPlayerDesktop videoId={videoId} />,
-        mobile: <VideoPlayerMobile videoId={videoId} />,
+        desktop: <VideoPlayerDesktop videoId={videoId} isIOS={props.isIOS} />,
+        mobile: <VideoPlayerMobile videoId={videoId} isIOS={props.isIOS} />,
     }
 
     return (
@@ -68,7 +61,10 @@ export default function Watch(props) {
 }
 
 const MobileVideoDetails = ({ videoData, setShowDonateModal }) => {
-    return (
+    return (<>
+        <Head>
+            <title>{videoData.title}</title>
+        </Head>
         <div className={css.mobile_video_details}>
             <div className={css.mobile_video_details_wrapper}>
                 <div className={css.mobile_video_details_wrapper_left}>
@@ -113,6 +109,7 @@ const MobileVideoDetails = ({ videoData, setShowDonateModal }) => {
                 </div>
             </div>
         </div>
+    </>
     )
 }
 
@@ -153,13 +150,12 @@ const DesktopVideoDetails = ({ videoData, setShowDonateModal }) => {
                 <div className={"divider-small"} />
                 <div className={css.desktop_video_description}>
                     <a>
-                        {" "}
                         💲 UPI • rakazonegaming@oksbi <br />
                         💲 Sponsor • https://raka.zone/sponsor
                         <br />
                         💲 Donation Via PayPal • https://raka.zone/paypal
                         <br />
-                        🙏 Every Tip Is Appreciated{" "}
+                        🙏 Every Tip Is Appreciated
                     </a>
                     <p dangerouslySetInnerHTML={{ __html: videoData.description }}></p>
                 </div>
@@ -169,11 +165,17 @@ const DesktopVideoDetails = ({ videoData, setShowDonateModal }) => {
 }
 
 export async function getServerSideProps(context) {
+    const UA = context.req.headers["user-agent"]
+    const isMobile = Boolean(UA.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i))
+    const isIOS = Boolean(UA.match(/iPhone/i))
+    console.log(isIOS)
     const { videoId } = context.query
     let videoData = await axios.get(`${publicRuntimeConfig.apiUrl}videoData?videoId=${videoId}`, { withCredentials: true }).then((res) => res.data)
     return {
         props: {
             videoData,
+            isMobile: isMobile ? true : false,
+            isIOS
         },
     }
 }

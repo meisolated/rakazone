@@ -22,19 +22,21 @@ export function VideoPlayerDesktop(props) {
     const [isPlaying, setIsPlaying] = useState(false)
     const [showVolume, setShowVolume] = useState(false)
     const [fullscreen, setFullscreen] = useState(false)
+    const [theaterMode, setTheaterMode] = useState(false)
     const [showEndScreen, setShowEndScreen] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
-    const [volume, setVolume] = useState({ volumeLevel: 50, volume_icon: "volume_up" })
+    const [volume, setVolume] = useState({ volumeLevel: 50, volume_icon: "volume_up", lastVolume: 0 })
     const [settingsShowQuality, setSettingsShowQuality] = useState(false)
     const [settingsShowSpeed, setSettingsShowSpeed] = useState(false)
     const [quality, setQuality] = useState("auto")
-    const [playbackSpeed, setPlaybackSpeed] = useState(1)
     const [levels, setLevels] = useState([])
 
     // Functions
-
+    const handleTheaterMode = () => {
+        setTheaterMode(!theaterMode)
+    }
     const handleSettings = () => {
         if (showSettings) {
             setSettingsShowQuality(false)
@@ -52,9 +54,7 @@ export function VideoPlayerDesktop(props) {
 
     const handleSpeedSelect = (s) => {
         handleSettings()
-        setPlaybackSpeed(s)
         videoController.current.playbackRate = s
-        console.log(videoController.current.playbackRate)
     }
 
 
@@ -94,10 +94,10 @@ export function VideoPlayerDesktop(props) {
     const handleMute = () => {
         if (videoController.current.muted) {
             videoController.current.muted = false
-            setVolume({ volumeLevel: videoController.current.volume * 100, volume_icon: "volume_down" })
+            setVolume({ volumeLevel: volume.lastVolume * 100, volume_icon: "volume_down" })
         } else {
             videoController.current.muted = true
-            setVolume({ volumeLevel: 0, volume_icon: "volume_off" })
+            setVolume({ volumeLevel: 0, volume_icon: "volume_off", lastVolume: videoController.current.volume })
         }
     }
 
@@ -123,7 +123,6 @@ export function VideoPlayerDesktop(props) {
     }
     const handleVolumeSlider = (e) => {
         setShowVolume(true)
-
         e.preventDefault()
         const slider = document.getElementsByClassName(desktop_style.volume_slider)[0]
         let percent = calculateVolume(e, slider)
@@ -251,10 +250,21 @@ export function VideoPlayerDesktop(props) {
 
         const hls = new Hls(defaultOptions)
         const video = videoController.current
-        if (!video) return
         video.removeAttribute("controls")
-        if (Hls.isSupported()) {
+        if (!video) return
+        if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
+            video.removeAttribute("controls")
+            video.setAttribute("webkit-playsinline", "")
+            video.setAttribute("playsinline", "")
+            video.setAttribute("x-webkit-airplay", "allow")
+            video.setAttribute("x5-video-player-type", "h5")
+            video.setAttribute("x5-video-player-fullscreen", "false")
+            video.setAttribute("x5-video-orientation", "portraint")
+            video.src = src
+        }
+        else if (Hls.isSupported()) {
             // This will run in all other modern browsers
+
             hls.loadSource(src)
             hls.attachMedia(video)
             hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
@@ -278,103 +288,102 @@ export function VideoPlayerDesktop(props) {
 
 
     return (
-        <div>
-            <div className={desktop_style.video_wrapper} ref={videoPlayer}>
-                <div className={`${desktop_style.settings_popup} ${(settingsShowQuality || settingsShowSpeed) && desktop_style.settings_popup_show}`} style={showSettings ? { display: "block" } : []}>
-                    {!settingsShowQuality && !settingsShowSpeed && <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowQuality(true)}>
-                        <div className={`${desktop_style.quality_selector} material-icons-round`}>tune</div>
-                        Quality <div className={desktop_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
-                    </div>}
-                    {!settingsShowSpeed && settingsShowQuality && levels.map((level, index) => {
-                        return (
-                            <div className={`${desktop_style.settings_item}`} key={index} onClick={() => handleQualitySelect(index)}>
-                                {level.height}p
-                            </div>
-                        )
-                    })}
-
-                    {!settingsShowQuality && !settingsShowSpeed && <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowSpeed(true)}>
-                        <div className={`${desktop_style.quality_selector} material-icons-round`}>slow_motion_video</div>
-                        Playback Speed
-                    </div>}
-                    {settingsShowSpeed && !settingsShowQuality && playbackSpeedsList.map((speed, index) => {
-                        return (
-                            <div className={`${desktop_style.settings_item}`} key={index} onClick={() => handleSpeedSelect(speed)}>
-                                {speed}x
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className={desktop_style.center_on_screen}>{loading && <Loading w={"70px"} h={"70px"} />}</div>
-                <div className={`${desktop_style.controls_wrapper} ${isPlaying ? [] : desktop_style.show_controls}`}>
-                    <div className={desktop_style.controls}>
-                        <div className={`${desktop_style.timeline_wrap}`}>
-                            <div className={desktop_style.timeline_panel}>
-                                <div ref={timelineController} className={desktop_style.timeline_slider}>
-                                    <div className={desktop_style.timeline_slider_track}>
-                                        <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
-                                            <div className={desktop_style.timeline_slider_handle}></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div className={`${!theaterMode ? desktop_style.video_wrapper : desktop_style.theater_mode}`} ref={videoPlayer}>
+            <div className={`${desktop_style.settings_popup} ${(settingsShowQuality || settingsShowSpeed) && desktop_style.settings_popup_show}`} style={showSettings ? { display: "block" } : []}>
+                {!settingsShowQuality && !settingsShowSpeed && <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowQuality(true)}>
+                    <div className={`${desktop_style.quality_selector} material-icons-round`}>tune</div>
+                    Quality <div className={desktop_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
+                </div>}
+                {!settingsShowSpeed && settingsShowQuality && levels.map((level, index) => {
+                    return (
+                        <div className={`${desktop_style.settings_item}`} key={index} onClick={() => handleQualitySelect(index)}>
+                            {level.height}p
                         </div>
+                    )
+                })}
 
-                        <div className={desktop_style.bottom_controls}>
-                            <div className={`${desktop_style.controls_left}`}>
-                                <div className={`${desktop_style.pause_play_btn} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.play_pause} material-icons-round`} onClick={() => handlePlayPause()}>
-                                        {isPlaying ? "pause" : "play_arrow"}
-                                    </div>
-                                </div>
-                                <div className={`${desktop_style.volume_wrap} ${showVolume ? desktop_style.volume_show : []}`} onMouseEnter={() => setShowVolume(true)} onMouseLeave={() => setShowVolume(false)}>
-                                    <div className={`${desktop_style.volume_btn} material-icons-round ${desktop_style.btn}`} onClick={() => handleMute()}>
-                                        {volume.volume_icon}
-                                    </div>
-                                    <div className={desktop_style.volume_panel}>
-                                        <div ref={volumeController} className={desktop_style.volume_slider}>
-                                            <div className={desktop_style.volume_slider_track}>
-                                                <div className={desktop_style.volume_slider_progress} style={{ width: volume.volumeLevel + "%" }}>
-                                                    <div className={desktop_style.volume_slider_handle}></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={desktop_style.duration_wrapper}>
-                                    <div className={desktop_style.duration}>
-                                        <div className={desktop_style.duration_current}>{duration.currentDuration}</div>
-                                        <div className={desktop_style.duration_separator}>/</div>
-                                        <div className={desktop_style.duration_total}>{duration.totalDuration}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={desktop_style.controls_right}>
-                                <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.settings_btn} material-icons-round`} style={showSettings ? { transform: "rotateZ(30deg)" } : []} onClick={() => handleSettings()}>
-                                        settings
-                                    </div>
-                                </div>
-                                <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.mini_player_btn} material-icons-round`} onClick={() => handlePictureInPicture()}>
-                                        branding_watermark
-                                    </div>
-                                </div>
-                                <div className={`${desktop_style.theater_container} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.theater_btn} material-icons-round`}>{true ? "crop_7_5" : "crop_7_5"}</div>
-                                </div>
-                                <div className={`${desktop_style.fullscreen_container} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.fullscreen_btn} material-icons-round`} onClick={() => handleFullScreen()}>
-                                        {fullscreen ? "fullscreen_exit" : "fullscreen"}
+                {!settingsShowQuality && !settingsShowSpeed && <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowSpeed(true)}>
+                    <div className={`${desktop_style.quality_selector} material-icons-round`}>slow_motion_video</div>
+                    Playback Speed
+                </div>}
+                {settingsShowSpeed && !settingsShowQuality && playbackSpeedsList.map((speed, index) => {
+                    return (
+                        <div className={`${desktop_style.settings_item}`} key={index} onClick={() => handleSpeedSelect(speed)}>
+                            {speed}x
+                        </div>
+                    )
+                })}
+            </div>
+            <div className={desktop_style.center_on_screen}>{loading && <Loading w={"70px"} h={"70px"} />}</div>
+            <div className={`${desktop_style.controls_wrapper} ${isPlaying ? [] : desktop_style.show_controls}`}>
+                <div className={desktop_style.controls}>
+                    <div className={`${desktop_style.timeline_wrap}`}>
+                        <div className={desktop_style.timeline_panel}>
+                            <div ref={timelineController} className={desktop_style.timeline_slider}>
+                                <div className={desktop_style.timeline_slider_track}>
+                                    <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
+                                        <div className={desktop_style.timeline_slider_handle}></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div className={desktop_style.bottom_controls}>
+                        <div className={`${desktop_style.controls_left}`}>
+                            <div className={`${desktop_style.pause_play_btn} ${desktop_style.btn}`}>
+                                <div className={`${desktop_style.play_pause} material-icons-round`} onClick={() => handlePlayPause()}>
+                                    {isPlaying ? "pause" : "play_arrow"}
+                                </div>
+                            </div>
+                            <div className={`${desktop_style.volume_wrap} ${showVolume ? desktop_style.volume_show : []}`} onMouseEnter={() => setShowVolume(true)} onMouseLeave={() => setShowVolume(false)}>
+                                <div className={`${desktop_style.volume_btn} material-icons-round ${desktop_style.btn}`} onClick={() => handleMute()}>
+                                    {volume.volume_icon}
+                                </div>
+                                <div className={desktop_style.volume_panel}>
+                                    <div ref={volumeController} className={desktop_style.volume_slider}>
+                                        <div className={desktop_style.volume_slider_track}>
+                                            <div className={desktop_style.volume_slider_progress} style={{ width: volume.volumeLevel + "%" }}>
+                                                <div className={desktop_style.volume_slider_handle}></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={desktop_style.duration_wrapper}>
+                                <div className={desktop_style.duration}>
+                                    <div className={desktop_style.duration_current}>{duration.currentDuration}</div>
+                                    <div className={desktop_style.duration_separator}>/</div>
+                                    <div className={desktop_style.duration_total}>{duration.totalDuration}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={desktop_style.controls_right}>
+                            <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
+                                <div className={`${desktop_style.settings_btn} material-icons-round`} style={showSettings ? { transform: "rotateZ(30deg)" } : []} onClick={() => handleSettings()}>
+                                    settings
+                                </div>
+                            </div>
+                            <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
+                                <div className={`${desktop_style.mini_player_btn} material-icons-round`} onClick={() => handlePictureInPicture()}>
+                                    branding_watermark
+                                </div>
+                            </div>
+                            <div className={`${desktop_style.theater_container} ${desktop_style.btn}`} onClick={() => { handleTheaterMode() }}>
+                                <div className={`${desktop_style.theater_btn} material-icons-round`}>{theaterMode ? "crop_7_5" : "crop_7_5"}</div>
+                            </div>
+                            <div className={`${desktop_style.fullscreen_container} ${desktop_style.btn}`}>
+                                <div className={`${desktop_style.fullscreen_btn} material-icons-round`} onClick={() => handleFullScreen()}>
+                                    {fullscreen ? "fullscreen_exit" : "fullscreen"}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
-                {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
             </div>
+            <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
+            {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
         </div>
+
     )
 }

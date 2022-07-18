@@ -6,7 +6,21 @@
     position: relative;
     display: flex;
     justify-content: center;
-    margin-inline: auto;
+    /* margin-inline: auto; */
+    z-index: 1;
+}
+
+.theater_mode {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -48,7 +62,8 @@
 
 
 .video_wrapper:hover .controls_wrapper,
-.video_wrapper:focus-within .controls_wrapper {
+.video_wrapper:focus-within .controls_wrapper,
+.theater_mode:hover .controls_wrapper {
     opacity: 1;
 }
 
@@ -126,7 +141,7 @@
 }
 
 .volume_wrap .volume_panel .volume_slider_track {
-    height: 2px;
+    height: 3px;
     width: 70px;
     position: absolute;
     top: 50%;
@@ -265,7 +280,7 @@
     text-shadow: 0 0 2px rgb(0 0 0 / 50%);
     display: none;
     animation: show_settings .5s ease-in-out;
-    transition: height 1s;
+    transition: height 0.5s;
 }
 
 .settings_popup_show {

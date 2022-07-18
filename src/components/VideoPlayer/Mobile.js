@@ -9,23 +9,44 @@ import Hls from "hls.js"
 
 export function VideoPlayerMobile(props) {
     let src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
-    const videoId = "lyb-COpIrYY"
-    const baseUrl = "https://raka.zone/assets/output/"
-    let num = 1
-    const previewThumbnail = baseUrl + videoId + "/image_preview_" + num + ".jpg"
+    const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
+
     const videoPlayer = useRef(null)
     const videoController = useRef(null)
     const timelineController = useRef(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [fullscreen, setFullscreen] = useState(false)
     const [showEndScreen, setShowEndScreen] = useState(false)
+    // settings
     const [showSettings, setShowSettings] = useState(false)
+    const [settingsShowQuality, setSettingsShowQuality] = useState(false)
+    const [settingsShowSpeed, setSettingsShowSpeed] = useState(false)
+
     const [showControls, setShowControls] = useState(true)
     const [loading, setLoading] = useState(true)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
     const [quality, setQuality] = useState("auto")
     const [levels, setLevels] = useState([])
 
+    // some functions
+    const handleSettings = () => {
+        if (showSettings) {
+            setSettingsShowQuality(false)
+            setSettingsShowSpeed(false)
+            setShowSettings(false)
+        } else {
+            setShowSettings(true)
+        }
+    }
+
+    const handleQualitySelect = (q) => {
+        handleSettings()
+        setQuality(q)
+    }
+    const handleSpeedSelect = (s) => {
+        handleSettings()
+        videoController.current.playbackRate = s
+    }
     const calculateSlider = (click, elm) => {
         const volume_width = elm.offsetWidth
         const click_x = click.clientX - elm.getBoundingClientRect().left
@@ -33,7 +54,6 @@ export function VideoPlayerMobile(props) {
         return volume
     }
 
-    // some functions
     const handleFullScreen = () => {
         if (document.fullscreenElement != null) {
             setFullscreen(false)
@@ -86,12 +106,30 @@ export function VideoPlayerMobile(props) {
     }
 
     const onPressForwardOrBackward = (number) => {
+        setTimeout(() => {
+            setShowControls(false)
+        }, 1000)
         videoController.current.currentTime = videoController.current.currentTime + number
     }
 
+    const _handleClick = (event) => {
+        if (!showControls && !event) return setShowControls(true)
+        if (event === "settings") {
+            return setShowSettings(true)
+        } else if (event === "forward") {
+            return onPressForwardOrBackward(10)
+        } else if (event === "backward") {
+            return onPressForwardOrBackward(-10)
+        } else if (event === "PlayPause") {
+            return handlePlayPause()
+        } else if (event === "fullscreen") {
+            return handleFullScreen()
+        } else {
+            if (showControls) return setShowControls(false)
+        }
+    }
 
     useEffect(() => {
-
         // Event Listeners
         videoController.current.addEventListener("timeupdate", () => {
             setLoading(false)
@@ -129,16 +167,9 @@ export function VideoPlayerMobile(props) {
         videoController.current.addEventListener("waiting", () => {
             setLoading(true)
         })
-        videoPlayer.current.addEventListener("click", (e) => {
-            if (e.pointerType === "touch") {
-                if (e.path[0].classList[0] == mobile_style.touch_resister) {
-                    console.log("touch resister")
-                    setShowControls(true)
-                }
-            }
+        // videoPlayer.current.addEventListener("click", (e) => {
 
-        })
-
+        // })
     }, [])
     useEffect(() => {
         const defaultOptions = {
@@ -153,12 +184,19 @@ export function VideoPlayerMobile(props) {
                 }
             },
         }
-
         const hls = new Hls(defaultOptions)
         const video = videoController.current
         if (!video) return
-        video.removeAttribute("controls")
-        if (Hls.isSupported()) {
+        if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
+            video.removeAttribute("controls")
+            video.setAttribute("webkit-playsinline", "")
+            video.setAttribute("playsinline", "")
+            video.setAttribute("x-webkit-airplay", "allow")
+            video.setAttribute("x5-video-player-type", "h5")
+            video.setAttribute("x5-video-player-fullscreen", "false")
+            video.setAttribute("x5-video-orientation", "portraint")
+            video.src = src
+        } else if (Hls.isSupported()) {
             // This will run in all other modern browsers
             hls.loadSource(src)
             hls.attachMedia(video)
@@ -171,21 +209,19 @@ export function VideoPlayerMobile(props) {
                 hls.currentLevel = quality === "auto" ? -1 : quality
             })
         } else {
-            console.error("This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API")
+            toastService.success("Browser not supported")
         }
 
         return () => {
             hls.destroy()
         }
-
     }, [quality])
 
     return (
-        <div className={mobile_style.video_wrapper} ref={videoPlayer}>
-            <div style={showControls ? { zIndex: 0 } : { zIndex: 101 }} className={mobile_style.touch_resister} />
-            <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}  >
+        <div className={mobile_style.video_wrapper} ref={videoPlayer} onClick={() => _handleClick()}>
+            <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}>
                 <div className={mobile_style.top_controls}>
-                    <div onClick={() => setShowSettings(true)} className={`${mobile_style.settings} material-icons-round`}>
+                    <div onClick={() => _handleClick("settings")} className={`${mobile_style.settings} material-icons-round`}>
                         settings
                     </div>
                 </div>
@@ -194,13 +230,13 @@ export function VideoPlayerMobile(props) {
                         <Loading w={"70px"} h={"70px"} />
                     ) : (
                         <>
-                            <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(-10)}>
+                            <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => _handleClick("backward")}>
                                 replay_10
                             </div>
-                            <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => handlePlayPause()}>
+                            <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => _handleClick("PlayPause")}>
                                 {isPlaying ? "pause" : "play_arrow"}
                             </div>
-                            <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => onPressForwardOrBackward(+10)}>
+                            <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => _handleClick("forward")}>
                                 forward_10
                             </div>
                         </>
@@ -213,7 +249,7 @@ export function VideoPlayerMobile(props) {
                             <div className={mobile_style.duration_separator}>/</div>
                             <div className={mobile_style.duration_total}>{duration.totalDuration}</div>
                         </div>
-                        <div className={`${mobile_style.fullscreen_btn} material-icons-round`} onClick={() => handleFullScreen()}>
+                        <div className={`${mobile_style.fullscreen_btn} material-icons-round`} onClick={() => _handleClick("fullscreen")}>
                             {fullscreen ? "fullscreen_exit" : "fullscreen"}
                         </div>
                     </div>
@@ -236,22 +272,46 @@ export function VideoPlayerMobile(props) {
                     <a className={mobile_style.settings_popup_title}>Settings</a>
                 </div>
                 <div className={mobile_style.settings_popup_body}>
-                    <div className={mobile_style.settings_popup_body_item}>
-                        <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
-                            tune
+                    {!settingsShowQuality && !settingsShowSpeed && (
+                        <div className={mobile_style.settings_popup_body_item} onClick={() => setSettingsShowQuality(true)}>
+                            <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
+                                tune
+                            </div>
+                            <div className={mobile_style.settings_popup_body_item_text}>
+                                Quality
+                                <div className={mobile_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
+                            </div>
                         </div>
-                        <a className={mobile_style.settings_popup_body_item_text}>Quality</a>
-                    </div>
-                    <div className={mobile_style.settings_popup_body_item}>
-                        <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
-                            slow_motion_video
+                    )}
+                    {settingsShowQuality &&
+                        levels.map((level, index) => {
+                            return (
+                                <div className={mobile_style.settings_popup_body_item} key={index} onClick={() => handleQualitySelect(index)}>
+                                    <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`}></div>
+                                    <a className={mobile_style.settings_popup_body_item_text}>{level.height}p</a>
+                                </div>
+                            )
+                        })}
+                    {!settingsShowQuality && !settingsShowSpeed && (
+                        <div className={mobile_style.settings_popup_body_item} onClick={() => setSettingsShowSpeed(true)}>
+                            <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
+                                slow_motion_video
+                            </div>
+                            <a className={mobile_style.settings_popup_body_item_text}>Playback Speed</a>
                         </div>
-                        <a className={mobile_style.settings_popup_body_item_text}>Playback Speed</a>
-                    </div>
-                    <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
+                    )}
+                    {settingsShowSpeed &&
+                        playbackSpeedsList.map((speed, index) => {
+                            return (
+                                <div className={mobile_style.settings_popup_body_item} key={index} onClick={() => handleSpeedSelect(speed)}>
+                                    <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`}></div>
+                                    <a className={mobile_style.settings_popup_body_item_text}>{speed}x</a>
+                                </div>
+                            )
+                        })}
                 </div>
             </div>
-            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} />
+            <video autoPlay onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} />
         </div>
     )
 }

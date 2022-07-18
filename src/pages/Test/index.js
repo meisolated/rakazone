@@ -2,7 +2,9 @@ import { useEffect, useRef } from 'react'
 import Hls from 'hls.js'
 
 export default function App({ }) {
-    let src = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+    // let src = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+    let src = `https://keviv.xyz/api/downloads/output/4YBuYz-ZHgg/HLS/playlist.m3u8`
+
     const videoRef = useRef(null)
 
     useEffect(() => {
@@ -13,10 +15,10 @@ export default function App({ }) {
         const defaultOptions = {}
         if (video.canPlayType('application/vnd.apple.mpegurl')) {
             // This will run in safari, where HLS is supported natively
+            video.removeAttribute("controls")
             video.src = src
         } else if (Hls.isSupported()) {
             // This will run in all other modern browsers
-
             const hls = new Hls()
             hls.loadSource(src)
             hls.attachMedia(video)

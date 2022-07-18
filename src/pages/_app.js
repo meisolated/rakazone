@@ -1,6 +1,6 @@
 import Layout from "../components/Layout/index.js"
 import "../styles/globals.css"
-import { AnimatePresence, domAnimation, LazyMotion, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { Toast } from "../components/Notification"
 import App from "next/app"
 
@@ -27,10 +27,6 @@ function MyApp({ Component, pageProps, router, }) {
       duration: 0.5,
     },
   }
-
-
-
-
 
   return (
     <>
