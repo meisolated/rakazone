@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 const SvgSecurePayment = (props) => (
   <svg
@@ -8,7 +8,7 @@ const SvgSecurePayment = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <circle cx={35} cy={35} r={35} fill="#C00" />
+    <circle cx={35} cy={35} r={35} fill="#A51D20" />
     <path
       d="M35.5 39.25h1.875a3.761 3.761 0 0 0 3.75-3.75V16.75H24.25a7.492 7.492 0 0 0-6.544 3.844"
       stroke="#fff"
@@ -30,7 +30,7 @@ const SvgSecurePayment = (props) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <circle cx={35} cy={35} r={35} fill="#C00" />
+    <circle cx={35} cy={35} r={35} fill="#A51D20" />
     <path
       d="M35.013 45.281h11.1c-.17.15-.338.282-.507.431l-8.006 6c-2.644 1.97-6.956 1.97-9.619 0l-8.025-6C18.194 44.4 16.75 41.495 16.75 39.3V25.406c0-2.287 1.744-4.819 3.881-5.625l9.338-3.506c1.537-.581 4.087-.581 5.625 0l9.319 3.506c1.78.675 3.3 2.55 3.768 4.463H34.994c-.413 0-.788.018-1.144.018-3.469.207-4.369 1.463-4.369 5.42v10.18c.019 4.313 1.125 5.42 5.532 5.42Z"
       stroke="#fff"
@@ -62,6 +62,6 @@ const SvgSecurePayment = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
 
-export default SvgSecurePayment;
+export default SvgSecurePayment

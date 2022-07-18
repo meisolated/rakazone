@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 const SvgExploreClicked = (props) => (
   <svg
@@ -10,7 +10,7 @@ const SvgExploreClicked = (props) => (
   >
     <path
       d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10Z"
-      fill="#C00"
+      fill="#A51D20"
       stroke="#fff"
       strokeWidth={1.5}
       strokeMiterlimit={10}
@@ -25,6 +25,6 @@ const SvgExploreClicked = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
 
-export default SvgExploreClicked;
+export default SvgExploreClicked

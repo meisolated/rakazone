@@ -8,14 +8,14 @@ function Redirect(props) {
     let redirect = props.redirectto || "/"
     let text = props.redirectto ? props.redirectto.split("//")[1].split(".")[1].toUpperCase() : "Home"
     useEffect(() => {
-        setTimeout(() => {
-            // (redirect !== "nowhere") ? window.open(redirect) : window.location.href = "/404"
-            router.push(
-                {
-                    pathname: redirect,
-                    query: { returnUrl: redirect }
-                })
-        }, 2000)
+        // setTimeout(() => {
+        // (redirect !== "nowhere") ? window.open(redirect) : window.location.href = "/404"
+        router.push(
+            {
+                pathname: redirect,
+                query: { returnUrl: redirect }
+            })
+        // }, 2000)
     })
 
     return (

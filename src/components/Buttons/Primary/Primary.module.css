@@ -1,58 +1,57 @@
 .button_primary {
- padding: 18px 36px;
- border-radius: 10px;
- border-style: none;
- box-sizing: border-box;
- background-color: var(--primary-color);
- -webkit-transform: scale3d(1, 1, 1.01);
- transform: scale3d(1, 1, 1.01);
- -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
- color: #ffffff;
- cursor: pointer;
- line-height: 1.125em;
- text-align: center;
- letter-spacing: 0.02em;
- -webkit-transform-style: preserve-3d;
- transform-style: preserve-3d;
- font-family: var(--regular-primary-font);
- font-size: 15px;
-
- text-transform: uppercase;
+    padding: 18px 36px;
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    background-color: var(--primary-color);
+    -webkit-transform: scale3d(1, 1, 1.01);
+    transform: scale3d(1, 1, 1.01);
+    -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
+    transition: background-color 300ms ease, -webkit-transform 300ms ease;
+    transition: transform 300ms ease, background-color 300ms ease;
+    transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
+    color: #ffffff;
+    cursor: pointer;
+    line-height: 1.125em;
+    text-align: center;
+    letter-spacing: 0.02em;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    font-family: var(--regular-primary-font);
+    font-size: 15px;
+    text-transform: uppercase;
 }
 
 .button_primary:hover {
- background-color: var(--primary-color);
- -webkit-transform: scale3d(0.98, 0.98, 1.01);
- transform: scale3d(0.98, 0.98, 1.01);
- color: #fff;
+    background-color: var(--primary-color);
+    -webkit-transform: scale3d(0.98, 0.98, 1.01);
+    transform: scale3d(0.98, 0.98, 1.01);
+    color: #fff;
 }
 
 .button_primary_small {
- padding: 18px 36px;
- border-radius: 14px;
- border-style: none;
- background-color: var(--primary-color);
- -webkit-transform: scale3d(1, 1, 1.01);
- transform: scale3d(1, 1, 1.01);
- -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: background-color 300ms ease, -webkit-transform 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease;
- transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
- color: #fff;
- line-height: 1.125em;
- font-weight: 700;
- text-align: center;
- letter-spacing: 0.02em;
- -webkit-transform-style: preserve-3d;
- transform-style: preserve-3d;
+    padding: 18px 36px;
+    border-radius: 14px;
+    border-style: none;
+    background-color: var(--primary-color);
+    -webkit-transform: scale3d(1, 1, 1.01);
+    transform: scale3d(1, 1, 1.01);
+    -webkit-transition: background-color 300ms ease, -webkit-transform 300ms ease;
+    transition: background-color 300ms ease, -webkit-transform 300ms ease;
+    transition: transform 300ms ease, background-color 300ms ease;
+    transition: transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
+    color: #fff;
+    line-height: 1.125em;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.02em;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
 }
 
 .button_primary_small:hover {
- background-color: var(--primary-color);
- -webkit-transform: scale3d(0.98, 0.98, 1.01);
- transform: scale3d(0.98, 0.98, 1.01);
- color: #fff;
+    background-color: var(--primary-color);
+    -webkit-transform: scale3d(0.98, 0.98, 1.01);
+    transform: scale3d(0.98, 0.98, 1.01);
+    color: #fff;
 }

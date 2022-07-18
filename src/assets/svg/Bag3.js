@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 const SvgBag3 = (props) => (
   <svg
@@ -18,7 +18,7 @@ const SvgBag3 = (props) => (
     />
     <path
       d="M9 22h6c4.02 0 4.74-1.61 4.95-3.57l.75-6C20.97 9.99 20.27 8 16 8H8c-4.27 0-4.97 1.99-4.7 4.43l.75 6C4.26 20.39 4.98 22 9 22Z"
-      fill="#C00"
+      fill="#A51D20"
       stroke="#fff"
       strokeWidth={1.5}
       strokeMiterlimit={10}
@@ -33,6 +33,6 @@ const SvgBag3 = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
 
-export default SvgBag3;
+export default SvgBag3

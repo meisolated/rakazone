@@ -6,30 +6,57 @@ import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "../Loading"
-import { Hls } from "../../../public/_hls.js"
-
+import Hls from "hls.js"
 
 export function VideoPlayerDesktop(props) {
-    const videoId = "lyb-COpIrYY"
-    const baseUrl = "https://raka.zone/assets/output/"
-    let num = 1
-    const previewThumbnail = baseUrl + videoId + "/image_preview_" + num + ".jpg"
+    const src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
+    const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
+
+    // Controller for the video
     const videoPlayer = useRef(null)
     const videoController = useRef(null)
     const volumeController = useRef(null)
     const timelineController = useRef(null)
+
+    // States
     const [isPlaying, setIsPlaying] = useState(false)
-    // Show and hide TODO: make it better merge them all into one
     const [showVolume, setShowVolume] = useState(false)
     const [fullscreen, setFullscreen] = useState(false)
     const [showEndScreen, setShowEndScreen] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [loading, setLoading] = useState(false)
-
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
     const [volume, setVolume] = useState({ volumeLevel: 50, volume_icon: "volume_up" })
+    const [settingsShowQuality, setSettingsShowQuality] = useState(false)
+    const [settingsShowSpeed, setSettingsShowSpeed] = useState(false)
+    const [quality, setQuality] = useState("auto")
+    const [playbackSpeed, setPlaybackSpeed] = useState(1)
+    const [levels, setLevels] = useState([])
 
-    const volume_fonts = ["volume_up", "volume_down", "volume_mute"]
+    // Functions
+
+    const handleSettings = () => {
+        if (showSettings) {
+            setSettingsShowQuality(false)
+            setSettingsShowSpeed(false)
+            setShowSettings(false)
+        }
+        else {
+            setShowSettings(true)
+        }
+    }
+    const handleQualitySelect = (q) => {
+        handleSettings()
+        setQuality(q)
+    }
+
+    const handleSpeedSelect = (s) => {
+        handleSettings()
+        setPlaybackSpeed(s)
+        videoController.current.playbackRate = s
+        console.log(videoController.current.playbackRate)
+    }
+
 
     const calculateVolume = (click, elm) => {
         const volume_width = elm.offsetWidth
@@ -38,13 +65,11 @@ export function VideoPlayerDesktop(props) {
         return volume
     }
 
-    // some functions
     const handleFullScreen = () => {
         if (document.fullscreenElement != null) {
             setFullscreen(false)
             return document.exitFullscreen()
-        }
-        else {
+        } else {
             if (videoPlayer.current.requestFullscreen) {
                 videoPlayer.current.requestFullscreen()
             } else if (videoPlayer.current.webkitRequestFullscreen) {
@@ -56,7 +81,6 @@ export function VideoPlayerDesktop(props) {
             }
             setFullscreen(true)
         }
-
     }
 
     const handlePictureInPicture = () => {
@@ -78,9 +102,7 @@ export function VideoPlayerDesktop(props) {
     }
 
     const handlePlayPause = () => {
-        if (showSettings) {
-            return setShowSettings(false)
-        }
+        if (showSettings) return handleSettings()
         if (videoController.current.paused) {
             setIsPlaying(true)
             videoController.current.play()
@@ -88,6 +110,7 @@ export function VideoPlayerDesktop(props) {
             setIsPlaying(false)
             videoController.current.pause()
         }
+
     }
     const handleVolume = () => {
         document.removeEventListener("mousemove", handleVolumeSlider)
@@ -100,6 +123,7 @@ export function VideoPlayerDesktop(props) {
     }
     const handleVolumeSlider = (e) => {
         setShowVolume(true)
+
         e.preventDefault()
         const slider = document.getElementsByClassName(desktop_style.volume_slider)[0]
         let percent = calculateVolume(e, slider)
@@ -128,6 +152,13 @@ export function VideoPlayerDesktop(props) {
 
     useEffect(() => {
         // Event Listeners
+        videoController.current.addEventListener("play", () => {
+            setIsPlaying(true)
+        })
+
+        videoController.current.addEventListener("durationchange", () => {
+            setDuration({ currentDuration: formatDuration(videoController.current.currentTime), totalDuration: formatDuration(videoController.current.duration), percentage: 0 })
+        })
         videoController.current.addEventListener("timeupdate", () => {
             setLoading(false)
             setDuration({
@@ -177,10 +208,13 @@ export function VideoPlayerDesktop(props) {
             setLoading(true)
         })
 
-        videoPlayer.current.addEventListener("dblclick", () => {
-            handleFullScreen()
+        videoController.current.addEventListener("dblclick", (e) => {
+            if (showSettings) setShowSettings(false)
+            if (e.target.classList.contains(desktop_style.video)) {
+                handleFullScreen()
+                console.log(e)
+            }
         })
-
 
         // handle key strokes
         document.onkeydown = (e) => {
@@ -197,25 +231,81 @@ export function VideoPlayerDesktop(props) {
                 handleMute()
             }
         }
-    }, [videoController])
+
+
+    }, [videoController.current])
+
+    useEffect(() => {
+        const defaultOptions = {
+            startLevel: -1,
+            licenseXhrSetup: function (xhr, url) {
+                xhr.withCredentials = true // do send cookies
+                if (!xhr.readyState) {
+                    // Call open to change the method (default is POST) or modify the url
+                    xhr.open("GET", url, true)
+                    // Append headers after opening
+                    xhr.setRequestHeader("Content-Type", "application/octet-stream")
+                }
+            },
+        }
+
+        const hls = new Hls(defaultOptions)
+        const video = videoController.current
+        if (!video) return
+        video.removeAttribute("controls")
+        if (Hls.isSupported()) {
+            // This will run in all other modern browsers
+            hls.loadSource(src)
+            hls.attachMedia(video)
+            hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
+                var level_duration = data.details.totalduration
+                setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
+            })
+            hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                setLevels(data.levels)
+                hls.currentLevel = quality === "auto" ? -1 : quality
+            })
+        } else {
+            console.error("This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API")
+        }
+
+        return () => {
+            hls.destroy()
+        }
+
+    }, [quality])
+
+
 
     return (
         <div>
-
             <div className={desktop_style.video_wrapper} ref={videoPlayer}>
-                <div className={desktop_style.settings_popup} style={showSettings ? { display: "block" } : []}>
-                    <div className={`${desktop_style.settings_item}`}>
+                <div className={`${desktop_style.settings_popup} ${(settingsShowQuality || settingsShowSpeed) && desktop_style.settings_popup_show}`} style={showSettings ? { display: "block" } : []}>
+                    {!settingsShowQuality && !settingsShowSpeed && <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowQuality(true)}>
                         <div className={`${desktop_style.quality_selector} material-icons-round`}>tune</div>
-                        Quality
-                    </div>
-                    <div className={`${desktop_style.settings_item}`}>
+                        Quality <div className={desktop_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
+                    </div>}
+                    {!settingsShowSpeed && settingsShowQuality && levels.map((level, index) => {
+                        return (
+                            <div className={`${desktop_style.settings_item}`} key={index} onClick={() => handleQualitySelect(index)}>
+                                {level.height}p
+                            </div>
+                        )
+                    })}
+
+                    {!settingsShowQuality && !settingsShowSpeed && <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowSpeed(true)}>
                         <div className={`${desktop_style.quality_selector} material-icons-round`}>slow_motion_video</div>
                         Playback Speed
-                    </div>
+                    </div>}
+                    {settingsShowSpeed && !settingsShowQuality && playbackSpeedsList.map((speed, index) => {
+                        return (
+                            <div className={`${desktop_style.settings_item}`} key={index} onClick={() => handleSpeedSelect(speed)}>
+                                {speed}x
+                            </div>
+                        )
+                    })}
                 </div>
-                <div className={desktop_style.center_on_screen}>
-                    {loading && <Loading w={"70px"} h={"70px"} />}
-                </div>
+                <div className={desktop_style.center_on_screen}>{loading && <Loading w={"70px"} h={"70px"} />}</div>
                 <div className={`${desktop_style.controls_wrapper} ${isPlaying ? [] : desktop_style.show_controls}`}>
                     <div className={desktop_style.controls}>
                         <div className={`${desktop_style.timeline_wrap}`}>
@@ -261,7 +351,7 @@ export function VideoPlayerDesktop(props) {
                             </div>
                             <div className={desktop_style.controls_right}>
                                 <div className={`${desktop_style.mini_player_container} ${desktop_style.btn}`}>
-                                    <div className={`${desktop_style.settings_btn} material-icons-round`} style={showSettings ? { transform: "rotateZ(30deg)" } : []} onClick={() => setShowSettings(!showSettings)}>
+                                    <div className={`${desktop_style.settings_btn} material-icons-round`} style={showSettings ? { transform: "rotateZ(30deg)" } : []} onClick={() => handleSettings()}>
                                         settings
                                     </div>
                                 </div>
@@ -282,7 +372,8 @@ export function VideoPlayerDesktop(props) {
                         </div>
                     </div>
                 </div>
-                <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={"http://10.69.69.201:8090/video/" + props.videoId} />
+                <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
+                {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
             </div>
         </div>
     )

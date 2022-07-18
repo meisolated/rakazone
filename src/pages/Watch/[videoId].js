@@ -51,7 +51,7 @@ export default function Watch(props) {
         } else {
             setIsMobile(false)
         }
-    }, [windowResize, showDonateModal])
+    }, [windowResize])
 
     let component = {
         desktop: <VideoPlayerDesktop videoId={videoId} />,

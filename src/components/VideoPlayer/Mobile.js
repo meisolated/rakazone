@@ -5,8 +5,10 @@ import Image from "next/image.js"
 import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "components/Loading"
+import Hls from "hls.js"
 
 export function VideoPlayerMobile(props) {
+    let src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
     const videoId = "lyb-COpIrYY"
     const baseUrl = "https://raka.zone/assets/output/"
     let num = 1
@@ -21,6 +23,8 @@ export function VideoPlayerMobile(props) {
     const [showControls, setShowControls] = useState(true)
     const [loading, setLoading] = useState(true)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
+    const [quality, setQuality] = useState("auto")
+    const [levels, setLevels] = useState([])
 
     const calculateSlider = (click, elm) => {
         const volume_width = elm.offsetWidth
@@ -87,6 +91,7 @@ export function VideoPlayerMobile(props) {
 
 
     useEffect(() => {
+
         // Event Listeners
         videoController.current.addEventListener("timeupdate", () => {
             setLoading(false)
@@ -131,8 +136,50 @@ export function VideoPlayerMobile(props) {
                     setShowControls(true)
                 }
             }
+
         })
+
     }, [])
+    useEffect(() => {
+        const defaultOptions = {
+            startLevel: -1,
+            licenseXhrSetup: function (xhr, url) {
+                xhr.withCredentials = true // do send cookies
+                if (!xhr.readyState) {
+                    // Call open to change the method (default is POST) or modify the url
+                    xhr.open("GET", url, true)
+                    // Append headers after opening
+                    xhr.setRequestHeader("Content-Type", "application/octet-stream")
+                }
+            },
+        }
+
+        const hls = new Hls(defaultOptions)
+        const video = videoController.current
+        if (!video) return
+        video.removeAttribute("controls")
+        if (Hls.isSupported()) {
+            // This will run in all other modern browsers
+            hls.loadSource(src)
+            hls.attachMedia(video)
+            hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
+                var level_duration = data.details.totalduration
+                setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
+            })
+            hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                setLevels(data.levels)
+                hls.currentLevel = quality === "auto" ? -1 : quality
+            })
+        } else {
+            console.error("This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API")
+        }
+
+        return () => {
+            hls.destroy()
+        }
+
+    }, [quality])
+
     return (
         <div className={mobile_style.video_wrapper} ref={videoPlayer}>
             <div style={showControls ? { zIndex: 0 } : { zIndex: 101 }} className={mobile_style.touch_resister} />
@@ -204,7 +251,7 @@ export function VideoPlayerMobile(props) {
                     <a className={mobile_style.developer_text}>We are currently working on these settings.</a>
                 </div>
             </div>
-            <video playsInline onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={"http://10.69.69.201:8090/video/" + props.videoId} />
+            <video onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} />
         </div>
     )
 }
