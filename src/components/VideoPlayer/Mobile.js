@@ -9,7 +9,7 @@ import Hls from "hls.js"
 
 export function VideoPlayerMobile(props) {
     let src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
-    const adSrc = `https://keviv.xyz/api/downloads/SampleAd/playlist.m3u8`
+    const adSrc = props.adSrc
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     const videoPlayer = useRef(null)

@@ -235,6 +235,8 @@ export function VideoPlayerDesktop(props) {
     }, [videoController.current])
 
     useEffect(() => {
+        // --------------------------------------------------
+
         const defaultOptions = {
             startLevel: -1,
             licenseXhrSetup: function (xhr, url) {
@@ -248,11 +250,20 @@ export function VideoPlayerDesktop(props) {
             },
         }
 
-        const hls = new Hls(defaultOptions)
+        const rebuild = (video, src) => {
+            setLoading(true)
+            const hls = new Hls(defaultOptions)
+            hls.loadSource(src)
+            hls.attachMedia(video)
+            return hls
+        }
+
+        var hls = new Hls(defaultOptions)
         const video = videoController.current
         video.removeAttribute("controls")
         video.autoPlay = true
-
+        video.muted = true
+        setLoading(true)
         if (!video) return
         if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
             video.removeAttribute("controls")
@@ -278,14 +289,6 @@ export function VideoPlayerDesktop(props) {
                 hls.loadSource(src)
             }
             hls.attachMedia(video)
-            hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
-                var level_duration = data.details.totalduration
-                setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
-            })
-            hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
-                setLevels(data.levels)
-                hls.currentLevel = quality === "auto" ? -1 : quality
-            })
         } else {
             console.error("This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API")
         }
@@ -296,10 +299,30 @@ export function VideoPlayerDesktop(props) {
                 if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
                     video.src = src
                 } else {
-                    hls.loadSource(src)
+                    hls.destroy()
+                    hls = rebuild(video, src)
                 }
             }
+        })
 
+        hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
+            setLoading(false)
+            var level_duration = data.details.totalduration
+            setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
+        })
+        hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
+            setLoading(false)
+            setLevels(data.levels)
+            hls.currentLevel = quality === "auto" ? -1 : quality
+        })
+
+        video.addEventListener("waiting", () => {
+            setIsPlaying(false)
+            setLoading(true)
+        })
+        video.addEventListener("playing", () => {
+            setIsPlaying(true)
+            setLoading(false)
         })
 
         return () => {
@@ -309,11 +332,7 @@ export function VideoPlayerDesktop(props) {
 
     return (
         <div className={`${!theaterMode ? desktop_style.video_wrapper : desktop_style.theater_mode}`} ref={videoPlayer}>
-            {playingAd && (
-                <div className={desktop_style.playing_ad_wrapper}>
-                    Ad
-                </div>
-            )}
+            {playingAd && <div className={desktop_style.playing_ad_wrapper}>Ad</div>}
             <div className={`${desktop_style.settings_popup} ${(settingsShowQuality || settingsShowSpeed) && desktop_style.settings_popup_show}`} style={showSettings ? { display: "block" } : []}>
                 {!settingsShowQuality && !settingsShowSpeed && (
                     <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowQuality(true)}>

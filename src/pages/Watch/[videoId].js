@@ -41,30 +41,34 @@ export default function Watch(props) {
     • 28<br/>
     • New Delhi, India<br/>`
 
+    const AdVideoSrc = `https://keviv.xyz/api/downloads/SampleAd/playlist.m3u8`
+
     const [showDonateModal, setShowDonateModal] = useState(false)
     const [isMobile, setIsMobile] = useState(props.isMobile)
     const [loading, setLoading] = useState(true)
 
 
     let component = {
-        desktop: <VideoPlayerDesktop videoId={videoId} isIOS={props.isIOS} />,
-        mobile: <VideoPlayerMobile videoId={videoId} isIOS={props.isIOS} />,
+        desktop: <VideoPlayerDesktop videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
+        mobile: <VideoPlayerMobile videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
     }
 
-    return (
+    return (<>
+        <Head>
+            <title>{videoData.title}</title>
+        </Head>
         <div className="container-default">
             <div className={css.player_wrapper}>{isMobile !== null && isMobile ? component.mobile : component.desktop}</div>
             {isMobile ? <MobileVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} /> : <DesktopVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} />}
             {<DonateModal show={showDonateModal} onClose={() => setShowDonateModal(false)} />}
         </div>
+    </>
     )
 }
 
 const MobileVideoDetails = ({ videoData, setShowDonateModal }) => {
     return (<>
-        <Head>
-            <title>{videoData.title}</title>
-        </Head>
+
         <div className={css.mobile_video_details}>
             <div className={css.mobile_video_details_wrapper}>
                 <div className={css.mobile_video_details_wrapper_left}>
