@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgFastShipping = (props) => (
   <svg
@@ -31,6 +31,6 @@ const SvgFastShipping = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgFastShipping
+export default SvgFastShipping;

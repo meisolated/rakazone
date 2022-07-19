@@ -17,7 +17,8 @@ function Footer() {
                         </div>
                         <div className={css.footer_subscribe_wrapper}>
                             <p className={css.footer_subscribe_paragraph}>Want to stay tuned about all videos released every week? Subscribe to my YouTube</p>
-                            <Primary text="Subscribe" />
+                            <div>
+                                <Primary text="Subscribe" /></div>
                         </div>
                     </div>
 

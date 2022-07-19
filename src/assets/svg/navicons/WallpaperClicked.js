@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgWallpaperClicked = (props) => (
   <svg
@@ -30,6 +30,6 @@ const SvgWallpaperClicked = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgWallpaperClicked
+export default SvgWallpaperClicked;

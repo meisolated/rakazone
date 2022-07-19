@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgSecurePayment = (props) => (
   <svg
@@ -62,6 +62,6 @@ const SvgSecurePayment = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgSecurePayment
+export default SvgSecurePayment;

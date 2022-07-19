@@ -4,7 +4,7 @@ function Primary(props) {
     let link = props.link ? props.link : "#"
     return (
         <Link href={link} passHref>
-            <button className={css.button_primary}> {props.text}</button>
+            <button className={css.button_primary} > {props.text}</button>
         </Link>
     )
 }

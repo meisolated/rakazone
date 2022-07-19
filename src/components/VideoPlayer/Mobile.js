@@ -9,6 +9,7 @@ import Hls from "hls.js"
 
 export function VideoPlayerMobile(props) {
     let src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
+    const adSrc = `https://keviv.xyz/api/downloads/SampleAd/playlist.m3u8`
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     const videoPlayer = useRef(null)
@@ -21,14 +22,21 @@ export function VideoPlayerMobile(props) {
     const [showSettings, setShowSettings] = useState(false)
     const [settingsShowQuality, setSettingsShowQuality] = useState(false)
     const [settingsShowSpeed, setSettingsShowSpeed] = useState(false)
+    const [muted, setMuted] = useState(true)
 
     const [showControls, setShowControls] = useState(true)
+    const [playingAd, setPlayingAd] = useState(false)
     const [loading, setLoading] = useState(true)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
     const [quality, setQuality] = useState("auto")
     const [levels, setLevels] = useState([])
 
     // some functions
+    const _closeSettings = () => {
+        setShowSettings(false)
+        setSettingsShowQuality(false)
+        setSettingsShowSpeed(false)
+    }
     const handleSettings = () => {
         if (showSettings) {
             setSettingsShowQuality(false)
@@ -87,6 +95,12 @@ export function VideoPlayerMobile(props) {
         }
     }
 
+    const handleUnmute = () => {
+        setMuted(false)
+        videoController.current.muted = false
+    }
+
+
     const handleTimeline = () => {
         document.removeEventListener("mousemove", handleTimelineSlider)
         document.removeEventListener("mouseup", handleTimeline)
@@ -132,6 +146,7 @@ export function VideoPlayerMobile(props) {
     useEffect(() => {
         // Event Listeners
         videoController.current.addEventListener("timeupdate", () => {
+            if (playingAd) return
             setLoading(false)
             setDuration({
                 currentDuration: formatDuration(videoController.current.currentTime),
@@ -150,6 +165,7 @@ export function VideoPlayerMobile(props) {
         })
 
         timelineController.current.addEventListener("mousedown", (e) => {
+            if (playingAd) return
             document.addEventListener("mousemove", handleTimelineSlider)
             document.addEventListener("mouseup", (e) => {
                 return handleTimeline()
@@ -157,21 +173,14 @@ export function VideoPlayerMobile(props) {
         })
 
         timelineController.current.addEventListener("click", (e) => {
+            if (playingAd) return
             handleTimelineSlider(e)
         })
 
-        videoController.current.addEventListener("ended", () => {
-            toastService.success("Video ended")
-            setIsPlaying(false)
-        })
-        videoController.current.addEventListener("waiting", () => {
-            setLoading(true)
-        })
-        // videoPlayer.current.addEventListener("click", (e) => {
-
-        // })
-    }, [])
+    }, [playingAd])
     useEffect(() => {
+        // --------------------------------------------------
+
         const defaultOptions = {
             startLevel: -1,
             licenseXhrSetup: function (xhr, url) {
@@ -184,8 +193,21 @@ export function VideoPlayerMobile(props) {
                 }
             },
         }
-        const hls = new Hls(defaultOptions)
+
+        const rebuild = (video, src) => {
+            setLoading(true)
+            const hls = new Hls(defaultOptions)
+            hls.loadSource(src)
+            hls.attachMedia(video)
+            return hls
+        }
+
+        var hls = new Hls(defaultOptions)
         const video = videoController.current
+        video.removeAttribute("controls")
+        video.autoPlay = true
+        video.muted = true
+        setLoading(true)
         if (!video) return
         if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
             video.removeAttribute("controls")
@@ -195,22 +217,60 @@ export function VideoPlayerMobile(props) {
             video.setAttribute("x5-video-player-type", "h5")
             video.setAttribute("x5-video-player-fullscreen", "false")
             video.setAttribute("x5-video-orientation", "portraint")
-            video.src = src
+
+            if (adSrc) {
+                setPlayingAd(true)
+                video.src = adSrc
+            } else {
+                video.src = src
+            }
         } else if (Hls.isSupported()) {
+
             // This will run in all other modern browsers
-            hls.loadSource(src)
+            if (adSrc) {
+                setPlayingAd(true)
+                hls.loadSource(adSrc)
+            } else {
+                hls.loadSource(src)
+            }
             hls.attachMedia(video)
-            hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
-                var level_duration = data.details.totalduration
-                setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
-            })
-            hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
-                setLevels(data.levels)
-                hls.currentLevel = quality === "auto" ? -1 : quality
-            })
         } else {
-            toastService.success("Browser not supported")
+            console.error("This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API")
         }
+
+        video.addEventListener("ended", () => {
+            if (video.src === adSrc || hls?.levels[0]?.url[0]?.includes("Ad")) {
+                setPlayingAd(false)
+                if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
+                    video.src = src
+                } else {
+                    hls.destroy()
+                    hls = rebuild(video, src)
+                }
+            }
+
+        })
+
+        hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
+            setLoading(false)
+            var level_duration = data.details.totalduration
+            setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
+        })
+        hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
+            setLoading(false)
+            setLevels(data.levels)
+            hls.currentLevel = quality === "auto" ? -1 : quality
+        })
+
+        video.addEventListener("waiting", () => {
+            setIsPlaying(false)
+            setLoading(true)
+        })
+        video.addEventListener("playing", () => {
+            setIsPlaying(true)
+            setLoading(false)
+        }
+        )
 
         return () => {
             hls.destroy()
@@ -219,7 +279,15 @@ export function VideoPlayerMobile(props) {
 
     return (
         <div className={mobile_style.video_wrapper} ref={videoPlayer} onClick={() => _handleClick()}>
-            <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}>
+            {playingAd && (
+                <div className={mobile_style.playing_ad_wrapper}>
+                    Ad
+                </div>
+            )}
+            {muted && (
+                <div className={mobile_style.unmute_button} onClick={() => handleUnmute()}>Unmute</div>
+            )}
+            <div className={`${mobile_style.controls} ${playingAd && mobile_style.hide_controls}  ${showControls && mobile_style.show_controls}`}>
                 <div className={mobile_style.top_controls}>
                     <div onClick={() => _handleClick("settings")} className={`${mobile_style.settings} material-icons-round`}>
                         settings
@@ -227,7 +295,7 @@ export function VideoPlayerMobile(props) {
                 </div>
                 <div className={mobile_style.middle_controls}>
                     {loading ? (
-                        <Loading w={"70px"} h={"70px"} />
+                        <Loading w={"40px"} h={"40px"} />
                     ) : (
                         <>
                             <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => _handleClick("backward")}>
@@ -266,7 +334,7 @@ export function VideoPlayerMobile(props) {
                     </div>
                 </div>
             </div>
-            {showSettings && <div className={`${mobile_style.bottom_settings_popup_wrapper}`} onClick={() => setShowSettings(false)}></div>}
+            {showSettings && <div className={`${mobile_style.bottom_settings_popup_wrapper}`} onClick={() => _closeSettings()}></div>}
             <div className={`${mobile_style.bottom_settings_popup} ${showSettings && mobile_style.show_setting}`}>
                 <div className={mobile_style.settings_popup_header}>
                     <a className={mobile_style.settings_popup_title}>Settings</a>

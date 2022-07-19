@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgEmailContact = (props) => (
   <svg
@@ -25,6 +25,6 @@ const SvgEmailContact = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgEmailContact
+export default SvgEmailContact;

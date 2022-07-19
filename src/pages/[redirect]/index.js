@@ -5,8 +5,8 @@ import getConfig from "next/config"
 const { publicRuntimeConfig } = getConfig()
 function Redirect(props) {
     const router = useRouter()
-    let redirect = props.redirectto || "/"
-    let text = props.redirectto ? props.redirectto.split("//")[1].split(".")[1].toUpperCase() : "Home"
+    let redirect = props.redirectto || "/404"
+    let text = props.redirectto ? props.redirectto.split("//")[1].split(".")[1].toUpperCase() : "404"
     useEffect(() => {
         // setTimeout(() => {
         // (redirect !== "nowhere") ? window.open(redirect) : window.location.href = "/404"
@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
     if (data.message === "success") {
         let redirects = data.data.redirects
         if (redirects[context.query.redirect]) {
+
             return {
                 props: { redirectto: redirects[context.query.redirect] },
             }

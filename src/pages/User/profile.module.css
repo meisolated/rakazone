@@ -1,0 +1,168 @@
+.profile_wrapper_grid {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-columns: 1fr;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: auto auto;
+    grid-template-rows: auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+}
+
+.common_of_left_right_middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--grey-color);
+    border-radius: 40px;
+}
+
+
+/* -------------------------- LEFT -------------------------- */
+.left {
+    padding: 30px;
+    gap: 20px
+}
+
+.profile_pic_wrapper {
+    stroke: black;
+    stroke-width: 8;
+    stroke-dasharray: 288.5;
+    height: 200px;
+    width: 200px;
+    padding: 5px;
+    border-radius: 100px;
+    background: conic-gradient(#f58529, #feda77, #dd2a7b, #515bd4, #8134af, #f58529);
+    /* overflow: hidden; */
+}
+
+.profile_pic {
+    border-radius: 100px;
+}
+
+.profile_info_wrapper {
+    text-align: center;
+}
+
+.profile_info_name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--black-color);
+}
+
+.profile_info_email {
+    font-size: 1rem;
+    color: #B9BABF;
+}
+
+.profile_info_created_at {
+    font-size: 1rem;
+    color: #B9BABF;
+}
+
+.achievements_wrapper {
+    width: 100%;
+    background-color: #26272c;
+    border-radius: 12px;
+    padding: 10px;
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* -------------------------- MIDDLE -------------------------- */
+.middle {
+    padding: 40px 30px 40px 30px;
+    gap: 20px
+}
+
+.gender_select {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px
+}
+
+.gender_select_btn {
+    height: 56px;
+    width: 100%;
+    background-color: #26272c;
+    border-radius: 12px;
+    padding: 10px;
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -------------------------- RIGHT -------------------------- */
+.right {
+    padding: 40px 20px 40px 20px;
+    gap: 20px
+}
+
+.grey_button {
+    height: 56px;
+    width: 100%;
+    background-color: #26272c;
+    border-radius: 12px;
+    padding: 10px;
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* -------------------------- RESPONSIVE -------------------------- */
+@media screen and (max-width: 800px) {
+    .profile_wrapper_grid {
+        display: -ms-grid;
+        display: grid;
+        grid-auto-columns: 1fr;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
+        grid-row-gap: 16px;
+        grid-column-gap: 16px;
+    }
+
+    .profile_pic_wrapper {
+        padding: 5px;
+        height: 150px;
+        width: 150px;
+    }
+
+}
+
+@media screen and (max-width : 425px) {
+
+    .profile_pic_wrapper {
+        padding: 4px;
+        height: 100px;
+        width: 100px;
+    }
+
+}

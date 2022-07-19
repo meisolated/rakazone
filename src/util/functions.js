@@ -15,22 +15,18 @@ export const convertToInternationalCurrencySystem = (labelValue) => {
     return value
 }
 
-
 export const get_random = (list) => {
     return list[Math.floor(Math.random() * list.length)]
 }
 
-
 export const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-
 export function makeid(length) {
-    var result = ''
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var result = ""
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     var charactersLength = characters.length
     for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength))
+        result += characters.charAt(Math.floor(Math.random() * charactersLength))
     }
     return result
 }
@@ -40,14 +36,14 @@ const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
 })
 
 export function formatDuration(time) {
+    if (isNaN(time)) return "00:00"
     const seconds = Math.floor(time % 60)
     const minutes = Math.floor(time / 60) % 60
     const hours = Math.floor(time / 3600)
     if (hours === 0) {
         return `${minutes}:${leadingZeroFormatter.format(seconds)}`
     } else {
-        return `${hours}:${leadingZeroFormatter.format(
-            minutes
-        )}:${leadingZeroFormatter.format(seconds)}`
+        return `${hours}:${leadingZeroFormatter.format(minutes)}:${leadingZeroFormatter.format(seconds)}`
     }
+
 }

@@ -79,7 +79,7 @@
 }
 
 .contact_item {
-    background-color: var(--divider-color);
+    background-color: #1e1f24;
     border-radius: 25px;
     display: flex;
     margin-bottom: 15px;
@@ -88,6 +88,14 @@
     gap: 10px;
     max-width: 309px;
     padding: 20px 22px;
+    -webkit-transition: color 300ms ease, background-color 300ms ease;
+    transition: color 300ms ease, background-color 300ms ease;
+    color: #dadadf;
+
+}
+
+.contact_item:hover {
+    background-color: #26272c;
 }
 
 .input_text {
@@ -105,7 +113,7 @@
 }
 
 .input_text:hover {
-    background-color: #141313;
+    background-color: #26272c;
 }
 
 .form_items_top {

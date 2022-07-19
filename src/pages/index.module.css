@@ -376,6 +376,7 @@
 
 .subscribe_button {
     padding-bottom: 40px;
+    width: 40%;
 }
 
 /* –––––––––––––––––––––––––––––– BUY MERCH –––––––––––––––––––––––––––––– */
@@ -896,6 +897,7 @@
     .subscribe_button {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .merch_title {

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgCall = (props) => (
   <svg
@@ -16,6 +16,6 @@ const SvgCall = (props) => (
       strokeMiterlimit={10}
     />
   </svg>
-)
+);
 
-export default SvgCall
+export default SvgCall;

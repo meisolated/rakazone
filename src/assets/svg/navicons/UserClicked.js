@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgUserClicked = (props) => (
   <svg
@@ -33,6 +33,6 @@ const SvgUserClicked = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgUserClicked
+export default SvgUserClicked;

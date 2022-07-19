@@ -189,6 +189,7 @@ function Home(props) {
                             <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
                             <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
                             <div className={css.subscribe_button}>
+                                
                                 <Primary link={"/yt"} text="Subscribe" />
                             </div>
                             <EmptyVideoItem type="empty" link={"/yt"} />

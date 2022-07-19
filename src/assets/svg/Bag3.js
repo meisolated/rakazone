@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgBag3 = (props) => (
   <svg
@@ -33,6 +33,6 @@ const SvgBag3 = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgBag3
+export default SvgBag3;

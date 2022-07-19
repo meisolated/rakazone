@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgServiceGuarantee = (props) => (
   <svg
@@ -24,6 +24,6 @@ const SvgServiceGuarantee = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default SvgServiceGuarantee
+export default SvgServiceGuarantee;
