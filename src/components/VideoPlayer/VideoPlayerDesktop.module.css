@@ -73,6 +73,7 @@
 
 .hide_controls {
     opacity: 0 !important;
+    display: none !important;
 }
 
 .playing_ad_wrapper {

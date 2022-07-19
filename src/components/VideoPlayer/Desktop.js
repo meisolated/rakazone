@@ -262,7 +262,6 @@ export function VideoPlayerDesktop(props) {
         const video = videoController.current
         video.removeAttribute("controls")
         video.autoPlay = true
-        video.muted = true
         setLoading(true)
         if (!video) return
         if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
