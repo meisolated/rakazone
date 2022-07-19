@@ -177,6 +177,9 @@ export function VideoPlayerMobile(props) {
             handleTimelineSlider(e)
         })
 
+        return () => {
+        }
+
     }, [playingAd])
     useEffect(() => {
         // --------------------------------------------------
