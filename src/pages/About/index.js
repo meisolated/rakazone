@@ -17,23 +17,20 @@ import { useState } from "react"
 
 function InstaImage({ img }) {
     let [insta, setInsta] = useState(false)
-    return <div className={css.instagram_showcase_grid_item_image}>
-        <Image src={img} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-        <div className={`${css.instagram_image_filter} ${insta && css.instagram_image_filter_hover_state}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}></div>
-        <div className={`${css.video_button_wrapper} ${css.instagram_image} ${insta ? css.show : css.hide}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)} >
-            <div className={css.video_button}>
-                <Image
-                    src={instaIcon}
-                    className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`}
-                    alt=""
-                />
+    return (
+        <div className={css.instagram_showcase_grid_item_image}>
+            <Image src={img} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
+            <div className={`${css.instagram_image_filter} ${insta && css.instagram_image_filter_hover_state}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}></div>
+            <div className={`${css.video_button_wrapper} ${css.instagram_image} ${insta ? css.show : css.hide}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}>
+                <div className={css.video_button}>
+                    <Image src={instaIcon} className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`} alt="" />
+                </div>
             </div>
         </div>
-    </div>
+    )
 }
 
 function About() {
-
     let [insta, setInsta] = useState(false)
     let toggleInsta = () => setInsta(!insta)
 
@@ -41,6 +38,20 @@ function About() {
         <>
             <Head>
                 <title>About - RakaZone</title>
+                <meta name="description" content="About RakaZone" />
+                <meta name="keywords" content="rakazone about, About, raka, rakazone, rakazonegaming, cool, rakazone cool" />
+                <meta name="robots" content="all" />
+                <meta name="google" content="notranslate" />
+                <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+                <meta property="og:title" content={"About | RakaZone"} />
+                <meta
+                    property="og:description"
+                    content="RakaZone About Page"
+                />
+                <meta
+                    property="og:image"
+                    content="https://raka.zone/assets/img/RakaZoneLogo.png"
+                />
             </Head>
             <div className="container-default">
                 <div className={css.about}>
@@ -58,7 +69,9 @@ function About() {
                             <br /> I&#8216;m a Influencer, YouTuber, Vlogger* and a Video Creator.
                         </p>
                         <div className="pd-bottom-high "></div>
-                        <Primary text="Subscribe to My Channel" />
+                        <div>
+                            <Primary text="Subscribe to My Channel" />
+                        </div>
                         <div className="pd-bottom-high" />
                         <div className={`${css.about_streamer_achievement} iso-layout-grid `}>
                             <div className={css.card}>

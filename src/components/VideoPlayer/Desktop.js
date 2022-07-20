@@ -24,6 +24,7 @@ export function VideoPlayerDesktop(props) {
     const [showVolume, setShowVolume] = useState(false)
     const [fullscreen, setFullscreen] = useState(false)
     const [playingAd, setPlayingAd] = useState(false)
+    const [adShown, setAdShown] = useState(false)
     const [theaterMode, setTheaterMode] = useState(false)
     const [showEndScreen, setShowEndScreen] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
@@ -255,6 +256,16 @@ export function VideoPlayerDesktop(props) {
             const hls = new Hls(defaultOptions)
             hls.loadSource(src)
             hls.attachMedia(video)
+            hls.once(Hls.Events.LEVEL_LOADED, (event, data) => {
+                setLoading(false)
+                var level_duration = data.details.totalduration
+                setDuration({ ...duration, totalDuration: formatDuration(level_duration), currentDuration: formatDuration(video.currentTime) })
+            })
+            hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                setLoading(false)
+                setLevels(data.levels)
+                hls.currentLevel = quality === "auto" ? -1 : quality
+            })
             return hls
         }
 
@@ -273,7 +284,7 @@ export function VideoPlayerDesktop(props) {
             video.setAttribute("x5-video-player-fullscreen", "false")
             video.setAttribute("x5-video-orientation", "portraint")
 
-            if (adSrc) {
+            if (adSrc && !adShown) {
                 setPlayingAd(true)
                 video.src = adSrc
             } else {
@@ -281,7 +292,7 @@ export function VideoPlayerDesktop(props) {
             }
         } else if (Hls.isSupported()) {
             // This will run in all other modern browsers
-            if (adSrc) {
+            if (adSrc && !adShown) {
                 setPlayingAd(true)
                 hls.loadSource(adSrc)
             } else {
@@ -295,6 +306,7 @@ export function VideoPlayerDesktop(props) {
         video.addEventListener("ended", () => {
             if (video.src === adSrc || hls?.levels[0]?.url[0]?.includes("Ad")) {
                 setPlayingAd(false)
+                setAdShown(true)
                 if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
                     video.src = src
                 } else {

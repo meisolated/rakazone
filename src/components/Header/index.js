@@ -213,9 +213,11 @@ export default function Header() {
       <div className={css.container}>
         <div className="container-default">
           <div className={css.header_wrapper}>
-            <div className={css.left}>
-              <Image src="https://raka.zone/assets/img/logo.png" className={css.logoimg} alt="a" width={164} height={60} />
-            </div>
+            <Link href="/">
+              <div className={css.left}>
+                <Image src="https://raka.zone/assets/img/logo.png" className={css.logoimg} alt="a" width={164} height={60} />
+              </div>
+            </Link>
             <div className={css.right}>
               <nav className={css.nav_menu}>
                 <ul className={css.header_navigation}>

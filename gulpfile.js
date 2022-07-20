@@ -18,5 +18,5 @@ const headerContent = `/*!
  * Time: ${new Date().toLocaleTimeString()}
  * */\n\n`
 
-gulp.src("./src/").pipe(header(headerContent)).pipe(gulp.dest("./dist/"))
+gulp.src("./src/*").pipe(header(headerContent)).pipe(gulp.dest("./dist/"))
 console.log(headerContent)

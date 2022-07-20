@@ -2,8 +2,16 @@ import Image from "next/image"
 import css from "./401.module.css"
 import img404 from "../../assets/svg/src/401.svg"
 import { Primary } from "../../components/Buttons"
-function Page404() {
-    return (
+import Head from "next/head.js"
+function Page401() {
+    return (<>
+        <Head>
+            <title>401 Page Not Found</title>
+            <meta name="robots" content="noindex,nofollow" />
+            <meta name="googlebot" content="noindex,nofollow" />
+            <meta name="google" content="notranslate" />
+            <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+        </Head>
         <section className={`${css.utility_page_wrap} ${css.unauthorized}`}>
             <div className={`${css.utility_page_content_401}`}>
                 <div className={css.unauthorized_wrapper}>
@@ -18,7 +26,8 @@ function Page404() {
                 </div>
             </div>
         </section>
+    </>
     )
 }
 
-export default Page404
+export default Page401

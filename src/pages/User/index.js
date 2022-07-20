@@ -15,7 +15,15 @@ export default function Profile() {
     return (
         <>
             <Head>
-                <title>RakaZone | Profile</title>
+                <title>User Profile | RakaZone</title>
+                <meta name="description" content="Profile" />
+                <meta name="keywords" content="profile, raka, rakazone, rakazonegaming" />
+                <meta name="robots" content="noindex,nofollow" />
+                <meta name="googlebot" content="noindex,nofollow" />
+                <meta name="google" content="notranslate" />
+                <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+
+
             </Head>
             <div className={"container-default"}>
                 <div className={css.profile_wrapper_grid}>

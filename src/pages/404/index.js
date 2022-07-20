@@ -2,8 +2,16 @@ import Image from "next/image"
 import css from "./404.module.css"
 import img404 from "../../assets/svg/src/404.svg"
 import { Primary } from "../../components/Buttons"
+import Head from "next/head.js"
 function Page404() {
-    return (
+    return (<>
+        <Head>
+            <title>404 Page Not Found</title>
+            <meta name="robots" content="noindex,nofollow" />
+            <meta name="googlebot" content="noindex,nofollow" />
+            <meta name="google" content="notranslate" />
+            <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+        </Head>
         <section className={`${css.utility_page_wrap} ${css.not_found}`}>
             <div className={`${css.utility_page_content_404}`}>
                 <div className={css.not_found_wrapper}>
@@ -18,6 +26,7 @@ function Page404() {
                 </div>
             </div>
         </section>
+    </>
     )
 }
 

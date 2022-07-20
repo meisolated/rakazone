@@ -29,8 +29,15 @@
     width: "164px";
 }
 
+
+
 .left {
     padding-left: 0px;
+    transition: all 0.3s ease-in-out;
+}
+
+.left:hover {
+    transform: scale(1.1);
 }
 
 .right {
@@ -150,6 +157,7 @@
 .bottom_navbar_expore_button {
     width: 100%;
 }
+
 /* -------------------------- */
 
 /* CSS ACCORDING TO SCREN SIZES */

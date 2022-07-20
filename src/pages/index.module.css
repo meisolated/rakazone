@@ -630,6 +630,10 @@
     .about_images_wrapper {
         height: 350px;
     }
+
+    .video_featured_duration {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 380px) {

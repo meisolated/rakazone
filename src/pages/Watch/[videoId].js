@@ -55,7 +55,21 @@ export default function Watch(props) {
 
     return (<>
         <Head>
-            <title>{videoData.title}</title>
+            <title>{videoData.title} | RakaZone</title>
+            <meta name="description" content={videoData.title + " | RakaZone"} />
+            <meta name="keywords" content="video, funny, raka, rakazone, rakazonegaming, valorant, gta rp, role play" />
+            <meta name="robots" content="all" />
+            <meta name="google" content="notranslate" />
+            <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+            <meta property="og:title" content={videoData.title + " | RakaZone"} />
+            <meta
+                property="og:description"
+                content={videoData.title}
+            />
+            <meta
+                property="og:image"
+                content={videoData.thumbnails}
+            />
         </Head>
         <div className="container-default">
             <div className={css.player_wrapper}>{isMobile !== null && isMobile ? component.mobile : component.desktop}</div>

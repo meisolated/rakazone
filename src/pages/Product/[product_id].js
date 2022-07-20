@@ -16,6 +16,7 @@ import { FastShipping, SecurePayment, ServiceGuarantee } from "../../assets/svg"
 import fastshipping_img from "../../assets/img/png/fast_shipping.png"
 import securepayment_img from "../../assets/img/png/secure_payment.png"
 import serviceguarantee_img from "../../assets/img/png/service_guarantee.png"
+import Head from "next/head.js"
 const sample_product = {
     id: 1,
     name: "Product 1",
@@ -120,6 +121,33 @@ export default function Product(props) {
 
     return (
         <>
+            <Head>
+                <title>{product.name}</title>
+                <meta name="description" content={product.description} />
+                <meta name="keywords" content={product.name} />
+                <meta name="robots" content="index, follow" />
+                <meta name="language" content="english" />
+                <meta name="rating" content="general" />
+                <meta name="expires" content="never" />
+                <meta name="distribution" content="global" />
+                <meta name="revisit-after" content="1 days" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="theme-color" content="#000000" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+
+                <meta name="google" content="notranslate" />
+                <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+                <meta property="og:title" content={product.name} />
+
+                <meta
+                    property="og:description"
+                    content={product.description}
+                />
+                <meta
+                    property="og:image"
+                    content={merch1}
+                />
+            </Head>
             <HeaderNotification
                 notificationText={"Checkout is currently disabled as we are not accepting any payments from any user and we do not manufacture any of these products nor we have these products in stock."}
             />

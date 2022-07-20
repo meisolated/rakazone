@@ -50,13 +50,26 @@ function Home(props) {
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
     let views = whatToShow.status == "live" ? "watching now" : "views"
     let isLive = whatToShow.status == "live" ? true : false
-    const link = whatToShow.duration > 60 && whatToShow.duration < 600 ? "/Watch/" + whatToShow.videoId : "https://www.youtube.com/watch?v=" + whatToShow.videoId
+    const link = whatToShow.platform == "local" ? "/Watch/" + whatToShow.videoId : "https://www.youtube.com/watch?v=" + whatToShow.videoId
     const [active, setActive] = useState(false)
 
     return (
         <>
             <Head>
-                <title>RakaZone</title>
+                <title>RakaZone | Home</title>
+                <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing" />
+                <meta name="robots" content="all" />
+                <meta name="google" content="notranslate" />
+                <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+                <meta property="og:title" content="RakaZone" />
+                <meta
+                    property="og:description"
+                    content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
+                />
+                <meta
+                    property="og:image"
+                    content="https://raka.zone/assets/img/RakaZoneLogo.png"
+                />
             </Head>
 
             <div className="container-default">
@@ -112,11 +125,11 @@ function Home(props) {
                                 <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
                                 <div className={css.video_featured_about}>
                                     <div className={css.video_featured_duration}>
-                                        <div>{convertToInternationalCurrencySystem(whatToShow.viewCount)}</div>
+                                        <div>{convertToInternationalCurrencySystem(parseInt(whatToShow.viewCount))}</div>
                                         <div>&nbsp;{views}</div>
                                     </div>
                                     <div className={css.video_about_divider}></div>
-                                    <div>{ago}</div>
+                                    <div className={css.video_featured_duration}>{ago}</div>
                                 </div>
                             </div>
                         </div>

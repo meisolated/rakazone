@@ -1,11 +1,21 @@
 import SvgCall from "assets/svg/Call.js"
 import SvgEmailContact from "assets/svg/EmailContact.js"
 import { Primary } from "components/Buttons/index.js"
+import Head from "next/head.js"
 import react from "react"
 import css from "./contact.module.css"
 
 export default function (props) {
-    return (
+    return (<>
+        <Head>
+            <title>Contact Us - RakaZone</title>
+            <meta name="description" content="Contact us for any query or feedback" />
+            <meta name="keywords" content="contact, raka, rakazone, rakazonegaming" />
+            <meta name="robots" content="noindex,nofollow" />
+            <meta name="googlebot" content="noindex,nofollow" />
+            <meta name="google" content="notranslate" />
+            <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+        </Head>
         <div className={"container-default"}>
             <div className={css.main_wrapper}>
                 <div className={css.left_wrapper}>
@@ -37,5 +47,6 @@ export default function (props) {
             </div>
             <div className={"divider"} />
         </div>
+    </>
     )
 }

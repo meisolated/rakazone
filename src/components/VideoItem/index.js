@@ -34,7 +34,7 @@ export const VideoItemRegular = (props) => {
     let publishedAt = videoData["publishedAt"]
     let ago = moment(publishedAt * 1000).fromNow()
     let views = convertToInternationalCurrencySystem(videoData.viewCount)
-    let link = videoData.duration > 60 && videoData.duration < 600 ? "/Watch/" + videoData.videoId : "https://www.youtube.com/watch?v=" + videoData.videoId
+    const link = videoData.platform == "local" ? "/Watch/" + videoData.videoId : "https://www.youtube.com/watch?v=" + videoData.videoId
     return (
         <div className={css.video_item}>
             <div className={css.image_wrapper}>
