@@ -79,7 +79,7 @@ function About() {
                                     <Image src={youtube_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>470 K</div>
+                                    <div className={css.about_streamer_achievement_count}>476 K</div>
                                     <div className={css.about_streamer_achievement_text}>YouTube subscribers</div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ function About() {
                                     <Image src={facebook_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>470 K</div>
+                                    <div className={css.about_streamer_achievement_count}>14 K</div>
                                     <div className={css.about_streamer_achievement_text}>Facebook followers</div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@ function About() {
                                     <Image src={twitter_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>470 K</div>
+                                    <div className={css.about_streamer_achievement_count}>70.1 K</div>
                                     <div className={css.about_streamer_achievement_text}>Twitter followers</div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@ function About() {
                                     <Image src={instagram_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>470 K</div>
+                                    <div className={css.about_streamer_achievement_count}>111 K</div>
                                     <div className={css.about_streamer_achievement_text}>Instagram followers</div>
                                 </div>
                             </div>

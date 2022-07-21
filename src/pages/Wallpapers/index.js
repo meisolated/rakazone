@@ -14,7 +14,7 @@ export default function () {
             <meta name="robots" content="all" />
             <meta name="google" content="notranslate" />
             <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
-            <meta property="og:title" content={videoData.title + " | RakaZone"} />
+            <meta property="og:title" content={"Wallpapers | Raka"} />
             <meta
                 property="og:description"
                 content="Topo Wallpaper with RakaZone Logo on it"

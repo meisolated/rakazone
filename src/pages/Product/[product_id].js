@@ -149,7 +149,7 @@ export default function Product(props) {
                 />
             </Head>
             <HeaderNotification
-                notificationText={"Checkout is currently disabled as we are not accepting any payments from any user and we do not manufacture any of these products nor we have these products in stock."}
+                notificationText={"All these products are just for demo purpose"}
             />
             <div className="container-default">
                 <div className={css.product_wrapper}>
