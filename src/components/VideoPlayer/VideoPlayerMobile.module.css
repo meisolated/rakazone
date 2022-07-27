@@ -299,3 +299,19 @@
     right: 0;
     padding: 20px;
 }
+
+.ad_wrapper {
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    padding: 40px 30px 20px 30px;
+    top: 230px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-grey);
+    border-radius: 0px 0px 30px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px
+}

@@ -19,7 +19,6 @@ export default function DonateModal({ onClose, whatToShow, ...props }) {
                 }
             })
         }
-
         setShow(props.show)
         return () => {
         }

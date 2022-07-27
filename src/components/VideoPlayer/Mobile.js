@@ -6,6 +6,9 @@ import testImage from "../../assets/img/png/insta07.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "components/Loading"
 import Hls from "hls.js"
+import AdImage from "../../assets/img/png/ad_img.png"
+import { Primary } from "components/Buttons/index.js"
+
 
 export function VideoPlayerMobile(props) {
     let src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
@@ -400,5 +403,6 @@ export function VideoPlayerMobile(props) {
             </div>
             <video autoPlay onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} />
         </div>
+
     )
 }

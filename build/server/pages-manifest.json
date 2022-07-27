@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/About": "pages/About.js",
   "/404": "pages/404.js",
-  "/Wallpapers": "pages/Wallpapers.js",
-  "/Community": "pages/Community.js",
-  "/Polls": "pages/Polls.js",
-  "/User": "pages/User.js"
+  "/": "pages/index.js"
 }

@@ -42,14 +42,15 @@ function Home(props) {
     featuredSecondary.title = featuredSecondary.title.length > 60 ? featuredSecondary.title.substring(0, 60) + "..." : featuredSecondary.title
     featuredTertiary.title = featuredTertiary.title.length > 60 ? featuredTertiary.title.substring(0, 60) + "..." : featuredTertiary.title
 
-    let whatToShow = featuredPrimary
-    let ago = moment(whatToShow.publishedAt * 1000).fromNow()
+    const whatToShow = featuredPrimary
+    const ago = moment(whatToShow.publishedAt * 1000).fromNow()
 
-    let youtube_thumnail = whatToShow.thumbnail
+    const youtube_thumnail = whatToShow.thumbnail
     whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
-    let views = whatToShow.status == "live" ? "watching now" : "views"
-    let isLive = whatToShow.status == "live" ? true : false
+    const views = whatToShow.status == "live" ? "watching now" : "views"
+    const viewCont = whatToShow.platform === "locol" ? whatToShow.viewCount : convertToInternationalCurrencySystem(whatToShow.viewCount)
+    const isLive = whatToShow.status == "live" ? true : false
     const link = whatToShow.platform == "local" ? "/Watch/" + whatToShow.videoId : "https://www.youtube.com/watch?v=" + whatToShow.videoId
     const [active, setActive] = useState(false)
 
@@ -63,13 +64,14 @@ function Home(props) {
                 <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
                 <meta property="og:title" content="RakaZone" />
                 <meta
-                    property="og:description"
+                    name="description"
                     content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
                 />
                 <meta
-                    property="og:image"
-                    content="https://raka.zone/assets/img/RakaZoneLogo.png"
+                    property="og:description"
+                    content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
                 />
+                <meta property="og:image" content="https://raka.zone/assets/img/RakaZoneLogo.png" />
             </Head>
 
             <div className="container-default">
@@ -125,7 +127,7 @@ function Home(props) {
                                 <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
                                 <div className={css.video_featured_about}>
                                     <div className={css.video_featured_duration}>
-                                        <div>{convertToInternationalCurrencySystem(parseInt(whatToShow.viewCount))}</div>
+                                        <div>{viewCont}</div>
                                         <div>&nbsp;{views}</div>
                                     </div>
                                     <div className={css.video_about_divider}></div>
@@ -202,7 +204,6 @@ function Home(props) {
                             <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
                             <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
                             <div className={css.subscribe_button}>
-
                                 <Primary link={"/yt"} text="Subscribe" />
                             </div>
                             <EmptyVideoItem type="empty" link={"/yt"} />
@@ -264,7 +265,6 @@ export async function getServerSideProps({ req, res }) {
     // console.log(ip)
     let sortedVideos = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
     let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerData`, { withCredentials: true }).then((res) => res.data)
-
 
     if (sortedVideos.message === "success" && streamerData.message === "success") {
         sortedVideos = sortedVideos.data.sortedVideos

@@ -7,6 +7,7 @@ export { default as Bag2 } from "./Bag2";
 export { default as Bag3 } from "./Bag3";
 export { default as BagTick } from "./BagTick";
 export { default as Call } from "./Call";
+export { default as Close } from "./Close";
 export { default as Email } from "./Email";
 export { default as EmailContact } from "./EmailContact";
 export { default as Facebook } from "./Facebook";
