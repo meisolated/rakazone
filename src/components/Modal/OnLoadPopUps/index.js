@@ -1,10 +1,12 @@
-import { fetcher } from "../../../util/functions.js"
-import Loading from "../../Loading"
-import { useState, useEffect } from "react"
-import css from "./OnLoadPopUps.module.css"
-import { Primary } from "../../Buttons"
+import axios from "axios"
+import getConfig from "next/config"
+import { useEffect, useState } from "react"
 import useSWR from "swr"
-
+import { fetcher } from "../../../util/functions.js"
+import { Primary } from "../../Buttons"
+import Loading from "../../Loading"
+import css from "./OnLoadPopUps.module.css"
+const { publicRuntimeConfig } = getConfig()
 
 export default function OnLoadPopUps({ onClose }) {
 
@@ -14,10 +16,10 @@ export default function OnLoadPopUps({ onClose }) {
     const [_data, setData] = useState({})
     const { data, error } = useSWR("api/v1/popups", fetcher)
 
+
     useEffect(() => {
-        if (data) {
-            setData(data.data.popups.filter(pop => pop.status == "true" && pop.type == "onload")[0])
-        }
+        if (data) setData(data.data.popups.filter(pop => pop.status == "true")[0])
+
     }, [data])
 
 
@@ -55,8 +57,10 @@ export default function OnLoadPopUps({ onClose }) {
                                 <div className={css.message_wrapper}>
                                     <div className={css.notification_message} dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </div>
-                                <div className={css.notification_buttons} onClick={() => closeHandler()}>
-                                    <Primary text={button} />
+                                <div className={css.notification_button_wrapper}>
+                                    <div className={css.notification_buttons} onClick={() => closeHandler()}>
+                                        <Primary text={button} />
+                                    </div>
                                 </div>
                             </div>
                         </>

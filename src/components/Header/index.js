@@ -1,33 +1,33 @@
-import css from "./Header.module.css"
-import Image from "next/image"
-import { useState, useEffect } from "react"
-import { OutlineSmall } from "../Buttons"
-import { useRouter } from "next/router"
-import Link from "next/link"
-import shoppingCart from "../../assets/svg/src/bag-2.svg"
-import getConfig from "next/config"
-import {
-  Explore,
-  ExploreClicked,
-  Bag1,
-  Bag1Clicked,
-  Home,
-  HomeClicked,
-  Profile,
-  ProfileClicked,
-  AboutMe,
-  AboutMeClicked,
-  Wallpaper,
-  WallpaperClicked,
-  Community,
-  CommunityClicked,
-  Poll,
-  PollClicked,
-} from "../../assets/svg/navicons"
-import useWindowSize from "../../Hooks/windowResize.hook.js"
-import windowScroll from "../../Hooks/windowScroll.hook.js"
 import axios from "axios"
 import CartModal from "components/Modal/cart.modal.js"
+import getConfig from "next/config"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import {
+  AboutMe,
+  AboutMeClicked,
+  Bag1,
+  Bag1Clicked,
+  Community,
+  CommunityClicked,
+  Explore,
+  ExploreClicked,
+  Home,
+  HomeClicked,
+  Poll,
+  PollClicked,
+  Profile,
+  ProfileClicked,
+  Wallpaper,
+  WallpaperClicked
+} from "../../assets/svg/navicons"
+import shoppingCart from "../../assets/svg/src/bag-2.svg"
+import useWindowSize from "../../Hooks/windowResize.hook.js"
+import windowScroll from "../../Hooks/windowScroll.hook.js"
+import { OutlineSmall } from "../Buttons"
+import css from "./Header.module.css"
 const { publicRuntimeConfig } = getConfig()
 const tabs = [
   {
@@ -229,7 +229,7 @@ export default function Header() {
 
   return (
     <>
-      <CartModal show={cartModal} />
+      {<CartModal show={cartModal} onClose={() => setCartModal(false)} />}
       <div className={css.container}>
         <div className="container-default">
           <div className={css.header_wrapper}>
@@ -283,7 +283,7 @@ export default function Header() {
                 </ul>
               </nav>
               {windowSize.width < 788 ? (
-                <div className={css.nav_item_wrapper}>
+                <div className={css.nav_item_wrapper} onClick={() => setCartModal(true)}>
                   <Image src={shoppingCart} alt="" />
                 </div>
               ) : (
