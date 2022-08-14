@@ -1,15 +1,14 @@
-import { useRef, useState, useEffect } from "react"
-import desktop_style from "./VideoPlayerDesktop.module.css"
-import mobile_style from "./VideoPlayerMobile.module.css"
-import { toastService } from "../../handler/toast.handler.js"
+import { Primary, PrimarySmall } from "components/Buttons/index.js"
+import Hls from "hls.js"
 import Image from "next/image.js"
+import { useEffect, useRef, useState } from "react"
+import AdImage from "../../assets/img/png/ad_img.png"
 import testImage from "../../assets/img/png/insta07.png"
+import { toastService } from "../../handler/toast.handler.js"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "../Loading"
-import Hls from "hls.js"
-import AdImage from "../../assets/img/png/ad_img.png"
-import { PrimarySmall } from "components/Buttons/index.js"
-import { Primary } from "components/Buttons/index.js"
+import desktop_style from "./VideoPlayerDesktop.module.css"
+import mobile_style from "./VideoPlayerMobile.module.css"
 
 export function VideoPlayerDesktop(props) {
     const src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
@@ -40,6 +39,9 @@ export function VideoPlayerDesktop(props) {
     const [levels, setLevels] = useState([])
 
     // Functions
+    const getVolumeIcon = (percent) => {
+        return percent > 70 ? "volume_up" : percent > 40 ? "volume_down" : percent == 0 ? "volume_off" : "volume_down"
+    }
     const handleTheaterMode = () => {
         setTheaterMode(!theaterMode)
     }
@@ -98,9 +100,12 @@ export function VideoPlayerDesktop(props) {
     const handleMute = () => {
         if (videoController.current.muted) {
             videoController.current.muted = false
-            setVolume({ volumeLevel: volume.lastVolume * 100, volume_icon: "volume_down" })
+            const lastVolume = volume.lastVolume * 100
+            localStorage.setItem("volume", lastVolume)
+            setVolume({ volumeLevel: lastVolume, volume_icon: "volume_down" })
         } else {
             videoController.current.muted = true
+            localStorage.setItem("volume", 0)
             setVolume({ volumeLevel: 0, volume_icon: "volume_off", lastVolume: videoController.current.volume })
         }
     }
@@ -134,8 +139,10 @@ export function VideoPlayerDesktop(props) {
         } else if (percent > 100) {
             percent = 100
         }
-        let volume_icon = percent > 70 ? "volume_up" : percent > 40 ? "volume_down" : percent == 0 ? "volume_off" : "volume_down"
-        videoController.current.volume = percent / 100
+        let volume_icon = getVolumeIcon(percent)
+        const volumeLevel = percent / 100
+        videoController.current.volume = volumeLevel
+        localStorage.setItem("volume", volumeLevel)
         setVolume({ volumeLevel: percent, volume_icon: volume_icon })
     }
 
@@ -153,6 +160,13 @@ export function VideoPlayerDesktop(props) {
     }
 
     useEffect(() => {
+        let volume = localStorage.getItem("volume")
+        if (volume) {
+            volume = volume * 100
+            let volume_icon = getVolumeIcon(volume * 100)
+            setVolume({ volumeLevel: volume, volume_icon, lastVolume: videoController.current.volume })
+            videoController.current.volume = volume / 100
+        }
         // Event Listeners
         videoController.current.addEventListener("play", () => {
             setIsPlaying(true)
@@ -192,18 +206,6 @@ export function VideoPlayerDesktop(props) {
         volumeController.current.addEventListener("click", (e) => {
             handleVolumeSlider(e)
         })
-        // timeline Controller
-        timelineController.current.addEventListener("mousedown", (e) => {
-            if (playingAd) return
-            document.addEventListener("mousemove", handleTimelineSlider)
-            document.addEventListener("mouseup", (e) => {
-                return handleTimeline()
-            })
-        })
-        timelineController.current.addEventListener("click", (e) => {
-            if (playingAd) return
-            handleTimelineSlider(e)
-        })
 
         // videoController.current.addEventListener("ended", () => {
         //     setIsPlaying(false)
@@ -234,13 +236,46 @@ export function VideoPlayerDesktop(props) {
                 videoController.current.currentTime = (0 / 100) * videoController.current.duration
             } else if (e.key == "m") {
                 handleMute()
+            } else if (e.key == "ArrowLeft") {
+                if (playingAd) return
+                videoController.current.currentTime = videoController.current.currentTime - 5
+            } else if (e.key == "ArrowRight") {
+                if (playingAd) return
+                videoController.current.currentTime = videoController.current.currentTime + 5
+            } else if (e.key == "ArrowUp") {
+                if (!videoController.current.muted) {
+                    if (videoController.current.volume < 1) {
+                        let volume = videoController.current.volume + 0.1
+                        videoController.current.volume = volume
+                        let volume_icon = getVolumeIcon(volume * 100)
+                        setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
+                    }
+                }
+            } else if (e.key == "ArrowDown") {
+                if (!videoController.current.muted) {
+                    if (videoController.current.volume > 0) {
+                        let volume = videoController.current.volume - 0.1
+                        videoController.current.volume = volume
+                        let volume_icon = getVolumeIcon(volume * 100)
+                        setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
+                    }
+                }
             }
         }
+
+        // timeline Controller
+        timelineController.current.addEventListener("mousedown", (e) => {
+            document.addEventListener("mousemove", handleTimelineSlider)
+            document.addEventListener("mouseup", (e) => {
+                return handleTimeline()
+            })
+        })
+        timelineController.current.addEventListener("click", (e) => {
+            handleTimelineSlider(e)
+        })
     }, [videoController.current])
 
     useEffect(() => {
-        // --------------------------------------------------
-
         const defaultOptions = {
             startLevel: -1,
             licenseXhrSetup: function (xhr, url) {
@@ -276,6 +311,7 @@ export function VideoPlayerDesktop(props) {
         const video = videoController.current
         video.removeAttribute("controls")
         video.autoPlay = true
+        // video.muted = true
         setLoading(true)
         if (!video) return
         if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
@@ -382,17 +418,27 @@ export function VideoPlayerDesktop(props) {
                         })}
                 </div>
                 <div className={desktop_style.center_on_screen}>{loading && <Loading w={"70px"} h={"70px"} />}</div>
-                <div className={`${desktop_style.controls_wrapper} ${playingAd && desktop_style.hide_controls} ${isPlaying ? [] : desktop_style.show_controls}`}>
+                <div className={`${desktop_style.controls_wrapper} ${isPlaying ? [] : desktop_style.show_controls}`}>
                     <div className={desktop_style.controls}>
                         <div className={`${desktop_style.timeline_wrap}`}>
                             <div className={desktop_style.timeline_panel}>
-                                <div ref={timelineController} className={desktop_style.timeline_slider}>
-                                    <div className={desktop_style.timeline_slider_track}>
-                                        <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
-                                            <div className={desktop_style.timeline_slider_handle}></div>
+                                {true ? (
+                                    <div ref={timelineController} className={desktop_style.timeline_slider}>
+                                        <div className={desktop_style.timeline_slider_track}>
+                                            <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
+                                                <div className={desktop_style.timeline_slider_handle}></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                ) : (
+                                    <div className={desktop_style.timeline_slider}>
+                                        <div className={desktop_style.timeline_slider_track}>
+                                            <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%", background: "#fc0" }}>
+                                                <div className={desktop_style.timeline_slider_handle}></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -457,13 +503,15 @@ export function VideoPlayerDesktop(props) {
                 <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
                 {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
             </div>
-            {playingAd && <div className={`${desktop_style.ad_wrapper}`}>
-                <Image src={AdImage} width={"100px"} height={"100px"} />
-                <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
-                <div className={desktop_style.ad_btn_wrapper}>
-                    <Primary text={"BUY NOW"} />
+            {playingAd && (
+                <div className={`${desktop_style.ad_wrapper}`}>
+                    <Image src={AdImage} width={"100px"} height={"100px"} />
+                    <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
+                    <div className={desktop_style.ad_btn_wrapper}>
+                        <Primary text={"BUY NOW"} />
+                    </div>
                 </div>
-            </div>}
+            )}
         </div>
     )
 }

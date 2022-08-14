@@ -272,7 +272,7 @@
     top: 50%;
     right: 0;
     margin-top: -1px;
-    background: #fff;
+    background: rgba(255, 255, 255, .2);
 }
 
 .timeline_wrap .timeline_panel .timeline_slider_progress {
@@ -289,7 +289,7 @@
     position: absolute;
     top: -5px;
     right: 0;
-    background: white;
+    background: rgba(255, 255, 255, 1);
 }
 
 

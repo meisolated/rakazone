@@ -14,7 +14,7 @@ export default function OnLoadPopUps({ onClose }) {
     const [show, setShow] = useState(true)
     const [visible, setVisible] = useState(true)
     const [_data, setData] = useState({})
-    const { data, error } = useSWR("api/v1/popups", fetcher)
+    const { data, error } = useSWR(publicRuntimeConfig.baseUrl + "api/v1/popups", fetcher)
 
 
     useEffect(() => {
