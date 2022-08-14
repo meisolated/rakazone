@@ -1,5 +1,6 @@
 import { Primary, PrimarySmall } from "components/Buttons/index.js"
 import Hls from "hls.js"
+import getConfig from "next/config.js"
 import Image from "next/image.js"
 import { useEffect, useRef, useState } from "react"
 import AdImage from "../../assets/img/png/ad_img.png"
@@ -9,10 +10,11 @@ import { formatDuration } from "../../util/functions.js"
 import Loading from "../Loading"
 import desktop_style from "./VideoPlayerDesktop.module.css"
 import mobile_style from "./VideoPlayerMobile.module.css"
+const { publicRuntimeConfig } = getConfig()
 
 export function VideoPlayerDesktop(props) {
-    const src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
-    const adSrc = `https://keviv.xyz/api/downloads/SampleAd/playlist.m3u8`
+    const src = publicRuntimeConfig.baseUrl + `api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
+    const adSrc = publicRuntimeConfig.baseUrl + `api/downloads/SampleAd/playlist.m3u8`
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     // Controller for the video
@@ -171,7 +173,6 @@ export function VideoPlayerDesktop(props) {
         videoController.current.addEventListener("play", () => {
             setIsPlaying(true)
         })
-
         videoController.current.addEventListener("durationchange", () => {
             if (playingAd) return
             setDuration({ currentDuration: formatDuration(videoController.current.currentTime), totalDuration: formatDuration(videoController.current.duration), percentage: 0 })
@@ -253,26 +254,15 @@ export function VideoPlayerDesktop(props) {
                 }
             } else if (e.key == "ArrowDown") {
                 if (!videoController.current.muted) {
-                    if (videoController.current.volume > 0) {
-                        let volume = videoController.current.volume - 0.1
-                        videoController.current.volume = volume
-                        let volume_icon = getVolumeIcon(volume * 100)
-                        setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
-                    }
+                    let volume = videoController.current.volume - 0.1 < 0 ? 0 : videoController.current.volume - 0.1
+                    videoController.current.volume = volume
+                    let volume_icon = getVolumeIcon(volume * 100)
+                    setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
                 }
             }
         }
 
-        // timeline Controller
-        timelineController.current.addEventListener("mousedown", (e) => {
-            document.addEventListener("mousemove", handleTimelineSlider)
-            document.addEventListener("mouseup", (e) => {
-                return handleTimeline()
-            })
-        })
-        timelineController.current.addEventListener("click", (e) => {
-            handleTimelineSlider(e)
-        })
+
     }, [videoController.current])
 
     useEffect(() => {
@@ -352,6 +342,17 @@ export function VideoPlayerDesktop(props) {
                     hls.destroy()
                     hls = rebuild(video, src)
                 }
+                // initialize the timeline controller
+                // timeline Controller
+                timelineController.current.addEventListener("mousedown", (e) => {
+                    document.addEventListener("mousemove", handleTimelineSlider)
+                    document.addEventListener("mouseup", (e) => {
+                        return handleTimeline()
+                    })
+                })
+                timelineController.current.addEventListener("click", (e) => {
+                    handleTimelineSlider(e)
+                })
             }
         })
 
@@ -425,7 +426,7 @@ export function VideoPlayerDesktop(props) {
                                 {true ? (
                                     <div ref={timelineController} className={desktop_style.timeline_slider}>
                                         <div className={desktop_style.timeline_slider_track}>
-                                            <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
+                                            <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%", background: playingAd ? "#fc0" : "red" }}>
                                                 <div className={desktop_style.timeline_slider_handle}></div>
                                             </div>
                                         </div>
