@@ -191,7 +191,7 @@ export default function Header() {
 
   useEffect(() => {
     axios
-      .get("/api/v1/userData")
+      .get("/api/v1/userdata")
       .then((response) => {
         let user = response.data.data.user
         setUserData({ email: user.email, name: user.name, profile_pic: user.profile_pic })

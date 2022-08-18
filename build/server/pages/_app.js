@@ -1366,7 +1366,7 @@ function Header() {
         setExploreClicked(newExploreClicked);
     };
     (0,external_react_.useEffect)(()=>{
-        external_axios_default().get("/api/v1/userData").then((response)=>{
+        external_axios_default().get("/api/v1/userdata").then((response)=>{
             let user = response.data.data.user;
             setUserData({
                 email: user.email,

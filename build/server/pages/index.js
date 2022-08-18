@@ -918,7 +918,7 @@ async function getServerSideProps({ req , res: res1  }) {
         withCredentials: true
     }).then((res)=>res.data
     );
-    let streamerData = await external_axios_default().get(`${publicRuntimeConfig.apiUrl}streamerData`, {
+    let streamerData = await external_axios_default().get(`${publicRuntimeConfig.apiUrl}streamerdata`, {
         withCredentials: true
     }).then((res)=>res.data
     );
