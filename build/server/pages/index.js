@@ -633,7 +633,7 @@ function Home(props) {
                             }),
                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                                 className: (index_module_default()).latest_videos_right,
-                                children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
                                     href: "/yt",
                                     className: (index_module_default()).latest_videos_arrow_link,
                                     children: /*#__PURE__*/ jsx_runtime_.jsx("div", {

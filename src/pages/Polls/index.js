@@ -1,6 +1,6 @@
 import Head from "next/head.js"
 
-export default function () {
+export default function Polls() {
 
     return <>
         <Head>

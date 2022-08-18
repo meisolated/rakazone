@@ -163,7 +163,6 @@ export default function Header() {
   let [subNavbar, setSubNavbar] = useState(false)
 
   const OnNavClicked = (tab) => {
-    console.log(tab)
     if (!clicked[tab]) return
     let newClicked = { ...clicked }
     for (let key in newClicked) {

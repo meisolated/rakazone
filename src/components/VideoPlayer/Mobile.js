@@ -1,13 +1,13 @@
-import { useRef, useState, useEffect } from "react"
-import mobile_style from "./VideoPlayerMobile.module.css"
-import { toastService } from "../../handler/toast.handler.js"
-import Image from "next/image.js"
-import testImage from "../../assets/img/png/insta07.png"
-import { formatDuration } from "../../util/functions.js"
+import { Primary } from "components/Buttons/index.js"
 import Loading from "components/Loading"
 import Hls from "hls.js"
+import Image from "next/image.js"
+import { useEffect, useRef, useState } from "react"
 import AdImage from "../../assets/img/png/ad_img.png"
-import { Primary } from "components/Buttons/index.js"
+import testImage from "../../assets/img/png/insta07.png"
+import { toastService } from "../../handler/toast.handler.js"
+import { formatDuration } from "../../util/functions.js"
+import mobile_style from "./VideoPlayerMobile.module.css"
 
 
 export function VideoPlayerMobile(props) {

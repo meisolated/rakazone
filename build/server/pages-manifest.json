@@ -15,8 +15,8 @@
   "/api/v1/userdata": "pages/api/v1/userdata.js",
   "/api/v1/watchhistory": "pages/api/v1/watchhistory.js",
   "/api/v1/watchlog": "pages/api/v1/watchlog.js",
-  "/_document": "pages/_document.js",
-  "/Watch/[videoId]": "pages/Watch/[videoId].js",
   "/[redirect]": "pages/[redirect].js",
+  "/Watch/[videoId]": "pages/Watch/[videoId].js",
+  "/_document": "pages/_document.js",
   "/": "pages/index.js"
 }

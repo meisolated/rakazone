@@ -5,7 +5,7 @@ import Head from "next/head.js"
 import react from "react"
 import css from "./contact.module.css"
 
-export default function (props) {
+export default function Contact(props) {
     return (<>
         <Head>
             <title>Contact Us - RakaZone</title>

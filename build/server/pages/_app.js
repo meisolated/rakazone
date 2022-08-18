@@ -1336,7 +1336,6 @@ function Header() {
     });
     let { 0: subNavbar , 1: setSubNavbar  } = (0,external_react_.useState)(false);
     const OnNavClicked = (tab)=>{
-        console.log(tab);
         if (!clicked[tab]) return;
         let newClicked = {
             ...clicked
