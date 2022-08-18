@@ -261,8 +261,7 @@ export async function getServerSideProps({ req, res }) {
  const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
  console.log(ip)
  let sortedVideos = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
- let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerData`, { withCredentials: true }).then((res) => res.data)
-
+ let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { withCredentials: true }).then((res) => res.data)
  if (sortedVideos.message === "success" && streamerData.message === "success") {
   sortedVideos = sortedVideos.data.sortedVideos
   streamerData = streamerData.data.streamerData

@@ -280,6 +280,7 @@
     width: 50%;
     background: red;
     position: relative;
+    animation: width 1s ease-in-out;
 }
 
 .timeline_wrap:hover .timeline_panel .timeline_slider_handle {
