@@ -51,6 +51,8 @@ function Home(props) {
     const link = whatToShow.platform == "local" ? "/Watch/" + whatToShow.videoId : "https://www.youtube.com/watch?v=" + whatToShow.videoId
     const [active, setActive] = useState(false)
 
+
+
     return (
         <>
             <Head>

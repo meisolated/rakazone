@@ -1,5 +1,4 @@
 import { Close } from "assets/svg/index.js"
-import { Primary } from "components/Buttons/index.js"
 import { useEffect, useRef, useState } from "react"
 import css from "./cart.module.css"
 import commonCSS from "./Modal.module.css"
