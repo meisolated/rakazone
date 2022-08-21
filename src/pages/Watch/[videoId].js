@@ -1,5 +1,6 @@
 import axios from "axios"
 import DonateModal from "components/Modal/donate.modal.js"
+import _ from "lodash"
 import moment from "moment"
 import Head from "next/head.js"
 import { useEffect, useState } from "react"
@@ -17,11 +18,12 @@ export default function Watch(props) {
    let videoId = videoData.videoId
    let publishedAt = moment.unix(videoData.publishedAt)
    videoData.title = videoData.title.length > 50 ? videoData.title.substring(0, 50) + "..." : videoData.title
+   videoData.title = _.unescape(videoData.title)
    videoData.ago = moment(publishedAt).fromNow()
    videoData.views = convertToInternationalCurrencySystem(videoData.viewCount)
    videoData.likes = convertToInternationalCurrencySystem(videoData.likeCount)
    videoData.comments = convertToInternationalCurrencySystem(videoData.commentCount)
-   videoData.description = `<strong>🖥️ PC Specs</strong> <br/>
+   videoData.description = _.unescape(`<strong>🖥️ PC Specs</strong> <br/>
     • i9 9900K , 32 GB DDR4 RAM , ASUS ROG Strix  Z390-F, GPU RTX 3080 <br/>
     • Camera - Logitech C-922 <br/>
     • Mic- Samson c03u<br/>
@@ -41,17 +43,18 @@ export default function Watch(props) {
     <br/>
     • Rishab Karanwal<br/>
     • 28<br/>
-    • New Delhi, India<br/>`
+    • New Delhi, India<br/>`)
 
-   const AdVideoSrc = `https://keviv.xyz/api/SampleAd/playlist.m3u8`
+   const AdVideoSrc = `https://keviv.xyz/internal_api/SampleAd/playlist.m3u8`
 
    const [showDonateModal, setShowDonateModal] = useState(false)
    const [isMobile, setIsMobile] = useState(props.isMobile)
    const [loading, setLoading] = useState(true)
+   const [UA, setUA] = useState(props.UA)
 
    let component = {
-      desktop: <VideoPlayerDesktop videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
-      mobile: <VideoPlayerMobile videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
+      desktop: <VideoPlayerDesktop UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
+      mobile: <VideoPlayerMobile UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
    }
 
    return (
@@ -201,6 +204,7 @@ export async function getServerSideProps({ req, res, query }) {
       props: {
          videoData,
          isMobile: isMobile ? true : false,
+         UA,
          isIOS,
       },
    }

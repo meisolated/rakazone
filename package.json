@@ -1,48 +1,48 @@
 {
- "name": "RakaZone",
- "version": "0.1.1",
- "private": true,
- "homepage": "https://raka.zone",
- "author": {
-  "name": "Vivek Mudgal",
-  "email": "isolatedbot@gmail.com",
-  "url": "https://github.com/meisolated"
- },
- "scripts": {
-  "dev": "NODE_ENV=development next dev",
-  "build": "NODE_ENV=production next build",
-  "start": "NODE_ENV=production next start",
-  "export": "NODE_ENV=production next export",
-  "lint": "next lint",
-  "svgs": "svgr -d ./src/assets/svg ./src/assets/svg/src",
-  "install:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn"
- },
- "dependencies": {
-  "axios": "^0.26.1",
-  "classnames": "^2.3.1",
-  "crypto": "^1.0.1",
-  "dotenv": "^16.0.1",
-  "framer-motion": "^6.3.10",
-  "hls.js": "^1.1.5",
-  "lodash": "^4.17.21",
-  "moment": "^2.29.3",
-  "next": "12.1.6",
-  "prop-types": "^15.8.1",
-  "react": "18.0.0",
-  "react-dom": "18.0.0",
-  "rxjs": "^7.5.5",
-  "sharp": "^0.30.4",
-  "swr": "^1.3.0"
- },
- "devDependencies": {
-  "@next/eslint-plugin-next": "^12.2.5",
-  "@svgr/cli": "^6.3.1",
-  "eslint": "7.32.0",
-  "eslint-config-next": "12.2.5",
-  "eslint-plugin-react": "^7.30.0",
-  "gulp": "^4.0.2",
-  "gulp-header": "^2.0.9",
-  "madge": "^5.0.1",
-  "prettier": "^2.7.1"
- }
+    "name": "RakaZone",
+    "version": "0.1.1",
+    "private": true,
+    "homepage": "https://raka.zone",
+    "author": {
+        "name": "Vivek Mudgal",
+        "email": "isolatedbot@gmail.com",
+        "url": "https://github.com/meisolated"
+    },
+    "scripts": {
+        "dev": "NODE_ENV=development next dev",
+        "build": "NODE_ENV=production next build",
+        "start": "NODE_ENV=production next start",
+        "export": "NODE_ENV=production next export",
+        "lint": "next lint",
+        "svgs": "svgr -d ./src/assets/svg ./src/assets/svg/src",
+        "install:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^1.8.5",
+        "axios": "^0.26.1",
+        "classnames": "^2.3.1",
+        "crypto": "^1.0.1",
+        "dotenv": "^16.0.1",
+        "framer-motion": "^6.3.10",
+        "hls.js": "^1.1.5",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.3",
+        "next": "12.1.6",
+        "prop-types": "^15.8.1",
+        "react": "18.0.0",
+        "react-dom": "18.0.0",
+        "react-redux": "^8.0.2",
+        "rxjs": "^7.5.5",
+        "sharp": "^0.30.4",
+        "swr": "^1.3.0"
+    },
+    "devDependencies": {
+        "@svgr/cli": "^6.3.1",
+        "eslint": "^8.22.0",
+        "eslint-config-next": "12.2.5",
+        "gulp": "^4.0.2",
+        "gulp-header": "^2.0.9",
+        "madge": "^5.0.1",
+        "prettier": "^2.7.1"
+    }
 }

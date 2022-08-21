@@ -1,9 +1,11 @@
+import axios from "axios"
 import { Primary, PrimarySmall } from "components/Buttons/index.js"
 import Hls from "hls.js"
 import getConfig from "next/config.js"
 import Image from "next/image.js"
 import { useEffect, useRef, useState } from "react"
 import AdImage from "../../assets/img/png/ad_img.png"
+
 // import testImage from "../../assets/img/png/insta07.png"
 // import { toastService } from "../../handler/toast.handler.js"
 import { formatDuration } from "../../util/functions.js"
@@ -13,8 +15,8 @@ import mobile_style from "./VideoPlayerMobile.module.css"
 const { publicRuntimeConfig } = getConfig()
 
 export function VideoPlayerDesktop(props) {
-    const src = publicRuntimeConfig.baseUrl + `api/output/${props.videoId}/HLS/playlist.m3u8`
-    const adSrc = publicRuntimeConfig.baseUrl + `api/SampleAd/playlist.m3u8`
+    const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+    const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     // Controller for the video
@@ -40,8 +42,6 @@ export function VideoPlayerDesktop(props) {
     const [quality, setQuality] = useState("auto")
     const [levels, setLevels] = useState([])
     let [count, setCount] = useState(0)
-
-
 
     // Functions
     const getVolumeIcon = (percent) => {
@@ -106,7 +106,7 @@ export function VideoPlayerDesktop(props) {
         if (videoController.current.muted) {
             videoController.current.muted = false
             const lastVolume = volume.lastVolume * 100
-            localStorage.setItem("volume", lastVolume)
+            localStorage.setItem("volume", volume.lastVolume)
             setVolume({ volumeLevel: lastVolume, volume_icon: "volume_down" })
         } else {
             videoController.current.muted = true
@@ -229,44 +229,51 @@ export function VideoPlayerDesktop(props) {
 
         // handle key strokes
         document.onkeydown = (e) => {
-            e.preventDefault()
             if (e.key === " ") {
                 e.preventDefault()
                 handlePlayPause()
             } else if (e.key === "f") {
+                e.preventDefault()
                 handleFullScreen()
             } else if (e.key === "p") {
+                e.preventDefault()
                 handlePictureInPicture()
             } else if (e.key == 0) {
+                e.preventDefault()
                 videoController.current.currentTime = (0 / 100) * videoController.current.duration
             } else if (e.key == "m") {
+                e.preventDefault()
                 handleMute()
             } else if (e.key == "ArrowLeft") {
+                e.preventDefault()
                 if (playingAd) return
                 videoController.current.currentTime = videoController.current.currentTime - 5
             } else if (e.key == "ArrowRight") {
+                e.preventDefault()
                 if (playingAd) return
                 videoController.current.currentTime = videoController.current.currentTime + 5
             } else if (e.key == "ArrowUp") {
+                e.preventDefault()
                 if (!videoController.current.muted) {
                     if (videoController.current.volume < 1) {
                         let volume = videoController.current.volume + 0.1
                         videoController.current.volume = volume
                         let volume_icon = getVolumeIcon(volume * 100)
+                        localStorage.setItem("volume", volume)
                         setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
                     }
                 }
             } else if (e.key == "ArrowDown") {
+                e.preventDefault()
                 if (!videoController.current.muted) {
                     let volume = videoController.current.volume - 0.1 < 0 ? 0 : videoController.current.volume - 0.1
                     videoController.current.volume = volume
                     let volume_icon = getVolumeIcon(volume * 100)
+                    localStorage.setItem("volume", volume)
                     setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
                 }
             }
         }
-
-
     }, [videoController.current, playingAd])
 
     useEffect(() => {
@@ -385,17 +392,19 @@ export function VideoPlayerDesktop(props) {
         }
     }, [quality])
 
-
     useEffect(() => {
+        // console.log(props)
         let interval = setInterval(() => {
-            setCount(count + 1)
-            console.log(count)
+            // playing || !muted || !volume || !ts || !ct || !vl || !vi || !platform || !browser
+            const data = { playing: isPlaying, muted: videoController.current.muted, volume: videoController.current.volume * 100, ts: Date.now(), ct: videoController.current.currentTime, vl: videoController.current.duration, platform: "desktop", browser: props.UA, vi: playingAd ? "ad" : props.videoId }
+            axios.post(`/api/v1/logevent`, data)
+            // console.log(data)
         }, 2000)
 
         return () => {
             clearInterval(interval)
         }
-    }, [count])
+    }, [isPlaying, playingAd, videoController, volume, videoController, videoController])
 
     return (
         <div className={desktop_style.main_wrapper}>

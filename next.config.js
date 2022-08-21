@@ -10,8 +10,8 @@ const nextConfig = {
     baseUrl: process.env.NODE_ENV === "development" ? "https://keviv.xyz/" : "https://keviv.xyz/",
     apiUrl:
       process.env.NODE_ENV === "development"
-        ? "https://keviv.xyz/api/v1/" // development api
-        : "https://keviv.xyz/api/v1/", // production api
+        ? "https://keviv.xyz/internal_api/v1/" // development api
+        : "https://keviv.xyz/internal_api/v1/", // production api
     serverUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/" : "https://raka.zone/",
   },
 }

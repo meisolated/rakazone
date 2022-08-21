@@ -7,7 +7,7 @@ export default function userdata(req, res) {
     //     return res.status(401).send({ "statusCode": 401, "error": "Unauthorized", "message": "Authorization Header is not present" })
     // } else {
     axios
-        .get(`${publicRuntimeConfig.apiUrl}userdata`, { headers: { cookie: req.headers.cookie } })
+        .get(`${publicRuntimeConfig.apiUrl}userdata`, { headers: req.headers.cookie && { cookie: req.headers.cookie } })
         .then((response) => {
             res.status(200).send(response.data)
         })

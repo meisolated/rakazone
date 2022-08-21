@@ -5,6 +5,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import _ from "lodash"
 
 //other components
 import { convertToInternationalCurrencySystem } from "../util/functions.js"
@@ -126,7 +127,7 @@ function Home(props) {
                                 <Image className={css.video_featured_channel_image} src={`${props.SERVER_URL}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
                             </div>
                             <div>
-                                <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
+                                <h2 className={css.video_featured_title}>{_.unescape(whatToShow.title)}</h2>
                                 <div className={css.video_featured_about}>
                                     <div className={css.video_featured_duration}>
                                         <div>{viewCont}</div>

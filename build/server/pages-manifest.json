@@ -1,5 +1,11 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js"
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.js",
+  "/Watch/[videoId]": "pages/Watch/[videoId].js",
+  "/api/v1/logevent": "pages/api/v1/logevent.js",
+  "/api/v1/popups": "pages/api/v1/popups.js",
+  "/api/v1/userdata": "pages/api/v1/userdata.js",
+  "/[redirect]": "pages/[redirect].js"
 }

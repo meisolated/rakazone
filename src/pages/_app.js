@@ -1,11 +1,12 @@
 import { motion } from "framer-motion"
 import App from "next/app"
-import Router from "next/router.js"
+import Router from "next/router"
 import { useEffect } from "react"
-import Layout from "../components/Layout/index.js"
+import { Provider } from 'react-redux'
+import Layout from "../components/Layout"
 import { Toast } from "../components/Notification"
+import { store } from "../store/store"
 import "../styles/globals.css"
-
 
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`)
@@ -68,12 +69,14 @@ function MyApp({ Component, pageProps, router, }) {
   if (isAdminRoute) return <> <Component {...pageProps} /></>
   return (
     <>
-      <Layout>
-        <Toast fade={true} />
-        <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
-          <Component {...pageProps} />
-        </motion.div>
-      </Layout>
+      <Provider store={store}>
+        <Layout>
+          <Toast fade={true} />
+          <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
+            <Component {...pageProps} />
+          </motion.div>
+        </Layout>
+      </Provider>
     </>
   )
 }

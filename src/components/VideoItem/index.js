@@ -1,3 +1,4 @@
+import _ from "lodash"
 import moment from "moment"
 import Image from "next/image"
 import Link from "next/link"
@@ -53,7 +54,7 @@ export const VideoItemRegular = (props) => {
             </div>
             <div className={css.video_content}>
                 <div>
-                    <h3 className={css.content_title}>{videoData.title}</h3>
+                    <h3 className={css.content_title}>{_.unescape(videoData.title)}</h3>
                     <div className={css.content_about}>
                         <div className={css.content_duration}>
                             <div className="material-symbols-outlined">visibility</div>
