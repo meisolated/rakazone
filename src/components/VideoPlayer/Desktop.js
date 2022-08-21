@@ -13,8 +13,8 @@ import mobile_style from "./VideoPlayerMobile.module.css"
 const { publicRuntimeConfig } = getConfig()
 
 export function VideoPlayerDesktop(props) {
-    const src = publicRuntimeConfig.baseUrl + `api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
-    const adSrc = publicRuntimeConfig.baseUrl + `api/downloads/SampleAd/playlist.m3u8`
+    const src = publicRuntimeConfig.baseUrl + `api/output/${props.videoId}/HLS/playlist.m3u8`
+    const adSrc = publicRuntimeConfig.baseUrl + `api/SampleAd/playlist.m3u8`
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     // Controller for the video

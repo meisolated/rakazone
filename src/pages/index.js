@@ -30,11 +30,11 @@ const { publicRuntimeConfig } = getConfig()
 // use other youtube thumbnail urls to check a valid url or not
 
 function Home(props) {
-    let streamerData = props.streamerData
-    let featuredPrimary = props.sortedVideos.featuredPrimary
-    let featuredSecondary = props.sortedVideos.featuredSecondary
-    let featuredTertiary = props.sortedVideos.featuredTertiary
-    let latest = props.sortedVideos.latest
+    let streamerData = props.content.streamerData
+    let featuredPrimary = props.content.videos.featuredPrimary
+    let featuredSecondary = props.content.videos.featuredSecondary
+    let featuredTertiary = props.content.videos.featuredTertiary
+    let latest = props.content.videos.latest
 
     featuredPrimary.title = featuredPrimary.title.length > 60 ? featuredPrimary.title.substring(0, 60) + "..." : featuredPrimary.title
     featuredSecondary.title = featuredSecondary.title.length > 60 ? featuredSecondary.title.substring(0, 60) + "..." : featuredSecondary.title
@@ -262,12 +262,13 @@ export async function getServerSideProps({ req, res }) {
     const forwarded = req.headers["x-forwarded-for"]
     const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
     console.log(ip)
-    let sortedVideos = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
-    let streamerData = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { withCredentials: true }).then((res) => res.data)
-    if (sortedVideos.message === "success" && streamerData.message === "success") {
-        sortedVideos = sortedVideos.data.sortedVideos
-        streamerData = streamerData.data.streamerData
-        return { props: { sortedVideos, streamerData, SERVER_URL: publicRuntimeConfig.serverUrl } }
+    let contentRes = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
+    let streamerRes = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { withCredentials: true }).then((res) => res.data)
+
+    if (contentRes.message === "success" && streamerRes.message === "success") {
+        const videos = contentRes.data
+        const streamerData = streamerRes.data.streamerData
+        return { props: { content: { videos, streamerData }, SERVER_URL: publicRuntimeConfig.serverUrl } }
     } else return { props: {} }
 }
 

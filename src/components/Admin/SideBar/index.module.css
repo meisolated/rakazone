@@ -1,0 +1,18 @@
+.sidebar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3rem;
+    height: 100%;
+    background-color: #161819;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.sidebar:hover {
+    width: 15rem;
+}

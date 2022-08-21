@@ -1,22 +1,7 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/401": "pages/401.html",
-  "/404": "pages/404.html",
-  "/About": "pages/About.html",
-  "/Community": "pages/Community.html",
-  "/Contact": "pages/Contact.html",
-  "/Polls": "pages/Polls.html",
-  "/Product/[product_id]": "pages/Product/[product_id].html",
-  "/Shop": "pages/Shop.html",
-  "/User": "pages/User.html",
-  "/Wallpapers": "pages/Wallpapers.html",
-  "/api/v1/popups": "pages/api/v1/popups.js",
-  "/api/v1/userdata": "pages/api/v1/userdata.js",
-  "/api/v1/watchhistory": "pages/api/v1/watchhistory.js",
-  "/api/v1/watchlog": "pages/api/v1/watchlog.js",
-  "/[redirect]": "pages/[redirect].js",
-  "/Watch/[videoId]": "pages/Watch/[videoId].js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/Watch/[videoId]": "pages/Watch/[videoId].js",
+  "/404": "pages/404.js"
 }

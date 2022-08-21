@@ -1,10 +1,25 @@
-import Layout from "../components/Layout/index.js"
-import "../styles/globals.css"
 import { motion } from "framer-motion"
-import { Toast } from "../components/Notification"
 import App from "next/app"
+import Router from "next/router.js"
+import { useEffect } from "react"
+import Layout from "../components/Layout/index.js"
+import { Toast } from "../components/Notification"
+import "../styles/globals.css"
+
+
+Router.events.on("routeChangeStart", (url) => {
+  console.log(`Loading: ${url}`)
+})
+Router.events.on("routeChangeComplete", () => {
+  console.log("routeChangeComplete")
+})
+Router.events.on("routeChangeError", () => {
+  console.log("routeChangeError")
+})
+
 
 function MyApp({ Component, pageProps, router, }) {
+  const isAdminRoute = router.pathname.includes("/Admin")
   const fade = {
     variants: {
       initial: {
@@ -28,6 +43,29 @@ function MyApp({ Component, pageProps, router, }) {
     },
   }
 
+  useEffect(() => {
+    if (document) {
+      let comment = document.createComment(`
+
+      =========================================================
+      * * RakaZone v1.1.0 made by Vivek Mudgal AKA meIsolated * *
+      =========================================================
+      
+      * Home Page: https://www.raka.zone
+      * Copyright © 2022 meIsolated (https://www.instagram.com/meisolated) All rights reserved.
+      * All rights reserved. This work is protected by copyright law and international treaties.
+      
+      * Coded by meIsolated
+      
+      =========================================================
+      
+      `)
+      document.insertBefore(comment, document.documentElement)
+
+    }
+  })
+
+  if (isAdminRoute) return <> <Component {...pageProps} /></>
   return (
     <>
       <Layout>

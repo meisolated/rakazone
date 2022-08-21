@@ -47,3 +47,19 @@ export function formatDuration(time) {
     }
 
 }
+
+
+export const thumbnails = (id) => {
+    const maxres = `http://i.ytimg.com/vi/${id}/maxresdefault.jpg`
+    const mqdef = `https://img.youtube.com/vi/${id}/mqdefault.jpg`
+    const sd = `https://img.youtube.com/vi/${id}/sddefault.jpg`
+    const hq = `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+    const def = `https://img.youtube.com/vi/${id}/default.jpg`
+    const zero = `https://img.youtube.com/vi/${id}/0.jpg`
+    const one = `https://img.youtube.com/vi/${id}/1.jpg`
+    const two = `https://img.youtube.com/vi/${id}/2.jpg`
+    const three = `https://img.youtube.com/vi/${id}/3.jpg`
+    const four = `https://img.youtube.com/vi/${id}/4.jpg`
+    // return { maxres, mqdef, sd, hq, def, zero, one, two, three, four }
+    return hq
+}

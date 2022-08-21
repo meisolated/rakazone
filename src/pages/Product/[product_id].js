@@ -1,7 +1,7 @@
 import merch1 from "../../assets/img/png/merch1.png"
 import merch2 from "../../assets/img/png/merch2.png"
 import merch3 from "../../assets/img/png/merch3.png"
-import merch4 from "../../assets/img/png/merch3.png"
+import merch4 from "../../assets/img/png/merch4.png"
 import { Add, Minus, Routing } from "../../assets/svg"
 import { useRouter } from "next/router"
 import { HeaderNotification } from "../../components/Notification"

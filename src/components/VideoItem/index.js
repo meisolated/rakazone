@@ -1,10 +1,10 @@
-import css from "./VideoItem.module.css"
-import Image from "next/image"
 import moment from "moment"
-import { convertToInternationalCurrencySystem } from "../../util/functions.js"
+import Image from "next/image"
 import Link from "next/link"
-import playicon from "../../assets/svg/src/playicon.svg"
 import { useState } from "react"
+import playicon from "../../assets/svg/src/playicon.svg"
+import { convertToInternationalCurrencySystem, thumbnails } from "../../util/functions.js"
+import css from "./VideoItem.module.css"
 
 export function EmptyVideoItem(props) {
     const [active, setActive] = useState(false)
@@ -35,10 +35,11 @@ export const VideoItemRegular = (props) => {
     let ago = moment(publishedAt * 1000).fromNow()
     let views = convertToInternationalCurrencySystem(videoData.viewCount)
     const link = videoData.platform == "local" ? "/Watch/" + videoData.videoId : "https://www.youtube.com/watch?v=" + videoData.videoId
+    const thumbnail = videoData.thumbnail.includes("img/thumbnail_not_found.png") ? thumbnails(videoData.videoId) : videoData.thumbnail
     return (
         <div className={css.video_item}>
             <div className={css.image_wrapper}>
-                <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={videoData.thumbnail} width={540} height={300} alt="" />
+                <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={thumbnail} width={540} height={300} alt="" />
                 <div className={`${css.video_filter}`}></div>
                 <Link href={link} passHref>
                     <div className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>

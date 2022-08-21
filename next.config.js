@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   disableStaticImages: true,
   images: {
-    domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "localhost"],
+    domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "localhost", "img.youtube.com"],
   },
   distDir: "build",
   publicRuntimeConfig: {

@@ -1,6 +1,7 @@
 import { Primary } from "components/Buttons/index.js"
 import Loading from "components/Loading"
 import Hls from "hls.js"
+import getConfig from "next/config.js"
 import Image from "next/image.js"
 import { useEffect, useRef, useState } from "react"
 import AdImage from "../../assets/img/png/ad_img.png"
@@ -8,11 +9,10 @@ import testImage from "../../assets/img/png/insta07.png"
 import { toastService } from "../../handler/toast.handler.js"
 import { formatDuration } from "../../util/functions.js"
 import mobile_style from "./VideoPlayerMobile.module.css"
-
-
+const { publicRuntimeConfig } = getConfig()
 export function VideoPlayerMobile(props) {
-    let src = `https://keviv.xyz/api/downloads/output/${props.videoId}/HLS/playlist.m3u8`
-    const adSrc = props.adSrc
+    const src = publicRuntimeConfig.baseUrl + `api/output/${props.videoId}/HLS/playlist.m3u8`
+    const adSrc = publicRuntimeConfig.baseUrl + `api/SampleAd/playlist.m3u8`
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     const videoPlayer = useRef(null)
