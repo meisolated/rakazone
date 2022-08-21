@@ -122,7 +122,7 @@ export default function Product(props) {
     return (
         <>
             <Head>
-                <title>{product.name}</title>
+                <title>{product.name} | RakaZone</title>
                 <meta name="description" content={product.description} />
                 <meta name="keywords" content={product.name} />
                 <meta name="robots" content="index, follow" />

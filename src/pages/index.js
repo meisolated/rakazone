@@ -48,15 +48,18 @@ function Home(props) {
     const views = whatToShow.status == "live" ? "watching now" : "views"
     const viewCont = whatToShow.platform === "loco" ? whatToShow.viewCount : convertToInternationalCurrencySystem(parseInt(whatToShow.viewCount))
     const isLive = whatToShow.status == "live" ? true : false
-    const link = whatToShow.platform == "local" ? "/Watch/" + whatToShow.videoId : "https://www.youtube.com/watch?v=" + whatToShow.videoId
+    const link =
+        whatToShow.platform == "local"
+            ? "/Watch/" + whatToShow.videoId
+            : whatToShow.platform == "loco"
+                ? "https://loco.gg/streamers/RakaZone_Gaming"
+                : "https://www.youtube.com/watch?v=" + whatToShow.videoId
     const [active, setActive] = useState(false)
-
-
 
     return (
         <>
             <Head>
-                <title>RakaZone | Home</title>
+                <title>Home | RakaZone</title>
                 <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing" />
                 <meta name="robots" content="all" />
                 <meta name="google" content="notranslate" />
@@ -223,30 +226,16 @@ function Home(props) {
                             </div>
                             <div className={css.merch_gallery}>
                                 <div className={`${css.merch_gallery_top_grid} iso-layout-grid`}>
-                                    <div>
-                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                    </div>
-                                    <div>
-                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                    </div>
-                                    <div>
-                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    </div>
+                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
                                 </div>
 
                                 <div className={`${css.merch_gallery_bottom_grid} iso-layout-grid`}>
-                                    <div>
-                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    </div>
-                                    <div>
-                                        <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
-                                    </div>
-                                    <div>
-                                        <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
-                                    </div>
-                                    <div>
-                                        <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
-                                    </div>
+                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
+                                    <Image src={merch1} width={300} height={300} alt="merch1" className={css.merch_gallery_item} />
+                                    <Image src={merch2} width={300} height={300} alt="merch2" className={css.merch_gallery_item} />
+                                    <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
                                 </div>
                             </div>
                             <div className={css.buy_merch_notice}>All these products are just for demonstration and does not represent an actual product as of now.</div>
@@ -262,8 +251,8 @@ export async function getServerSideProps({ req, res }) {
     const forwarded = req.headers["x-forwarded-for"]
     const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
     console.log(ip)
-    let contentRes = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true }).then((res) => res.data)
-    let streamerRes = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { withCredentials: true }).then((res) => res.data)
+    let contentRes = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { headers: req.headers.cookie && { cookie: req.headers.cookie } }).then((res) => res.data)
+    let streamerRes = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { headers: req.headers.cookie && { cookie: req.headers.cookie } }).then((res) => res.data)
 
     if (contentRes.message === "success" && streamerRes.message === "success") {
         const videos = contentRes.data

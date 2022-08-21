@@ -8,7 +8,7 @@ import css from "./contact.module.css"
 export default function Contact(props) {
     return (<>
         <Head>
-            <title>Contact Us - RakaZone</title>
+            <title>Contact Us | RakaZone</title>
             <meta name="description" content="Contact us for any query or feedback" />
             <meta name="keywords" content="contact, raka, rakazone, rakazonegaming" />
             <meta name="robots" content="noindex,nofollow" />

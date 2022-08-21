@@ -1,7 +1,7 @@
-import { useEffect } from "react"
 import axios from "axios"
-import { useRouter } from "next/router"
 import getConfig from "next/config"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
 const { publicRuntimeConfig } = getConfig()
 function Redirect(props) {
     const router = useRouter()
@@ -10,11 +10,10 @@ function Redirect(props) {
     useEffect(() => {
         // setTimeout(() => {
         // (redirect !== "nowhere") ? window.open(redirect) : window.location.href = "/404"
-        router.push(
-            {
-                pathname: redirect,
-                query: { returnUrl: redirect }
-            })
+        router.push({
+            pathname: redirect,
+            query: { returnUrl: redirect },
+        })
         // }, 2000)
     })
 
@@ -32,7 +31,6 @@ export async function getServerSideProps(context) {
     if (data.message === "success") {
         let redirects = data.data.redirects
         if (redirects[context.query.redirect]) {
-
             return {
                 props: { redirectto: redirects[context.query.redirect] },
             }

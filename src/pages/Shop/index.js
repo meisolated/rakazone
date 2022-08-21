@@ -73,7 +73,7 @@ function Shop() {
     return (
         <>
             <Head>
-                <title>Merchandise | RakaZone</title>
+                <title>Shop | RakaZone</title>
                 <meta name="description" content="RakaZone Cool Merchandise" />
                 <meta name="keywords" content="merchandise, merch, raka, rakazone, rakazonegaming, cool, rakazone cool" />
                 <meta name="robots" content="all" />

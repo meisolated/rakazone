@@ -1,19 +1,18 @@
-import Image from "next/image"
-import css from "./about.module.css"
-import { Primary } from "../../components/Buttons"
-import facebook_icon from "../../assets/svg/src/facebook.svg"
-import twitter_icon from "../../assets/svg/src/twitter.svg"
-import instagram_icon from "../../assets/svg/src/instagram.svg"
-import youtube_icon from "../../assets/svg/src/youtube.svg"
-import Insta15 from "../../assets/img/png/insta15.png"
-import instaIcon from "../../assets/svg/src/insta.svg"
-import Insta from "../../assets/img/jpg/insta.jpg"
-import insta1 from "../../assets/img/png/insta07.png"
-import insta2 from "../../assets/img/png/insta02.png"
-import insta3 from "../../assets/img/png/insta15.png"
-import insta4 from "../../assets/img/png/insta06.png"
 import Head from "next/head"
+import Image from "next/image"
 import { useState } from "react"
+import Insta from "../../assets/img/jpg/insta.jpg"
+import insta2 from "../../assets/img/png/insta02.png"
+import insta4 from "../../assets/img/png/insta06.png"
+import insta1 from "../../assets/img/png/insta07.png"
+import { default as Insta15, default as insta3 } from "../../assets/img/png/insta15.png"
+import facebook_icon from "../../assets/svg/src/facebook.svg"
+import instaIcon from "../../assets/svg/src/insta.svg"
+import instagram_icon from "../../assets/svg/src/instagram.svg"
+import twitter_icon from "../../assets/svg/src/twitter.svg"
+import youtube_icon from "../../assets/svg/src/youtube.svg"
+import { Primary } from "../../components/Buttons"
+import css from "./about.module.css"
 
 function InstaImage({ img }) {
     let [insta, setInsta] = useState(false)
@@ -37,7 +36,7 @@ function About() {
     return (
         <>
             <Head>
-                <title>About - RakaZone</title>
+                <title>About | RakaZone</title>
                 <meta name="description" content="About RakaZone" />
                 <meta name="keywords" content="rakazone about, About, raka, rakazone, rakazonegaming, cool, rakazone cool" />
                 <meta name="robots" content="all" />

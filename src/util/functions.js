@@ -48,6 +48,10 @@ export function formatDuration(time) {
 
 }
 
+export function shortTitle(string, length) {
+    console.log(string)
+}
+
 
 export const thumbnails = (id) => {
     const maxres = `http://i.ytimg.com/vi/${id}/maxresdefault.jpg`

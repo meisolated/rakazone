@@ -1,4 +1,4 @@
-import OnLoadPopUps from 'components/Modal/OnLoadPopUps/index.js'
+import OnLoadPopUps from 'components/Modal/OnLoadPopUps'
 import getConfig from 'next/config.js'
 import React from 'react'
 import Footer from '../Footer'

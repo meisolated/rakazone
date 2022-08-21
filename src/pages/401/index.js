@@ -1,12 +1,12 @@
+import Head from "next/head.js"
 import Image from "next/image"
-import css from "./401.module.css"
 import img404 from "../../assets/svg/src/401.svg"
 import { Primary } from "../../components/Buttons"
-import Head from "next/head.js"
+import css from "./401.module.css"
 function Page401() {
     return (<>
         <Head>
-            <title>401 Page Not Found</title>
+            <title>401 | RakaZone</title>
             <meta name="robots" content="noindex,nofollow" />
             <meta name="googlebot" content="noindex,nofollow" />
             <meta name="google" content="notranslate" />

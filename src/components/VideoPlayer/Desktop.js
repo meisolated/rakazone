@@ -39,6 +39,9 @@ export function VideoPlayerDesktop(props) {
     const [settingsShowSpeed, setSettingsShowSpeed] = useState(false)
     const [quality, setQuality] = useState("auto")
     const [levels, setLevels] = useState([])
+    let [count, setCount] = useState(0)
+
+
 
     // Functions
     const getVolumeIcon = (percent) => {
@@ -226,6 +229,7 @@ export function VideoPlayerDesktop(props) {
 
         // handle key strokes
         document.onkeydown = (e) => {
+            e.preventDefault()
             if (e.key === " ") {
                 e.preventDefault()
                 handlePlayPause()
@@ -263,7 +267,7 @@ export function VideoPlayerDesktop(props) {
         }
 
 
-    }, [videoController.current])
+    }, [videoController.current, playingAd])
 
     useEffect(() => {
         const defaultOptions = {
@@ -380,6 +384,18 @@ export function VideoPlayerDesktop(props) {
             hls.destroy()
         }
     }, [quality])
+
+
+    useEffect(() => {
+        let interval = setInterval(() => {
+            setCount(count + 1)
+            console.log(count)
+        }, 2000)
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [count])
 
     return (
         <div className={desktop_style.main_wrapper}>

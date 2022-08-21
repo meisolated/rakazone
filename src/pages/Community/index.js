@@ -3,6 +3,7 @@ import Head from "next/head.js"
 export default function Community() {
     return <>
         <Head>
+            <title>Community | RakaZone</title>
             <meta name="description" content="Community" />
             <meta name="keywords" content="Community, raka, rakazone, rakazonegaming" />
             <meta name="robots" content="noindex,nofollow" />

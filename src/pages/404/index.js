@@ -6,7 +6,7 @@ import Head from "next/head.js"
 function Page404() {
     return (<>
         <Head>
-            <title>404 Page Not Found</title>
+            <title>404 | RakaZone</title>
             <meta name="robots" content="noindex,nofollow" />
             <meta name="googlebot" content="noindex,nofollow" />
             <meta name="google" content="notranslate" />

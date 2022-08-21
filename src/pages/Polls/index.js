@@ -4,6 +4,7 @@ export default function Polls() {
 
     return <>
         <Head>
+            <title>Polls | RakaZone</title>
             <meta name="description" content="Poll" />
             <meta name="keywords" content="Polls, raka, rakazone, rakazonegaming" />
             <meta name="robots" content="noindex,nofollow" />

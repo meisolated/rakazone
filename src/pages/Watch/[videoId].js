@@ -178,12 +178,18 @@ const DesktopVideoDetails = ({ videoData, setShowDonateModal }) => {
    )
 }
 
-export async function getServerSideProps(context) {
-   const UA = context.req.headers["user-agent"]
+export async function getServerSideProps({ req, res, query }) {
+   const UA = req.headers["user-agent"]
    const isMobile = Boolean(UA.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i))
    const isIOS = Boolean(UA.match(/iPhone/i))
-   const { videoId } = context.query
-   let videoData = await axios.get(`${publicRuntimeConfig.apiUrl}videodata?videoId=${videoId}`, { withCredentials: true }).then((res) => res.data)
+   const { videoId } = query
+   let videoData = await axios.get(`${publicRuntimeConfig.apiUrl}videodata?videoId=${videoId}`, { headers: req.headers.cookie && { cookie: req.headers.cookie } }).then((res) => res.data)
+
+   // add this video to watch history 
+   if (req.headers.cookie) {
+      await axios.post(`${publicRuntimeConfig.apiUrl}watchhistory`, { videoId }, { headers: req.headers.cookie && { cookie: req.headers.cookie } })
+   }
+
    if (videoData.status == 404)
       return {
          redirect: {

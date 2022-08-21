@@ -8,7 +8,7 @@ export default function Wallpapers() {
     const downloadables = ["wallpaper_dark_desktop.png", "wallpaper_light_desktop.png", "wallpaper_dark_mobile.png", "wallpaper_light_mobile.png"] //  
     return <>
         <Head>
-            <title>Wallpapers | Raka</title>
+            <title>Wallpapers | RakaZone</title>
             <meta name="description" content="Topo wallpapers with RakaZone Logo on it" />
             <meta name="keywords" content="wallpapers, wallpaper, raka, rakazone, rakazonegaming" />
             <meta name="robots" content="all" />
