@@ -305,7 +305,7 @@ export default function Header() {
         </div>
       </div>
 
-      {windowSize.width < 788 && <div className={css.bottom_navbar_wrapper}>
+      <div className={css.bottom_navbar_wrapper}>
         <div className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show}`}>
           <div className={css.bottom_navbar}>
             {tabs.map((tab, index) => {
@@ -313,7 +313,7 @@ export default function Header() {
               return (
                 <div className={`${css.bottom_navbar_button} ${css.bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
                   {active ? <tab.iconClicked /> : <tab.icon />}
-                  <p>{tab.name}</p>
+                  <a>{tab.name}</a>
                   <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
                     <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                   </div>
@@ -334,7 +334,7 @@ export default function Header() {
                 <div href={tab.path} key={"t-" + index} onClick={() => OnExploreClicked(tab.name)} className={css.bottom_navbar_expore_button}>
                   <div className={`${css.bottom_navbar_button} ${css.sub_bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
                     {active ? <tab.iconClicked /> : <tab.icon />}
-                    <p>{tab.name}</p>
+                    <a>{tab.name}</a>
                     <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
                       <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                     </div>
@@ -344,7 +344,7 @@ export default function Header() {
             })}
           </div>
         </div>
-      </div>}
+      </div>
     </>
   )
 }

@@ -1,3 +1,5 @@
+import axios from "axios"
+import getConfig from "next/config.js"
 import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
@@ -13,6 +15,7 @@ import twitter_icon from "../../assets/svg/src/twitter.svg"
 import youtube_icon from "../../assets/svg/src/youtube.svg"
 import { Primary } from "../../components/Buttons"
 import css from "./about.module.css"
+const { publicRuntimeConfig } = getConfig()
 
 function InstaImage({ img }) {
     let [insta, setInsta] = useState(false)
@@ -29,7 +32,10 @@ function InstaImage({ img }) {
     )
 }
 
-function About() {
+function About(props) {
+
+
+    const streamerData = props.content.streamerData
     let [insta, setInsta] = useState(false)
     let toggleInsta = () => setInsta(!insta)
 
@@ -78,7 +84,7 @@ function About() {
                                     <Image src={youtube_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>476 K</div>
+                                    <div className={css.about_streamer_achievement_count}>{streamerData.yt_subscribers_count}</div>
                                     <div className={css.about_streamer_achievement_text}>YouTube subscribers</div>
                                 </div>
                             </div>
@@ -87,7 +93,7 @@ function About() {
                                     <Image src={facebook_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>14 K</div>
+                                    <div className={css.about_streamer_achievement_count}>{streamerData.fb_followers_count}</div>
                                     <div className={css.about_streamer_achievement_text}>Facebook followers</div>
                                 </div>
                             </div>
@@ -96,7 +102,7 @@ function About() {
                                     <Image src={twitter_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>70.1 K</div>
+                                    <div className={css.about_streamer_achievement_count}>{streamerData.twitter_followers_count}</div>
                                     <div className={css.about_streamer_achievement_text}>Twitter followers</div>
                                 </div>
                             </div>
@@ -105,7 +111,7 @@ function About() {
                                     <Image src={instagram_icon} alt="" className={css.social} width={130} height={130} />
                                 </div>
                                 <div className={css.card_content}>
-                                    <div className={css.about_streamer_achievement_count}>111 K</div>
+                                    <div className={css.about_streamer_achievement_count}>{streamerData.insta_followers_count}</div>
                                     <div className={css.about_streamer_achievement_text}>Instagram followers</div>
                                 </div>
                             </div>
@@ -153,3 +159,15 @@ function About() {
 }
 
 export default About
+
+
+export async function getServerSideProps({ req, res }) {
+    let streamerRes = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { headers: req.headers.cookie && { cookie: req.headers.cookie } }).then((res) => res.data)
+
+    if (streamerRes.message === "success") {
+        const streamerData = streamerRes.data.streamerData
+        return { props: { content: { streamerData } } }
+    } else return { props: {} }
+
+
+}

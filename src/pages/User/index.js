@@ -1,11 +1,13 @@
+import getConfig from "next/config.js"
 import Head from "next/head.js"
 import Image from "next/image.js"
+import router from "next/router.js"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import animation from "../../components/Animations/animations.module.css"
 import { Primary } from "../../components/Buttons/Primary/index.js"
 import { Input } from "../../components/Input/index.js"
 import css from "./profile.module.css"
+const { publicRuntimeConfig } = getConfig()
 
 export default function Profile() {
     const user = useSelector(state => state.user)
@@ -17,12 +19,20 @@ export default function Profile() {
     })
 
     useEffect(() => {
-        if (!user.loading) {
+        if (!user.loading && !user.error) {
             setUserData({
                 ...userData,
                 profile_pic: user.user.profilePic,
                 name: user.user.name,
                 email: user.user.email,
+            })
+        }
+        else if (user.error) {
+            console.log(user.error)
+            const loginUrl = publicRuntimeConfig.apiUrl + "auth/google"
+            router.push({
+                pathname: loginUrl,
+                query: { returnUrl: loginUrl },
             })
         }
     }, [user])
@@ -83,6 +93,7 @@ export default function Profile() {
                         </div>
                     </div>
                 </div>
+                <div className="divider" />
             </div>
         </>
     )

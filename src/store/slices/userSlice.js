@@ -29,7 +29,7 @@ export const userSlice = createSlice({
             state.loading = true
         },
         error: (state, action) => {
-            state.error = action.payload.status
+            state.error = true
             state.errMsg = action.payload.message
             state.loading = false
         },

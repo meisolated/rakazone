@@ -5,11 +5,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
   openAnalyzer: true,
 })
+
 const nextConfig = {
   async headers() {
     return [
       {
-        // Apply these headers to all routes in your application.
         source: "/:path*",
         headers: [
           {
@@ -45,9 +45,10 @@ const nextConfig = {
     return config
   },
 }
-module.exports = withPlugins([
-  [withBundleAnalyzer],
-  // your other plugins here
-], nextConfig)
-// module.exports = nextConfig
+
+module.exports = nextConfig
+// module.exports = withPlugins([
+//   [withBundleAnalyzer],
+// ], nextConfig)
+
 
