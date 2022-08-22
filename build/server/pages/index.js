@@ -134,9 +134,6 @@ var jsx_runtime_ = __webpack_require__(997);
 // EXTERNAL MODULE: external "axios"
 var external_axios_ = __webpack_require__(2167);
 var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
-// EXTERNAL MODULE: external "moment"
-var external_moment_ = __webpack_require__(2245);
-var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 // EXTERNAL MODULE: external "next/config"
 var config_ = __webpack_require__(4558);
 var config_default = /*#__PURE__*/__webpack_require__.n(config_);
@@ -151,9 +148,6 @@ var next_link = __webpack_require__(1664);
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(6689);
-// EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(6517);
-var external_lodash_default = /*#__PURE__*/__webpack_require__.n(external_lodash_);
 // EXTERNAL MODULE: ./src/util/functions.js
 var functions = __webpack_require__(5791);
 // EXTERNAL MODULE: ./src/pages/index.module.css
@@ -167,8 +161,6 @@ var playicon = __webpack_require__(4234);
 var VideoItem_module = __webpack_require__(6871);
 var VideoItem_module_default = /*#__PURE__*/__webpack_require__.n(VideoItem_module);
 ;// CONCATENATED MODULE: ./src/components/VideoItem/index.js
-
-
 
 
 
@@ -227,7 +219,7 @@ const VideoItemRegular = (props)=>{
     const { 0: active , 1: setActive  } = (0,external_react_.useState)(false);
     let videoData = props.data;
     let publishedAt = videoData["publishedAt"];
-    let ago = external_moment_default()(publishedAt * 1000).fromNow();
+    let ago = (0,functions/* since */.ly)(publishedAt * 1000);
     let views = (0,functions/* convertToInternationalCurrencySystem */.B0)(videoData.viewCount);
     const link = videoData.platform == "local" ? "/Watch/" + videoData.videoId : "https://www.youtube.com/watch?v=" + videoData.videoId;
     const thumbnail = videoData.thumbnail.includes("img/thumbnail_not_found.png") ? (0,functions/* thumbnails */.h3)(videoData.videoId) : videoData.thumbnail;
@@ -280,7 +272,7 @@ const VideoItemRegular = (props)=>{
                     children: [
                         /*#__PURE__*/ jsx_runtime_.jsx("h3", {
                             className: (VideoItem_module_default()).content_title,
-                            children: external_lodash_default().unescape(videoData.title)
+                            children: videoData.title
                         }),
                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                             className: (VideoItem_module_default()).content_about,
@@ -349,8 +341,6 @@ var merch3 = __webpack_require__(1663);
 
 
 
-
-
 //other components
 
 
@@ -379,7 +369,7 @@ function Home(props) {
     featuredSecondary.title = featuredSecondary.title.length > 60 ? featuredSecondary.title.substring(0, 60) + "..." : featuredSecondary.title;
     featuredTertiary.title = featuredTertiary.title.length > 60 ? featuredTertiary.title.substring(0, 60) + "..." : featuredTertiary.title;
     const whatToShow = featuredPrimary;
-    const ago = external_moment_default()(whatToShow.publishedAt * 1000).fromNow();
+    const ago = (0,functions/* since */.ly)(whatToShow.publishedAt * 1000);
     const youtube_thumbnail = whatToShow.thumbnail;
     whatToShow.type = whatToShow.type ? whatToShow.type : "Live";
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count;
@@ -571,7 +561,7 @@ function Home(props) {
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("h2", {
                                                         className: (index_module_default()).video_featured_title,
-                                                        children: external_lodash_default().unescape(whatToShow.title)
+                                                        children: whatToShow.title
                                                     }),
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                                                         className: (index_module_default()).video_featured_about,
@@ -947,22 +937,6 @@ module.exports = require("axios");
 
 /***/ }),
 
-/***/ 6517:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("lodash");
-
-/***/ }),
-
-/***/ 2245:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("moment");
-
-/***/ }),
-
 /***/ 4558:
 /***/ ((module) => {
 
@@ -984,6 +958,14 @@ module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 "use strict";
 module.exports = require("next/dist/shared/lib/head.js");
+
+/***/ }),
+
+/***/ 3539:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
 
 /***/ }),
 

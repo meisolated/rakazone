@@ -1,9 +1,0 @@
-//robots.txt
-
-# Block all crawlers for /User
-User-agent: *
-Disallow: /User
-
-# Allow all crawlers
-User-agent: *
-Allow: /

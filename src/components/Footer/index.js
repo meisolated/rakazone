@@ -1,11 +1,11 @@
-import css from "./Footer.module.css"
 import Image from "next/image"
-import { Primary } from "../Buttons"
-import insta1 from "../../assets/img/png/insta07.png"
+import Link from "next/link.js"
 import insta2 from "../../assets/img/png/insta02.png"
+import insta1 from "../../assets/img/png/insta07.png"
 import insta3 from "../../assets/img/png/insta15.png"
 import link_icon from "../../assets/svg/src/open_link_icon.svg"
-import Link from "next/link.js"
+import { Primary } from "../Buttons"
+import css from "./Footer.module.css"
 function Footer() {
     return (
         <>
@@ -67,19 +67,19 @@ function Footer() {
                         <div className={`${css.footer_social_buttons}`}>
                             {/* target="_blank" rel="noreferrer" */}
                             <Link href="/yt">
-                                <a className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}></a>
+                                <p className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}></p>
                             </Link>
                             <Link href="/fb">
-                                <a className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></a>
+                                <p className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></p>
                             </Link>
                             <Link href="/twitter">
-                                <a className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}></a>
+                                <p className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}></p>
                             </Link>
                             <Link href="/insta">
-                                <a className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}></a>
+                                <p className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}></p>
                             </Link>
                             <Link href="/twitch">
-                                <a className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></a>
+                                <p className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></p>
                             </Link>
                         </div>
                         <div className={css.footer_copyright}>

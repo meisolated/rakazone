@@ -1,14 +1,12 @@
 import axios from "axios"
-import moment from "moment"
 import getConfig from "next/config"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import _ from "lodash"
+import { useState } from "react"
 
 //other components
-import { convertToInternationalCurrencySystem } from "../util/functions.js"
+import { convertToInternationalCurrencySystem, since } from "../util/functions.js"
 import css from "./index.module.css"
 
 // components
@@ -42,7 +40,7 @@ function Home(props) {
     featuredTertiary.title = featuredTertiary.title.length > 60 ? featuredTertiary.title.substring(0, 60) + "..." : featuredTertiary.title
 
     const whatToShow = featuredPrimary
-    const ago = moment(whatToShow.publishedAt * 1000).fromNow()
+    const ago = since(whatToShow.publishedAt * 1000)
     const youtube_thumbnail = whatToShow.thumbnail
     whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
     whatToShow.viewCount = whatToShow.viewCount ? whatToShow.viewCount : whatToShow.viewers_count
@@ -127,7 +125,7 @@ function Home(props) {
                                 <Image className={css.video_featured_channel_image} src={`${props.SERVER_URL}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
                             </div>
                             <div>
-                                <h2 className={css.video_featured_title}>{_.unescape(whatToShow.title)}</h2>
+                                <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
                                 <div className={css.video_featured_about}>
                                     <div className={css.video_featured_duration}>
                                         <div>{viewCont}</div>

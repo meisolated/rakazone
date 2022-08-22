@@ -10,7 +10,7 @@ const initialState = {
     },
     error: null,
     errMsg: null,
-    loading: false,
+    loading: true,
 }
 
 export const userSlice = createSlice({
@@ -18,7 +18,11 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         update: (state, action) => {
-            state.user = action.payload
+            state.user.userId = action.payload.user_id
+            state.user.name = action.payload.name
+            state.user.email = action.payload.email
+            state.user.loginType = action.payload.login_type
+            state.user.profilePic = action.payload.profile_pic
             state.loading = false
         },
         loading: (state, action) => {

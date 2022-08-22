@@ -1,11 +1,10 @@
 import { motion } from "framer-motion"
-import App from "next/app"
 import Router from "next/router"
 import { useEffect } from "react"
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux"
 import Layout from "../components/Layout"
 import { Toast } from "../components/Notification"
-import { store } from "../store/store"
+import { store } from "../store/store.js"
 import "../styles/globals.css"
 
 Router.events.on("routeChangeStart", (url) => {
@@ -18,8 +17,7 @@ Router.events.on("routeChangeError", () => {
   console.log("routeChangeError")
 })
 
-
-function MyApp({ Component, pageProps, router, }) {
+function MyApp({ Component, pageProps, router }) {
   const isAdminRoute = router.pathname.includes("/Admin")
   const fade = {
     variants: {
@@ -62,11 +60,15 @@ function MyApp({ Component, pageProps, router, }) {
       
       `)
       document.insertBefore(comment, document.documentElement)
-
     }
   })
 
-  if (isAdminRoute) return <> <Component {...pageProps} /></>
+  if (isAdminRoute)
+    return (
+      <>
+        <Component {...pageProps} />
+      </>
+    )
   return (
     <>
       <Provider store={store}>

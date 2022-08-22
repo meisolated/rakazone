@@ -1,5 +1,29 @@
 /** @type {import('next').NextConfig} */
+const generateRobotsTxt = require("./src/scripts/generate-robots-txt.js")
+const withPlugins = require('next-compose-plugins')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+  openAnalyzer: true,
+})
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes in your application.
+        source: "/:path*",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+        ],
+      },
+    ]
+  },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   reactStrictMode: true,
   disableStaticImages: true,
   images: {
@@ -14,25 +38,16 @@ const nextConfig = {
         : "https://keviv.xyz/internal_api/v1/", // production api
     serverUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/" : "https://raka.zone/",
   },
-}
-
-const securityHeaders = [
-  {
-    key: "X-Frame-Options",
-    value: "SAMEORIGIN",
-  },
-]
-
-module.exports = {
-  async headers() {
-    return [
-      {
-        // Apply these headers to all routes in your application.
-        source: "/:path*",
-        headers: securityHeaders,
-      },
-    ]
+  webpack(config, { isServer }) {
+    if (isServer) {
+      generateRobotsTxt()
+    }
+    return config
   },
 }
+module.exports = withPlugins([
+  [withBundleAnalyzer],
+  // your other plugins here
+], nextConfig)
+// module.exports = nextConfig
 
-module.exports = nextConfig

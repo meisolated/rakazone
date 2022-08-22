@@ -273,6 +273,9 @@ export function VideoPlayerDesktop(props) {
                     setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
                 }
             }
+            else {
+                return
+            }
         }
     }, [videoController.current, playingAd])
 

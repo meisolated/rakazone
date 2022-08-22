@@ -1,10 +1,8 @@
-import _ from "lodash"
-import moment from "moment"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 import playicon from "../../assets/svg/src/playicon.svg"
-import { convertToInternationalCurrencySystem, thumbnails } from "../../util/functions.js"
+import { convertToInternationalCurrencySystem, since, thumbnails } from "../../util/functions.js"
 import css from "./VideoItem.module.css"
 
 export function EmptyVideoItem(props) {
@@ -33,7 +31,7 @@ export const VideoItemRegular = (props) => {
     const [active, setActive] = useState(false)
     let videoData = props.data
     let publishedAt = videoData["publishedAt"]
-    let ago = moment(publishedAt * 1000).fromNow()
+    let ago = since(publishedAt * 1000)
     let views = convertToInternationalCurrencySystem(videoData.viewCount)
     const link = videoData.platform == "local" ? "/Watch/" + videoData.videoId : "https://www.youtube.com/watch?v=" + videoData.videoId
     const thumbnail = videoData.thumbnail.includes("img/thumbnail_not_found.png") ? thumbnails(videoData.videoId) : videoData.thumbnail
@@ -54,7 +52,7 @@ export const VideoItemRegular = (props) => {
             </div>
             <div className={css.video_content}>
                 <div>
-                    <h3 className={css.content_title}>{_.unescape(videoData.title)}</h3>
+                    <h3 className={css.content_title}>{videoData.title}</h3>
                     <div className={css.content_about}>
                         <div className={css.content_duration}>
                             <div className="material-symbols-outlined">visibility</div>

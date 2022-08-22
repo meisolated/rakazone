@@ -1,17 +1,31 @@
 import Head from "next/head.js"
 import Image from "next/image.js"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import animation from "../../components/Animations/animations.module.css"
 import { Primary } from "../../components/Buttons/Primary/index.js"
 import { Input } from "../../components/Input/index.js"
 import css from "./profile.module.css"
-import animation from "../../components/Animations/animations.module.css"
 
 export default function Profile() {
-    const userData = {
+    const user = useSelector(state => state.user)
+    const [userData, setUserData] = useState({
         profile_pic: "https://raka.zone/assets/img/instadp.jpeg",
         name: "RakaZone",
         email: "raka@raka.zone",
         created_at: "2020-01-01",
-    }
+    })
+
+    useEffect(() => {
+        if (!user.loading) {
+            setUserData({
+                ...userData,
+                profile_pic: user.user.profilePic,
+                name: user.user.name,
+                email: user.user.email,
+            })
+        }
+    }, [user])
     return (
         <>
             <Head>

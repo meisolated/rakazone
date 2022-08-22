@@ -5,6 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { error, loading, logout, update } from "../../store/slices/userSlice.js"
+
 import {
   AboutMe,
   AboutMeClicked,
@@ -94,12 +97,13 @@ const exploreTabs = [
 
 export default function Header() {
   const router = useRouter()
+  const dispatch = useDispatch()
   const pathname = router.pathname
   const windowSize = useWindowSize()
   const scrollY = windowScroll()
+  const user = useSelector((state) => state.user.user)
   const [userData, setUserData] = useState({ name: null, email: null, profile_pic: null })
   const [cartModal, setCartModal] = useState(false)
-
   const [clicked, setClicked] = useState({
     Home: {
       name: "Home",
@@ -192,12 +196,20 @@ export default function Header() {
     axios
       .get("/api/v1/userdata")
       .then((response) => {
-        let user = response.data.data.user
-        setUserData({ email: user.email, name: user.name, profile_pic: user.profile_pic })
+        if (response.data.error) {
+          dispatch(error(response.data.error))
+        }
+        else {
+          let user = response.data.data.user
+          setUserData({ email: user.email, name: user.name, profile_pic: user.profile_pic })
+          dispatch(update(user))
+
+        }
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        dispatch(error(err))
       })
+
 
     switch (pathname) {
       case "/":
@@ -270,9 +282,9 @@ export default function Header() {
                     <Image src={shoppingCart} alt="" />
                   </li>
 
-                  {userData.name ? (
+                  {user.name ? (
                     <li className={css.nav_item_wrapper}>
-                      <OutlineSmall link={"/User"} background={userData.profile_pic} text={userData.name} />
+                      <OutlineSmall link={"/User"} background={user.profilePic} text={user.name} />
                     </li>
                   ) : (
                     <li className={css.nav_item_wrapper}>
@@ -293,7 +305,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className={css.bottom_navbar_wrapper}>
+      {windowSize.width < 788 && <div className={css.bottom_navbar_wrapper}>
         <div className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show}`}>
           <div className={css.bottom_navbar}>
             {tabs.map((tab, index) => {
@@ -301,7 +313,7 @@ export default function Header() {
               return (
                 <div className={`${css.bottom_navbar_button} ${css.bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
                   {active ? <tab.iconClicked /> : <tab.icon />}
-                  <a>{tab.name}</a>
+                  <p>{tab.name}</p>
                   <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
                     <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                   </div>
@@ -322,7 +334,7 @@ export default function Header() {
                 <div href={tab.path} key={"t-" + index} onClick={() => OnExploreClicked(tab.name)} className={css.bottom_navbar_expore_button}>
                   <div className={`${css.bottom_navbar_button} ${css.sub_bottom_navbar_common_container} ${active ? css.bottom_navbar_clicked : []}`} key={"t-" + index} onClick={() => OnNavClicked(tab.name)}>
                     {active ? <tab.iconClicked /> : <tab.icon />}
-                    <a>{tab.name}</a>
+                    <p>{tab.name}</p>
                     <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
                       <div className={`${active ? css.bottom_navbar_clicked_underline : []}`} />
                     </div>
@@ -332,7 +344,7 @@ export default function Header() {
             })}
           </div>
         </div>
-      </div>
+      </div>}
     </>
   )
 }

@@ -178,25 +178,25 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(997);
-// EXTERNAL MODULE: ./src/components/Footer/Footer.module.css
-var Footer_module = __webpack_require__(4790);
-var Footer_module_default = /*#__PURE__*/__webpack_require__.n(Footer_module);
 // EXTERNAL MODULE: ./node_modules/next/image.js
 var next_image = __webpack_require__(5675);
 var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
-// EXTERNAL MODULE: ./src/components/Buttons/index.js + 3 modules
-var Buttons = __webpack_require__(9422);
-// EXTERNAL MODULE: ./src/assets/img/png/insta07.png
-var insta07 = __webpack_require__(3991);
+// EXTERNAL MODULE: external "next/link.js"
+var link_js_ = __webpack_require__(5384);
+var link_js_default = /*#__PURE__*/__webpack_require__.n(link_js_);
 // EXTERNAL MODULE: ./src/assets/img/png/insta02.png
 var insta02 = __webpack_require__(9859);
+// EXTERNAL MODULE: ./src/assets/img/png/insta07.png
+var insta07 = __webpack_require__(3991);
 // EXTERNAL MODULE: ./src/assets/img/png/insta15.png
 var insta15 = __webpack_require__(2002);
 ;// CONCATENATED MODULE: ./src/assets/svg/src/open_link_icon.svg
 /* harmony default export */ const open_link_icon = ({"src":"/_next/static/media/open_link_icon.a58dfc3f.svg","height":20,"width":19});
-// EXTERNAL MODULE: external "next/link.js"
-var link_js_ = __webpack_require__(5384);
-var link_js_default = /*#__PURE__*/__webpack_require__.n(link_js_);
+// EXTERNAL MODULE: ./src/components/Buttons/index.js + 3 modules
+var Buttons = __webpack_require__(9422);
+// EXTERNAL MODULE: ./src/components/Footer/Footer.module.css
+var Footer_module = __webpack_require__(4790);
+var Footer_module_default = /*#__PURE__*/__webpack_require__.n(Footer_module);
 ;// CONCATENATED MODULE: ./src/components/Footer/index.js
 
 
@@ -372,31 +372,31 @@ function Footer() {
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
                                         href: "/yt",
-                                        children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                        children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_youtube}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
                                         href: "/fb",
-                                        children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                        children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_facebook}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
                                         href: "/twitter",
-                                        children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                        children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_twitter}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
                                         href: "/insta",
-                                        children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                        children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_instagram}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
                                         href: "/twitch",
-                                        children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                        children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_twitch}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     })
@@ -519,6 +519,10 @@ var next_link = __webpack_require__(1664);
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 // EXTERNAL MODULE: external "next/router"
 var router_ = __webpack_require__(1853);
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__(6022);
+// EXTERNAL MODULE: ./src/store/slices/userSlice.js
+var userSlice = __webpack_require__(8647);
 ;// CONCATENATED MODULE: ./src/assets/svg/navicons/AboutMe.js
 
 
@@ -1200,6 +1204,8 @@ var Header_module_default = /*#__PURE__*/__webpack_require__.n(Header_module);
 
 
 
+
+
 const { publicRuntimeConfig  } = config_default()();
 const tabs = [
     {
@@ -1263,9 +1269,12 @@ const exploreTabs = [
 ];
 function Header() {
     const router = (0,router_.useRouter)();
+    const dispatch = (0,external_react_redux_.useDispatch)();
     const pathname = router.pathname;
     const windowSize = useWindowSize();
     const scrollY = windowScroll();
+    const user1 = (0,external_react_redux_.useSelector)((state)=>state.user.user
+    );
     const { 0: userData , 1: setUserData  } = (0,external_react_.useState)({
         name: null,
         email: null,
@@ -1364,14 +1373,19 @@ function Header() {
     };
     (0,external_react_.useEffect)(()=>{
         external_axios_default().get("/api/v1/userdata").then((response)=>{
-            let user = response.data.data.user;
-            setUserData({
-                email: user.email,
-                name: user.name,
-                profile_pic: user.profile_pic
-            });
-        }).catch((error)=>{
-            console.log(error);
+            if (response.data.error) {
+                dispatch((0,userSlice/* error */.vU)(response.data.error));
+            } else {
+                let user = response.data.data.user;
+                setUserData({
+                    email: user.email,
+                    name: user.name,
+                    profile_pic: user.profile_pic
+                });
+                dispatch((0,userSlice/* update */.Vx)(user));
+            }
+        }).catch((err)=>{
+            dispatch((0,userSlice/* error */.vU)(err));
         });
         switch(pathname){
             case "/":
@@ -1492,12 +1506,12 @@ function Header() {
                                                         alt: ""
                                                     })
                                                 }),
-                                                userData.name ? /*#__PURE__*/ jsx_runtime_.jsx("li", {
+                                                user1.name ? /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
                                                     children: /*#__PURE__*/ jsx_runtime_.jsx(Buttons/* OutlineSmall */._t, {
                                                         link: "/User",
-                                                        background: userData.profile_pic,
-                                                        text: userData.name
+                                                        background: user1.profilePic,
+                                                        text: user1.name
                                                     })
                                                 }) : /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
@@ -1524,7 +1538,7 @@ function Header() {
                     })
                 })
             }),
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+            windowSize.width < 788 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                 className: (Header_module_default()).bottom_navbar_wrapper,
                 children: [
                     /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -1539,7 +1553,7 @@ function Header() {
                                     ,
                                     children: [
                                         active ? /*#__PURE__*/ jsx_runtime_.jsx(tab.iconClicked, {}) : /*#__PURE__*/ jsx_runtime_.jsx(tab.icon, {}),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                        /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             children: tab.name
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -1577,7 +1591,7 @@ function Header() {
                                         ,
                                         children: [
                                             active ? /*#__PURE__*/ jsx_runtime_.jsx(tab.iconClicked, {}) : /*#__PURE__*/ jsx_runtime_.jsx(tab.icon, {}),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                                            /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                                 children: tab.name
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -1875,18 +1889,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6197);
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7544);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1853);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6022);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3473);
-/* harmony import */ var _components_Notification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(998);
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(822);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([framer_motion__WEBPACK_IMPORTED_MODULE_1__, _components_Layout__WEBPACK_IMPORTED_MODULE_6__]);
-([framer_motion__WEBPACK_IMPORTED_MODULE_1__, _components_Layout__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6022);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3473);
+/* harmony import */ var _components_Notification__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(998);
+/* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6732);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([framer_motion__WEBPACK_IMPORTED_MODULE_1__, _components_Layout__WEBPACK_IMPORTED_MODULE_5__]);
+([framer_motion__WEBPACK_IMPORTED_MODULE_1__, _components_Layout__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -1896,17 +1909,16 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([fram
 
 
 
-
-next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeStart", (url)=>{
+next_router__WEBPACK_IMPORTED_MODULE_2___default().events.on("routeChangeStart", (url)=>{
     console.log(`Loading: ${url}`);
 });
-next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeComplete", ()=>{
+next_router__WEBPACK_IMPORTED_MODULE_2___default().events.on("routeChangeComplete", ()=>{
     console.log("routeChangeComplete");
 });
-next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeError", ()=>{
+next_router__WEBPACK_IMPORTED_MODULE_2___default().events.on("routeChangeError", ()=>{
     console.log("routeChangeError");
 });
-function MyApp({ Component , pageProps , router ,  }) {
+function MyApp({ Component , pageProps , router  }) {
     const isAdminRoute = router.pathname.includes("/Admin");
     const fade = {
         variants: {
@@ -1927,7 +1939,7 @@ function MyApp({ Component , pageProps , router ,  }) {
             duration: 0.5
         }
     };
-    (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
         if (document) {
             let comment = document.createComment(`
 
@@ -1947,20 +1959,17 @@ function MyApp({ Component , pageProps , router ,  }) {
             document.insertBefore(comment, document.documentElement);
         }
     });
-    if (isAdminRoute) return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [
-            " ",
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
-                ...pageProps
-            })
-        ]
+    if (isAdminRoute) return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
+            ...pageProps
+        })
     });
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_redux__WEBPACK_IMPORTED_MODULE_5__.Provider, {
-            store: _store_store__WEBPACK_IMPORTED_MODULE_8__/* .store */ .h,
-            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_redux__WEBPACK_IMPORTED_MODULE_4__.Provider, {
+            store: _store_store_js__WEBPACK_IMPORTED_MODULE_7__/* .store */ .h,
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
                 children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Notification__WEBPACK_IMPORTED_MODULE_7__/* .Toast */ .F, {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Notification__WEBPACK_IMPORTED_MODULE_6__/* .Toast */ .F, {
                         fade: true
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_1__.motion.div, {
@@ -1985,19 +1994,18 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 822:
+/***/ 8647:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "h": () => (/* binding */ store)
-});
-
-;// CONCATENATED MODULE: external "@reduxjs/toolkit"
-const toolkit_namespaceObject = require("@reduxjs/toolkit");
-;// CONCATENATED MODULE: ./src/store/slices/userSlice.js
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Vx": () => (/* binding */ update),
+/* harmony export */   "ZP": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "vU": () => (/* binding */ error)
+/* harmony export */ });
+/* unused harmony exports userSlice, loading, logout */
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5184);
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
 
 const initialState = {
     user: {
@@ -2009,14 +2017,18 @@ const initialState = {
     },
     error: null,
     errMsg: null,
-    loading: false
+    loading: true
 };
-const userSlice = (0,toolkit_namespaceObject.createSlice)({
+const userSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
     name: "user",
     initialState,
     reducers: {
         update: (state, action)=>{
-            state.user = action.payload;
+            state.user.userId = action.payload.user_id;
+            state.user.name = action.payload.name;
+            state.user.email = action.payload.email;
+            state.user.loginType = action.payload.login_type;
+            state.user.profilePic = action.payload.profile_pic;
             state.loading = false;
         },
         loading: (state, action)=>{
@@ -2037,17 +2049,37 @@ const userSlice = (0,toolkit_namespaceObject.createSlice)({
 });
 // Action creators are generated for each case reducer function
 const { update , loading , error , logout  } = userSlice.actions;
-/* harmony default export */ const slices_userSlice = (userSlice.reducer);
-
-;// CONCATENATED MODULE: ./src/store/store.js
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userSlice.reducer);
 
 
-const store = (0,toolkit_namespaceObject.configureStore)({
+/***/ }),
+
+/***/ 6732:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "h": () => (/* binding */ store)
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5184);
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _slices_userSlice_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8647);
+
+
+const store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.configureStore)({
     reducer: {
-        user: slices_userSlice
+        user: _slices_userSlice_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP
     }
 });
 
+
+/***/ }),
+
+/***/ 5184:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("@reduxjs/toolkit");
 
 /***/ }),
 
@@ -2088,6 +2120,14 @@ module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 "use strict";
 module.exports = require("next/dist/shared/lib/head.js");
+
+/***/ }),
+
+/***/ 3539:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
 
 /***/ }),
 
@@ -2314,7 +2354,7 @@ module.exports = import("swr");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [686,397,675,505,664,544,246,422,817,998,467,791,451,12,610], () => (__webpack_exec__(2730)));
+var __webpack_exports__ = __webpack_require__.X(0, [686,397,675,505,664,246,422,817,998,791,467,451,12,610], () => (__webpack_exec__(2730)));
 module.exports = __webpack_exports__;
 
 })();
