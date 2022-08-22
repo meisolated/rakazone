@@ -393,12 +393,19 @@ export function VideoPlayerDesktop(props) {
     }, [quality])
 
     useEffect(() => {
-        // console.log(props)
         let interval = setInterval(() => {
-            // playing || !muted || !volume || !ts || !ct || !vl || !vi || !platform || !browser
-            const data = { playing: isPlaying, muted: videoController.current.muted, volume: videoController.current.volume * 100, ts: Date.now(), ct: videoController.current.currentTime, vl: videoController.current.duration, platform: "desktop", browser: props.UA, vi: playingAd ? "ad" : props.videoId }
+            const data = {
+                playing: isPlaying,
+                muted: videoController.current.muted,
+                volume: videoController.current.volume * 100,
+                ts: Date.now(),
+                ct: videoController.current.currentTime,
+                vl: videoController.current.duration,
+                platform: "desktop",
+                browser: props.UA,
+                vi: playingAd ? "ad" : props.videoId,
+            }
             axios.post(`/api/v1/logevent`, data)
-            // console.log(data)
         }, 2000)
 
         return () => {

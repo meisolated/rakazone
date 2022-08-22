@@ -8,7 +8,6 @@ import { useState, useEffect } from "react"
 function LoadingBar() {
 
     let [active, setActive] = useState(false)
-    let quotes = "DO WHAT YOU LOVE, DON'T LOVE WHAT YOU DO"
     const [windowSize, setWindowSize] = useState({
         width: undefined,
         height: undefined,

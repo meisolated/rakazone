@@ -43,7 +43,7 @@
     left: 0;
     background: var(--background-color);
     z-index: 1000;
-    transition: transform 1s ease;
+    transition: transform .5s ease;
 }
 
 .test_active {
@@ -69,7 +69,7 @@
     bottom: 0;
     width: 100%;
     position: absolute;
-    animation: verticalflapup 1s;
+    animation: verticalflapup .5s;
 }
 
 .quote {

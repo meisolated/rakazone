@@ -17,13 +17,13 @@
 }
 
 .open_animation {
-    animation: pulse ease-in 0.5s;
+    animation: pulse ease-in 0.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
 .close_animation {
-    animation: pulseout ease-out 0.5s;
+    animation: pulseout ease-out 0.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
@@ -59,7 +59,7 @@
     width: 100%;
     background-color: var(--divider-color);
     font-size: 28px;
-    font-family: var(--light-primary-font);
+    font-family: var(--regular-primary-font);
 }
 
 .message_wrapper {

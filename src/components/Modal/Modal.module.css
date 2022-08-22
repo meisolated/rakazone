@@ -24,7 +24,7 @@
     border-width: 1px;
     border-color: #1e1f24;
     position: fixed;
-    bottom: -1000px;
+    bottom: -500px;
     background-color: #0d0c0f;
     border-radius: 10px;
     width: 95%;
@@ -32,7 +32,7 @@
     z-index: 101;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    transition: all .5s;
+    transition: all .2s;
     padding: 10px;
 }
 
