@@ -120,6 +120,8 @@
 }
 
 .content_duration {
+    justify-content: center;
+    align-items: center;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;

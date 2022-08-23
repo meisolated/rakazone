@@ -71,11 +71,12 @@
 }
 
 
+/* 
 .video_wrapper:hover .controls_wrapper,
 .video_wrapper:focus-within .controls_wrapper,
 .theater_mode:hover .controls_wrapper {
     opacity: 1;
-}
+} */
 
 .show_controls {
     opacity: 1;

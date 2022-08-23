@@ -75,7 +75,7 @@ function About(props) {
                         </p>
                         <div className="pd-bottom-high "></div>
                         <div>
-                            <Primary text="Subscribe to My Channel" />
+                            <Primary link="/yt" text="Subscribe to My Channel" />
                         </div>
                         <div className="pd-bottom-high" />
                         <div className={`${css.about_streamer_achievement} iso-layout-grid `}>

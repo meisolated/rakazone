@@ -1,6 +1,7 @@
-import css from "./wallpapers.module.css"
-import Image from "next/image"
 import Head from "next/head.js"
+import Image from "next/image"
+import Link from "next/link.js"
+import css from "./wallpapers.module.css"
 
 export default function Wallpapers() {
     const baseUrl = "https://raka.zone/assets/img/"
@@ -29,9 +30,11 @@ export default function Wallpapers() {
                 {downloadables.map((downloadable, index) => {
                     let mobile = downloadable.includes("mobile")
                     return <div key={index} className={mobile ? css.wallpaper_wrapper_mobile : css.wallpaper_wrapper_desktop}> <Image src={baseUrl + downloadable} className={css.wallpaper} alt="a" width={10000} height={10000} quality={100} />
-                        <div className={css.wallpaper_download}>
-                            Download
-                        </div>
+                        <Link href={baseUrl + downloadable} >
+                            <div className={css.wallpaper_download}>
+                                Download
+                            </div>
+                        </Link>
                     </div>
                 })}
             </div>

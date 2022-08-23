@@ -11,8 +11,17 @@ import AdImage from "../../assets/img/png/ad_img.png"
 import { formatDuration } from "../../util/functions.js"
 import Loading from "../Loading"
 import desktop_style from "./VideoPlayerDesktop.module.css"
-import mobile_style from "./VideoPlayerMobile.module.css"
+
 const { publicRuntimeConfig } = getConfig()
+
+
+/**
+ * 
+ * TODO: Some things to be fixed 
+ * TODO: hide cursor again on mousemove if move doesn't leave the video container 
+ * 
+ */
+
 
 export function VideoPlayerDesktop(props) {
     const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
@@ -33,6 +42,7 @@ export function VideoPlayerDesktop(props) {
     const [adShown, setAdShown] = useState(false)
     const [theaterMode, setTheaterMode] = useState(false)
     const [showEndScreen, setShowEndScreen] = useState(false)
+    const [controlsState, setControlsState] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [loading, setLoading] = useState(false)
     const [duration, setDuration] = useState({ currentDuration: 0, totalDuration: 0, percentage: 0 })
@@ -44,6 +54,21 @@ export function VideoPlayerDesktop(props) {
     let [count, setCount] = useState(0)
 
     // Functions
+
+    const handleControlsState = (e) => {
+        // console.log(e)
+        if (!isPlaying) return setControlsState(true)
+        if (e == "enter" || e == "over") {
+            setControlsState(true)
+            setTimeout(() => {
+                document.body.style.cursor = "none"
+                setControlsState(false)
+            }, 3000)
+        } else if (e == "leave") {
+            setControlsState(false)
+        }
+    }
+
     const getVolumeIcon = (percent) => {
         return percent > 70 ? "volume_up" : percent > 40 ? "volume_down" : percent == 0 ? "volume_off" : "volume_down"
     }
@@ -147,6 +172,7 @@ export function VideoPlayerDesktop(props) {
         let volume_icon = getVolumeIcon(percent)
         const volumeLevel = percent / 100
         videoController.current.volume = volumeLevel
+        console.log(videoController.current.volume)
         localStorage.setItem("volume", volumeLevel)
         setVolume({ volumeLevel: percent, volume_icon: volume_icon })
     }
@@ -165,6 +191,13 @@ export function VideoPlayerDesktop(props) {
     }
 
     useEffect(() => {
+        document.addEventListener("mousemove", () => {
+            if (document.body.style.cursor == "none") {
+                document.body.style.cursor = ""
+                setControlsState(true)
+            }
+
+        })
         let volume = localStorage.getItem("volume")
         if (volume) {
             volume = volume * 100
@@ -272,8 +305,7 @@ export function VideoPlayerDesktop(props) {
                     localStorage.setItem("volume", volume)
                     setVolume({ volumeLevel: volume * 100, volume_icon, lastVolume: videoController.current.volume })
                 }
-            }
-            else {
+            } else {
                 return
             }
         }
@@ -417,7 +449,7 @@ export function VideoPlayerDesktop(props) {
     }, [isPlaying, playingAd, videoController, volume, videoController, videoController])
 
     return (
-        <div className={desktop_style.main_wrapper}>
+        <div className={desktop_style.main_wrapper} onMouseEnter={() => handleControlsState("enter")} onMouseLeave={() => handleControlsState("leave")}>
             <div className={`${!theaterMode ? desktop_style.video_wrapper : desktop_style.theater_mode}`} ref={videoPlayer}>
                 {playingAd && <div className={desktop_style.playing_ad_wrapper}>Ad</div>}
                 <div className={`${desktop_style.settings_popup} ${(settingsShowQuality || settingsShowSpeed) && desktop_style.settings_popup_show}`} style={showSettings ? { display: "block" } : []}>
@@ -454,30 +486,19 @@ export function VideoPlayerDesktop(props) {
                         })}
                 </div>
                 <div className={desktop_style.center_on_screen}>{loading && <Loading w={"70px"} h={"70px"} />}</div>
-                <div className={`${desktop_style.controls_wrapper} ${isPlaying ? [] : desktop_style.show_controls}`}>
+                <div className={`${desktop_style.controls_wrapper} ${controlsState && desktop_style.show_controls}`}>
                     <div className={desktop_style.controls}>
                         <div className={`${desktop_style.timeline_wrap}`}>
                             <div className={desktop_style.timeline_panel}>
-                                {true ? (
-                                    <div ref={timelineController} className={desktop_style.timeline_slider}>
-                                        <div className={desktop_style.timeline_slider_track}>
-                                            <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%", background: playingAd ? "#fc0" : "red" }}>
-                                                <div className={desktop_style.timeline_slider_handle}></div>
-                                            </div>
+                                <div ref={timelineController} className={desktop_style.timeline_slider}>
+                                    <div className={desktop_style.timeline_slider_track}>
+                                        <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%", background: playingAd ? "#fc0" : "red" }}>
+                                            <div className={desktop_style.timeline_slider_handle}></div>
                                         </div>
                                     </div>
-                                ) : (
-                                    <div className={desktop_style.timeline_slider}>
-                                        <div className={desktop_style.timeline_slider_track}>
-                                            <div className={desktop_style.timeline_slider_progress} style={{ width: duration.percentage + "%", background: "#fc0" }}>
-                                                <div className={desktop_style.timeline_slider_handle}></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
+                                </div>
                             </div>
                         </div>
-
                         <div className={desktop_style.bottom_controls}>
                             <div className={`${desktop_style.controls_left}`}>
                                 <div className={`${desktop_style.pause_play_btn} ${desktop_style.btn}`}>
