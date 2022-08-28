@@ -385,6 +385,10 @@ function Home(props) {
                     /*#__PURE__*/ jsx_runtime_.jsx("title", {
                         children: "Home | RakaZone"
                     }),
+                    /*#__PURE__*/ jsx_runtime_.jsx("link", {
+                        rel: "shortcut icon",
+                        href: "../assets/img/ico/logo.ico"
+                    }),
                     /*#__PURE__*/ jsx_runtime_.jsx("meta", {
                         name: "keywords",
                         content: "raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing"
@@ -895,7 +899,10 @@ function Home(props) {
 async function getServerSideProps({ req , res: res1  }) {
     const forwarded = req.headers["x-forwarded-for"];
     const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress;
-    console.log(ip);
+    await external_axios_default().post(`${publicRuntimeConfig.apiUrl}logger`, {
+        ip,
+        req_type: "/home"
+    });
     let contentRes = await external_axios_default().get(`${publicRuntimeConfig.apiUrl}content`, {
         headers: req.headers.cookie && {
             cookie: req.headers.cookie

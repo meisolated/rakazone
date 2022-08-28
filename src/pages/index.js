@@ -59,6 +59,7 @@ function Home(props) {
         <>
             <Head>
                 <title>Home | RakaZone</title>
+                <link rel="shortcut icon" href="../assets/img/ico/logo.ico" />
                 <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing" />
                 <meta name="robots" content="all" />
                 <meta name="google" content="notranslate" />
@@ -249,7 +250,7 @@ function Home(props) {
 export async function getServerSideProps({ req, res }) {
     const forwarded = req.headers["x-forwarded-for"]
     const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
-    console.log(ip)
+    await axios.post(`${publicRuntimeConfig.apiUrl}logger`, { ip, req_type: "/home" })
     let contentRes = await axios.get(`${publicRuntimeConfig.apiUrl}content`, { headers: req.headers.cookie && { cookie: req.headers.cookie } }).then((res) => res.data)
     let streamerRes = await axios.get(`${publicRuntimeConfig.apiUrl}streamerdata`, { headers: req.headers.cookie && { cookie: req.headers.cookie } }).then((res) => res.data)
 

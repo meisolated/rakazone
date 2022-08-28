@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import Head from "next/head.js"
 import Router from "next/router"
 import { useEffect } from "react"
 import { Provider } from "react-redux"
@@ -80,6 +81,7 @@ function MyApp({ Component, pageProps, router }) {
     <>
       <Provider store={store}>
         <Layout>
+
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
             <Component {...pageProps} />

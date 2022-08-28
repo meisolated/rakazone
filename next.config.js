@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const generateRobotsTxt = require("./src/scripts/generate-robots-txt.js")
-const withPlugins = require('next-compose-plugins')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-  openAnalyzer: true,
-})
+// const withPlugins = require('next-compose-plugins')
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+//   openAnalyzer: true,
+// })
 
 const nextConfig = {
   async headers() {
