@@ -45,6 +45,7 @@
         "gulp": "^4.0.2",
         "gulp-header": "^2.0.9",
         "madge": "^5.0.1",
-        "prettier": "^2.7.1"
+        "prettier": "^2.7.1",
+        "serve": "^14.0.1"
     }
 }

@@ -55,14 +55,14 @@ function About(props) {
                 />
                 <meta
                     property="og:image"
-                    content="https://raka.zone/assets/img/RakaZoneLogo.png"
+                    content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png"
                 />
             </Head>
             <div className="container-default">
                 <div className={css.about}>
                     <div className={css.about_main}>
                         <div className={css.about_streamer_channel_image}>
-                            <Image src="https://raka.zone/assets/img/instadp.jpeg" alt="" className={css.channel_image} width={130} height={130} />
+                            <Image src="https://raka.zone/internal_api/assets/img/instadp.jpeg" alt="" className={css.channel_image} width={130} height={130} />
                         </div>
                         <div className={css.padding}></div>
                         <h1 className={css.about_title}>

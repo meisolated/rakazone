@@ -9,6 +9,7 @@ const constants = {
     size_not_in_stock: "Size not in stock",
     added_to_cart: "Added to cart",
     checking_pincode: "Checking Pincode",
+    currently_disabled: "This feature is currently disabled",
 
     // dynamic constants
     welcomeback_with_name(name) {

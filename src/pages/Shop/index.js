@@ -19,7 +19,7 @@ function Shop(props) {
                 <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
                 <meta property="og:title" content={"Merchandise | RakaZone"} />
                 <meta property="og:description" content="RakaZone Cool Merchandise" />
-                <meta property="og:image" content="https://raka.zone/assets/img/RakaZoneLogo.png" />
+                <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
             </Head>
             <HeaderNotification
                 notificationText={"Checkout is currently disabled as we are not accepting any payments from any user and we do not manufacture any of these products nor we have these products in stock."}

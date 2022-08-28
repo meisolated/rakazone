@@ -72,7 +72,7 @@ function Home(props) {
                     property="og:description"
                     content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
                 />
-                <meta property="og:image" content="https://raka.zone/assets/img/RakaZoneLogo.png" />
+                <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
             </Head>
 
             <div className="container-default">
@@ -151,7 +151,7 @@ function Home(props) {
                 {/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– LATEST VIDEOS –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
                 <div className={css.home_latest_videos}>
                     <div className={css.latest_videos_left}>
-                        <h2 className={css.latest_videos_title}>Latest videos</h2>
+                        <h2 className={css.latest_videos_title}>Recommended videos</h2>
                     </div>
                     <div className={css.latest_videos_right}>
                         <Link href="/yt" className={css.latest_videos_arrow_link}>

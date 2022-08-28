@@ -1,8 +1,8 @@
-import css from "./FeaturedVideo.module.css"
 import Image from "next/image"
+import { convertToInternationalCurrencySystem } from "../../util/functions.js"
 import { VideoBtnBig } from "../Buttons"
 import VideoItem from "../VideoItem"
-import { convertToInternationalCurrencySystem } from "../../util/functions.js"
+import css from "./FeaturedVideo.module.css"
 function FeaturedVideo(props) {
 
 
@@ -34,7 +34,7 @@ function FeaturedVideo(props) {
 
                 <div className={css.video_featured_content}>
                     <div className={"pd-right"}>
-                        <Image className={css.video_featured_channel_image} src="https://raka.zone/assets/img/instadp.jpeg" width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
+                        <Image className={css.video_featured_channel_image} src="https://raka.zone/internal_api/assets/img/instadp.jpeg" width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
                     </div>
                     <div>
                         <h2 className={css.title}>{whatToShow.title}</h2>

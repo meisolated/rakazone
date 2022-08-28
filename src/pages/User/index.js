@@ -12,7 +12,7 @@ const { publicRuntimeConfig } = getConfig()
 export default function Profile() {
     const user = useSelector(state => state.user)
     const [userData, setUserData] = useState({
-        profile_pic: "https://raka.zone/assets/img/instadp.jpeg",
+        profile_pic: "https://raka.zone/internal_api/assets/img/instadp.jpeg",
         name: "RakaZone",
         email: "raka@raka.zone",
         created_at: "2020-01-01",

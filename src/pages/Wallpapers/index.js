@@ -4,7 +4,7 @@ import Link from "next/link.js"
 import css from "./wallpapers.module.css"
 
 export default function Wallpapers() {
-    const baseUrl = "https://raka.zone/assets/img/"
+    const baseUrl = "https://raka.zone/internal_api/assets/img/"
     // const downloadables = ["wallpaper_dark_desktop.png", "wallpaper_light_desktop.png"] // "wallpaper_dark_mobile.png", "wallpaper_light_mobile.png", 
     const downloadables = ["wallpaper_dark_desktop.png", "wallpaper_light_desktop.png", "wallpaper_dark_mobile.png", "wallpaper_light_mobile.png"] //  
     return <>
@@ -22,7 +22,7 @@ export default function Wallpapers() {
             />
             <meta
                 property="og:image"
-                content="https://raka.zone/assets/img/wallpaper_dark_desktop.png"
+                content="https://raka.zone/internal_api/assets/img/wallpaper_dark_desktop.png"
             />
         </Head>
         <div className="container-default">
@@ -30,7 +30,7 @@ export default function Wallpapers() {
                 {downloadables.map((downloadable, index) => {
                     let mobile = downloadable.includes("mobile")
                     return <div key={index} className={mobile ? css.wallpaper_wrapper_mobile : css.wallpaper_wrapper_desktop}> <Image src={baseUrl + downloadable} className={css.wallpaper} alt="a" width={10000} height={10000} quality={100} />
-                        <Link href={baseUrl + downloadable} >
+                        <Link href={baseUrl + downloadable} download>
                             <div className={css.wallpaper_download}>
                                 Download
                             </div>

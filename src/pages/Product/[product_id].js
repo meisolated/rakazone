@@ -219,7 +219,7 @@ export default function Product(props) {
                                 </a>
                             </div>
                         </div>
-                        <div className={css.product_add_to_cart} onClick={() => toastService.success(constants.added_to_cart)}>
+                        <div className={css.product_add_to_cart} onClick={() => toastService.success(constants.currently_disabled)}>
                             <GreyBig text="Add to cart" />
                         </div>
                     </div>

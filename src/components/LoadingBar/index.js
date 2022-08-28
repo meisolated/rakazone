@@ -5,6 +5,8 @@ import desktop from "../../assets/img/png/wallpaper_dark_desktop.png"
 import mobile from "../../assets/img/png/wallpaper_dark_mobile.png"
 import css from "./LoadingBar.module.css"
 
+// https://codepen.io/kdbkapsere/pen/qQXdvq
+
 function LoadingBar() {
     const windowSize = useWindowSize()
     let [active, setActive] = useState(false)

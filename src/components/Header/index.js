@@ -246,7 +246,7 @@ export default function Header() {
           <div className={css.header_wrapper}>
             <Link href="/">
               <div className={css.left}>
-                <Image src="https://raka.zone/assets/img/logo.png" className={css.logoimg} alt="a" width={164} height={60} />
+                <Image src="https://raka.zone/internal_api/assets/img/logo.png" className={css.logoimg} alt="a" width={164} height={60} />
               </div>
             </Link>
             <div className={css.right}>

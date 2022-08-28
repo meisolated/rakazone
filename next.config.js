@@ -31,12 +31,12 @@ const nextConfig = {
   },
   distDir: "build",
   publicRuntimeConfig: {
-    baseUrl: process.env.NODE_ENV === "development" ? "https://keviv.xyz/" : "https://keviv.xyz/",
+    baseUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/" : "https://raka.zone/",
     apiUrl:
       process.env.NODE_ENV === "development"
-        ? "https://keviv.xyz/internal_api/v1/" // development api
-        : "https://keviv.xyz/internal_api/v1/", // production api
-    serverUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/" : "https://raka.zone/",
+        ? "https://raka.zone/internal_api/v1/" // development api
+        : "https://raka.zone/internal_api/v1/", // production api
+    serverUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
   },
   webpack(config, { isServer }) {
     if (isServer) {

@@ -13,7 +13,7 @@ function Footer() {
                 <div className="container-default">
                     <div className={css.footer_content_top}>
                         <div className={css.footer_logo}>
-                            <Image src="https://raka.zone/assets/img/logo.png" alt="a" width={164} height={60} />
+                            <Image src="https://raka.zone/internal_api/assets/img/logo.png" alt="a" width={164} height={60} />
                         </div>
                         <div className={css.footer_subscribe_wrapper}>
                             <p className={css.footer_subscribe_paragraph}>Want to stay tuned about all videos released every week? Subscribe to my YouTube</p>
