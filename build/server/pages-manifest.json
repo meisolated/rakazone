@@ -2,8 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.js",
-  "/api/v1/logevent": "pages/api/v1/logevent.js",
   "/": "pages/index.js",
-  "/api/v1/popups": "pages/api/v1/popups.js"
+  "/api/v1/popups": "pages/api/v1/popups.js",
+  "/404": "pages/404.js",
+  "/api/v1/userdata": "pages/api/v1/userdata.js",
+  "/api/v1/logevent": "pages/api/v1/logevent.js",
+  "/Watch/[videoId]": "pages/Watch/[videoId].js"
 }

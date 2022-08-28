@@ -1,22 +1,20 @@
+import Head from "next/head.js"
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import { productsList } from "__mockups__/products.mockup.js"
+import fastshipping_img from "../../assets/img/png/fast_shipping.png"
 import merch1 from "../../assets/img/png/merch1.png"
 import merch2 from "../../assets/img/png/merch2.png"
 import merch3 from "../../assets/img/png/merch3.png"
 import merch4 from "../../assets/img/png/merch4.png"
-import { Add, Minus, Routing } from "../../assets/svg"
-import { useRouter } from "next/router"
-import { HeaderNotification } from "../../components/Notification"
-import css from "./Product.module.css"
-import Image from "next/image"
-import { GreyBig, GreySmall } from "../../components/Buttons"
-import { useState, useEffect } from "react"
-import { toastService } from "../../handler/toast.handler.js"
-import constants from "../../constants"
-import SvgSecurityCard from "../../assets/svg/SecurityCard.js"
-import { FastShipping, SecurePayment, ServiceGuarantee } from "../../assets/svg"
-import fastshipping_img from "../../assets/img/png/fast_shipping.png"
 import securepayment_img from "../../assets/img/png/secure_payment.png"
 import serviceguarantee_img from "../../assets/img/png/service_guarantee.png"
-import Head from "next/head.js"
+import { Add, Minus, Routing } from "../../assets/svg"
+import { GreyBig } from "../../components/Buttons"
+import constants from "../../constants"
+import { toastService } from "../../handler/toast.handler.js"
+import css from "./Product.module.css"
+
 const sample_product = {
     id: 1,
     name: "Product 1",
@@ -111,13 +109,11 @@ const similar_products = [
 
 
 export default function Product(props) {
-    const [product, setProduct] = useState(props.product || sample_product)
+    const [product, _setProduct] = useState(props.product_data)
     const [activeThumb, setActiveThumb] = useState(product.images[0])
     const [quantity, setQuantity] = useState(1)
     const [size, setSize] = useState("")
     const [activeTab, setActiveTab] = useState("PRODUCT")
-    const { query } = useRouter()
-    const { product_id } = query
 
     return (
         <>
@@ -148,9 +144,6 @@ export default function Product(props) {
                     content={merch1}
                 />
             </Head>
-            <HeaderNotification
-                notificationText={"All these products are just for demo purpose"}
-            />
             <div className="container-default">
                 <div className={css.product_wrapper}>
                     <div className={css.product_images}>
@@ -250,7 +243,7 @@ export default function Product(props) {
                         <>
                             <div className={css.product_tab_content}>
                                 <div className={css.product_tab_content_title}>Product Details</div>
-                                <div className={css.product_tab_content_description} dangerouslySetInnerHTML={{ __html: product.description }} />
+                                <div className={css.product_tab_content_description} dangerouslySetInnerHTML={{ __html: sample_product.description }} />
                             </div>
                         </>
                     )}
@@ -318,4 +311,14 @@ export default function Product(props) {
             </div>
         </>
     )
+}
+
+
+
+
+export function getServerSideProps(context) {
+    const productData = productsList.filter(product => product.seo_title == context.query.product_id)
+    return {
+        props: { product_data: productData[0] }
+    }
 }

@@ -98,15 +98,13 @@
 
 @keyframes left_to_right_animation {
     0% {
-        left: 0;
+        left: -20%;
     }
 
     100% {
-        left: 110%;
+        left: 120%;
     }
 }
-
-
 
 /* -------------------------- MIDDLE -------------------------- */
 .middle {

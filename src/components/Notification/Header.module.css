@@ -12,39 +12,19 @@
 
 .notification_text {
     height: auto;
-    /* white-space: nowrap; */
     width: 100%;
     padding: 10px;
 
 }
 
-/* .marquee {
-    flex: 0 0 auto;
-    min-width: 100%;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    animation: scroll 30s linear 0s infinite;
-    animation-play-state: play;
-    animation-delay: 0s;
-    animation-direction: right;
-} */
-
-
-
-/* @keyframes scroll {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
-} */
-
 @media screen and (max-width: 767px) {
     .notification_text {
         font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .notification_text {
+        font-size: 10px;
     }
 }

@@ -7,14 +7,21 @@ import { Toast } from "../components/Notification"
 import { store } from "../store/store.js"
 import "../styles/globals.css"
 
-Router.events.on("routeChangeStart", (url) => {
-  console.log(`Loading: ${url}`)
-})
+
+const handleRouteChange = (url, { shallow }) => {
+  console.log(
+    `App is changing to ${url} ${shallow ? 'with' : 'without'
+    } shallow routing`
+  )
+}
+
+Router.events.on('routeChangeStart', handleRouteChange)
+
 Router.events.on("routeChangeComplete", () => {
   console.log("routeChangeComplete")
 })
-Router.events.on("routeChangeError", () => {
-  console.log("routeChangeError")
+Router.events.on("routeChangeError", (e) => {
+  console.log("routeChangeError" + e)
 })
 
 function MyApp({ Component, pageProps, router }) {
