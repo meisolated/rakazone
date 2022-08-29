@@ -361,6 +361,7 @@ var merch3 = __webpack_require__(1663);
 
 const { publicRuntimeConfig  } = config_default()();
 // use other youtube thumbnail urls to check a valid url or not
+// https://itnext.io/using-http-2-with-next-js-express-917791ca249b
 function Home(props) {
     let streamerData = props.content.streamerData;
     let featuredPrimary = props.content.videos.featuredPrimary;

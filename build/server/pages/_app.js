@@ -1901,20 +1901,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6197);
-/* harmony import */ var next_head_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1571);
-/* harmony import */ var next_head_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1853);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6022);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3473);
-/* harmony import */ var _components_Notification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(998);
-/* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6732);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([framer_motion__WEBPACK_IMPORTED_MODULE_1__, _components_Layout__WEBPACK_IMPORTED_MODULE_6__]);
-([framer_motion__WEBPACK_IMPORTED_MODULE_1__, _components_Layout__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var ackee_tracker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3943);
+/* harmony import */ var ackee_tracker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(ackee_tracker__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6197);
+/* harmony import */ var next_head_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1571);
+/* harmony import */ var next_head_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6022);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3473);
+/* harmony import */ var _components_Notification__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(998);
+/* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6732);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([framer_motion__WEBPACK_IMPORTED_MODULE_2__, _components_Layout__WEBPACK_IMPORTED_MODULE_7__]);
+([framer_motion__WEBPACK_IMPORTED_MODULE_2__, _components_Layout__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -1931,15 +1934,16 @@ const handleRouteChange = (url, { shallow  })=>{
 //   } shallow routing`
 // )
 };
-next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeStart", handleRouteChange);
-next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeComplete", ()=>{
+next_router__WEBPACK_IMPORTED_MODULE_4___default().events.on("routeChangeStart", handleRouteChange);
+next_router__WEBPACK_IMPORTED_MODULE_4___default().events.on("routeChangeComplete", ()=>{
 // console.log("routeChangeComplete")
 });
-next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeError", (e)=>{
+next_router__WEBPACK_IMPORTED_MODULE_4___default().events.on("routeChangeError", (e)=>{
 // console.log("routeChangeError" + e)
 });
 function MyApp({ Component , pageProps , router  }) {
     const isAdminRoute = router.pathname.includes("/Admin");
+    const { 0: commented , 1: setCommented  } = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
     const fade = {
         variants: {
             initial: {
@@ -1959,24 +1963,68 @@ function MyApp({ Component , pageProps , router  }) {
             duration: 0.5
         }
     };
-    (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
-        if (document) {
-            let comment = document.createComment(`
-
-      =========================================================
-      * * RakaZone v1.1.0 made by Vivek Mudgal AKA meIsolated * *
-      =========================================================
+    (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(()=>{
+        const analyticsServerUrl = "https://keviv.xyz";
+        const analyticsKey = "60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7";
+        // ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
+        // ackeeTracker.detect()
+        const attributes = ackee_tracker__WEBPACK_IMPORTED_MODULE_1__.attributes(true);
+        const instance = ackee_tracker__WEBPACK_IMPORTED_MODULE_1__.create(analyticsServerUrl, {
+            detailed: true,
+            ignoreLocalhost: true
+        });
+        instance.record(analyticsKey, {
+            ...attributes,
+            siteLocation: window.location.href,
+            siteReferrer: document.referrer
+        });
+        if (!commented) {
+            if (document) {
+                setCommented(true);
+                let comment = document.createComment(`
+  
+        =========================================================
+  
+        * * RakaZone v1.1.0 made by Vivek Mudgal AKA meIsolated * *
+  
+        =========================================================
+        
+        * Home Page: https://www.raka.zone
+        * Copyright © 2022 meIsolated (https://www.instagram.com/meisolated) All rights reserved.
+        * All rights reserved.
+        * Coded by meIsolated
       
-      * Home Page: https://www.raka.zone
-      * Copyright © 2022 meIsolated (https://www.instagram.com/meisolated) All rights reserved.
-      * All rights reserved. This work is protected by copyright law and international treaties.
-      
-      * Coded by meIsolated
-      
-      =========================================================
-      
-      `);
-            document.insertBefore(comment, document.documentElement);
+        ⠂⡀⠐⠠⡀⣀⣀⡀⠂⠂⡀⢀⠁⡀⠠⠠⡀⠂⠁⠐⠄⠂⡀⡀⣀⣀⡀
+        ⠠⠠⣠⣾⣿⣿⣿⣿⣷⣄⠐⡀⢀⣀⣀⣤⣤⣀⣀⠁⠈⢀⣴⣿⣿⣿⣿⣿⣦⡀
+        ⠂⢠⣿⣿⠟⠉⠉⠙⢿⣿⠶⠛⠉⠁⠂⡀⢀⢀⠉⠙⠳⢾⣿⡟⠉⠉⠉⢻⣿⣷
+        ⠁⢸⣿⣿⠁⠁⢀⣠⠞⠁⠂⠈⠈⠄⡀⡀⠠⠈⠂⠄⢀⠐⠙⢦⡀⢀⠂⢸⣿⣿
+        ⡀⠈⢿⣿⣷⣤⠞⠁⡀⠁⢀⠄⠐⠁⠁⡀⠈⢀⠄⠁⠁⢀⠁⠄⢙⢦⣴⣿⣿⡟
+        ⠄⠐⠈⢛⡿⠃⠈⢩⣶⣾⣿⣿⣷⣦⡀⡀⠈⢀⣴⣾⣿⣿⣷⣶⡁⠂⠻⣿⠋
+        ⠠⠈⢀⡾⠁⠁⣰⣿⣿⣿⣿⣿⣿⣿⣷⢀⢀⣿⣿⣿⣿⣿⣿⣿⣿⡄⢀⠙⣆
+        ⡀⡀⡼⠁⢀⢰⣿⣧⠁⠁⠠⠁⣽⣿⡟⠐⠈⢻⣿⣏⠉⠉⠉⠉⣹⣿⠠⢃⠸⡆
+        ⢀⣴⣧⣤⣄⣸⣿⣿⣿⣶⣶⡾⠋⠁⠂⢀⡀⢀⠉⠙⢷⣶⣶⣾⣿⣿⢃⣼⣴⣿⣦
+        ⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣀⠈⣾⣿⣿⣿⣿⡆⠁⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⠇
+        ⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        ⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        ⠐⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏
+        ⠁⠠⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃
+        ⠂⢀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        ⠐⠂⠁⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿
+        ⢀⠁⠁⠂⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁
+        ⠂⢀⠈⠁⠂⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏
+        ⢀⠈⠂⠐⠐⠐⡀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⠄⠂⠁⠂⠂⠐⠄⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⠈⠈⠐⡀⠐⠂⢀⠄⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⡀⠂⠠⠐⠠⠂⠈⠄⠐⠹⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⢀⠈⠠⠁⠐⠐⠐⠄⠈⠁⠘⢿⣿⣿⣿⣿⡿⠁
+        ⠁⠈⡀⠁⠂⠁⠐⢀⢀⠐⠂⠁⠙⢿⣿⡟
+        ⠂⠂⠐⢀⠂⠂⠐⠂⠂⠈⠈⠄⠂⢀⠙
+    
+        =========================================================
+        
+        `);
+                document.insertBefore(comment, document.documentElement);
+            }
         }
     });
     if (isAdminRoute) return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -1985,20 +2033,20 @@ function MyApp({ Component , pageProps , router  }) {
         })
     });
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_redux__WEBPACK_IMPORTED_MODULE_5__.Provider, {
-            store: _store_store_js__WEBPACK_IMPORTED_MODULE_8__/* .store */ .h,
-            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_redux__WEBPACK_IMPORTED_MODULE_6__.Provider, {
+            store: _store_store_js__WEBPACK_IMPORTED_MODULE_9__/* .store */ .h,
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
                 children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head_js__WEBPACK_IMPORTED_MODULE_2___default()), {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head_js__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                             rel: "shortcut icon",
                             href: "https://raka.zone/internal_api/assets/logo.ico"
                         })
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Notification__WEBPACK_IMPORTED_MODULE_7__/* .Toast */ .F, {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Notification__WEBPACK_IMPORTED_MODULE_8__/* .Toast */ .F, {
                         fade: true
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_1__.motion.div, {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
                         initial: "initial",
                         animate: "animate",
                         exit: "exit",
@@ -2106,6 +2154,14 @@ const store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.configureStore)({
 
 "use strict";
 module.exports = require("@reduxjs/toolkit");
+
+/***/ }),
+
+/***/ 3943:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("ackee-tracker");
 
 /***/ }),
 

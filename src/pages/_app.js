@@ -1,14 +1,13 @@
+import * as ackeeTracker from "ackee-tracker"
 import { motion } from "framer-motion"
 import Head from "next/head.js"
 import Router from "next/router"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Provider } from "react-redux"
 import Layout from "../components/Layout"
 import { Toast } from "../components/Notification"
 import { store } from "../store/store.js"
 import "../styles/globals.css"
-
-
 const handleRouteChange = (url, { shallow }) => {
   // console.log(
   //   `App is changing to ${url} ${shallow ? 'with' : 'without'
@@ -27,6 +26,7 @@ Router.events.on("routeChangeError", (e) => {
 
 function MyApp({ Component, pageProps, router }) {
   const isAdminRoute = router.pathname.includes("/Admin")
+  const [commented, setCommented] = useState(false)
   const fade = {
     variants: {
       initial: {
@@ -51,24 +51,72 @@ function MyApp({ Component, pageProps, router }) {
   }
 
   useEffect(() => {
-    if (document) {
-      let comment = document.createComment(`
+    const analyticsServerUrl = "https://keviv.xyz"
+    const analyticsKey = "60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7"
+    // ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
+    // ackeeTracker.detect()
+    const attributes = ackeeTracker.attributes(true)
+    const instance = ackeeTracker.create(analyticsServerUrl, {
+      detailed: true,
+      ignoreLocalhost: true
+    })
+    instance.record(analyticsKey, {
+      ...attributes,
+      siteLocation: window.location.href,
+      siteReferrer: document.referrer
+    })
 
-      =========================================================
-      * * RakaZone v1.1.0 made by Vivek Mudgal AKA meIsolated * *
-      =========================================================
+
+
+    if (!commented) {
+      if (document) {
+        setCommented(true)
+        let comment = document.createComment(`
+  
+        =========================================================
+  
+        * * RakaZone v1.1.0 made by Vivek Mudgal AKA meIsolated * *
+  
+        =========================================================
+        
+        * Home Page: https://www.raka.zone
+        * Copyright © 2022 meIsolated (https://www.instagram.com/meisolated) All rights reserved.
+        * All rights reserved.
+        * Coded by meIsolated
       
-      * Home Page: https://www.raka.zone
-      * Copyright © 2022 meIsolated (https://www.instagram.com/meisolated) All rights reserved.
-      * All rights reserved. This work is protected by copyright law and international treaties.
-      
-      * Coded by meIsolated
-      
-      =========================================================
-      
-      `)
-      document.insertBefore(comment, document.documentElement)
+        ⠂⡀⠐⠠⡀⣀⣀⡀⠂⠂⡀⢀⠁⡀⠠⠠⡀⠂⠁⠐⠄⠂⡀⡀⣀⣀⡀
+        ⠠⠠⣠⣾⣿⣿⣿⣿⣷⣄⠐⡀⢀⣀⣀⣤⣤⣀⣀⠁⠈⢀⣴⣿⣿⣿⣿⣿⣦⡀
+        ⠂⢠⣿⣿⠟⠉⠉⠙⢿⣿⠶⠛⠉⠁⠂⡀⢀⢀⠉⠙⠳⢾⣿⡟⠉⠉⠉⢻⣿⣷
+        ⠁⢸⣿⣿⠁⠁⢀⣠⠞⠁⠂⠈⠈⠄⡀⡀⠠⠈⠂⠄⢀⠐⠙⢦⡀⢀⠂⢸⣿⣿
+        ⡀⠈⢿⣿⣷⣤⠞⠁⡀⠁⢀⠄⠐⠁⠁⡀⠈⢀⠄⠁⠁⢀⠁⠄⢙⢦⣴⣿⣿⡟
+        ⠄⠐⠈⢛⡿⠃⠈⢩⣶⣾⣿⣿⣷⣦⡀⡀⠈⢀⣴⣾⣿⣿⣷⣶⡁⠂⠻⣿⠋
+        ⠠⠈⢀⡾⠁⠁⣰⣿⣿⣿⣿⣿⣿⣿⣷⢀⢀⣿⣿⣿⣿⣿⣿⣿⣿⡄⢀⠙⣆
+        ⡀⡀⡼⠁⢀⢰⣿⣧⠁⠁⠠⠁⣽⣿⡟⠐⠈⢻⣿⣏⠉⠉⠉⠉⣹⣿⠠⢃⠸⡆
+        ⢀⣴⣧⣤⣄⣸⣿⣿⣿⣶⣶⡾⠋⠁⠂⢀⡀⢀⠉⠙⢷⣶⣶⣾⣿⣿⢃⣼⣴⣿⣦
+        ⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣀⠈⣾⣿⣿⣿⣿⡆⠁⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⠇
+        ⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        ⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        ⠐⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏
+        ⠁⠠⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃
+        ⠂⢀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        ⠐⠂⠁⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿
+        ⢀⠁⠁⠂⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁
+        ⠂⢀⠈⠁⠂⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏
+        ⢀⠈⠂⠐⠐⠐⡀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⠄⠂⠁⠂⠂⠐⠄⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⠈⠈⠐⡀⠐⠂⢀⠄⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⡀⠂⠠⠐⠠⠂⠈⠄⠐⠹⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁
+        ⢀⠈⠠⠁⠐⠐⠐⠄⠈⠁⠘⢿⣿⣿⣿⣿⡿⠁
+        ⠁⠈⡀⠁⠂⠁⠐⢀⢀⠐⠂⠁⠙⢿⣿⡟
+        ⠂⠂⠐⢀⠂⠂⠐⠂⠂⠈⠈⠄⠂⢀⠙
+    
+        =========================================================
+        
+        `)
+        document.insertBefore(comment, document.documentElement)
+      }
     }
+
   })
 
   if (isAdminRoute)

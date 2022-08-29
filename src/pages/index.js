@@ -27,7 +27,7 @@ import youtube_logo from "../assets/svg/src/youtube_logo.svg"
 const { publicRuntimeConfig } = getConfig()
 
 // use other youtube thumbnail urls to check a valid url or not
-
+// https://itnext.io/using-http-2-with-next-js-express-917791ca249b
 function Home(props) {
     let streamerData = props.content.streamerData
     let featuredPrimary = props.content.videos.featuredPrimary
