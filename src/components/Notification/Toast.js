@@ -98,7 +98,7 @@ export default function Toast({ id, fade }) {
                     <div className={`${css.popup_wrapper} ${toast.fade ? css.hide : css.show} `} key={index}>
                         <div className={css.popup_main}>
                             <div className={css.popup_text} dangerouslySetInnerHTML={{ __html: toast.message }} />
-                            <Image style={{ padding: "5px" }} alt="" src={added_to_cart} width={30} height={30} />
+                            {/* <Image style={{ padding: "5px" }} alt="" src={added_to_cart} width={30} height={30} /> */}
                         </div>
                     </div>
                 )

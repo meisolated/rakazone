@@ -122,10 +122,7 @@ function About(props) {
                     <div className={css.story_about_me_left}>
                         <div className={css.story_about_me_content}>
                             <p>
-                                <span className={css.story_about_titles}>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span> <br /> Lorem Ipsum has been the industrys standard dummy text ever
-                                since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                                software like Aldus PageMaker including versions of Lorem Ipsum.
+                                <span className={css.story_about_titles}>One of the life lessons I can give you is that you can never predict the future by just thinking about it. </span> <br />I would have never predicted that I could ever reach the place I am now. It would have been impossible for me to meet such amazing people if I had kept doing a 9-to-5 job. Going on paths not taken will be challenging, but one should never lose hope. Your passion might start getting boring, and it may not excite you as it used to. But it requires dedication to achieve your goals.
                             </p>
                         </div>
                         <div className={css.story_about_me_image_left}>
@@ -138,13 +135,11 @@ function About(props) {
                         </div>
                         <div className={css.story_about_me_content}>
                             <p>
-                                <span className={css.story_about_titles}>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span> <br /> Lorem Ipsum has been the industrys standard dummy text ever
-                                since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                                software like Aldus PageMaker including versions of Lorem Ipsum.
+                                <span className={css.story_about_titles}>You don't have to be extreme. Just consistent.</span> <br />There's no such thing as overnight success. It took me 6yrs to get where I'm right now, with a lot of patience, hard work, and passion. In life, it's crucial to keep moving, doing, and brewing what you love. These are not RakaZone's words, and I have tried my best to portray RakaZone.
                             </p>
                         </div>
                     </div>
+                    {/* <a className={css.big_text}>RakaZone</a> */}
                 </div>
                 <div className="divider" />
             </div>

@@ -49,7 +49,7 @@ export function formatDuration(time) {
 }
 
 export function shortTitle(string, length) {
-    console.log(string)
+    // console.log(string)
 }
 
 

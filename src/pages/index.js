@@ -59,7 +59,6 @@ function Home(props) {
         <>
             <Head>
                 <title>Home | RakaZone</title>
-                <link rel="shortcut icon" href="../assets/img/ico/logo.ico" />
                 <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing" />
                 <meta name="robots" content="all" />
                 <meta name="google" content="notranslate" />
@@ -106,7 +105,7 @@ function Home(props) {
                         <div className={css.image_wrapper}>
                             <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumbnail} width={1104} height={620} alt="" />
                             <div className={css.video_featured_filter} />
-                            <Link href={link} passHref>
+                            <Link href={link} passHref prefetch={false}>
                                 <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
                                     <div className={css.video_featured_button}>
                                         <div className={css.video_featured_button_icon_wrapper}>
@@ -174,11 +173,9 @@ function Home(props) {
                     <div className={css.about_channel_left}>
                         <h1>Hey there!</h1>
                         <p>
-                            My name is <span className="bold">Rishab Karanwal,</span> I&lsquo;m Content Creator, is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&lsquo;s
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially unchanged.
+                            I'm <span className="bold">Rishab Karanwal</span>. Most of you know me as RakaZone, and I am a variety streamer. You will see me playing multiple games on my channel, from some intense shooter games to role-playing. I usually play GTA V Role Play and Valorant & I also play new games that come out from time to time. I am a content creator for Velocity Gaming "VLT". I have been streaming on YouTube for the last 6yrs. I used to work at Accenture as a senior analyst. Now I am a full-time streamer & in all these years, one thing I understood about life is <span className="bold">"The best way to predict your future is to create it."</span>
                         </p>
-                        <GreyMedium text="More about me" />
+                        <GreyMedium link="/About" text="More about me" />
                     </div>
                     <div className={css.about_channel_right}>
                         <div className={css.about_images_wrapper}>

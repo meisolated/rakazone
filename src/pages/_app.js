@@ -10,19 +10,19 @@ import "../styles/globals.css"
 
 
 const handleRouteChange = (url, { shallow }) => {
-  console.log(
-    `App is changing to ${url} ${shallow ? 'with' : 'without'
-    } shallow routing`
-  )
+  // console.log(
+  //   `App is changing to ${url} ${shallow ? 'with' : 'without'
+  //   } shallow routing`
+  // )
 }
 
 Router.events.on('routeChangeStart', handleRouteChange)
 
 Router.events.on("routeChangeComplete", () => {
-  console.log("routeChangeComplete")
+  // console.log("routeChangeComplete")
 })
 Router.events.on("routeChangeError", (e) => {
-  console.log("routeChangeError" + e)
+  // console.log("routeChangeError" + e)
 })
 
 function MyApp({ Component, pageProps, router }) {
@@ -81,7 +81,9 @@ function MyApp({ Component, pageProps, router }) {
     <>
       <Provider store={store}>
         <Layout>
-
+          <Head>
+            <link rel="shortcut icon" href="https://raka.zone/internal_api/assets/logo.ico" />
+          </Head>
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
             <Component {...pageProps} />

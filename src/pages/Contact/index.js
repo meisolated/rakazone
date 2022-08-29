@@ -2,7 +2,6 @@ import SvgCall from "assets/svg/Call.js"
 import SvgEmailContact from "assets/svg/EmailContact.js"
 import { Primary } from "components/Buttons/index.js"
 import Head from "next/head.js"
-import react from "react"
 import css from "./contact.module.css"
 
 export default function Contact(props) {
@@ -21,7 +20,7 @@ export default function Contact(props) {
                 <div className={css.left_wrapper}>
                     <div className={css.left_content}>
                         <h1 className={css.header_text}>Get in touch</h1>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit Interdum viverra donec viverra at mauris arcu pulvinar tellus quam enim nulla risus in convallis feugiat diam duis tristi.</p>
+                        <p> As RakaZone is not currently managing this website, you can email us if you find any bugs or have any issues related to this website.</p>
                         <div>
                             <div className={css.contact_item}>
                                 <SvgEmailContact />

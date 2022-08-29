@@ -352,6 +352,15 @@ body::-webkit-scrollbar-thumb {
     outline: 1px solid slategrey;
 }
 
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 @media screen and (max-width: 991px) {
     .container-default {
         flex-direction: column;

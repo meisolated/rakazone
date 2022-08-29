@@ -13,7 +13,7 @@ export function EmptyVideoItem(props) {
             <div className={`${css.image_wrapper}`}>
                 <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg" width={540} height={300} alt="" />
                 <div className={css.video_filter}></div>
-                <Link href={link} passHref>
+                <Link href={link} passHref prefetch={false}>
                     <div className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
                         <div className={css.video_button}>
                             <div className={css.button_wrapper}>
@@ -40,7 +40,7 @@ export const VideoItemRegular = (props) => {
             <div className={css.image_wrapper}>
                 <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={thumbnail} width={540} height={300} alt="" />
                 <div className={`${css.video_filter}`}></div>
-                <Link href={link} passHref>
+                <Link href={link} passHref prefetch={false}>
                     <div className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
                         <div className={css.video_button}>
                             <div className={css.button_wrapper}>

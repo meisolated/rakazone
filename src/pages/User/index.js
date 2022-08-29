@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Primary } from "../../components/Buttons/Primary/index.js"
 import { Input } from "../../components/Input/index.js"
+import { HeaderNotification } from "../../components/Notification"
+import { toastService } from "../../handler/toast.handler.js"
 import css from "./profile.module.css"
 const { publicRuntimeConfig } = getConfig()
 
@@ -17,6 +19,9 @@ export default function Profile() {
         email: "raka@raka.zone",
         created_at: "2020-01-01",
     })
+    function underWork() {
+        toastService.error("Currently working on this section of this website")
+    }
 
     useEffect(() => {
         if (!user.loading && !user.error) {
@@ -28,7 +33,7 @@ export default function Profile() {
             })
         }
         else if (user.error) {
-            console.log(user.error)
+            // console.log(user.error)
             const loginUrl = publicRuntimeConfig.apiUrl + "auth/google"
             router.push({
                 pathname: loginUrl,
@@ -46,9 +51,10 @@ export default function Profile() {
                 <meta name="googlebot" content="noindex,nofollow" />
                 <meta name="google" content="notranslate" />
                 <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
-
-
             </Head>
+            <HeaderNotification
+                notificationText={"Currently working on this section of this website."}
+            />
             <div className={"container-default"}>
                 <div className={css.profile_wrapper_grid}>
                     <div className={`${css.left} ${css.common_of_left_right_middle}`}>
@@ -67,7 +73,7 @@ export default function Profile() {
                     <div className={`${css.middle} ${css.common_of_left_right_middle}`}>
                         <Input label="Name" />
                         <Input label="Email" />
-                        <Input label="Email" />
+                        <Input label="DOB" />
                         <div className={css.gender_select}>
                             <div className={css.gender_select_btn}>
                                 <a>Male</a>
@@ -79,16 +85,16 @@ export default function Profile() {
                         <Primary text={"SAVE"} />
                     </div>
                     <div className={`${css.right} ${css.common_of_left_right_middle}`}>
-                        <div className={css.grey_button}>
+                        <div className={css.grey_button} onClick={() => underWork()}>
                             <a>Watch History</a>
                         </div>
-                        <div className={css.grey_button}>
+                        <div className={css.grey_button} onClick={() => underWork()}>
                             <a>Orders</a>
                         </div>
-                        <div className={css.grey_button}>
+                        <div className={css.grey_button} onClick={() => underWork()}>
                             <a>Uploads</a>
                         </div>
-                        <div className={css.grey_button}>
+                        <div className={css.grey_button} onClick={() => underWork()}>
                             <a>Achievement</a>
                         </div>
                     </div>

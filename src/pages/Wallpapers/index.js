@@ -37,6 +37,9 @@ export default function Wallpapers() {
                         </Link>
                     </div>
                 })}
+            </div><div className="center">
+                <a>Wallpapers credit:</a> <a className={css.link} href="https://www.instagram.com/klm_gfx/">klm_gfx </a>
+
             </div>
         </div>
     </>

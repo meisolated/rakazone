@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Primary, PrimarySmall } from "components/Buttons/index.js"
+import { Primary } from "components/Buttons"
 import Hls from "hls.js"
 import getConfig from "next/config.js"
 import Image from "next/image.js"
@@ -172,7 +172,6 @@ export function VideoPlayerDesktop(props) {
         let volume_icon = getVolumeIcon(percent)
         const volumeLevel = percent / 100
         videoController.current.volume = volumeLevel
-        console.log(videoController.current.volume)
         localStorage.setItem("volume", volumeLevel)
         setVolume({ volumeLevel: percent, volume_icon: volume_icon })
     }
@@ -565,7 +564,7 @@ export function VideoPlayerDesktop(props) {
                     <Image src={AdImage} width={"100px"} height={"100px"} />
                     <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
                     <div className={desktop_style.ad_btn_wrapper}>
-                        <Primary text={"BUY NOW"} />
+                        <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
                     </div>
                 </div>
             )}

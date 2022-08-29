@@ -1926,14 +1926,17 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([fram
 
 
 const handleRouteChange = (url, { shallow  })=>{
-    console.log(`App is changing to ${url} ${shallow ? "with" : "without"} shallow routing`);
+// console.log(
+//   `App is changing to ${url} ${shallow ? 'with' : 'without'
+//   } shallow routing`
+// )
 };
 next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeStart", handleRouteChange);
 next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeComplete", ()=>{
-    console.log("routeChangeComplete");
+// console.log("routeChangeComplete")
 });
 next_router__WEBPACK_IMPORTED_MODULE_3___default().events.on("routeChangeError", (e)=>{
-    console.log("routeChangeError" + e);
+// console.log("routeChangeError" + e)
 });
 function MyApp({ Component , pageProps , router  }) {
     const isAdminRoute = router.pathname.includes("/Admin");
@@ -1986,6 +1989,12 @@ function MyApp({ Component , pageProps , router  }) {
             store: _store_store_js__WEBPACK_IMPORTED_MODULE_8__/* .store */ .h,
             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
                 children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head_js__WEBPACK_IMPORTED_MODULE_2___default()), {
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                            rel: "shortcut icon",
+                            href: "https://raka.zone/internal_api/assets/logo.ico"
+                        })
+                    }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Notification__WEBPACK_IMPORTED_MODULE_7__/* .Toast */ .F, {
                         fade: true
                     }),
@@ -2379,7 +2388,7 @@ module.exports = import("swr");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [686,397,675,505,664,246,422,817,791,467,882,998,12,610], () => (__webpack_exec__(2730)));
+var __webpack_exports__ = __webpack_require__.X(0, [686,675,505,664,246,422,817,998,791,467,882,12,610], () => (__webpack_exec__(2730)));
 module.exports = __webpack_exports__;
 
 })();

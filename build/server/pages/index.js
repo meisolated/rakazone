@@ -189,6 +189,7 @@ function EmptyVideoItem(props) {
                 /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
                     href: link,
                     passHref: true,
+                    prefetch: false,
                     children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                         className: `${(VideoItem_module_default()).video_button_wrapper} ${active ? (VideoItem_module_default()).icon_active : (VideoItem_module_default()).icon_inactive}`,
                         onMouseLeave: ()=>setActive(false)
@@ -242,6 +243,7 @@ const VideoItemRegular = (props)=>{
                     /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
                         href: link,
                         passHref: true,
+                        prefetch: false,
                         children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                             className: `${(VideoItem_module_default()).video_button_wrapper} ${active ? (VideoItem_module_default()).icon_active : (VideoItem_module_default()).icon_inactive}`,
                             onMouseLeave: ()=>setActive(false)
@@ -385,10 +387,6 @@ function Home(props) {
                     /*#__PURE__*/ jsx_runtime_.jsx("title", {
                         children: "Home | RakaZone"
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("link", {
-                        rel: "shortcut icon",
-                        href: "../assets/img/ico/logo.ico"
-                    }),
                     /*#__PURE__*/ jsx_runtime_.jsx("meta", {
                         name: "keywords",
                         content: "raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing"
@@ -513,6 +511,7 @@ function Home(props) {
                                             /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
                                                 href: link,
                                                 passHref: true,
+                                                prefetch: false,
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                                                     className: `${(index_module_default()).video_featured_button_wrapper} ${active ? (index_module_default()).icon_active : (index_module_default()).icon_inactive}`,
                                                     onMouseLeave: ()=>setActive(false)
@@ -681,15 +680,20 @@ function Home(props) {
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
                                         children: [
-                                            "My name is ",
+                                            "I'm ",
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
                                                 className: "bold",
-                                                children: "Rishab Karanwal,"
+                                                children: "Rishab Karanwal"
                                             }),
-                                            " I\u2018m Content Creator, is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\u2018s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+                                            '. Most of you know me as RakaZone, and I am a variety streamer. You will see me playing multiple games on my channel, from some intense shooter games to role-playing. I usually play GTA V Role Play and Valorant & I also play new games that come out from time to time. I am a content creator for Velocity Gaming "VLT". I have been streaming on YouTube for the last 6yrs. I used to work at Accenture as a senior analyst. Now I am a full-time streamer & in all these years, one thing I understood about life is ',
+                                            /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                className: "bold",
+                                                children: '"The best way to predict your future is to create it."'
+                                            })
                                         ]
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx(Buttons/* GreyMedium */.Oc, {
+                                        link: "/About",
                                         text: "More about me"
                                     })
                                 ]
@@ -1151,7 +1155,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [686,397,675,505,664,246,422,791,848], () => (__webpack_exec__(2885)));
+var __webpack_exports__ = __webpack_require__.X(0, [686,675,505,664,246,422,791,848], () => (__webpack_exec__(2885)));
 module.exports = __webpack_exports__;
 
 })();

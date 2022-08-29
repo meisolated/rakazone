@@ -1,3 +1,4 @@
+import Link from "next/link.js"
 import css from "./Grey.module.css"
 
 export function GreySmall(props) {
@@ -5,7 +6,8 @@ export function GreySmall(props) {
 }
 
 export function GreyMedium(props) {
-    return <button className={`${css.GreyMedium} ${css.button}`}>{props.text}</button>
+    const link = props.link ? props.link : "/"
+    return <Link href={link} passHref><button className={`${css.GreyMedium} ${css.button}`}>{props.text}</button></Link>
 }
 
 export function GreyBig(props) {
