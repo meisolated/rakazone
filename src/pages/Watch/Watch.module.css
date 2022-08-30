@@ -12,6 +12,10 @@
     margin-top: 70%;
 }
 
+.playing_ad_top_margin {
+    margin-top: 130% !important;
+}
+
 .mobile_video_stats {
     display: flex;
     flex-direction: row;

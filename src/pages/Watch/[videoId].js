@@ -50,11 +50,14 @@ export default function Watch(props) {
    const [isMobile, setIsMobile] = useState(props.isMobile)
    const [loading, setLoading] = useState(true)
    const [UA, setUA] = useState(props.UA)
+   const [playingAd, setPlayingAd] = useState(true)
 
    let component = {
       desktop: <VideoPlayerDesktop UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
-      mobile: <VideoPlayerMobile UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
+      mobile: <VideoPlayerMobile stoppedPlayingAd={() => setPlayingAd(false)} UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
    }
+
+
 
    return (
       <>
@@ -71,61 +74,59 @@ export default function Watch(props) {
          </Head>
          <div className="container-default">
             <div className={css.player_wrapper}>{isMobile !== null && isMobile ? component.mobile : component.desktop}</div>
-            {isMobile ? <MobileVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} /> : <DesktopVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} />}
+            {isMobile ? <MobileVideoDetails playingAd={playingAd} videoData={videoData} setShowDonateModal={setShowDonateModal} /> : <DesktopVideoDetails videoData={videoData} setShowDonateModal={setShowDonateModal} />}
             {<DonateModal show={showDonateModal} onClose={() => setShowDonateModal(false)} />}
          </div>
       </>
    )
 }
 
-const MobileVideoDetails = ({ videoData, setShowDonateModal }) => {
+const MobileVideoDetails = ({ videoData, setShowDonateModal, playingAd }) => {
    return (
-      <>
-         <div className={css.mobile_video_details}>
-            <div className={css.mobile_video_details_wrapper}>
-               <div className={css.mobile_video_details_wrapper_left}>
-                  <div className={css.mobile_video_details_wrapper_left_title}>
-                     <h1>{videoData.title}</h1>
+      <div className={`${css.mobile_video_details} ${playingAd && css.playing_ad_top_margin}`}>
+         <div className={css.mobile_video_details_wrapper}>
+            <div className={css.mobile_video_details_wrapper_left}>
+               <div className={css.mobile_video_details_wrapper_left_title}>
+                  <h1>{videoData.title}</h1>
+               </div>
+               <div className={css.mobile_video_stats}>
+                  <div className={css.mobile_videoStats_item}>{videoData.views} Views</div>
+                  <div className={css.content_about_divider} />
+                  <div className={css.mobile_videoStats_item}>{videoData.ago}</div>
+               </div>
+               <div className={css.mobile_video_other_details}>
+                  <div className={css.mobile_video_other_details_item}>
+                     <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>thumb_up</div>
+                     <div className={css.mobile_video_other_details_text}>{videoData.likes}</div>
                   </div>
-                  <div className={css.mobile_video_stats}>
-                     <div className={css.mobile_videoStats_item}>{videoData.views} Views</div>
-                     <div className={css.content_about_divider} />
-                     <div className={css.mobile_videoStats_item}>{videoData.ago}</div>
+                  <div className={css.mobile_video_other_details_item}>
+                     <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>question_answer</div>
+                     <div className={css.mobile_video_other_details_text}>{videoData.comments}</div>
                   </div>
-                  <div className={css.mobile_video_other_details}>
-                     <div className={css.mobile_video_other_details_item}>
-                        <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>thumb_up</div>
-                        <div className={css.mobile_video_other_details_text}>{videoData.likes}</div>
-                     </div>
-                     <div className={css.mobile_video_other_details_item}>
-                        <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>question_answer</div>
-                        <div className={css.mobile_video_other_details_text}>{videoData.comments}</div>
-                     </div>
-                     <div className={css.mobile_video_other_details_item}>
-                        <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>share</div>
-                        <div className={css.mobile_video_other_details_text}>Share</div>
-                     </div>
-                     <div className={css.mobile_video_other_details_item} onClick={() => setShowDonateModal(true)}>
-                        <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>attach_money</div>
-                        <div className={css.mobile_video_other_details_text}>Thanks</div>
-                     </div>
+                  <div className={css.mobile_video_other_details_item}>
+                     <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>share</div>
+                     <div className={css.mobile_video_other_details_text}>Share</div>
                   </div>
-                  <div className={"divider"} />
-                  <div className={css.mobile_video_description}>
-                     <a>
-                        💲 UPI • rakazonegaming@oksbi <br />
-                        💲 Sponsor • https://raka.zone/sponsor
-                        <br />
-                        💲 Donation Via PayPal • https://raka.zone/paypal
-                        <br />
-                        🙏 Every Tip Is Appreciated
-                     </a>
-                     <p dangerouslySetInnerHTML={{ __html: videoData.description }}></p>
+                  <div className={css.mobile_video_other_details_item} onClick={() => setShowDonateModal(true)}>
+                     <div className={`material-icons-round ${css.mobile_video_other_details_icons}`}>attach_money</div>
+                     <div className={css.mobile_video_other_details_text}>Thanks</div>
                   </div>
+               </div>
+               <div className={"divider"} />
+               <div className={css.mobile_video_description}>
+                  <a>
+                     💲 UPI • rakazonegaming@oksbi <br />
+                     💲 Sponsor • https://raka.zone/sponsor
+                     <br />
+                     💲 Donation Via PayPal • https://raka.zone/paypal
+                     <br />
+                     🙏 Every Tip Is Appreciated
+                  </a>
+                  <p dangerouslySetInnerHTML={{ __html: videoData.description }}></p>
                </div>
             </div>
          </div>
-      </>
+      </div>
    )
 }
 

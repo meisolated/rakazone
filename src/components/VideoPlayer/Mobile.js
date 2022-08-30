@@ -15,10 +15,10 @@ import mobile_style from "./VideoPlayerMobile.module.css"
 const { publicRuntimeConfig } = getConfig()
 
 export function VideoPlayerMobile(props) {
-    // const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
-    // const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
-    const adSrc = `https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8` //dev
-    const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" //dev
+    const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+    const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+    // const adSrc = `https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8` //dev
+    // const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" //dev
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     const videoPlayer = useRef(null)
@@ -268,6 +268,7 @@ export function VideoPlayerMobile(props) {
         video.addEventListener("ended", () => {
             if (video.src === adSrc || hls?.levels[0]?.url[0]?.includes("Ad")) {
                 setPlayingAd(false)
+                props.stoppedPlayingAd(false)
                 setAdShown(true)
                 if (video.canPlayType("application/vnd.apple.mpegurl") && props.isIOS) {
                     video.src = src
@@ -427,14 +428,16 @@ export function VideoPlayerMobile(props) {
                 </div>
                 <video autoPlay onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} />
             </div>
-            <div className={mobile_style.ad_wrapper}>
-                <Image src={AdImage} width={"100px"} height={"100px"} />
-                <div className={mobile_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
-                <div className={mobile_style.ad_btn_wrapper}>
-                    <PrimarySmall link="https://www.amazon.in/shop/rakazonegaming" text={"BUY"} />
+            {playingAd && <div className={mobile_style.ad_wrapper}>
+                <div className={mobile_style.image_and_text_wrapper}>
+                    <div className={mobile_style.ad_image}>
+                        <Image src={AdImage} width={"80px"} height={"80px"} /></div>
+                    <div className={mobile_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
                 </div>
-            </div>
+                <div className={mobile_style.ad_btn_wrapper}>
+                    <div className={mobile_style.ad_button} link="https://www.amazon.in/shop/rakazonegaming" text={""}>BUY NOW</div>
+                </div>
+            </div>}
         </div>
-
     )
 }
