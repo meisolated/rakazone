@@ -1,2 +1,2 @@
-export { VideoPlayerMobile } from "./Mobile"
-export { VideoPlayerDesktop } from "./Desktop"
+export { VideoPlayerMobile } from './Mobile'
+export { VideoPlayerDesktop } from './Desktop'

@@ -1,7 +1,7 @@
-import { Close } from "assets/svg/index.js"
-import { useEffect, useRef, useState } from "react"
-import css from "./cart.module.css"
-import commonCSS from "./Modal.module.css"
+import { Close } from 'assets/svg/index.js'
+import { useEffect, useRef, useState } from 'react'
+import css from './cart.module.css'
+import commonCSS from './Modal.module.css'
 
 export default function DonateModal({ onClose, whatToShow, ...props }) {
     const [show, setShow] = useState(props.show)
@@ -14,14 +14,14 @@ export default function DonateModal({ onClose, whatToShow, ...props }) {
     }
     useEffect(() => {
         if (modal.current) {
-            modal.current.addEventListener("click", (e) => {
+            modal.current.addEventListener('click', (e) => {
                 if (e.target === modal.current) {
                     closeHandler()
                 }
             })
         }
         setShow(props.show)
-        return () => { }
+        return () => {}
     }, [props.show])
 
     if (props.show === false) return null
@@ -29,7 +29,11 @@ export default function DonateModal({ onClose, whatToShow, ...props }) {
     return (
         <>
             <div className={commonCSS.modal} ref={modal}>
-                <div className={`${css.modal_container} ${show && css.show_modal}`}>
+                <div
+                    className={`${css.modal_container} ${
+                        show && css.show_modal
+                    }`}
+                >
                     <div className={css.modal_content}>
                         <div className={css.header}>
                             <div className={css.title}>Your Cart</div>
@@ -37,6 +41,7 @@ export default function DonateModal({ onClose, whatToShow, ...props }) {
                                 <Close />
                             </div>
                         </div>
+                        <a>Cart is currently disabled</a>
                     </div>
                 </div>
             </div>

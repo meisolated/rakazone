@@ -1,11 +1,11 @@
-import axios from "axios"
-import getConfig from "next/config"
-import { useEffect, useRef, useState } from "react"
-import useSWR from "swr"
-import { fetcher } from "../../../util/functions.js"
-import { Primary } from "../../Buttons"
-import Loading from "../../Loading"
-import css from "./OnLoadPopUps.module.css"
+import axios from 'axios'
+import getConfig from 'next/config'
+import { useEffect, useRef, useState } from 'react'
+import useSWR from 'swr'
+import { fetcher } from '../../../util/functions.js'
+import { Primary } from '../../Buttons'
+import Loading from '../../Loading'
+import css from './OnLoadPopUps.module.css'
 const { publicRuntimeConfig } = getConfig()
 
 export default function OnLoadPopUps({ onClose }, props) {
@@ -17,12 +17,11 @@ export default function OnLoadPopUps({ onClose }, props) {
 
     useEffect(() => {
         axios
-            .get(publicRuntimeConfig.baseUrl + "api/v1/popups")
+            .get(publicRuntimeConfig.baseUrl + 'api/v1/popups')
             .then((response) => {
                 if (response.data.error) {
                     setShow(false)
-                }
-                else {
+                } else {
                     let popups = response.data.data.popups
                     setData(popups.filter((pop) => pop.status == true)[0])
                 }
@@ -44,14 +43,14 @@ export default function OnLoadPopUps({ onClose }, props) {
 
     useEffect(() => {
         if (modal.current) {
-            modal.current.addEventListener("click", (e) => {
+            modal.current.addEventListener('click', (e) => {
                 if (e.target === modal.current) {
                     closeHandler()
                 }
             })
         }
         // setShow(props.show)
-        return () => { }
+        return () => {}
     }, [props.show])
 
     const closeHandler = () => {
@@ -60,28 +59,49 @@ export default function OnLoadPopUps({ onClose }, props) {
             onClose()
         }, 500)
     }
-    const title = _data ? _data.title : "Loading..."
-    const message = _data ? _data.message : "Loading..."
-    const button = _data ? _data.close_btn_text : "Loading..."
+    const title = _data ? _data.title : 'Loading...'
+    const message = _data ? _data.message : 'Loading...'
+    const button = _data ? _data.close_btn_text : 'Loading...'
 
     // if (error) return <></>
     if (!visible) return <></>
     return (
         <>
             {/* <div className={`${css.notification} `} > */}
-            <div className={`${css.outside_notification} ${show ? css.open_animation : css.close_animation}`} ref={modal}>
-                <div className={`${css.notification_container} ${!_data ? css.center_loading : []}`}>
+            <div
+                className={`${css.outside_notification} ${
+                    show ? css.open_animation : css.close_animation
+                }`}
+                ref={modal}
+            >
+                <div
+                    className={`${css.notification_container} ${
+                        !_data ? css.center_loading : []
+                    }`}
+                >
                     {!_data ? (
                         <Loading w="25px" h="25px" />
                     ) : (
                         <>
                             <div className={css.notification_content}>
-                                <div className={css.notification_title}>{title}</div>
-                                <div className={css.message_wrapper}>
-                                    <div className={css.notification_message} dangerouslySetInnerHTML={{ __html: message }}></div>
+                                <div className={css.notification_title}>
+                                    {title}
                                 </div>
-                                <div className={css.notification_button_wrapper}>
-                                    <div className={css.notification_buttons} onClick={() => closeHandler()}>
+                                <div className={css.message_wrapper}>
+                                    <div
+                                        className={css.notification_message}
+                                        dangerouslySetInnerHTML={{
+                                            __html: message,
+                                        }}
+                                    ></div>
+                                </div>
+                                <div
+                                    className={css.notification_button_wrapper}
+                                >
+                                    <div
+                                        className={css.notification_buttons}
+                                        onClick={() => closeHandler()}
+                                    >
                                         <Primary text={button} />
                                     </div>
                                 </div>

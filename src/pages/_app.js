@@ -1,74 +1,74 @@
-import * as ackeeTracker from "ackee-tracker"
-import { motion } from "framer-motion"
-import Head from "next/head.js"
-import Router from "next/router"
-import { useEffect, useState } from "react"
-import { Provider } from "react-redux"
-import Layout from "../components/Layout"
-import { Toast } from "../components/Notification"
-import { store } from "../store/store.js"
-import "../styles/globals.css"
+import * as ackeeTracker from 'ackee-tracker'
+import { motion } from 'framer-motion'
+import Head from 'next/head.js'
+import Router from 'next/router'
+import { useEffect, useState } from 'react'
+import { Provider } from 'react-redux'
+import Layout from '../components/Layout'
+import { Toast } from '../components/Notification'
+import { store } from '../store/store.js'
+import '../styles/globals.css'
 const handleRouteChange = (url, { shallow }) => {
-  // console.log(
-  //   `App is changing to ${url} ${shallow ? 'with' : 'without'
-  //   } shallow routing`
-  // )
+    // console.log(
+    //   `App is changing to ${url} ${shallow ? 'with' : 'without'
+    //   } shallow routing`
+    // )
 }
 
 Router.events.on('routeChangeStart', handleRouteChange)
 
-Router.events.on("routeChangeComplete", () => {
-  // console.log("routeChangeComplete")
+Router.events.on('routeChangeComplete', () => {
+    // console.log("routeChangeComplete")
 })
-Router.events.on("routeChangeError", (e) => {
-  // console.log("routeChangeError" + e)
+Router.events.on('routeChangeError', (e) => {
+    // console.log("routeChangeError" + e)
 })
 
 function MyApp({ Component, pageProps, router }) {
-  const isAdminRoute = router.pathname.includes("/Admin")
-  const [commented, setCommented] = useState(false)
-  const fade = {
-    variants: {
-      initial: {
-        opacity: 0,
-        left: "-100%",
-        // scale: 0.6,
-      },
-      animate: {
-        opacity: 1,
-        left: 0,
-        // scale: 1,
-      },
-      exit: {
-        opacity: 0,
-        left: "100%",
-        // scale: 0.6,
-      },
-    },
-    transition: {
-      duration: 0.5,
-    },
-  }
+    const isAdminRoute = router.pathname.includes('/Admin')
+    const [commented, setCommented] = useState(false)
+    const fade = {
+        variants: {
+            initial: {
+                opacity: 0,
+                left: '-100%',
+                // scale: 0.6,
+            },
+            animate: {
+                opacity: 1,
+                left: 0,
+                // scale: 1,
+            },
+            exit: {
+                opacity: 0,
+                left: '100%',
+                // scale: 0.6,
+            },
+        },
+        transition: {
+            duration: 0.5,
+        },
+    }
 
-  useEffect(() => {
-    const analyticsServerUrl = "https://keviv.xyz/"
-    const analyticsKey = "60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7"
-    ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
-    const attributes = ackeeTracker.attributes(true)
-    const instance = ackeeTracker.create(analyticsServerUrl, {
-      detailed: true,
-      ignoreLocalhost: false
-    })
-    instance.record(analyticsKey, {
-      ...attributes,
-      siteLocation: window.location.href,
-      siteReferrer: document.referrer
-    })
+    useEffect(() => {
+        const analyticsServerUrl = 'https://keviv.xyz/'
+        const analyticsKey = '60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7'
+        ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
+        const attributes = ackeeTracker.attributes(true)
+        const instance = ackeeTracker.create(analyticsServerUrl, {
+            detailed: true,
+            ignoreLocalhost: false,
+        })
+        instance.record(analyticsKey, {
+            ...attributes,
+            siteLocation: window.location.href,
+            siteReferrer: document.referrer,
+        })
 
-    if (!commented) {
-      if (document) {
-        setCommented(true)
-        let comment = document.createComment(`
+        if (!commented) {
+            if (document) {
+                setCommented(true)
+                let comment = document.createComment(`
   
         =========================================================
   
@@ -110,33 +110,42 @@ function MyApp({ Component, pageProps, router }) {
         =========================================================
         
         `)
-        document.insertBefore(comment, document.documentElement)
-      }
-    }
+                document.insertBefore(comment, document.documentElement)
+            }
+        }
+    })
 
-  })
-
-  if (isAdminRoute)
+    if (isAdminRoute)
+        return (
+            <>
+                <Component {...pageProps} />
+            </>
+        )
     return (
-      <>
-        <Component {...pageProps} />
-      </>
+        <>
+            <Provider store={store}>
+                <Layout>
+                    <Head>
+                        <link
+                            rel="shortcut icon"
+                            href="https://raka.zone/internal_api/assets/logo.ico"
+                        />
+                    </Head>
+                    <Toast fade={true} />
+                    <motion.div
+                        key={router.route}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        transition={fade.transition}
+                        variants={fade.variants}
+                    >
+                        <Component {...pageProps} />
+                    </motion.div>
+                </Layout>
+            </Provider>
+        </>
     )
-  return (
-    <>
-      <Provider store={store}>
-        <Layout>
-          <Head>
-            <link rel="shortcut icon" href="https://raka.zone/internal_api/assets/logo.ico" />
-          </Head>
-          <Toast fade={true} />
-          <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
-            <Component {...pageProps} />
-          </motion.div>
-        </Layout>
-      </Provider>
-    </>
-  )
 }
 
 export default MyApp

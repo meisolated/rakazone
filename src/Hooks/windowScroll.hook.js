@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 
 export default function windowScroll() {
     const [scrollY, setScrollY] = useState({ Y: 0, increasing: false })
     const [lastScrollY, setLastScrollY] = useState(0)
-
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
@@ -13,7 +12,6 @@ export default function windowScroll() {
                 scrollY.increasing = true
                 setLastScrollY(window.scrollY)
                 setScrollY({ Y: window.scrollY, increasing: true })
-
             } else {
                 // if scroll up show the navbar
                 setLastScrollY(window.scrollY)
@@ -35,4 +33,3 @@ export default function windowScroll() {
 
     return scrollY
 }
-

@@ -1,7 +1,6 @@
 import { Subject } from 'rxjs'
 import { filter } from 'rxjs/operators'
 
-
 export const toastService = {
     onToast,
     success,
@@ -9,22 +8,22 @@ export const toastService = {
     info,
     warn,
     toast,
-    clear
+    clear,
 }
 
 export const ToastType = {
     Success: 'Success',
     Error: 'Error',
     Info: 'Info',
-    Warning: 'Warning'
+    Warning: 'Warning',
 }
 
 const toastSubject = new Subject()
-const defaultId = "default-toast"
+const defaultId = 'default-toast'
 
 // enable subscribing to toasts observable
 function onToast(id = defaultId) {
-    return toastSubject.asObservable().pipe(filter(x => x && x.id === id))
+    return toastSubject.asObservable().pipe(filter((x) => x && x.id === id))
 }
 
 // convenience methods
@@ -47,7 +46,7 @@ function warn(message, options) {
 // core toast method
 function toast(toast) {
     toast.id = toast.id || defaultId
-    toast.autoClose = (toast.autoClose === undefined ? true : toast.autoClose)
+    toast.autoClose = toast.autoClose === undefined ? true : toast.autoClose
     toastSubject.next(toast)
 }
 

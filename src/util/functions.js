@@ -1,16 +1,16 @@
 export const convertToInternationalCurrencySystem = (labelValue) => {
     // Nine Zeroes for Billions
-    if (typeof labelValue !== "number") return labelValue
+    if (typeof labelValue !== 'number') return labelValue
     let value =
         Math.abs(Number(labelValue)) >= 1.0e9
-            ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
+            ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'B'
             : // Six Zeroes for Millions
             Math.abs(Number(labelValue)) >= 1.0e6
-                ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
-                : // Three Zeroes for Thousands
-                Math.abs(Number(labelValue)) >= 1.0e3
-                    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
-                    : Math.abs(Number(labelValue))
+            ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'M'
+            : // Three Zeroes for Thousands
+            Math.abs(Number(labelValue)) >= 1.0e3
+            ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'K'
+            : Math.abs(Number(labelValue))
 
     return value
 }
@@ -22,11 +22,14 @@ export const get_random = (list) => {
 export const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export function makeid(length) {
-    var result = ""
-    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    var result = ''
+    var characters =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     var charactersLength = characters.length
     for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength))
+        result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+        )
     }
     return result
 }
@@ -36,22 +39,22 @@ const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
 })
 
 export function formatDuration(time) {
-    if (isNaN(time)) return "00:00"
+    if (isNaN(time)) return '00:00'
     const seconds = Math.floor(time % 60)
     const minutes = Math.floor(time / 60) % 60
     const hours = Math.floor(time / 3600)
     if (hours === 0) {
         return `${minutes}:${leadingZeroFormatter.format(seconds)}`
     } else {
-        return `${hours}:${leadingZeroFormatter.format(minutes)}:${leadingZeroFormatter.format(seconds)}`
+        return `${hours}:${leadingZeroFormatter.format(
+            minutes
+        )}:${leadingZeroFormatter.format(seconds)}`
     }
-
 }
 
 export function shortTitle(string, length) {
     // console.log(string)
 }
-
 
 export const thumbnails = (id) => {
     const maxres = `http://i.ytimg.com/vi/${id}/maxresdefault.jpg`
@@ -73,33 +76,33 @@ export const since = (time) => {
     var interval = seconds / 31536000
 
     if (interval > 1) {
-        return Math.floor(interval) + " years ago"
+        return Math.floor(interval) + ' years ago'
     }
     interval = seconds / 2592000
     if (interval > 1) {
-        return Math.floor(interval) + " months ago"
+        return Math.floor(interval) + ' months ago'
     }
     interval = seconds / 86400
     if (interval > 1) {
-        return Math.floor(interval) + " days ago"
+        return Math.floor(interval) + ' days ago'
     }
     interval = seconds / 3600
     if (interval > 1) {
-        return Math.floor(interval) + " hours ago"
+        return Math.floor(interval) + ' hours ago'
     }
     interval = seconds / 60
     if (interval > 1) {
-        return Math.floor(interval) + " minutes ago"
+        return Math.floor(interval) + ' minutes ago'
     }
-    return Math.floor(seconds) + " seconds ago"
+    return Math.floor(seconds) + ' seconds ago'
 }
 
 export const unescape = (str) => {
     var charSets = {
         '&quot;': '"',
         '&#34;': '"',
-        '&apos;': '\'',
-        '&#39;': '\'',
+        '&apos;': "'",
+        '&#39;': "'",
         '&amp;': '&',
         '&#38;': '&',
         '&gt;': '>',
@@ -117,12 +120,8 @@ export const unescape = (str) => {
         '&reg;': '®',
         '&#174;': '®',
         '&yen;': '¥',
-        '&#165;': '¥'
+        '&#165;': '¥',
     }
 
-
     let finalStr = 1
-
-
 }
-

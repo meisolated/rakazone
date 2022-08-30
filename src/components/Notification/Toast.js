@@ -1,11 +1,10 @@
-import Image from "next/image"
-import added_to_cart from "../../assets/svg/src/bag-tick.svg"
-import css from "./Toast.module.css"
-import { useState, useEffect, useRef } from "react"
-import { useRouter } from "next/router"
-import PropTypes from "prop-types"
-import { toastService } from "../../handler/toast.handler.js"
-
+import Image from 'next/image'
+import added_to_cart from '../../assets/svg/src/bag-tick.svg'
+import css from './Toast.module.css'
+import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
+import { toastService } from '../../handler/toast.handler.js'
 
 Toast.propTypes = {
     id: PropTypes.string,
@@ -13,7 +12,7 @@ Toast.propTypes = {
 }
 
 Toast.defaultProps = {
-    id: "default-toast",
+    id: 'default-toast',
     fade: true,
 }
 
@@ -27,15 +26,16 @@ export default function Toast({ id, fade }) {
 
         // subscribe to new toast notifications
         const subscription = toastService.onToast(id).subscribe((toast) => {
-
             // clear toasts when an empty toast is received
             if (!toast.message) {
                 setToasts((toasts) => {
                     // filter out toasts without 'keepAfterRouteChange' flag
-                    const filteredToasts = toasts.filter((x) => x.keepAfterRouteChange)
+                    const filteredToasts = toasts.filter(
+                        (x) => x.keepAfterRouteChange
+                    )
 
                     // remove 'keepAfterRouteChange' flag on the rest
-                    return omit(filteredToasts, "keepAfterRouteChange")
+                    return omit(filteredToasts, 'keepAfterRouteChange')
                 })
             } else {
                 // add toast to array with unique id
@@ -51,7 +51,7 @@ export default function Toast({ id, fade }) {
 
         // clear toasts on location change
         const clearToasts = () => toastService.clear(id)
-        router.events.on("routeChangeStart", clearToasts)
+        router.events.on('routeChangeStart', clearToasts)
 
         // clean up function that runs when the component unmounts
         return () => {
@@ -59,7 +59,7 @@ export default function Toast({ id, fade }) {
 
             // unsubscribe to avoid memory leaks
             subscription.unsubscribe()
-            router.events.off("routeChangeStart", clearToasts)
+            router.events.off('routeChangeStart', clearToasts)
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,15 +77,23 @@ export default function Toast({ id, fade }) {
 
         if (fade) {
             // fade out toast
-            setToasts((toasts) => toasts.map((x) => (x.itemId === toast.itemId ? { ...x, fade: true } : x)))
+            setToasts((toasts) =>
+                toasts.map((x) =>
+                    x.itemId === toast.itemId ? { ...x, fade: true } : x
+                )
+            )
 
             // remove toast after faded out
             setTimeout(() => {
-                setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
+                setToasts((toasts) =>
+                    toasts.filter((x) => x.itemId !== toast.itemId)
+                )
             }, 500)
         } else {
             // remove toast
-            setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
+            setToasts((toasts) =>
+                toasts.filter((x) => x.itemId !== toast.itemId)
+            )
         }
     }
 
@@ -95,9 +103,19 @@ export default function Toast({ id, fade }) {
         <>
             {toasts.map((toast, index) => {
                 return (
-                    <div className={`${css.popup_wrapper} ${toast.fade ? css.hide : css.show} `} key={index}>
+                    <div
+                        className={`${css.popup_wrapper} ${
+                            toast.fade ? css.hide : css.show
+                        } `}
+                        key={index}
+                    >
                         <div className={css.popup_main}>
-                            <div className={css.popup_text} dangerouslySetInnerHTML={{ __html: toast.message }} />
+                            <div
+                                className={css.popup_text}
+                                dangerouslySetInnerHTML={{
+                                    __html: toast.message,
+                                }}
+                            />
                             {/* <Image style={{ padding: "5px" }} alt="" src={added_to_cart} width={30} height={30} /> */}
                         </div>
                     </div>

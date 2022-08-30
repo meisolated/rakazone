@@ -38,7 +38,7 @@ export const userSlice = createSlice({
             state.error = initialState.error
             state.errMsg = initialState.errMsg
             state.loading = initialState.loading
-        }
+        },
     },
 })
 

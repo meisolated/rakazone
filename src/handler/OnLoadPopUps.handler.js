@@ -1,5 +1,5 @@
-import { Subject } from "rxjs"
-import { filter } from "rxjs/operators"
+import { Subject } from 'rxjs'
+import { filter } from 'rxjs/operators'
 
 export const toastService = {
     onToast,
@@ -8,14 +8,14 @@ export const toastService = {
 }
 
 export const ToastType = {
-    Success: "Success",
-    Error: "Error",
-    Info: "Info",
-    Warning: "Warning",
+    Success: 'Success',
+    Error: 'Error',
+    Info: 'Info',
+    Warning: 'Warning',
 }
 
 const toastSubject = new Subject()
-const defaultId = "default-toast"
+const defaultId = 'default-toast'
 
 // enable subscribing to toasts observablez
 function onToast(id = defaultId) {

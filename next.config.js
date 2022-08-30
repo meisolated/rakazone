@@ -29,8 +29,10 @@ const nextConfig = {
   images: {
     domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "localhost", "img.youtube.com"],
   },
+
   distDir: process.env.NODE_ENV === "dev" ? "_next" : "build",
   publicRuntimeConfig: {
+    NODE_ENV: process.env.NODE_ENV,
     baseUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/" : "https://raka.zone/",
     apiUrl:
       process.env.NODE_ENV === "dev"

@@ -1,5 +1,5 @@
-import axios from "axios"
-import getConfig from "next/config"
+import axios from 'axios'
+import getConfig from 'next/config'
 const { publicRuntimeConfig } = getConfig()
 
 export default function logevent(req, res) {

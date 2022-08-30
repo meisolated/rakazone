@@ -9,7 +9,7 @@
         "url": "https://github.com/meisolated"
     },
     "scripts": {
-        "dev": "NODE_ENV=dev next dev",
+        "dev": "NODE_ENV=dev next dev -p 3002",
         "analyze": "ANALYZE=true next build",
         "build": "NODE_ENV=production next build",
         "start": "NODE_ENV=production next start",
@@ -17,7 +17,9 @@
         "lint": "next lint",
         "svgs": "svgr -d ./src/assets/svg ./src/assets/svg/src",
         "install:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn",
-        "pm2": "pm2"
+        "pm2": "pm2",
+        "format": "prettier --write \"{src,test}/**/*.{js,ts}\" \"**/*.md\"",
+        "prettier": "prettier"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.5",
@@ -47,7 +49,7 @@
         "gulp": "^4.0.2",
         "gulp-header": "^2.0.9",
         "madge": "^5.0.1",
-        "prettier": "^2.7.1",
+        "prettier": "2.7.1",
         "serve": "^14.0.1"
     }
 }
