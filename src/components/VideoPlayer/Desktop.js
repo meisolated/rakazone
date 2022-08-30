@@ -426,26 +426,27 @@ export function VideoPlayerDesktop(props) {
         }
     }, [quality])
 
-    useEffect(() => {
-        let interval = setInterval(() => {
-            const data = {
-                playing: isPlaying,
-                muted: videoController.current.muted,
-                volume: videoController.current.volume * 100,
-                ts: Date.now(),
-                ct: videoController.current.currentTime,
-                vl: videoController.current.duration,
-                platform: "desktop",
-                browser: props.UA,
-                vi: playingAd ? "ad" : props.videoId,
-            }
-            axios.post(`/api/v1/logevent`, data)
-        }, 2000)
+    // !REMOVING WATCH LOG FOR NOW
+    // useEffect(() => {
+    //     let interval = setInterval(() => {
+    //         const data = {
+    //             playing: isPlaying,
+    //             muted: videoController.current.muted,
+    //             volume: videoController.current.volume * 100,
+    //             ts: Date.now(),
+    //             ct: videoController.current.currentTime,
+    //             vl: videoController.current.duration,
+    //             platform: "desktop",
+    //             browser: props.UA,
+    //             vi: playingAd ? "ad" : props.videoId,
+    //         }
+    //         axios.post(`/api/v1/logevent`, data)
+    //     }, 2000)
 
-        return () => {
-            clearInterval(interval)
-        }
-    }, [isPlaying, playingAd, videoController, volume, videoController, videoController])
+    //     return () => {
+    //         clearInterval(interval)
+    //     }
+    // }, [isPlaying, playingAd, videoController, volume, videoController, videoController])
 
     return (
         <div className={desktop_style.main_wrapper} onMouseEnter={() => handleControlsState("enter")} onMouseLeave={() => handleControlsState("leave")}>

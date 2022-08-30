@@ -13,11 +13,26 @@ export default function OnLoadPopUps({ onClose }, props) {
     const [visible, setVisible] = useState(true)
     const [_data, setData] = useState({})
     const modal = useRef(null)
-    const { data, error } = useSWR(publicRuntimeConfig.baseUrl + "api/v1/popups", fetcher)
+    // const { data, error } = useSWR(publicRuntimeConfig.baseUrl + "api/v1/popups", fetcher)
 
     useEffect(() => {
-        if (data) setData(data.data.popups.filter((pop) => pop.status == true)[0])
-    }, [data])
+        axios
+            .get(publicRuntimeConfig.baseUrl + "api/v1/popups")
+            .then((response) => {
+                if (response.data.error) {
+                    setShow(false)
+                }
+                else {
+                    let popups = response.data.data.popups
+                    setData(popups.filter((pop) => pop.status == true)[0])
+                }
+            })
+            .catch((err) => {
+                setShow(false)
+            })
+
+        // if (data) setData(data.data.popups.filter((pop) => pop.status == true)[0])
+    }, [])
 
     // useEffect(() => {
     //     let pop_status = localStorage.getItem("pop_status")
@@ -45,18 +60,18 @@ export default function OnLoadPopUps({ onClose }, props) {
             onClose()
         }, 500)
     }
-    const title = data ? _data.title : "Loading..."
-    const message = data ? _data.message : "Loading..."
-    const button = data ? _data.close_btn_text : "Loading..."
+    const title = _data ? _data.title : "Loading..."
+    const message = _data ? _data.message : "Loading..."
+    const button = _data ? _data.close_btn_text : "Loading..."
 
-    if (error) return <></>
+    // if (error) return <></>
     if (!visible) return <></>
     return (
         <>
             {/* <div className={`${css.notification} `} > */}
             <div className={`${css.outside_notification} ${show ? css.open_animation : css.close_animation}`} ref={modal}>
-                <div className={`${css.notification_container} ${!data ? css.center_loading : []}`}>
-                    {!data ? (
+                <div className={`${css.notification_container} ${!_data ? css.center_loading : []}`}>
+                    {!_data ? (
                         <Loading w="25px" h="25px" />
                     ) : (
                         <>

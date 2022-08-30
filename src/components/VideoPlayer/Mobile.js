@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Primary } from "components/Buttons/index.js"
+import { PrimarySmall } from "components/Buttons/index.js"
 import Loading from "components/Loading"
 import Hls from "hls.js"
 import getConfig from "next/config.js"
@@ -11,11 +11,14 @@ import { toastService } from "../../handler/toast.handler.js"
 import { formatDuration } from "../../util/functions.js"
 import mobile_style from "./VideoPlayerMobile.module.css"
 
+
 const { publicRuntimeConfig } = getConfig()
 
 export function VideoPlayerMobile(props) {
-    const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
-    const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+    // const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+    // const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+    const adSrc = `https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8` //dev
+    const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" //dev
     const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
     const videoPlayer = useRef(null)
@@ -138,8 +141,10 @@ export function VideoPlayerMobile(props) {
         if (event === "settings") {
             return setShowSettings(true)
         } else if (event === "forward") {
+            if (playingAd) return
             return onPressForwardOrBackward(10)
         } else if (event === "backward") {
+            if (playingAd) return
             return onPressForwardOrBackward(-10)
         } else if (event === "PlayPause") {
             return handlePlayPause()
@@ -298,125 +303,137 @@ export function VideoPlayerMobile(props) {
         }
     }, [quality])
 
-    useEffect(() => {
-        let interval = setInterval(() => {
-            const data = { playing: isPlaying, muted: videoController.current.muted, volume: videoController.current.volume * 100, ts: Date.now(), ct: videoController.current.currentTime, vl: videoController.current.duration, platform: "mobile", browser: props.UA, vi: playingAd ? "ad" : props.videoId }
-            axios.post(`/api/v1/logevent`, data)
-        }, 2000)
+    // !REMOVED WATCH LOG FOR NOW 
+    // useEffect(() => {
+    //     let interval = setInterval(() => {
+    //         const data = { playing: isPlaying, muted: videoController.current.muted, volume: videoController.current.volume * 100, ts: Date.now(), ct: videoController.current.currentTime, vl: videoController.current.duration, platform: "mobile", browser: props.UA, vi: playingAd ? "ad" : props.videoId }
+    //         axios.post(`/api/v1/logevent`, data)
+    //     }, 2000)
 
-        return () => {
-            clearInterval(interval)
-        }
-    }, [isPlaying, playingAd, videoController, videoController, videoController])
+    //     return () => {
+    //         clearInterval(interval)
+    //     }
+    // }, [isPlaying, playingAd, videoController, videoController, videoController])
 
 
     return (
-        <div className={mobile_style.video_wrapper} ref={videoPlayer} onClick={() => _handleClick()}>
-            {playingAd && (
-                <div className={mobile_style.playing_ad_wrapper}>
-                    Ad
-                </div>
-            )}
-            {muted && (
-                <div className={mobile_style.unmute_button} onClick={() => handleUnmute()}>Unmute</div>
-            )}
-            <div className={`${mobile_style.controls} ${playingAd && mobile_style.hide_controls}  ${showControls && mobile_style.show_controls}`}>
-                <div className={mobile_style.top_controls}>
-                    <div onClick={() => _handleClick("settings")} className={`${mobile_style.settings} material-icons-round`}>
-                        settings
+        <div className={mobile_style.vertical_align}>
+            <div className={mobile_style.video_wrapper} ref={videoPlayer} onClick={() => _handleClick()}>
+                {playingAd && (
+                    <div className={mobile_style.playing_ad_wrapper}>
+                        Ad
                     </div>
-                </div>
-                <div className={mobile_style.middle_controls}>
-                    {loading ? (
-                        <Loading w={"40px"} h={"40px"} />
-                    ) : (
-                        <>
-                            <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => _handleClick("backward")}>
-                                replay_10
-                            </div>
-                            <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => _handleClick("PlayPause")}>
-                                {isPlaying ? "pause" : "play_arrow"}
-                            </div>
-                            <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => _handleClick("forward")}>
-                                forward_10
-                            </div>
-                        </>
-                    )}
-                </div>
-                <div className={mobile_style.bottom_controls}>
-                    <div className={mobile_style.duration_wrapper}>
-                        <div className={mobile_style.duration}>
-                            <div className={mobile_style.duration_current}>{duration.currentDuration}</div>
-                            <div className={mobile_style.duration_separator}>/</div>
-                            <div className={mobile_style.duration_total}>{duration.totalDuration}</div>
-                        </div>
-                        <div className={`${mobile_style.fullscreen_btn} material-icons-round`} onClick={() => _handleClick("fullscreen")}>
-                            {fullscreen ? "fullscreen_exit" : "fullscreen"}
+                )}
+                {muted && (
+                    <div className={mobile_style.unmute_button} onClick={() => handleUnmute()}>Unmute</div>
+                )}
+                {/* //! ${playingAd && mobile_style.hide_controls}  */}
+                <div className={`${mobile_style.controls} ${showControls && mobile_style.show_controls}`}>
+                    <div className={mobile_style.top_controls}>
+                        <div onClick={() => _handleClick("settings")} className={`${mobile_style.settings} material-icons-round`}>
+                            settings
                         </div>
                     </div>
-                    <div ref={timelineController} className={`${mobile_style.timeline_wrap}`}>
-                        <div className={mobile_style.timeline_panel}>
-                            <div className={mobile_style.timeline_slider}>
-                                <div className={mobile_style.timeline_slider_track}>
-                                    <div className={mobile_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
-                                        <div className={mobile_style.timeline_slider_handle}></div>
+                    <div className={mobile_style.middle_controls}>
+                        {loading ? (
+                            <Loading w={"40px"} h={"40px"} />
+                        ) : (
+                            <>
+                                <div className={`${mobile_style.skip_previous_btn} material-icons-round`} onClick={() => _handleClick("backward")}>
+                                    replay_10
+                                </div>
+                                <div className={`${mobile_style.play_pause_btn} material-icons-round`} onClick={() => _handleClick("PlayPause")}>
+                                    {isPlaying ? "pause" : "play_arrow"}
+                                </div>
+                                <div className={`${mobile_style.skip_next_btn} material-icons-round`} onClick={() => _handleClick("forward")}>
+                                    forward_10
+                                </div>
+                            </>
+                        )}
+                    </div>
+                    <div className={mobile_style.bottom_controls}>
+                        <div className={mobile_style.duration_wrapper}>
+                            <div className={mobile_style.duration}>
+                                <div className={mobile_style.duration_current}>{duration.currentDuration}</div>
+                                <div className={mobile_style.duration_separator}>/</div>
+                                <div className={mobile_style.duration_total}>{duration.totalDuration}</div>
+                            </div>
+                            <div className={`${mobile_style.fullscreen_btn} material-icons-round`} onClick={() => _handleClick("fullscreen")}>
+                                {fullscreen ? "fullscreen_exit" : "fullscreen"}
+                            </div>
+                        </div>
+                        <div ref={timelineController} className={`${mobile_style.timeline_wrap}`}>
+                            <div className={mobile_style.timeline_panel}>
+                                <div className={mobile_style.timeline_slider}>
+                                    <div className={mobile_style.timeline_slider_track}>
+                                        <div className={mobile_style.timeline_slider_progress} style={{ width: duration.percentage + "%" }}>
+                                            <div className={mobile_style.timeline_slider_handle}></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {showSettings && <div className={`${mobile_style.bottom_settings_popup_wrapper}`} onClick={() => _closeSettings()}></div>}
-            <div className={`${mobile_style.bottom_settings_popup} ${showSettings && mobile_style.show_setting}`}>
-                <div className={mobile_style.settings_popup_header}>
-                    <a className={mobile_style.settings_popup_title}>Settings</a>
-                </div>
-                <div className={mobile_style.settings_popup_body}>
-                    {!settingsShowQuality && !settingsShowSpeed && (
-                        <div className={mobile_style.settings_popup_body_item} onClick={() => setSettingsShowQuality(true)}>
-                            <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
-                                tune
-                            </div>
-                            <div className={mobile_style.settings_popup_body_item_text}>
-                                Quality
-                                <div className={mobile_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
-                            </div>
-                        </div>
-                    )}
-                    {settingsShowQuality && levels.length === 0 && (
-                        "Quality is not supported in Safari"
-                    )}
-                    {settingsShowQuality &&
-                        levels.map((level, index) => {
 
-                            return (
-                                <div className={mobile_style.settings_popup_body_item} key={index} onClick={() => handleQualitySelect(index)}>
-                                    <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`}></div>
-                                    <a className={mobile_style.settings_popup_body_item_text}>{level.height}p</a>
+                {showSettings && <div className={`${mobile_style.bottom_settings_popup_wrapper}`} onClick={() => _closeSettings()}></div>}
+                <div className={`${mobile_style.bottom_settings_popup} ${showSettings && mobile_style.show_setting}`}>
+                    <div className={mobile_style.settings_popup_header}>
+                        <a className={mobile_style.settings_popup_title}>Settings</a>
+                    </div>
+                    <div className={mobile_style.settings_popup_body}>
+                        {!settingsShowQuality && !settingsShowSpeed && (
+                            <div className={mobile_style.settings_popup_body_item} onClick={() => setSettingsShowQuality(true)}>
+                                <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
+                                    tune
                                 </div>
-                            )
-                        })}
-                    {!settingsShowQuality && !settingsShowSpeed && (
-                        <div className={mobile_style.settings_popup_body_item} onClick={() => setSettingsShowSpeed(true)}>
-                            <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
-                                slow_motion_video
+                                <div className={mobile_style.settings_popup_body_item_text}>
+                                    Quality
+                                    <div className={mobile_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
+                                </div>
                             </div>
-                            <a className={mobile_style.settings_popup_body_item_text}>Playback Speed</a>
-                        </div>
-                    )}
-                    {settingsShowSpeed &&
-                        playbackSpeedsList.map((speed, index) => {
-                            return (
-                                <div className={mobile_style.settings_popup_body_item} key={index} onClick={() => handleSpeedSelect(speed)}>
-                                    <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`}></div>
-                                    <a className={mobile_style.settings_popup_body_item_text}>{speed}x</a>
+                        )}
+                        {settingsShowQuality && levels.length === 0 && (
+                            "Quality is not supported in Safari"
+                        )}
+                        {settingsShowQuality &&
+                            levels.map((level, index) => {
+
+                                return (
+                                    <div className={mobile_style.settings_popup_body_item} key={index} onClick={() => handleQualitySelect(index)}>
+                                        <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`}></div>
+                                        <a className={mobile_style.settings_popup_body_item_text}>{level.height}p</a>
+                                    </div>
+                                )
+                            })}
+                        {!settingsShowQuality && !settingsShowSpeed && (
+                            <div className={mobile_style.settings_popup_body_item} onClick={() => setSettingsShowSpeed(true)}>
+                                <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`} onClick={() => handlePlayPause()}>
+                                    slow_motion_video
                                 </div>
-                            )
-                        })}
+                                <a className={mobile_style.settings_popup_body_item_text}>Playback Speed</a>
+                            </div>
+                        )}
+                        {settingsShowSpeed &&
+                            playbackSpeedsList.map((speed, index) => {
+                                return (
+                                    <div className={mobile_style.settings_popup_body_item} key={index} onClick={() => handleSpeedSelect(speed)}>
+                                        <div className={`${mobile_style.settings_popup_body_item_icon} material-icons-round`}></div>
+                                        <a className={mobile_style.settings_popup_body_item_text}>{speed}x</a>
+                                    </div>
+                                )
+                            })}
+                    </div>
+                </div>
+                <video autoPlay onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} />
+            </div>
+            <div className={mobile_style.ad_wrapper}>
+                <Image src={AdImage} width={"100px"} height={"100px"} />
+                <div className={mobile_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
+                <div className={mobile_style.ad_btn_wrapper}>
+                    <PrimarySmall link="https://www.amazon.in/shop/rakazonegaming" text={"BUY"} />
                 </div>
             </div>
-            <video autoPlay onClick={() => handlePlayPause()} ref={videoController} className={mobile_style.video} />
         </div>
 
     )

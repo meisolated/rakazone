@@ -29,14 +29,14 @@ const nextConfig = {
   images: {
     domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "localhost", "img.youtube.com"],
   },
-  distDir: "build",
+  distDir: process.env.NODE_ENV === "dev" ? "_next" : "build",
   publicRuntimeConfig: {
-    baseUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/" : "https://raka.zone/",
+    baseUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/" : "https://raka.zone/",
     apiUrl:
-      process.env.NODE_ENV === "development"
-        ? "https://raka.zone/internal_api/v1/" // development api
+      process.env.NODE_ENV === "dev"
+        ? "https://raka.zone/internal_api/v1/" // dev api
         : "https://raka.zone/internal_api/v1/", // production api
-    serverUrl: process.env.NODE_ENV === "development" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
+    serverUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
   },
   webpack(config, { isServer }) {
     if (isServer) {

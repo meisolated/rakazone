@@ -1802,13 +1802,21 @@ function OnLoadPopUps({ onClose  }, props) {
     const { 0: visible , 1: setVisible  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
     const { 0: _data , 1: setData  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({});
     const modal = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
-    const { data , error  } = (0,swr__WEBPACK_IMPORTED_MODULE_4__["default"])(publicRuntimeConfig.baseUrl + "api/v1/popups", _util_functions_js__WEBPACK_IMPORTED_MODULE_5__/* .fetcher */ ._i);
+    // const { data, error } = useSWR(publicRuntimeConfig.baseUrl + "api/v1/popups", fetcher)
     (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
-        if (data) setData(data.data.popups.filter((pop)=>pop.status == true
-        )[0]);
-    }, [
-        data
-    ]);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get(publicRuntimeConfig.baseUrl + "api/v1/popups").then((response)=>{
+            if (response.data.error) {
+                setShow(false);
+            } else {
+                let popups = response.data.data.popups;
+                setData(popups.filter((pop)=>pop.status == true
+                )[0]);
+            }
+        }).catch((err)=>{
+            setShow(false);
+        });
+    // if (data) setData(data.data.popups.filter((pop) => pop.status == true)[0])
+    }, []);
     // useEffect(() => {
     //     let pop_status = localStorage.getItem("pop_status")
     //     if (!pop_status) {
@@ -1835,18 +1843,18 @@ function OnLoadPopUps({ onClose  }, props) {
             onClose();
         }, 500);
     };
-    const title = data ? _data.title : "Loading...";
-    const message = data ? _data.message : "Loading...";
-    const button = data ? _data.close_btn_text : "Loading...";
-    if (error) return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
+    const title = _data ? _data.title : "Loading...";
+    const message = _data ? _data.message : "Loading...";
+    const button = _data ? _data.close_btn_text : "Loading...";
+    // if (error) return <></>
     if (!visible) return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
             className: `${(_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().outside_notification)} ${show ? (_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().open_animation) : (_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().close_animation)}`,
             ref: modal,
             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: `${(_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().notification_container)} ${!data ? (_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().center_loading) : []}`,
-                children: !data ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Loading__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
+                className: `${(_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().notification_container)} ${!_data ? (_OnLoadPopUps_module_css__WEBPACK_IMPORTED_MODULE_8___default().center_loading) : []}`,
+                children: !_data ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Loading__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
                     w: "25px",
                     h: "25px"
                 }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -1964,14 +1972,13 @@ function MyApp({ Component , pageProps , router  }) {
         }
     };
     (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(()=>{
-        const analyticsServerUrl = "https://keviv.xyz";
+        const analyticsServerUrl = "https://keviv.xyz/";
         const analyticsKey = "60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7";
-        // ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
-        // ackeeTracker.detect()
+        ackee_tracker__WEBPACK_IMPORTED_MODULE_1__.create(analyticsServerUrl).record(analyticsKey);
         const attributes = ackee_tracker__WEBPACK_IMPORTED_MODULE_1__.attributes(true);
         const instance = ackee_tracker__WEBPACK_IMPORTED_MODULE_1__.create(analyticsServerUrl, {
             detailed: true,
-            ignoreLocalhost: true
+            ignoreLocalhost: false
         });
         instance.record(analyticsKey, {
             ...attributes,

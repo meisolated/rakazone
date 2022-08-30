@@ -51,22 +51,19 @@ function MyApp({ Component, pageProps, router }) {
   }
 
   useEffect(() => {
-    const analyticsServerUrl = "https://keviv.xyz"
+    const analyticsServerUrl = "https://keviv.xyz/"
     const analyticsKey = "60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7"
-    // ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
-    // ackeeTracker.detect()
+    ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
     const attributes = ackeeTracker.attributes(true)
     const instance = ackeeTracker.create(analyticsServerUrl, {
       detailed: true,
-      ignoreLocalhost: true
+      ignoreLocalhost: false
     })
     instance.record(analyticsKey, {
       ...attributes,
       siteLocation: window.location.href,
       siteReferrer: document.referrer
     })
-
-
 
     if (!commented) {
       if (document) {

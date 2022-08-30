@@ -9,14 +9,15 @@
         "url": "https://github.com/meisolated"
     },
     "scripts": {
-        "dev": "NODE_ENV=development next dev",
+        "dev": "NODE_ENV=dev next dev",
         "analyze": "ANALYZE=true next build",
         "build": "NODE_ENV=production next build",
         "start": "NODE_ENV=production next start",
         "export": "NODE_ENV=production next export",
         "lint": "next lint",
         "svgs": "svgr -d ./src/assets/svg ./src/assets/svg/src",
-        "install:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn"
+        "install:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn",
+        "pm2": "pm2"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.5",
