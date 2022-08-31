@@ -514,22 +514,27 @@ function DonateModal({ onClose , whatToShow , ...props }) {
             ref: modal,
             children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: `${(cart_module_default()).modal_container} ${show && (cart_module_default()).show_modal}`,
-                children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                     className: (cart_module_default()).modal_content,
-                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                        className: (cart_module_default()).header,
-                        children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: (cart_module_default()).title,
-                                children: "Your Cart"
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: (cart_module_default()).close,
-                                onClick: closeHandler,
-                                children: /*#__PURE__*/ jsx_runtime_.jsx(svg/* Close */.x8, {})
-                            })
-                        ]
-                    })
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            className: (cart_module_default()).header,
+                            children: [
+                                /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                    className: (cart_module_default()).title,
+                                    children: "Your Cart"
+                                }),
+                                /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                    className: (cart_module_default()).close,
+                                    onClick: closeHandler,
+                                    children: /*#__PURE__*/ jsx_runtime_.jsx(svg/* Close */.x8, {})
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                            children: "Cart is currently disabled"
+                        })
+                    ]
                 })
             })
         })

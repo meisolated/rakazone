@@ -466,10 +466,11 @@ function Home(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-    const forwarded = req.headers['x-forwarded-for']
+    const forwarded = req.headers['x-real-ip']
     const ip = forwarded
         ? forwarded.split(/, /)[0]
         : req.connection.remoteAddress
+    console.log(ip)
     await axios.post(`${publicRuntimeConfig.apiUrl}logger`, {
         ip,
         req_type: '/home',

@@ -464,7 +464,8 @@ function Home(props) {
                                                         className: (index_module_default()).bold,
                                                         children: "Rishab Karanwal"
                                                     }),
-                                                    " most of you know me as Raka, I am a variety streamer. If you say so."
+                                                    " ",
+                                                    "most of you know me as Raka, I am a variety streamer. If you say so."
                                                 ]
                                             })
                                         ]
@@ -686,7 +687,8 @@ function Home(props) {
                                                 className: "bold",
                                                 children: "Rishab Karanwal"
                                             }),
-                                            '. Most of you know me as RakaZone, and I am a variety streamer. You will see me playing multiple games on my channel, from some intense shooter games to role-playing. I usually play GTA V Role Play and Valorant & I also play new games that come out from time to time. I am a content creator for Velocity Gaming "VLT". I have been streaming on YouTube for the last 6yrs. I used to work at Accenture as a senior analyst. Now I am a full-time streamer & in all these years, one thing I understood about life is ',
+                                            '. Most of you know me as RakaZone, and I am a variety streamer. You will see me playing multiple games on my channel, from some intense shooter games to role-playing. I usually play GTA V Role Play and Valorant & I also play new games that come out from time to time. I am a content creator for Velocity Gaming "VLT". I have been streaming on YouTube for the last 6yrs. I used to work at Accenture as a senior analyst. Now I am a full-time streamer & in all these years, one thing I understood about life is',
+                                            " ",
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
                                                 className: "bold",
                                                 children: '"The best way to predict your future is to create it."'
@@ -760,9 +762,12 @@ function Home(props) {
                                             height: 50,
                                             alt: "youtube logo"
                                         }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("h2", {
+                                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h2", {
                                             className: (index_module_default()).subscribetext,
-                                            children: " Subscribe for amazing content, every day"
+                                            children: [
+                                                " ",
+                                                "Subscribe for amazing content, every day"
+                                            ]
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: (index_module_default()).subscribetext_sub,
@@ -902,12 +907,8 @@ function Home(props) {
     });
 }
 async function getServerSideProps({ req , res: res1  }) {
-    const forwarded = req.headers["x-forwarded-for"];
-    const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress;
-    await external_axios_default().post(`${publicRuntimeConfig.apiUrl}logger`, {
-        ip,
-        req_type: "/home"
-    });
+    // const forwarded = req.headers['x-forwarded-for']
+    // const ip = forwarded ? forwarded.split(/, /)[0] : false
     let contentRes = await external_axios_default().get(`${publicRuntimeConfig.apiUrl}content`, {
         headers: req.headers.cookie && {
             cookie: req.headers.cookie
