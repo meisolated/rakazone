@@ -63,7 +63,7 @@ export default function Wallpapers() {
                                     height={10000}
                                     quality={100}
                                 />
-                                <Link href={baseUrl + downloadable} download>
+                                <Link prefetch={false} href={baseUrl + downloadable} download>
                                     <div className={css.wallpaper_download}>
                                         Download
                                     </div>

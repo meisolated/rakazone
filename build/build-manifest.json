@@ -5,9 +5,9 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/7LICnU30SO-0mY_jqOdIH/_buildManifest.js",
-    "static/7LICnU30SO-0mY_jqOdIH/_ssgManifest.js",
-    "static/7LICnU30SO-0mY_jqOdIH/_middlewareManifest.js"
+    "static/vw-lFA1t-QmqTwyRA5ZcZ/_buildManifest.js",
+    "static/vw-lFA1t-QmqTwyRA5ZcZ/_ssgManifest.js",
+    "static/vw-lFA1t-QmqTwyRA5ZcZ/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
@@ -15,7 +15,7 @@
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-6fc1304f0fc00875.js",
       "static/css/51b7c602c6ae6efc.css",
-      "static/chunks/pages/index-9bb850e3d58ff141.js"
+      "static/chunks/pages/index-15cf0f4a50d689c3.js"
     ],
     "/401": [
       "static/chunks/webpack-cb7634a8b6194820.js",
@@ -82,13 +82,13 @@
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-6fc1304f0fc00875.js",
       "static/css/1aaa3d7dc56876ea.css",
-      "static/chunks/pages/Shop-1044443ab9f43c9f.js"
+      "static/chunks/pages/Shop-00825e7ad59bbda0.js"
     ],
     "/User": [
       "static/chunks/webpack-cb7634a8b6194820.js",
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-6fc1304f0fc00875.js",
-      "static/css/7eb6dc50e51f6da7.css",
+      "static/css/e6da0b20a9e36aa3.css",
       "static/chunks/pages/User-ac9a9d1905ee4246.js"
     ],
     "/Wallpapers": [
@@ -96,7 +96,7 @@
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-6fc1304f0fc00875.js",
       "static/css/0367b0183365bb50.css",
-      "static/chunks/pages/Wallpapers-b4684c588aaee771.js"
+      "static/chunks/pages/Wallpapers-5795394813940fcc.js"
     ],
     "/Watch/[videoId]": [
       "static/chunks/webpack-cb7634a8b6194820.js",
@@ -118,7 +118,7 @@
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-6fc1304f0fc00875.js",
       "static/css/7bff0b30ce2fb662.css",
-      "static/chunks/pages/_app-8bdd99af030bed75.js"
+      "static/chunks/pages/_app-98d9675cc8fe2890.js"
     ],
     "/_error": [
       "static/chunks/webpack-cb7634a8b6194820.js",

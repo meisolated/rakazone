@@ -187,9 +187,9 @@ function EmptyVideoItem(props) {
                     className: (VideoItem_module_default()).video_filter
                 }),
                 /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                    prefetch: false,
                     href: link,
                     passHref: true,
-                    prefetch: false,
                     children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                         className: `${(VideoItem_module_default()).video_button_wrapper} ${active ? (VideoItem_module_default()).icon_active : (VideoItem_module_default()).icon_inactive}`,
                         onMouseLeave: ()=>setActive(false)
@@ -241,9 +241,9 @@ const VideoItemRegular = (props)=>{
                         className: `${(VideoItem_module_default()).video_filter}`
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                        prefetch: false,
                         href: link,
                         passHref: true,
-                        prefetch: false,
                         children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                             className: `${(VideoItem_module_default()).video_button_wrapper} ${active ? (VideoItem_module_default()).icon_active : (VideoItem_module_default()).icon_inactive}`,
                             onMouseLeave: ()=>setActive(false)
@@ -511,9 +511,9 @@ function Home(props) {
                                                 className: (index_module_default()).video_featured_filter
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                                prefetch: false,
                                                 href: link,
                                                 passHref: true,
-                                                prefetch: false,
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                                                     className: `${(index_module_default()).video_featured_button_wrapper} ${active ? (index_module_default()).icon_active : (index_module_default()).icon_inactive}`,
                                                     onMouseLeave: ()=>setActive(false)
@@ -635,6 +635,7 @@ function Home(props) {
                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                                 className: (index_module_default()).latest_videos_right,
                                 children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                    prefetch: false,
                                     href: "/yt",
                                     className: (index_module_default()).latest_videos_arrow_link,
                                     children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -907,8 +908,12 @@ function Home(props) {
     });
 }
 async function getServerSideProps({ req , res: res1  }) {
-    // const forwarded = req.headers['x-forwarded-for']
-    // const ip = forwarded ? forwarded.split(/, /)[0] : false
+    const forwarded = req.headers["x-real-ip"];
+    const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress;
+    await external_axios_default().post(`${publicRuntimeConfig.apiUrl}logger`, {
+        ip,
+        req_type: "/home"
+    });
     let contentRes = await external_axios_default().get(`${publicRuntimeConfig.apiUrl}content`, {
         headers: req.headers.cookie && {
             cookie: req.headers.cookie

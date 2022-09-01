@@ -129,27 +129,27 @@ function Footer() {
                     <div className={css.footer_content_bottom}>
                         <div className={`${css.footer_social_buttons}`}>
                             {/* target="_blank" rel="noreferrer" */}
-                            <Link href="/yt">
+                            <Link prefetch={false} href="/yt">
                                 <p
                                     className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}
                                 ></p>
                             </Link>
-                            <Link href="/fb">
+                            <Link prefetch={false} href="/fb">
                                 <p
                                     className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}
                                 ></p>
                             </Link>
-                            <Link href="/twitter">
+                            <Link prefetch={false} href="/twitter">
                                 <p
                                     className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}
                                 ></p>
                             </Link>
-                            <Link href="/insta">
+                            <Link prefetch={false} href="/insta">
                                 <p
                                     className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}
                                 ></p>
                             </Link>
-                            <Link href="/twitch">
+                            <Link prefetch={false} href="/twitch">
                                 <p
                                     className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}
                                 ></p>

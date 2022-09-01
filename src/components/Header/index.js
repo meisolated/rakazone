@@ -24,7 +24,7 @@ import {
     Profile,
     ProfileClicked,
     Wallpaper,
-    WallpaperClicked,
+    WallpaperClicked
 } from '../../assets/svg/navicons'
 import shoppingCart from '../../assets/svg/src/bag-2.svg'
 import useWindowSize from '../../Hooks/windowResize.hook.js'
@@ -249,7 +249,7 @@ export default function Header() {
             <div className={css.container}>
                 <div className="container-default">
                     <div className={css.header_wrapper}>
-                        <Link href="/">
+                        <Link prefetch={false} href="/">
                             <div className={css.left}>
                                 <Image
                                     src="https://raka.zone/internal_api/assets/img/logo.png"
@@ -264,28 +264,28 @@ export default function Header() {
                             <nav className={css.nav_menu}>
                                 <ul className={css.header_navigation}>
                                     <li className={css.nav_item_wrapper}>
-                                        <Link href={'/'} passHref>
+                                        <Link prefetch={false} href={'/'} passHref>
                                             <a>Home</a>
                                         </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <Link href={'/About'} passHref>
+                                        <Link prefetch={false} href={'/About'} passHref>
                                             <a>About</a>
                                         </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <Link href={'/Shop'} passHref>
+                                        <Link prefetch={false} href={'/Shop'} passHref>
                                             <a>Shop</a>
                                         </Link>
                                     </li>
 
                                     <li className={css.nav_item_wrapper}>
-                                        <Link href={'/Contact'} passHref>
+                                        <Link prefetch={false} href={'/Contact'} passHref>
                                             <a>Contact</a>
                                         </Link>
                                     </li>
                                     <li className={css.nav_item_wrapper}>
-                                        <Link href={'/Wallpapers'} passHref>
+                                        <Link prefetch={false} href={'/Wallpapers'} passHref>
                                             <a>Wallpapers</a>
                                         </Link>
                                     </li>
@@ -334,24 +334,21 @@ export default function Header() {
 
             <div className={css.bottom_navbar_wrapper}>
                 <div
-                    className={`${css.bottom_navbar_container} ${
-                        windowSize.width > 788
+                    className={`${css.bottom_navbar_container} ${windowSize.width > 788
                             ? css.bottom_navbar_hide
                             : scrollY.increasing
-                            ? css.bottom_navbar_hide
-                            : css.bottom_navbar_show
-                    }`}
+                                ? css.bottom_navbar_hide
+                                : css.bottom_navbar_show
+                        }`}
                 >
                     <div className={css.bottom_navbar}>
                         {tabs.map((tab, index) => {
                             let active = clicked[tab.name].active
                             return (
                                 <div
-                                    className={`${css.bottom_navbar_button} ${
-                                        css.bottom_navbar_common_container
-                                    } ${
-                                        active ? css.bottom_navbar_clicked : []
-                                    }`}
+                                    className={`${css.bottom_navbar_button} ${css.bottom_navbar_common_container
+                                        } ${active ? css.bottom_navbar_clicked : []
+                                        }`}
                                     key={'t-' + index}
                                     onClick={() => OnNavClicked(tab.name)}
                                 >
@@ -369,11 +366,10 @@ export default function Header() {
                                         }}
                                     >
                                         <div
-                                            className={`${
-                                                active
+                                            className={`${active
                                                     ? css.bottom_navbar_clicked_underline
                                                     : []
-                                            }`}
+                                                }`}
                                         />
                                     </div>
                                 </div>
@@ -383,15 +379,14 @@ export default function Header() {
                 </div>
                 <div
                     style={{ zIndex: 99 }}
-                    className={`${css.bottom_navbar_container} ${
-                        windowSize.width > 788
+                    className={`${css.bottom_navbar_container} ${windowSize.width > 788
                             ? css.sub_bottom_navbar_hide
                             : subNavbar
-                            ? scrollY.increasing
-                                ? css.sub_bottom_navbar_hide
-                                : css.sub_bottom_navbar_show
-                            : css.sub_bottom_navbar_hide
-                    }`}
+                                ? scrollY.increasing
+                                    ? css.sub_bottom_navbar_hide
+                                    : css.sub_bottom_navbar_show
+                                : css.sub_bottom_navbar_hide
+                        }`}
                 >
                     <div className={css.bottom_navbar}>
                         {exploreTabs.map((tab, index) => {
@@ -404,15 +399,12 @@ export default function Header() {
                                     className={css.bottom_navbar_expore_button}
                                 >
                                     <div
-                                        className={`${
-                                            css.bottom_navbar_button
-                                        } ${
-                                            css.sub_bottom_navbar_common_container
-                                        } ${
-                                            active
+                                        className={`${css.bottom_navbar_button
+                                            } ${css.sub_bottom_navbar_common_container
+                                            } ${active
                                                 ? css.bottom_navbar_clicked
                                                 : []
-                                        }`}
+                                            }`}
                                         key={'t-' + index}
                                         onClick={() => OnNavClicked(tab.name)}
                                     >
@@ -430,11 +422,10 @@ export default function Header() {
                                             }}
                                         >
                                             <div
-                                                className={`${
-                                                    active
+                                                className={`${active
                                                         ? css.bottom_navbar_clicked_underline
                                                         : []
-                                                }`}
+                                                    }`}
                                             />
                                         </div>
                                     </div>

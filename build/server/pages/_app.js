@@ -399,30 +399,35 @@ function Footer() {
                                 className: `${(Footer_module_default()).footer_social_buttons}`,
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
+                                        prefetch: false,
                                         href: "/yt",
                                         children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_youtube}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
+                                        prefetch: false,
                                         href: "/fb",
                                         children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_facebook}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
+                                        prefetch: false,
                                         href: "/twitter",
                                         children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_twitter}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
+                                        prefetch: false,
                                         href: "/insta",
                                         children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_instagram}  ${(Footer_module_default()).footer_social_button}`
                                         })
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx((link_js_default()), {
+                                        prefetch: false,
                                         href: "/twitch",
                                         children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
                                             className: `${(Footer_module_default()).footer_social_button_icon_twitch}  ${(Footer_module_default()).footer_social_button}`
@@ -1445,6 +1450,7 @@ function Header() {
                         className: (Header_module_default()).header_wrapper,
                         children: [
                             /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                prefetch: false,
                                 href: "/",
                                 children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                                     className: (Header_module_default()).left,
@@ -1468,6 +1474,7 @@ function Header() {
                                                 /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
                                                     children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                                        prefetch: false,
                                                         href: "/",
                                                         passHref: true,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
@@ -1478,6 +1485,7 @@ function Header() {
                                                 /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
                                                     children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                                        prefetch: false,
                                                         href: "/About",
                                                         passHref: true,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
@@ -1488,6 +1496,7 @@ function Header() {
                                                 /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
                                                     children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                                        prefetch: false,
                                                         href: "/Shop",
                                                         passHref: true,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
@@ -1498,6 +1507,7 @@ function Header() {
                                                 /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
                                                     children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                                        prefetch: false,
                                                         href: "/Contact",
                                                         passHref: true,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
@@ -1508,6 +1518,7 @@ function Header() {
                                                 /*#__PURE__*/ jsx_runtime_.jsx("li", {
                                                     className: (Header_module_default()).nav_item_wrapper,
                                                     children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                                                        prefetch: false,
                                                         href: "/Wallpapers",
                                                         passHref: true,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("a", {

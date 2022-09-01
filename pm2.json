@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "rakazone_frontend_production",
+            "name": "RAKAZONE_FRONTEND_PRODUCTION",
             "script": "node_modules/next/dist/bin/next",
             "args": "start",
             "cwd": "./",

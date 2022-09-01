@@ -53,7 +53,7 @@ function Shop(props) {
                 <div className={css.shop_grid}>
                     {props.products_list.map((product, index) => {
                         return (
-                            <Link
+                            <Link prefetch={false}
                                 href={`/Product/${product.seo_title}`}
                                 passHref
                                 key={index}
@@ -107,9 +107,9 @@ function Shop(props) {
                                             >
                                                 {product.description.length > 30
                                                     ? product.description.substring(
-                                                          0,
-                                                          80
-                                                      ) + '...'
+                                                        0,
+                                                        80
+                                                    ) + '...'
                                                     : product.description}
                                             </div>
                                         </div>

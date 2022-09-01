@@ -6,9 +6,9 @@
   "/api/v1/userdata": "pages/api/v1/userdata.js",
   "/api/v1/watchlog": "pages/api/v1/watchlog.js",
   "/About": "pages/About.js",
-  "/_document": "pages/_document.js",
   "/Admin": "pages/Admin.js",
   "/Playlist/[list]": "pages/Playlist/[list].js",
+  "/_document": "pages/_document.js",
   "/Product/[product_id]": "pages/Product/[product_id].js",
   "/Shop": "pages/Shop.js",
   "/[redirect]": "pages/[redirect].js",
@@ -19,7 +19,7 @@
   "/en/Community": "pages/en/Community.html",
   "/en/Contact": "pages/en/Contact.html",
   "/en/Polls": "pages/en/Polls.html",
-  "/en/User": "pages/en/User.html",
   "/en/Wallpapers": "pages/en/Wallpapers.html",
+  "/en/User": "pages/en/User.html",
   "/en/401": "pages/en/401.html"
 }

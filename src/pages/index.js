@@ -157,7 +157,7 @@ function Home(props) {
                                 alt=""
                             />
                             <div className={css.video_featured_filter} />
-                            <Link href={link} passHref prefetch={false}>
+                            <Link prefetch={false} href={link} passHref >
                                 <div
                                     className={`${css.video_featured_button_wrapper
                                         } ${active
@@ -259,7 +259,7 @@ function Home(props) {
                         </h2>
                     </div>
                     <div className={css.latest_videos_right}>
-                        <Link
+                        <Link prefetch={false}
                             href="/yt"
                             className={css.latest_videos_arrow_link}
                         >
@@ -470,7 +470,6 @@ export async function getServerSideProps({ req, res }) {
     const ip = forwarded
         ? forwarded.split(/, /)[0]
         : req.connection.remoteAddress
-    console.log(ip)
     await axios.post(`${publicRuntimeConfig.apiUrl}logger`, {
         ip,
         req_type: '/home',
