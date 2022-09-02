@@ -1,126 +1,120 @@
-import Image from 'next/image'
-import added_to_cart from '../../assets/svg/src/bag-tick.svg'
-import css from './Toast.module.css'
-import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
-import { toastService } from '../../handler/toast.handler.js'
+import Image from "next/image"
+import added_to_cart from "../../assets/svg/src/bag-tick.svg"
+import css from "./Toast.module.css"
+import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/router"
+import PropTypes from "prop-types"
+import { toastService } from "../../handler/toast.handler.js"
 
 Toast.propTypes = {
-    id: PropTypes.string,
-    fade: PropTypes.bool,
+  id: PropTypes.string,
+  fade: PropTypes.bool,
 }
 
 Toast.defaultProps = {
-    id: 'default-toast',
-    fade: true,
+  id: "default-toast",
+  fade: true,
 }
 
 export default function Toast({ id, fade }) {
-    const mounted = useRef(false)
-    const router = useRouter()
-    const [toasts, setToasts] = useState([])
+  const mounted = useRef(false)
+  const router = useRouter()
+  const [toasts, setToasts] = useState([])
 
-    useEffect(() => {
-        mounted.current = true
+  useEffect(() => {
+    mounted.current = true
 
-        // subscribe to new toast notifications
-        const subscription = toastService.onToast(id).subscribe((toast) => {
-            // clear toasts when an empty toast is received
-            if (!toast.message) {
-                setToasts((toasts) => {
-                    // filter out toasts without 'keepAfterRouteChange' flag
-                    const filteredToasts = toasts.filter(
-                        (x) => x.keepAfterRouteChange
-                    )
+    // subscribe to new toast notifications
+    const subscription = toastService.onToast(id).subscribe((toast) => {
+      // clear toasts when an empty toast is received
+      if (!toast.message) {
+        setToasts((toasts) => {
+          // filter out toasts without 'keepAfterRouteChange' flag
+          const filteredToasts = toasts.filter((x) => x.keepAfterRouteChange)
 
-                    // remove 'keepAfterRouteChange' flag on the rest
-                    return omit(filteredToasts, 'keepAfterRouteChange')
-                })
-            } else {
-                // add toast to array with unique id
-                toast.itemId = Math.random()
-                setToasts((toasts) => [...toasts, toast])
-
-                // auto close toast if required
-                if (toast.autoClose) {
-                    setTimeout(() => removeToast(toast), 3000)
-                }
-            }
+          // remove 'keepAfterRouteChange' flag on the rest
+          return omit(filteredToasts, "keepAfterRouteChange")
         })
+      } else {
+        // add toast to array with unique id
+        toast.itemId = Math.random()
+        setToasts((toasts) => [...toasts, toast])
 
-        // clear toasts on location change
-        const clearToasts = () => toastService.clear(id)
-        router.events.on('routeChangeStart', clearToasts)
-
-        // clean up function that runs when the component unmounts
-        return () => {
-            mounted.current = false
-
-            // unsubscribe to avoid memory leaks
-            subscription.unsubscribe()
-            router.events.off('routeChangeStart', clearToasts)
+        // auto close toast if required
+        if (toast.autoClose) {
+          setTimeout(() => removeToast(toast), 3000)
         }
+      }
+    })
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // clear toasts on location change
+    const clearToasts = () => toastService.clear(id)
+    router.events.on("routeChangeStart", clearToasts)
 
-    function omit(arr, key) {
-        return arr.map((obj) => {
-            const { [key]: omitted, ...rest } = obj
-            return rest
-        })
+    // clean up function that runs when the component unmounts
+    return () => {
+      mounted.current = false
+
+      // unsubscribe to avoid memory leaks
+      subscription.unsubscribe()
+      router.events.off("routeChangeStart", clearToasts)
     }
 
-    function removeToast(toast) {
-        if (!mounted.current) return
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-        if (fade) {
-            // fade out toast
-            setToasts((toasts) =>
-                toasts.map((x) =>
-                    x.itemId === toast.itemId ? { ...x, fade: true } : x
-                )
-            )
+  function omit(arr, key) {
+    return arr.map((obj) => {
+      const { [key]: omitted, ...rest } = obj
+      return rest
+    })
+  }
 
-            // remove toast after faded out
-            setTimeout(() => {
-                setToasts((toasts) =>
-                    toasts.filter((x) => x.itemId !== toast.itemId)
-                )
-            }, 500)
-        } else {
-            // remove toast
-            setToasts((toasts) =>
-                toasts.filter((x) => x.itemId !== toast.itemId)
-            )
-        }
+  function removeToast(toast) {
+    if (!mounted.current) return
+
+    if (fade) {
+      // fade out toast
+      setToasts((toasts) =>
+        toasts.map((x) =>
+          x.itemId === toast.itemId
+            ? {
+                ...x,
+                fade: true,
+              }
+            : x
+        )
+      )
+
+      // remove toast after faded out
+      setTimeout(() => {
+        setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
+      }, 500)
+    } else {
+      // remove toast
+      setToasts((toasts) => toasts.filter((x) => x.itemId !== toast.itemId))
     }
+  }
 
-    if (!toasts.length) return null
+  if (!toasts.length) return null
 
-    return (
-        <>
-            {toasts.map((toast, index) => {
-                return (
-                    <div
-                        className={`${css.popup_wrapper} ${
-                            toast.fade ? css.hide : css.show
-                        } `}
-                        key={index}
-                    >
-                        <div className={css.popup_main}>
-                            <div
-                                className={css.popup_text}
-                                dangerouslySetInnerHTML={{
-                                    __html: toast.message,
-                                }}
-                            />
-                            {/* <Image style={{ padding: "5px" }} alt="" src={added_to_cart} width={30} height={30} /> */}
-                        </div>
-                    </div>
-                )
-            })}
-        </>
-    )
+  return (
+    <>
+      {toasts.map((toast, index) => {
+        return (
+          <div className={`${css.popup_wrapper} ${toast.fade ? css.hide : css.show} `} key={index}>
+            <div className={css.popup_main}>
+              <div
+                className={css.popup_text}
+                dangerouslySetInnerHTML={{
+                  __html: toast.message,
+                }}
+              />
+              {/* <Image style={{ padding: "5px" }} alt="" src={added_to_cart} width={30} height={30} /> */}
+            </div>
+          </div>
+        )
+      })}
+    </>
+  )
 }
