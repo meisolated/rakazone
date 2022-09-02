@@ -39,6 +39,7 @@ const nextConfig = {
         ? "https://raka.zone/internal_api/v1/" // dev api
         : "https://raka.zone/internal_api/v1/", // production api
     serverUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
+    localApiUrl: "http://127.0.0.1:3001/v1/"
   },
   webpack(config, { isServer }) {
     if (isServer) {

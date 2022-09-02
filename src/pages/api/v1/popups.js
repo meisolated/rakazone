@@ -6,7 +6,7 @@ export default function handler(req, res) {
     //     return res.status(401).send({ "statusCode": 401, "error": "Unauthorized", "message": "Authorization Header is not present" })
     // } else {
     fetch(
-        `${publicRuntimeConfig.apiUrl}popups`,
+        `${publicRuntimeConfig.localApiUrl}popups`,
         {},
         { headers: req.headers.cookie && { cookie: req.headers.cookie } }
     )

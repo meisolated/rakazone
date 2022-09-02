@@ -470,17 +470,17 @@ export async function getServerSideProps({ req, res }) {
     const ip = forwarded
         ? forwarded.split(/, /)[0]
         : req.connection.remoteAddress
-    await axios.post(`${publicRuntimeConfig.apiUrl}logger`, {
+    await axios.post(`${publicRuntimeConfig.localApiUrl}logger`, {
         ip,
         req_type: '/home',
     })
     let contentRes = await axios
-        .get(`${publicRuntimeConfig.apiUrl}content`, {
+        .get(`${publicRuntimeConfig.localApiUrl}content`, {
             headers: req.headers.cookie && { cookie: req.headers.cookie },
         })
         .then((res) => res.data)
     let streamerRes = await axios
-        .get(`${publicRuntimeConfig.apiUrl}streamerdata`, {
+        .get(`${publicRuntimeConfig.localApiUrl}streamerdata`, {
             headers: req.headers.cookie && { cookie: req.headers.cookie },
         })
         .then((res) => res.data)

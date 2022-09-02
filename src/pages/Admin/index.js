@@ -11,7 +11,7 @@ export default function Admin(props) {
 
 export async function getServerSideProps(context) {
     let contentRes = await axios
-        .get(`${publicRuntimeConfig.apiUrl}content`, { withCredentials: true })
+        .get(`${publicRuntimeConfig.localApiUrl}content`, { withCredentials: true })
         .then((res) => res.data)
     if (contentRes.message === 'success') {
         const videos = contentRes.data

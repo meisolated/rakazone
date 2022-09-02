@@ -32,16 +32,14 @@ function InstaImage({ img }) {
                 className={css.instagram_showcase_grid_item_image_img}
             />
             <div
-                className={`${css.instagram_image_filter} ${
-                    insta && css.instagram_image_filter_hover_state
-                }`}
+                className={`${css.instagram_image_filter} ${insta && css.instagram_image_filter_hover_state
+                    }`}
                 onMouseOver={() => setInsta(true)}
                 onMouseLeave={() => setInsta(false)}
             ></div>
             <div
-                className={`${css.video_button_wrapper} ${
-                    css.instagram_image
-                } ${insta ? css.show : css.hide}`}
+                className={`${css.video_button_wrapper} ${css.instagram_image
+                    } ${insta ? css.show : css.hide}`}
                 onMouseOver={() => setInsta(true)}
                 onMouseLeave={() => setInsta(false)}
             >
@@ -308,7 +306,7 @@ export default About
 
 export async function getServerSideProps({ req, res }) {
     let streamerRes = await axios
-        .get(`${publicRuntimeConfig.apiUrl}streamerdata`, {
+        .get(`${publicRuntimeConfig.localApiUrl}streamerdata`, {
             headers: req.headers.cookie && { cookie: req.headers.cookie },
         })
         .then((res) => res.data)

@@ -140,9 +140,8 @@ export default function Watch(props) {
 const MobileVideoDetails = ({ videoData, setShowDonateModal, playingAd }) => {
     return (
         <div
-            className={`${css.mobile_video_details} ${
-                playingAd && css.playing_ad_top_margin
-            }`}
+            className={`${css.mobile_video_details} ${playingAd && css.playing_ad_top_margin
+                }`}
         >
             <div className={css.mobile_video_details_wrapper}>
                 <div className={css.mobile_video_details_wrapper_left}>
@@ -343,7 +342,7 @@ export async function getServerSideProps({ req, res, query }) {
     const isIOS = Boolean(UA.match(/iPhone/i))
     const { videoId } = query
     let videoData = await axios
-        .get(`${publicRuntimeConfig.apiUrl}videodata?videoId=${videoId}`, {
+        .get(`${publicRuntimeConfig.localApiUrl}videodata?videoId=${videoId}`, {
             headers: req.headers.cookie && { cookie: req.headers.cookie },
         })
         .then((res) => res.data)
@@ -351,7 +350,7 @@ export async function getServerSideProps({ req, res, query }) {
     // add this video to watch history
     if (req.headers.cookie) {
         await axios.post(
-            `${publicRuntimeConfig.apiUrl}watchhistory`,
+            `${publicRuntimeConfig.localApiUrl}watchhistory`,
             { videoId },
             { headers: req.headers.cookie && { cookie: req.headers.cookie } }
         )

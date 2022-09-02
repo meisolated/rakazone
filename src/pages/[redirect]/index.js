@@ -32,7 +32,7 @@ function Redirect(props) {
 export default Redirect
 
 export async function getServerSideProps(context) {
-    let { data } = await axios.get(`${publicRuntimeConfig.apiUrl}redirects`)
+    let { data } = await axios.get(`${publicRuntimeConfig.localApiUrl}redirects`)
     if (data.message === 'success') {
         let redirects = data.data.redirects
         if (redirects[context.query.redirect]) {
