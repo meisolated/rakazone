@@ -8,6 +8,12 @@ import Layout from "../components/Layout"
 import { Toast } from "../components/Notification"
 import { store } from "../store/store.js"
 import "../styles/globals.css"
+
+
+export function reportWebVitals(metric) {
+  console.log(metric)
+}
+
 const handleRouteChange = (url, { shallow }) => {
   // console.log(
   //   `App is changing to ${url} ${shallow ? 'with' : 'without'
