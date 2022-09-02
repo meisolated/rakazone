@@ -10,9 +10,9 @@ import { store } from "../store/store.js"
 import "../styles/globals.css"
 
 
-export function reportWebVitals(metric) {
-  console.log(metric)
-}
+// export function reportWebVitals(metric) {
+//   console.log(metric)
+// }
 
 const handleRouteChange = (url, { shallow }) => {
   // console.log(
