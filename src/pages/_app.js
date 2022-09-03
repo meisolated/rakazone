@@ -2,6 +2,7 @@ import * as ackeeTracker from "ackee-tracker"
 import { motion } from "framer-motion"
 import Head from "next/head.js"
 import Router from "next/router"
+import Script from "next/script"
 import { useEffect, useState } from "react"
 import { Provider } from "react-redux"
 import Layout from "../components/Layout"
@@ -129,6 +130,17 @@ function MyApp({ Component, pageProps, router }) {
     )
   return (
     <>
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-YNKTDZCNDP`} />
+      <Script strategy="lazyOnload">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YNKTDZCNDP', {
+        page_path: window.location.pathname,
+        });
+    `}
+      </Script>
       <Provider store={store}>
         <Layout>
           <Head>
