@@ -202,8 +202,7 @@ export function VideoPlayerMobile(props) {
     // --------------------------------------------------
 
     const defaultOptions = {
-      debug: true,
-      startLevel: -1,
+      startLevel: 0,
       licenseXhrSetup: function (xhr, url) {
         xhr.withCredentials = true // do send cookies
         if (!xhr.readyState) {
