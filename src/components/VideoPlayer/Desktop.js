@@ -348,8 +348,9 @@ export function VideoPlayerDesktop(props) {
   useEffect(() => {
     const defaultOptions = {
       startLevel: -1,
+      debug: true,
       licenseXhrSetup: function (xhr, url) {
-        xhr.withCredentials = true // do send cookies
+          xhr.withCredentials = true // do send cookies
         if (!xhr.readyState) {
           // Call open to change the method (default is POST) or modify the url
           xhr.open("GET", url, true)
@@ -500,8 +501,8 @@ export function VideoPlayerDesktop(props) {
           style={
             showSettings
               ? {
-                  display: "block",
-                }
+                display: "block",
+              }
               : []
           }>
           {!settingsShowQuality && !settingsShowSpeed && (
@@ -595,8 +596,8 @@ export function VideoPlayerDesktop(props) {
                     style={
                       showSettings
                         ? {
-                            transform: "rotateZ(30deg)",
-                          }
+                          transform: "rotateZ(30deg)",
+                        }
                         : []
                     }
                     onClick={() => handleSettings()}>

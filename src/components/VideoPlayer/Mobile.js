@@ -195,13 +195,14 @@ export function VideoPlayerMobile(props) {
       handleTimelineSlider(e)
     })
 
-    return () => {}
+    return () => { }
   }, [playingAd])
 
   useEffect(() => {
     // --------------------------------------------------
 
     const defaultOptions = {
+      debug: true,
       startLevel: -1,
       licenseXhrSetup: function (xhr, url) {
         xhr.withCredentials = true // do send cookies
