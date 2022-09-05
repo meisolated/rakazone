@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const generateSitemap = require('./src/scripts/generate-sitemap.js')
 const generateRobotsTxt = require("./src/scripts/generate-robots-txt.js")
 // const withPlugins = require('next-compose-plugins')
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -44,6 +45,8 @@ const nextConfig = {
   webpack(config, { isServer }) {
     if (isServer) {
       generateRobotsTxt()
+      generateSitemap()
+
     }
     return config
   },

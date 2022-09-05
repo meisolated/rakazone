@@ -10,7 +10,6 @@ import { Toast } from "../components/Notification"
 import { store } from "../store/store.js"
 import "../styles/globals.css"
 
-
 // export function reportWebVitals(metric) {
 //   console.log(metric)
 // }

@@ -195,7 +195,7 @@ export function VideoPlayerMobile(props) {
       handleTimelineSlider(e)
     })
 
-    return () => { }
+    return () => {}
   }, [playingAd])
 
   useEffect(() => {
