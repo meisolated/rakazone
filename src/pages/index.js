@@ -63,7 +63,7 @@ function Home(props) {
         <meta name="robots" content="all" />
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
-        <meta property="og:title" content="RakaZone" />
+        <meta property="og:title" content="RakaZone Gaming" />
         <meta
           name="description"
           content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
