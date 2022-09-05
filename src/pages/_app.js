@@ -129,13 +129,13 @@ function MyApp({ Component, pageProps, router }) {
     )
   return (
     <>
-      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-YNKTDZCNDP`} />
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=UA-239990609-1`} />
       <Script strategy="lazyOnload">
         {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-YNKTDZCNDP', {
+        gtag('config', 'UA-239990609-1', {
         page_path: window.location.pathname,
         });
     `}
