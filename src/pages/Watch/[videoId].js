@@ -215,7 +215,7 @@ export async function getServerSideProps({ req, res, query }) {
     )
   }
 
-  if (videoData.status == 404)
+  if (videoData.data.platform == "youtube")
     return {
       redirect: {
         destination: "https://youtube.com/watch?v=" + videoId,
