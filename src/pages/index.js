@@ -51,14 +51,14 @@ function Home(props) {
     whatToShow.platform == "local"
       ? "/Watch/" + whatToShow.videoId
       : whatToShow.platform == "loco"
-      ? "https://loco.gg/streamers/RakaZone_Gaming"
-      : "https://www.youtube.com/watch?v=" + whatToShow.videoId
+        ? "https://loco.gg/streamers/RakaZone_Gaming"
+        : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
 
   return (
     <>
       <Head>
-        <title>Home | RakaZone</title>
+        <title>RakaZone Gaming</title>
         <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing" />
         <meta name="robots" content="all" />
         <meta name="google" content="notranslate" />
