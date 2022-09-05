@@ -500,8 +500,8 @@ export function VideoPlayerDesktop(props) {
           style={
             showSettings
               ? {
-                  display: "block",
-                }
+                display: "block",
+              }
               : []
           }>
           {!settingsShowQuality && !settingsShowSpeed && (
@@ -595,8 +595,8 @@ export function VideoPlayerDesktop(props) {
                     style={
                       showSettings
                         ? {
-                            transform: "rotateZ(30deg)",
-                          }
+                          transform: "rotateZ(30deg)",
+                        }
                         : []
                     }
                     onClick={() => handleSettings()}>
