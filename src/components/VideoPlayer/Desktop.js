@@ -346,6 +346,15 @@ export function VideoPlayerDesktop(props) {
   }, [videoController.current, playingAd])
 
   useEffect(() => {
+
+    // buffered duration
+    const bRanges = videoController.buffered
+    let bDuration = 0
+    for (let i = 0; i < bRanges.length; i++) {
+      bDuration += bRanges.end(i) - bRanges.start(i)
+    }
+    console.log(bDuration / videoElement.duration)
+
     const defaultOptions = {
       startLevel: -1,
       licenseXhrSetup: function (xhr, url) {
