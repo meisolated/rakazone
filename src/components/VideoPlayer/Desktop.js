@@ -22,10 +22,10 @@ const { publicRuntimeConfig } = getConfig()
  */
 
 export function VideoPlayerDesktop(props) {
-  // const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
-  // const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
-  const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
-  const adSrc = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+  const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+  const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+  // const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+  // const adSrc = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
   const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
   // Controller for the video
