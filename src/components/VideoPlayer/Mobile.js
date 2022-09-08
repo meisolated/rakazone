@@ -299,7 +299,7 @@ export function VideoPlayerMobile(props) {
     hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
       setLoading(false)
       setLevels(data.levels)
-      hls.currentLevel = quality === "auto" ? -1 : quality
+      hls.nextLevel = quality === "auto" ? -1 : quality
     })
 
     video.addEventListener("waiting", () => {

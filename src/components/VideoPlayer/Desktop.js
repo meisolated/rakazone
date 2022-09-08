@@ -22,8 +22,10 @@ const { publicRuntimeConfig } = getConfig()
  */
 
 export function VideoPlayerDesktop(props) {
-  const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
-  const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+  // const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+  // const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+  const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+  const adSrc = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
   const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
   // Controller for the video
@@ -346,15 +348,6 @@ export function VideoPlayerDesktop(props) {
   }, [videoController.current, playingAd])
 
   useEffect(() => {
-
-    // buffered duration
-    const bRanges = videoController.buffered
-    let bDuration = 0
-    for (let i = 0; i < bRanges.length; i++) {
-      bDuration += bRanges.end(i) - bRanges.start(i)
-    }
-    console.log(bDuration / videoElement.duration)
-
     const defaultOptions = {
       startLevel: -1,
       licenseXhrSetup: function (xhr, url) {
@@ -382,6 +375,7 @@ export function VideoPlayerDesktop(props) {
           currentDuration: formatDuration(video.currentTime),
         })
       })
+
       hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
         setLoading(false)
         setLevels(data.levels)
@@ -461,7 +455,7 @@ export function VideoPlayerDesktop(props) {
     hls.once(Hls.Events.MANIFEST_PARSED, function (event, data) {
       setLoading(false)
       setLevels(data.levels)
-      hls.currentLevel = quality === "auto" ? -1 : quality
+      hls.nextLevel = quality === "auto" ? -1 : quality
     })
 
     video.addEventListener("waiting", () => {
