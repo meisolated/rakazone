@@ -54,23 +54,23 @@ function Home(props) {
         ? "https://loco.gg/streamers/RakaZone_Gaming"
         : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
-
+  // RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master.
   return (
     <>
       <Head>
-        <title>RakaZone Gaming</title>
-        <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing" />
+        <title>RakaZone Gaming | Rishab Karanwal</title>
+        <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing, rishab karanwal, rishab" />
         <meta name="robots" content="all" />
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
-        <meta property="og:title" content="RakaZone Gaming" />
+        <meta property="og:title" content="RakaZone Gaming | Rishab Karanwal" />
         <meta
           name="description"
-          content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
+          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA."
         />
         <meta
           property="og:description"
-          content="RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master."
+          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA."
         />
         <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
       </Head>
