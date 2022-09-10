@@ -1,8 +1,7 @@
 import * as ackeeTracker from "ackee-tracker"
 import { motion } from "framer-motion"
 import Head from "next/head.js"
-import Router from "next/router"
-import Script from "next/script"
+// import Router from "next/router"
 import { useEffect, useState } from "react"
 import { Provider } from "react-redux"
 import Layout from "../components/Layout"
@@ -14,41 +13,38 @@ import "../styles/globals.css"
 //   console.log(metric)
 // }
 
-const handleRouteChange = (url, { shallow }) => {
-  // console.log(
-  //   `App is changing to ${url} ${shallow ? 'with' : 'without'
-  //   } shallow routing`
-  // )
-}
+// const handleRouteChange = (url, { shallow }) => {
+//   // console.log(
+//   //   `App is changing to ${url} ${shallow ? 'with' : 'without'
+//   //   } shallow routing`
+//   // )
+// }
 
-Router.events.on("routeChangeStart", handleRouteChange)
+// Router.events.on("routeChangeStart", handleRouteChange)
 
-Router.events.on("routeChangeComplete", () => {
-  // console.log("routeChangeComplete")
-})
-Router.events.on("routeChangeError", (e) => {
-  // console.log("routeChangeError" + e)
-})
+// Router.events.on("routeChangeComplete", () => {
+//   // console.log("routeChangeComplete")
+// })
+// Router.events.on("routeChangeError", (e) => {
+//   // console.log("routeChangeError" + e)
+// })
 
 function MyApp({ Component, pageProps, router }) {
-  const isAdminRoute = router.pathname.includes("/Admin")
+  // const isAdminRoute = router.pathname.includes("/Admin")
   const [commented, setCommented] = useState(false)
   const fade = {
     variants: {
       initial: {
         opacity: 0,
         left: "-100%",
-        // scale: 0.6,
       },
       animate: {
         opacity: 1,
         left: 0,
-        // scale: 1,
       },
       exit: {
         opacity: 0,
         left: "100%",
-        // scale: 0.6,
       },
     },
     transition: {
@@ -121,25 +117,14 @@ function MyApp({ Component, pageProps, router }) {
     }
   })
 
-  if (isAdminRoute)
-    return (
-      <>
-        <Component {...pageProps} />
-      </>
-    )
+  // if (isAdminRoute)
+  //   return (
+  //     <>
+  //       <Component {...pageProps} />
+  //     </>
+  //   )
   return (
     <>
-      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=UA-239990609-1`} />
-      <Script strategy="lazyOnload">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-239990609-1', {
-        page_path: window.location.pathname,
-        });
-    `}
-      </Script>
       <Provider store={store}>
         <Layout>
           <Head>
