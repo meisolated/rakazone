@@ -31,8 +31,8 @@ function Shop(props) {
             justifyContent: "center",
           }}>
           <div className={css.shop_main}>
-            <div className={css.shop_title}>My merch shop</div>
-            <div className={css.shop_subtitle}>Lorem ipsum dolor sit amet consectetur adipiscing elit sit enim sed non nisi ut ultrices molestie null.</div>
+            <div className={css.shop_title}>My Merch Shop</div>
+            <div className={css.shop_subtitle}>All products are just to showcase and are not an actual product, We maybe come up with something real soon. Sign up for that</div>
           </div>
         </div>
         <div className={css.shop_grid}>
