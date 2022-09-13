@@ -22,10 +22,8 @@ const { publicRuntimeConfig } = getConfig()
  */
 
 export function VideoPlayerDesktop(props) {
-  const src = publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
-  const adSrc = publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
-  // const src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
-  // const adSrc = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+  const src = publicRuntimeConfig.NODE_ENV == "dev" ? "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" : publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+  const adSrc = publicRuntimeConfig.NODE_ENV == "dev" ? "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" : publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
   const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
   // Controller for the video
@@ -496,7 +494,7 @@ export function VideoPlayerDesktop(props) {
 
   return (
     <div className={desktop_style.main_wrapper} onMouseEnter={() => handleControlsState("enter")} onMouseLeave={() => handleControlsState("leave")}>
-      <div className={`${!theaterMode ? desktop_style.video_wrapper : desktop_style.theater_mode}`} ref={videoPlayer}>
+      <div className={`${desktop_style.video_wrapper} ${theaterMode && desktop_style.theater_mode}`} ref={videoPlayer}>
         {playingAd && <div className={desktop_style.playing_ad_wrapper}>Ad</div>}
         <div
           className={`${desktop_style.settings_popup} ${(settingsShowQuality || settingsShowSpeed) && desktop_style.settings_popup_show}`}
@@ -631,15 +629,17 @@ export function VideoPlayerDesktop(props) {
         <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
         {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
       </div>
-      {playingAd && (
-        <div className={`${desktop_style.ad_wrapper}`}>
-          <Image src={AdImage} width={"100px"} height={"100px"} />
-          <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
-          <div className={desktop_style.ad_btn_wrapper}>
-            <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
+      {
+        playingAd && (
+          <div className={`${desktop_style.ad_wrapper}`}>
+            <Image src={AdImage} width={"100px"} height={"100px"} />
+            <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
+            <div className={desktop_style.ad_btn_wrapper}>
+              <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+    </div >
   )
 }

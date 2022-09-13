@@ -24,7 +24,7 @@ import bag from "../assets/svg/src/bag-3.svg"
 import playicon from "../assets/svg/src/playicon.svg"
 import youtube_logo from "../assets/svg/src/youtube_logo.svg"
 
-const { publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 // use other youtube thumbnail urls to check a valid url or not
 // https://itnext.io/using-http-2-with-next-js-express-917791ca249b
@@ -80,7 +80,7 @@ function Home(props) {
         <div className={css.home_hero}>
           <div className={css.home_hero_left}>
             <div className={css.home_hero_channel_image}>
-              <Image src={`${props.SERVER_URL}assets/img/instadp.jpeg`} alt="" className={css.channel_image} width={91} height={91} />
+              <Image src={`${publicRuntimeConfig.assetsUrl}assets/img/instadp.jpeg`} alt="" className={css.channel_image} width={91} height={91} />
             </div>
             <div className={css.home_hero_channel_about}>
               <div className={css.channel_about_content_top}>
@@ -115,14 +115,14 @@ function Home(props) {
                 </div>
               </Link>
               <div className={`${isLive ? css.video_featured_live_text : css.video_featured_text}`}>
-                {isLive && <span className="material-icons-round">stream</span>}
+                {/* {isLive && <span className="material-icons-round">stream</span>} */}
                 {whatToShow.type}
               </div>
             </div>
 
             <div className={css.video_featured_content}>
               <div className={`pd-right ${css.video_featured_channel_image}`}>
-                <Image className={css.video_featured_channel_image} src={`${props.SERVER_URL}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
+                <Image className={css.video_featured_channel_image} src={`${publicRuntimeConfig.assetsUrl}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
               </div>
               <div>
                 <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
@@ -250,17 +250,17 @@ function Home(props) {
 export async function getServerSideProps({ req, res }) {
   const forwarded = req.headers["x-real-ip"]
   const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
-  await axios.post(`${publicRuntimeConfig.localApiUrl}logger`, {
+  await axios.post(`${serverRuntimeConfig.localApiUrl}logger`, {
     ip,
     req_type: "/home",
   })
   let contentRes = await axios
-    .get(`${publicRuntimeConfig.localApiUrl}content`, {
+    .get(`${serverRuntimeConfig.localApiUrl}content`, {
       headers: req.headers.cookie && { cookie: req.headers.cookie },
     })
     .then((res) => res.data)
   let streamerRes = await axios
-    .get(`${publicRuntimeConfig.localApiUrl}streamerdata`, {
+    .get(`${serverRuntimeConfig.localApiUrl}streamerdata`, {
       headers: req.headers.cookie && { cookie: req.headers.cookie },
     })
     .then((res) => res.data)
@@ -271,7 +271,6 @@ export async function getServerSideProps({ req, res }) {
     return {
       props: {
         content: { videos, streamerData },
-        SERVER_URL: publicRuntimeConfig.serverUrl,
       },
     }
   } else return { props: {} }

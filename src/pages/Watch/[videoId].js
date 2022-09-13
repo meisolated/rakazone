@@ -4,7 +4,7 @@ import { unix } from "moment"
 import Head from "next/head.js"
 import { useEffect, useState } from "react"
 import { convertToInternationalCurrencySystem, since } from "util/functions.js"
-import { publicRuntimeConfig } from "../../../next.config.js"
+import { serverRuntimeConfig } from "../../../next.config.js"
 import { VideoPlayerDesktop, VideoPlayerMobile } from "../../components/VideoPlayer/index.js"
 import css from "./Watch.module.css"
 
@@ -195,7 +195,7 @@ export async function getServerSideProps({ req, res, query }) {
   const isIOS = Boolean(UA.match(/iPhone/i))
   const { videoId } = query
   let videoData = await axios
-    .get(`${publicRuntimeConfig.localApiUrl}videodata?videoId=${videoId}`, {
+    .get(`${serverRuntimeConfig.localApiUrl}videodata?videoId=${videoId}`, {
       headers: req.headers.cookie && {
         cookie: req.headers.cookie,
       },
@@ -205,7 +205,7 @@ export async function getServerSideProps({ req, res, query }) {
   // add this video to watch history
   if (req.headers.cookie) {
     await axios.post(
-      `${publicRuntimeConfig.localApiUrl}watchhistory`,
+      `${serverRuntimeConfig.localApiUrl}watchhistory`,
       { videoId },
       {
         headers: req.headers.cookie && {

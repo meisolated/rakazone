@@ -1,13 +1,13 @@
 import axios from "axios"
 import getConfig from "next/config"
-const { publicRuntimeConfig } = getConfig()
+const { serverRuntimeConfig } = getConfig()
 
 export default function userdata(req, res) {
   // if (!req.headers.host || !req.headers.referer || !req.headers.authorization) {
   //     return res.status(401).send({ "statusCode": 401, "error": "Unauthorized", "message": "Authorization Header is not present" })
   // } else {
   axios
-    .get(`${publicRuntimeConfig.localApiUrl}userdata`, {
+    .get(`${serverRuntimeConfig.localApiUrl}userdata`, {
       headers: req.headers.cookie && {
         cookie: req.headers.cookie,
       },

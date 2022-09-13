@@ -2,7 +2,7 @@ import axios from "axios"
 import getConfig from "next/config"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
-const { publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 function Redirect(props) {
   const router = useRouter()
   let redirect = props.redirectto || "/404"
@@ -33,7 +33,7 @@ function Redirect(props) {
 export default Redirect
 
 export async function getServerSideProps(context) {
-  let { data } = await axios.get(`${publicRuntimeConfig.localApiUrl}redirects`)
+  let { data } = await axios.get(`${serverRuntimeConfig.localApiUrl}redirects`)
   if (data.message === "success") {
     let redirects = data.data.redirects
     if (redirects[context.query.redirect]) {

@@ -32,15 +32,20 @@ const nextConfig = {
   },
 
   distDir: process.env.NODE_ENV === "dev" ? "_next" : "build",
+  //
+  serverRuntimeConfig: {
+    localApiUrl: "http://127.0.0.1:3001/v1/",
+    serverUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
+  },
   publicRuntimeConfig: {
     NODE_ENV: process.env.NODE_ENV,
+    assetsUrl: "https://raka.zone/internal_api/",
     baseUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/" : "https://raka.zone/",
     apiUrl:
       process.env.NODE_ENV === "dev"
         ? "https://raka.zone/internal_api/v1/" // dev api
         : "https://raka.zone/internal_api/v1/", // production api
-    serverUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
-    localApiUrl: "http://127.0.0.1:3001/v1/"
+
   },
   webpack(config, { isServer }) {
     if (isServer) {

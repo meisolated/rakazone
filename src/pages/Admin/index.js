@@ -3,7 +3,7 @@ import getConfig from "next/config.js"
 import { useEffect, useRef, useState } from "react"
 import SideBar from "../../components/Admin/SideBar/index.js"
 import css from "./index.module.css"
-const { publicRuntimeConfig } = getConfig()
+const { serverRuntimeConfig } = getConfig()
 
 export default function Admin(props) {
   return <SideBar />
@@ -11,7 +11,7 @@ export default function Admin(props) {
 
 export async function getServerSideProps(context) {
   let contentRes = await axios
-    .get(`${publicRuntimeConfig.localApiUrl}content`, {
+    .get(`${serverRuntimeConfig.localApiUrl}content`, {
       withCredentials: true,
     })
     .then((res) => res.data)
@@ -20,7 +20,6 @@ export async function getServerSideProps(context) {
     return {
       props: {
         content: { videos },
-        SERVER_URL: publicRuntimeConfig.serverUrl,
       },
     }
   } else return { props: {} }

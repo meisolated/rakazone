@@ -15,7 +15,7 @@ import twitter_icon from "../../assets/svg/src/twitter.svg"
 import youtube_icon from "../../assets/svg/src/youtube.svg"
 import { Primary } from "../../components/Buttons"
 import css from "./about.module.css"
-const { publicRuntimeConfig } = getConfig()
+const { serverRuntimeConfig } = getConfig()
 
 function InstaImage({ img }) {
   let [insta, setInsta] = useState(false)
@@ -153,7 +153,7 @@ export default About
 
 export async function getServerSideProps({ req, res }) {
   let streamerRes = await axios
-    .get(`${publicRuntimeConfig.localApiUrl}streamerdata`, {
+    .get(`${serverRuntimeConfig.localApiUrl}streamerdata`, {
       headers: req.headers.cookie && {
         cookie: req.headers.cookie,
       },
