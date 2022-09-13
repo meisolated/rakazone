@@ -11,7 +11,7 @@ function Shop(props) {
       <Head>
         <title>Shop | RakaZone</title>
         <meta name="description" content="RakaZone Cool Merchandise" />
-        <meta name="keywords" content="merchandise, merch, raka, rakazone, rakazonegaming, cool, rakazone cool" />
+        <meta name="keywords" content="merchandise, merch, raka, rakazone, rakazonegaming, cool, rakazone cool, rakazone gaming merchandise, youtube gaming, gamer tees." />
         <meta name="robots" content="all" />
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
