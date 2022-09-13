@@ -32,7 +32,7 @@ function Shop(props) {
           }}>
           <div className={css.shop_main}>
             <div className={css.shop_title}>My Merch Shop</div>
-            <div className={css.shop_subtitle}>All products are just to showcase and are not an actual product, We maybe come up with something real soon. Sign up for that</div>
+            <div className={css.shop_subtitle}>All these products are for showcase only and do not represent the actual product, We maybe come up with something real soon. Sign up for that</div>
           </div>
         </div>
         <div className={css.shop_grid}>
