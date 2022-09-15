@@ -137,6 +137,12 @@ function Home(props) {
               </div>
             </div>
           </div>
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-9270075046641360"
+            data-ad-slot="5057715242"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
           <div className={`${css.video_featured_secondary_grid} pd-bottom`}>
             <div className={css.video_featured_secondary_wrapper}>
               <VideoItemRegular data={featuredSecondary} />
@@ -243,6 +249,12 @@ function Home(props) {
           </div>
         </section>
       </div>
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9270075046641360"
+        data-ad-slot="5057715242"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
     </>
   )
 }
