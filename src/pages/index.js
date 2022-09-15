@@ -249,12 +249,6 @@ function Home(props) {
           </div>
         </section>
       </div>
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-9270075046641360"
-        data-ad-slot="5057715242"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
     </>
   )
 }

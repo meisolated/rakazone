@@ -133,9 +133,6 @@ function MyApp({ Component, pageProps, router }) {
           </Head>
           <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360" crossorigin="anonymous" strategy="lazyOnload">
           </Script>
-          <Script>
-            (adsbygoogle = window.adsbygoogle || []).push({ });
-          </Script>
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
             <Component {...pageProps} />
