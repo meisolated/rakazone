@@ -1,6 +1,7 @@
 import * as ackeeTracker from "ackee-tracker"
 import { motion } from "framer-motion"
-import Head from "next/head.js"
+import Head from "next/head"
+import Script from "next/script"
 // import Router from "next/router"
 import { useEffect, useState } from "react"
 import { Provider } from "react-redux"
@@ -130,6 +131,8 @@ function MyApp({ Component, pageProps, router }) {
           <Head>
             <link rel="shortcut icon" href="https://raka.zone/internal_api/assets/logo.ico" />
           </Head>
+          <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360" crossorigin="anonymous" strategy="lazyOnload">
+          </Script>
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
             <Component {...pageProps} />
