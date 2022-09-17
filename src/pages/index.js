@@ -248,32 +248,32 @@ function Home(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-  const forwarded = req.headers["x-real-ip"]
-  const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
-  await axios.post(`${serverRuntimeConfig.localApiUrl}logger`, {
-    ip,
-    req_type: "/home",
-  })
-  let contentRes = await axios
-    .get(`${serverRuntimeConfig.localApiUrl}content`, {
-      headers: req.headers.cookie && { cookie: req.headers.cookie },
-    })
-    .then((res) => res.data)
-  let streamerRes = await axios
-    .get(`${serverRuntimeConfig.localApiUrl}streamerdata`, {
-      headers: req.headers.cookie && { cookie: req.headers.cookie },
-    })
-    .then((res) => res.data)
+  // const forwarded = req.headers["x-real-ip"]
+  // const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
+  // await axios.post(`${serverRuntimeConfig.localApiUrl}logger`, {
+  //   ip,
+  //   req_type: "/home",
+  // })
+  // let contentRes = await axios
+  //   .get(`${serverRuntimeConfig.localApiUrl}content`, {
+  //     headers: req.headers.cookie && { cookie: req.headers.cookie },
+  //   })
+  //   .then((res) => res.data)
+  // let streamerRes = await axios
+  //   .get(`${serverRuntimeConfig.localApiUrl}streamerdata`, {
+  //     headers: req.headers.cookie && { cookie: req.headers.cookie },
+  //   })
+  //   .then((res) => res.data)
 
-  if (contentRes.message === "success" && streamerRes.message === "success") {
-    const videos = contentRes.data
-    const streamerData = streamerRes.data.streamerData
-    return {
-      props: {
-        content: { videos, streamerData },
-      },
-    }
-  } else return { props: {} }
+  // if (contentRes.message === "success" && streamerRes.message === "success") {
+  //   const videos = contentRes.data
+  //   const streamerData = streamerRes.data.streamerData
+  //   return {
+  //     props: {
+  //       content: { videos, streamerData },
+  //     },
+  //   }
+  // } else return { props: {} }
 }
 
 export default Home
