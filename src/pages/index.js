@@ -56,16 +56,6 @@ function Home(props) {
         ? "https://loco.gg/streamers/RakaZone_Gaming"
         : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
-
-  useEffect(() => {
-    var ads = document.getElementsByClassName("adsbygoogle").length
-    for (var i = 0; i < ads; i++) {
-      try {
-        (adsbygoogle = window.adsbygoogle || []).push({})
-      } catch (e) { }
-    }
-  }, [])
-
   // RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master.
   return (
     <>
@@ -255,13 +245,6 @@ function Home(props) {
           </div>
         </section>
       </div>
-      <ins class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-9270075046641360"
-        data-ad-slot="5057715242"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-
     </>
   )
 }

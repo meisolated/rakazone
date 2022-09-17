@@ -131,7 +131,7 @@ function MyApp({ Component, pageProps, router }) {
           <Head>
             <link rel="shortcut icon" href="https://raka.zone/internal_api/assets/logo.ico" />
           </Head>
-          <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360" crossorigin="anonymous" strategy="lazyOnload">
+          <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360" crossorigin="anonymous" strategy="beforeInteractive">
           </Script>
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
