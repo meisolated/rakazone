@@ -11,7 +11,10 @@ function Shop(props) {
       <Head>
         <title>Shop | RakaZone</title>
         <meta name="description" content="RakaZone Cool Merchandise" />
-        <meta name="keywords" content="merchandise, merch, raka, rakazone, rakazonegaming, cool, rakazone cool, rakazone gaming merchandise, youtube gaming, gamer tees." />
+        <meta
+          name="keywords"
+          content="merchandise, merch, raka, rakazone, rakazonegaming, cool, rakazone cool, rakazone gaming merchandise, youtube gaming, gamer tees."
+        />
         <meta name="robots" content="all" />
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
@@ -20,7 +23,9 @@ function Shop(props) {
         <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
       </Head>
       <HeaderNotification
-        notificationText={"Checkout is currently disabled as we are not accepting any payments from any user and we do not manufacture any of these products nor we have these products in stock."}
+        notificationText={
+          "Checkout is currently disabled as we are not accepting any payments from any user and we do not manufacture any of these products nor we have these products in stock."
+        }
       />
       <div className="pd-bottom-high" />
       {/* <div className="pd-bottom-high" /> */}
@@ -32,7 +37,10 @@ function Shop(props) {
           }}>
           <div className={css.shop_main}>
             <div className={css.shop_title}>My Merch Shop</div>
-            <div className={css.shop_subtitle}>All these products are for showcase only and do not represent the actual product, We maybe come up with something real soon. Sign up for that</div>
+            <div className={css.shop_subtitle}>
+              All these products are for showcase only and do not represent the actual product, We maybe come up with something real soon. Sign up for
+              that
+            </div>
           </div>
         </div>
         <div className={css.shop_grid}>
@@ -50,7 +58,9 @@ function Shop(props) {
                         <div className={css.shop_item_product_title}>{product.name}</div>
                         <div className={css.shop_item_price}>{product.price}</div>
                       </div>
-                      <div className={css.shop_item_product_description}>{product.description.length > 30 ? product.description.substring(0, 80) + "..." : product.description}</div>
+                      <div className={css.shop_item_product_description}>
+                        {product.description.length > 30 ? product.description.substring(0, 80) + "..." : product.description}
+                      </div>
                     </div>
                   </div>
                 </div>

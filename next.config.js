@@ -24,8 +24,12 @@ const nextConfig = {
   distDir: process.env.NODE_ENV === "dev" ? "_next" : "build",
 
   serverRuntimeConfig: {
+    localApiUrl: process.env.NODE_ENV === "dev" ? "http://localhost:5001/api/" : "http://localhost:3001/api/"
   },
   publicRuntimeConfig: {
+    assetsUrl: process.env.NODE_ENV === "dev" ? "http://localhost:5001/assets/" : "http://raka.zone/iso/assets/",
+    watchServer: process.env.NODE_ENV === "dev" ? "http://localhost:5001/watch/" : "http://raka.zone/iso/watch/",
+    thumbnailsUrl: process.env.NODE_ENV === "dev" ? "http://localhost:5001/thumbnails/" : "http://raka.zone/iso/thumbnails/",
   },
   webpack(config, { isServer }) {
     if (isServer) {

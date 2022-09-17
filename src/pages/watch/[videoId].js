@@ -54,7 +54,16 @@ export default function Watch(props) {
 
   let component = {
     desktop: <VideoPlayerDesktop UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
-    mobile: <VideoPlayerMobile stoppedPlayingAd={() => setPlayingAd(false)} UA={UA} platform={isMobile} videoId={videoId} isIOS={props.isIOS} adSrc={AdVideoSrc} />,
+    mobile: (
+      <VideoPlayerMobile
+        stoppedPlayingAd={() => setPlayingAd(false)}
+        UA={UA}
+        platform={isMobile}
+        videoId={videoId}
+        isIOS={props.isIOS}
+        adSrc={AdVideoSrc}
+      />
+    ),
   }
 
   return (

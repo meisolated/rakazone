@@ -22,8 +22,14 @@ function InstaImage({ img }) {
   return (
     <div className={css.instagram_showcase_grid_item_image}>
       <Image src={img} width={500} height={500} alt="sdas" className={css.instagram_showcase_grid_item_image_img} />
-      <div className={`${css.instagram_image_filter} ${insta && css.instagram_image_filter_hover_state}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}></div>
-      <div className={`${css.video_button_wrapper} ${css.instagram_image} ${insta ? css.show : css.hide}`} onMouseOver={() => setInsta(true)} onMouseLeave={() => setInsta(false)}>
+      <div
+        className={`${css.instagram_image_filter} ${insta && css.instagram_image_filter_hover_state}`}
+        onMouseOver={() => setInsta(true)}
+        onMouseLeave={() => setInsta(false)}></div>
+      <div
+        className={`${css.video_button_wrapper} ${css.instagram_image} ${insta ? css.show : css.hide}`}
+        onMouseOver={() => setInsta(true)}
+        onMouseLeave={() => setInsta(false)}>
         <div className={css.video_button}>
           <Image src={instaIcon} className={`${css.image} ${css.video_button_icon} ${css.instagram_image}`} alt="" />
         </div>
@@ -114,9 +120,12 @@ function About(props) {
           <div className={css.story_about_me_left}>
             <div className={css.story_about_me_content}>
               <p>
-                <span className={css.story_about_titles}>One of the life lessons I can give you is that you can never predict the future by just thinking about it. </span> <br />I would have never
-                predicted that I could ever reach the place I am now. It would have been impossible for me to meet such amazing people if I had kept doing a 9-to-5 job. Going on paths not taken will
-                be challenging, but one should never lose hope. Your passion might start getting boring, and it may not excite you as it used to. But it requires dedication to achieve your goals.
+                <span className={css.story_about_titles}>
+                  One of the life lessons I can give you is that you can never predict the future by just thinking about it.{" "}
+                </span>{" "}
+                <br />I would have never predicted that I could ever reach the place I am now. It would have been impossible for me to meet such
+                amazing people if I had kept doing a 9-to-5 job. Going on paths not taken will be challenging, but one should never lose hope. Your
+                passion might start getting boring, and it may not excite you as it used to. But it requires dedication to achieve your goals.
               </p>
             </div>
             <div className={css.story_about_me_image_left}>
@@ -130,8 +139,9 @@ function About(props) {
             <div className={css.story_about_me_content}>
               <p>
                 <span className={css.story_about_titles}>You don't have to be extreme. Just consistent.</span> <br />
-                There's no such thing as overnight success. It took me 6yrs to get where I'm right now, with a lot of patience, hard work, and passion. In life, it's crucial to keep moving, doing, and
-                brewing what you love. These are not RakaZone's words, and I have tried my best to portray RakaZone.
+                There's no such thing as overnight success. It took me 6yrs to get where I'm right now, with a lot of patience, hard work, and
+                passion. In life, it's crucial to keep moving, doing, and brewing what you love. These are not RakaZone's words, and I have tried my
+                best to portray RakaZone.
               </p>
             </div>
           </div>

@@ -22,8 +22,14 @@ const { publicRuntimeConfig } = getConfig()
  */
 
 export function VideoPlayerDesktop(props) {
-  const src = publicRuntimeConfig.NODE_ENV == "dev" ? "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" : publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
-  const adSrc = publicRuntimeConfig.NODE_ENV == "dev" ? "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" : publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
+  const src =
+    publicRuntimeConfig.NODE_ENV == "dev"
+      ? "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+      : publicRuntimeConfig.baseUrl + `internal_api/output/${props.videoId}/HLS/playlist.m3u8`
+  const adSrc =
+    publicRuntimeConfig.NODE_ENV == "dev"
+      ? "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+      : publicRuntimeConfig.baseUrl + `internal_api/SampleAd/playlist.m3u8`
   const playbackSpeedsList = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
   // Controller for the video
@@ -501,14 +507,18 @@ export function VideoPlayerDesktop(props) {
           style={
             showSettings
               ? {
-                display: "block",
-              }
+                  display: "block",
+                }
               : []
           }>
           {!settingsShowQuality && !settingsShowSpeed && (
             <div className={`${desktop_style.settings_item}`} onClick={() => setSettingsShowQuality(true)}>
               <div className={`${desktop_style.quality_selector} material-icons-round`}>tune</div>
-              Quality <div className={desktop_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
+              Quality{" "}
+              <div className={desktop_style.current_quality}>
+                {" "}
+                {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}
+              </div>
             </div>
           )}
           {!settingsShowSpeed &&
@@ -563,7 +573,10 @@ export function VideoPlayerDesktop(props) {
                     {isPlaying ? "pause" : "play_arrow"}
                   </div>
                 </div>
-                <div className={`${desktop_style.volume_wrap} ${showVolume ? desktop_style.volume_show : []}`} onMouseEnter={() => setShowVolume(true)} onMouseLeave={() => setShowVolume(false)}>
+                <div
+                  className={`${desktop_style.volume_wrap} ${showVolume ? desktop_style.volume_show : []}`}
+                  onMouseEnter={() => setShowVolume(true)}
+                  onMouseLeave={() => setShowVolume(false)}>
                   <div className={`${desktop_style.volume_btn} material-icons-round ${desktop_style.btn}`} onClick={() => handleMute()}>
                     {volume.volume_icon}
                   </div>
@@ -596,8 +609,8 @@ export function VideoPlayerDesktop(props) {
                     style={
                       showSettings
                         ? {
-                          transform: "rotateZ(30deg)",
-                        }
+                            transform: "rotateZ(30deg)",
+                          }
                         : []
                     }
                     onClick={() => handleSettings()}>
@@ -629,17 +642,17 @@ export function VideoPlayerDesktop(props) {
         <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
         {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
       </div>
-      {
-        playingAd && (
-          <div className={`${desktop_style.ad_wrapper}`}>
-            <Image src={AdImage} width={"100px"} height={"100px"} />
-            <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
-            <div className={desktop_style.ad_btn_wrapper}>
-              <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
-            </div>
+      {playingAd && (
+        <div className={`${desktop_style.ad_wrapper}`}>
+          <Image src={AdImage} width={"100px"} height={"100px"} />
+          <div className={desktop_style.ad_text}>
+            boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)
           </div>
-        )
-      }
-    </div >
+          <div className={desktop_style.ad_btn_wrapper}>
+            <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
+          </div>
+        </div>
+      )}
+    </div>
   )
 }

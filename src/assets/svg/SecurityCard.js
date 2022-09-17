@@ -17,7 +17,14 @@ const SvgSecurityCard = (props) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <path d="M11.32 15.26h1.33M14.75 15.26h3.27" stroke="#292D32" strokeWidth={1.5} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M11.32 15.26h1.33M14.75 15.26h3.27"
+      stroke="#292D32"
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 )
 

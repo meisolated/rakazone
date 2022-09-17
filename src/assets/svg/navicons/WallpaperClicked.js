@@ -8,7 +8,13 @@ const SvgWallpaperClicked = (props) => (
       stroke="#fff"
       strokeLinejoin="round"
     />
-    <path d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7Z" stroke="#fff" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7Z"
+      stroke="#fff"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
     <path d="M9 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="#A51D20" stroke="#fff" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )

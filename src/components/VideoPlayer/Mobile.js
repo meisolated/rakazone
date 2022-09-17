@@ -403,7 +403,10 @@ export function VideoPlayerMobile(props) {
                 </div>
                 <div className={mobile_style.settings_popup_body_item_text}>
                   Quality
-                  <div className={mobile_style.current_quality}> {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}</div>
+                  <div className={mobile_style.current_quality}>
+                    {" "}
+                    {quality === "auto" ? "Auto" : quality == 0 ? "360p" : quality == 1 ? "480p" : quality == 2 ? "720p" : "1080p"}
+                  </div>
                 </div>
               </div>
             )}
@@ -444,7 +447,9 @@ export function VideoPlayerMobile(props) {
             <div className={mobile_style.ad_image}>
               <Image src={AdImage} width={"80px"} height={"80px"} />
             </div>
-            <div className={mobile_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
+            <div className={mobile_style.ad_text}>
+              boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)
+            </div>
           </div>
           <div className={mobile_style.ad_btn_wrapper}>
             <div className={mobile_style.ad_button} link="https://www.amazon.in/shop/rakazonegaming" text={""}>

@@ -11,10 +11,19 @@ export function EmptyVideoItem(props) {
   return (
     <div className={css.video_item}>
       <div className={`${css.image_wrapper}`}>
-        <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg" width={540} height={300} alt="" />
+        <Image
+          className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`}
+          src="https://i.ytimg.com/vi/rwgb3sTQ-nc/maxresdefault.jpg"
+          width={540}
+          height={300}
+          alt=""
+        />
         <div className={css.video_filter}></div>
         <Link prefetch={false} href={link} passHref>
-          <div className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
+          <div
+            className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`}
+            onMouseLeave={() => setActive(false)}
+            onMouseOver={() => setActive(true)}>
             <div className={css.video_button}>
               <div className={css.button_wrapper}>
                 <Image src={playicon} className={css.video_button_icon} layout="responsive" height={30} width={30} alt="" />
@@ -38,10 +47,19 @@ export const VideoItemRegular = (props) => {
   return (
     <div className={css.video_item}>
       <div className={css.image_wrapper}>
-        <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={thumbnail} width={540} height={300} alt="" />
+        <Image
+          className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`}
+          src={thumbnail}
+          width={540}
+          height={300}
+          alt=""
+        />
         <div className={`${css.video_filter}`}></div>
         <Link prefetch={false} href={link} passHref>
-          <div className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
+          <div
+            className={`${css.video_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`}
+            onMouseLeave={() => setActive(false)}
+            onMouseOver={() => setActive(true)}>
             <div className={css.video_button}>
               <div className={css.button_wrapper}>
                 <Image src={playicon} className={css.video_button_icon} layout="responsive" height={30} width={30} alt="" />

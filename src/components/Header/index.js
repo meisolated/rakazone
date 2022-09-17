@@ -45,21 +45,21 @@ const tabs = [
     name: "Explore",
     icon: Explore,
     iconClicked: ExploreClicked,
-    path: "/Explore",
+    path: "/explore",
     active: false,
   },
   {
     name: "Shop",
     icon: Bag1,
     iconClicked: Bag1Clicked,
-    path: "/Shop",
+    path: "/shop",
     active: false,
   },
   {
     name: "Profile",
     icon: Profile,
     iconClicked: ProfileClicked,
-    path: "/User",
+    path: "/user",
     active: false,
   },
 ]
@@ -67,28 +67,28 @@ const tabs = [
 const exploreTabs = [
   {
     name: "About",
-    path: "/About",
+    path: "/about",
     active: false,
     icon: AboutMe,
     iconClicked: AboutMeClicked,
   },
   {
     name: "Wallpapers",
-    path: "/Wallpapers",
+    path: "/wallpapers",
     active: false,
     icon: Wallpaper,
     iconClicked: WallpaperClicked,
   },
   {
     name: "Community",
-    path: "/Community",
+    path: "/community",
     active: false,
     icon: Community,
     iconClicked: CommunityClicked,
   },
   {
     name: "Polls",
-    path: "/Polls",
+    path: "/polls",
     active: false,
     icon: Poll,
     iconClicked: PollClicked,
@@ -120,49 +120,49 @@ export default function Header() {
       name: "Explore",
       icon: Explore,
       iconClicked: ExploreClicked,
-      path: "/Explore",
+      path: "/explore",
       active: false,
     },
     Shop: {
       name: "Shop",
       icon: Bag1,
       iconClicked: Bag1Clicked,
-      path: "/Shop",
+      path: "/shop",
       active: false,
     },
     Profile: {
       name: "Profile",
       icon: Profile,
       iconClicked: ProfileClicked,
-      path: "/User",
+      path: "/user",
       active: false,
     },
   })
   const [exploreClicked, setExploreClicked] = useState({
     About: {
       name: "About",
-      path: "/About",
+      path: "/about",
       active: false,
       icon: AboutMe,
       iconClicked: AboutMeClicked,
     },
     Wallpapers: {
       name: "Wallpapers",
-      path: "/Wallpapers",
+      path: "/wallpapers",
       active: false,
       icon: Wallpaper,
       iconClicked: WallpaperClicked,
     },
     Community: {
       name: "Community",
-      path: "/Community",
+      path: "/community",
       active: false,
       icon: Home,
       iconClicked: HomeClicked,
     },
     Polls: {
       name: "Polls",
-      path: "/Polls",
+      path: "/polls",
       active: false,
       icon: Home,
       iconClicked: HomeClicked,
@@ -220,22 +220,22 @@ export default function Header() {
       case "/":
         OnNavClicked("Home")
         break
-      case "/About":
+      case "/about":
         OnNavClicked("About")
         break
-      case "/Shop":
+      case "/shop":
         OnNavClicked("Shop")
         break
-      case "/User":
+      case "/user":
         OnNavClicked("Profile")
         break
-      case "/Wallpapers":
+      case "/wallpapers":
         OnExploreClicked("Wallpapers")
         break
-      case "/Community":
+      case "/community":
         OnExploreClicked("Community")
         break
-      case "/Polls":
+      case "/polls":
         OnExploreClicked("Polls")
         break
       default:
@@ -263,24 +263,23 @@ export default function Header() {
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/About"} passHref>
+                    <Link prefetch={false} href={"/about"} passHref>
                       <a>About</a>
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/Shop"} passHref>
+                    <Link prefetch={false} href={"/shop"} passHref>
                       <a>Shop</a>
                     </Link>
                   </li>
-
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/Contact"} passHref>
-                      <a>Contact</a>
+                    <Link prefetch={false} href={"/wallpapers"} passHref>
+                      <a>Wallpapers</a>
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/Wallpapers"} passHref>
-                      <a>Wallpapers</a>
+                    <Link prefetch={false} href={"/contact"} passHref>
+                      <a>Contact</a>
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper} onClick={() => setCartModal(true)}>
@@ -311,7 +310,10 @@ export default function Header() {
       </div>
 
       <div className={css.bottom_navbar_wrapper}>
-        <div className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show}`}>
+        <div
+          className={`${css.bottom_navbar_container} ${
+            windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show
+          }`}>
           <div className={css.bottom_navbar}>
             {tabs.map((tab, index) => {
               let active = clicked[tab.name].active
@@ -338,7 +340,13 @@ export default function Header() {
         <div
           style={{ zIndex: 99 }}
           className={`${css.bottom_navbar_container} ${
-            windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide
+            windowSize.width > 788
+              ? css.sub_bottom_navbar_hide
+              : subNavbar
+              ? scrollY.increasing
+                ? css.sub_bottom_navbar_hide
+                : css.sub_bottom_navbar_show
+              : css.sub_bottom_navbar_hide
           }`}>
           <div className={css.bottom_navbar}>
             {exploreTabs.map((tab, index) => {

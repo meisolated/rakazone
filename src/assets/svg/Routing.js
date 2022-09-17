@@ -7,7 +7,13 @@ const SvgRouting = (props) => (
       stroke="#ffff"
       strokeWidth={1.5}
     />
-    <path d="M12 5h2.68c1.85 0 2.71 2.29 1.32 3.51L8.01 15.5C6.62 16.71 7.48 19 9.32 19H12" stroke="#ffff" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M12 5h2.68c1.85 0 2.71 2.29 1.32 3.51L8.01 15.5C6.62 16.71 7.48 19 9.32 19H12"
+      stroke="#ffff"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
     <path d="M5.486 5.5h.012M18.486 17.5h.012" stroke="#ffff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )

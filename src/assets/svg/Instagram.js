@@ -17,11 +17,23 @@ const SvgInstagram = (props) => (
       />
     </g>
     <defs>
-      <radialGradient id="instagram_svg__b" cx={0} cy={0} r={1} gradientUnits="userSpaceOnUse" gradientTransform="translate(1.877 28.364) scale(36.8186)">
+      <radialGradient
+        id="instagram_svg__b"
+        cx={0}
+        cy={0}
+        r={1}
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(1.877 28.364) scale(36.8186)">
         <stop offset={0.09} stopColor="#FF881B" />
         <stop offset={0.78} stopColor="#EE2584" />
       </radialGradient>
-      <radialGradient id="instagram_svg__c" cx={0} cy={0} r={1} gradientUnits="userSpaceOnUse" gradientTransform="matrix(2.78247 13.90065 -57.29828 11.4693 -6.86 -.695)">
+      <radialGradient
+        id="instagram_svg__c"
+        cx={0}
+        cy={0}
+        r={1}
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="matrix(2.78247 13.90065 -57.29828 11.4693 -6.86 -.695)">
         <stop stopColor="#3771C8" />
         <stop offset={0.128} stopColor="#3771C8" />
         <stop offset={1} stopColor="#60F" stopOpacity={0} />

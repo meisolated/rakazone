@@ -29,17 +29,18 @@ const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 // use other youtube thumbnail urls to check a valid url or not
 // https://itnext.io/using-http-2-with-next-js-express-917791ca249b
 function Home(props) {
-  let streamerData = props.content.streamerData
-  let featuredPrimary = props.content.videos.featuredPrimary
-  let featuredSecondary = props.content.videos.featuredSecondary
-  let featuredTertiary = props.content.videos.featuredTertiary
-  let latest = props.content.videos.latest
+  let streamerData = props.content.streamerdata
+  let featuredPrimary = props.content.videos.primaryVideo
+  let featuredSecondary = props.content.videos.secondaryVideo
+  let featuredTertiary = props.content.videos.tertiaryVideo
+  let live = props.content.Live
+  let latest = props.content.videos.latestVideos
 
   featuredPrimary.title = featuredPrimary.title.length > 60 ? featuredPrimary.title.substring(0, 60) + "..." : featuredPrimary.title
   featuredSecondary.title = featuredSecondary.title.length > 60 ? featuredSecondary.title.substring(0, 60) + "..." : featuredSecondary.title
   featuredTertiary.title = featuredTertiary.title.length > 60 ? featuredTertiary.title.substring(0, 60) + "..." : featuredTertiary.title
 
-  const whatToShow = featuredPrimary
+  const whatToShow = (live.status) ? live : featuredPrimary
   const ago = since(whatToShow.publishedAt * 1000)
   const youtube_thumbnail = whatToShow.thumbnail
   whatToShow.type = whatToShow.type ? whatToShow.type : "Live"
@@ -64,14 +65,8 @@ function Home(props) {
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta property="og:title" content="RakaZone Gaming | Rishab Karanwal" />
-        <meta
-          name="description"
-          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA."
-        />
-        <meta
-          property="og:description"
-          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA."
-        />
+        <meta name="description" content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA." />
+        <meta property="og:description" content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA." />
         <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
       </Head>
 
@@ -103,10 +98,19 @@ function Home(props) {
         <div className={css.video_featured_grid}>
           <div className={css.video_featured_wrapper}>
             <div className={css.image_wrapper}>
-              <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumbnail} width={1104} height={620} alt="" />
+              <Image
+                className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`}
+                src={youtube_thumbnail}
+                width={1104}
+                height={620}
+                alt=""
+              />
               <div className={css.video_featured_filter} />
               <Link prefetch={false} href={link} passHref>
-                <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
+                <div
+                  className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`}
+                  onMouseLeave={() => setActive(false)}
+                  onMouseOver={() => setActive(true)}>
                   <div className={css.video_featured_button}>
                     <div className={css.video_featured_button_icon_wrapper}>
                       <Image src={playicon} className={css.video_featured_button_icon_big} layout="responsive" height={30} width={30} alt="" />
@@ -122,7 +126,14 @@ function Home(props) {
 
             <div className={css.video_featured_content}>
               <div className={`pd-right ${css.video_featured_channel_image}`}>
-                <Image className={css.video_featured_channel_image} src={`${publicRuntimeConfig.assetsUrl}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
+                <Image
+                  className={css.video_featured_channel_image}
+                  src={`${publicRuntimeConfig.assetsUrl}assets/img/instadp.jpeg`}
+                  width={94}
+                  height={94}
+                  loading="eager"
+                  alt="Video Featured Channel Image"
+                />
               </div>
               <div>
                 <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
@@ -160,12 +171,12 @@ function Home(props) {
           </div>
         </div>
         <div className={css.latest_video_grid}>
-          <VideoItemRegular data={latest.One} />
-          <VideoItemRegular data={latest.Two} />
-          <VideoItemRegular data={latest.Three} />
-          <VideoItemRegular data={latest.Four} />
-          <VideoItemRegular data={latest.Five} />
-          <VideoItemRegular data={latest.Six} />
+          <VideoItemRegular data={latest[0]} />
+          <VideoItemRegular data={latest[1]} />
+          <VideoItemRegular data={latest[2]} />
+          <VideoItemRegular data={latest[3]} />
+          <VideoItemRegular data={latest[4]} />
+          <VideoItemRegular data={latest[5]} />
         </div>
         {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
         <div className="divider" />
@@ -173,10 +184,11 @@ function Home(props) {
           <div className={css.about_channel_left}>
             <h1>Hey there!</h1>
             <p>
-              I'm <span className="bold">Rishab Karanwal</span>. Most of you know me as RakaZone, and I am a variety streamer. You will see me playing multiple games on my channel, from some intense
-              shooter games to role-playing. I usually play GTA V Role Play and Valorant & I also play new games that come out from time to time. I am a content creator for Velocity Gaming "VLT". I
-              have been streaming on YouTube for the last 6yrs. I used to work at Accenture as a senior analyst. Now I am a full-time streamer & in all these years, one thing I understood about life
-              is <span className="bold">"The best way to predict your future is to create it."</span>
+              I'm <span className="bold">Rishab Karanwal</span>. Most of you know me as RakaZone, and I am a variety streamer. You will see me playing
+              multiple games on my channel, from some intense shooter games to role-playing. I usually play GTA V Role Play and Valorant & I also play
+              new games that come out from time to time. I am a content creator for Velocity Gaming "VLT". I have been streaming on YouTube for the
+              last 6yrs. I used to work at Accenture as a senior analyst. Now I am a full-time streamer & in all these years, one thing I understood
+              about life is <span className="bold">"The best way to predict your future is to create it."</span>
             </p>
             <GreyMedium link="/About" text="More about me" />
           </div>
@@ -204,7 +216,9 @@ function Home(props) {
             <div className={css.subscribe_to_my_channel}>
               <Image src={youtube_logo} width={150} height={50} alt="youtube logo" />
               <h2 className={css.subscribetext}> Subscribe for amazing content, every day</h2>
-              <p className={css.subscribetext_sub}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+              <p className={css.subscribetext_sub}>
+                Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.
+              </p>
               <div className={css.subscribe_button}>
                 <Primary link={"/yt"} text="Subscribe" />
               </div>
@@ -218,7 +232,9 @@ function Home(props) {
                   <h1 className={`${css.merch_oneblock} pd-left`}>Store</h1>
                 </div>
                 <h2 className={css.merch_title}>Support my content by purchasing my merch.</h2>
-                <p className={css.merch_sub_title}>Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.</p>
+                <p className={css.merch_sub_title}>
+                  Live stream every day at 9:30pm. I play GTA V RolePlay, Valorant, Counter Strike and many other fun games.
+                </p>
 
                 <div className="pd-bottom" />
                 <OutlineMedium link={"/Shop"} text="Browse Merch" />
@@ -238,7 +254,9 @@ function Home(props) {
                   <Image src={merch3} width={300} height={300} alt="merch3" className={css.merch_gallery_item} />
                 </div>
               </div>
-              <div className={css.buy_merch_notice}>All these products are just for demonstration and does not represent an actual product as of now.</div>
+              <div className={css.buy_merch_notice}>
+                All these products are just for demonstration and does not represent an actual product as of now.
+              </div>
             </div>
           </div>
         </section>
@@ -275,6 +293,26 @@ export async function getServerSideProps({ req, res }) {
   //   }
   // } else return { props: {} }
 
+  const content = await axios
+    .get(`${serverRuntimeConfig.localApiUrl}content`, {
+      headers: req.headers.cookie && { cookie: req.headers.cookie },
+    })
+    .then((res) => res.data)
+  console.log(content)
+  if (content) {
+    return {
+      props: {
+        content
+      }
+    }
+  } else {
+    return {
+      redirect: {
+        destination: 'https://www.youtube.com/channel/UCRj_BU95SebaRi2FziXEoTg',
+        permanent: false,
+      },
+    }
+  }
 
 }
 

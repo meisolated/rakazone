@@ -147,7 +147,10 @@ export default function Product(props) {
             <div className={css.thumbnail_images_grid}>
               {product.images.map((image, index) => {
                 return (
-                  <div key={"image-" + index} className={`${css.thumbnail_image_wrapper} ${activeThumb == image ? css.activeThumb : []}`} onClick={() => setActiveThumb(image)}>
+                  <div
+                    key={"image-" + index}
+                    className={`${css.thumbnail_image_wrapper} ${activeThumb == image ? css.activeThumb : []}`}
+                    onClick={() => setActiveThumb(image)}>
                     <Image src={image} alt={product.name} />
                   </div>
                 )
@@ -171,7 +174,9 @@ export default function Product(props) {
                     if (product.size_not_in_stock.includes(_size)) {
                       return (
                         <div
-                          className={`${_size == size ? css.size_selector_item_text_selected : css.size_selector_item_text} ${css.size_selector_item_text}`}
+                          className={`${_size == size ? css.size_selector_item_text_selected : css.size_selector_item_text} ${
+                            css.size_selector_item_text
+                          }`}
                           key={"size-" + index}
                           onClick={() => setSize(_size)}>
                           {_size}

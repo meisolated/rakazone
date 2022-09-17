@@ -21,7 +21,10 @@ export default function Contact(props) {
           <div className={css.left_wrapper}>
             <div className={css.left_content}>
               <h1 className={css.header_text}>Get in touch</h1>
-              <p> As RakaZone is not currently managing this website, you can email us if you find any bugs or have any issues related to this website.</p>
+              <p>
+                {" "}
+                As RakaZone is not currently managing this website, you can email us if you find any bugs or have any issues related to this website.
+              </p>
               <div>
                 <div className={css.contact_item}>
                   <SvgEmailContact />

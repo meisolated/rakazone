@@ -1,7 +1,15 @@
 import * as React from "react"
 
 const SvgPlaceHolder = (props) => (
-  <svg clipRule="evenodd" fillRule="evenodd" height={125} strokeLinejoin="round" strokeMiterlimit={2} width={125} xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    clipRule="evenodd"
+    fillRule="evenodd"
+    height={125}
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+    width={125}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}>
     <path d="M0 0h125v124.999H0z" fill="#e0e0e0" />
     <g fill="#c2c2c2">
       <path
