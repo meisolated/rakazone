@@ -8,6 +8,33 @@ const generateRobotsTxt = require("./src/scripts/generate-robots-txt.js")
 // })
 
 const nextConfig = {
+  reactStrictMode: true,
+
+  disableStaticImages: true,
+
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
+
+  images: {
+    domains: ["raka.zone", "lh3.googleusercontent.com", "localhost"],
+  },
+
+  distDir: process.env.NODE_ENV === "dev" ? "_next" : "build",
+
+  serverRuntimeConfig: {
+  },
+  publicRuntimeConfig: {
+  },
+  webpack(config, { isServer }) {
+    if (isServer) {
+      generateRobotsTxt()
+      generateSitemap()
+
+    }
+    return config
+  },
   async headers() {
     return [
       {
@@ -20,40 +47,6 @@ const nextConfig = {
         ],
       },
     ]
-  },
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
-  reactStrictMode: true,
-  disableStaticImages: true,
-  images: {
-    domains: ["raka.zone", "i.ytimg.com", "assets.website-files.com", "lh3.googleusercontent.com", "localhost", "img.youtube.com"],
-  },
-
-  distDir: process.env.NODE_ENV === "dev" ? "_next" : "build",
-  //
-  serverRuntimeConfig: {
-    localApiUrl: "http://127.0.0.1:3001/v1/",
-    serverUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/internal_api/" : "https://raka.zone/internal_api/",
-  },
-  publicRuntimeConfig: {
-    NODE_ENV: process.env.NODE_ENV,
-    assetsUrl: "https://raka.zone/internal_api/",
-    baseUrl: process.env.NODE_ENV === "dev" ? "https://raka.zone/" : "https://raka.zone/",
-    apiUrl:
-      process.env.NODE_ENV === "dev"
-        ? "https://raka.zone/internal_api/v1/" // dev api
-        : "https://raka.zone/internal_api/v1/", // production api
-
-  },
-  webpack(config, { isServer }) {
-    if (isServer) {
-      generateRobotsTxt()
-      generateSitemap()
-
-    }
-    return config
   },
 }
 
