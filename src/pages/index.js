@@ -61,18 +61,18 @@ function Home(props) {
     <>
       <Head>
         <title>RakaZone Gaming | Rishab Karanwal</title>
-        <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing, rishab karanwal, rishab" />
+        <meta name="keywords" content="raka, rakazone, rakazone gaming, raka.zome, content creator, free, video, sharing, rishab karanwal, rishab, website, official website" />
         <meta name="robots" content="all" />
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta property="og:title" content="RakaZone Gaming | Rishab Karanwal" />
         <meta
           name="description"
-          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA."
+          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA. This is RakaZone's Website"
         />
         <meta
           property="og:description"
-          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA."
+          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA. This is RakaZone's Website"
         />
         <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
       </Head>
