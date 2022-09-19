@@ -116,6 +116,15 @@ function MyApp({ Component, pageProps, router }) {
         document.insertBefore(comment, document.documentElement)
       }
     }
+
+    const head = document.getElementsByTagName('head')[0]
+    const scriptElement = document.createElement(`script`)
+    scriptElement.type = `text/javascript`
+    scriptElement.async
+    scriptElement.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360`
+    scriptElement.crossOrigin = "anonymous"
+    head.appendChild(scriptElement)
+
   })
 
   // if (isAdminRoute)
@@ -131,8 +140,6 @@ function MyApp({ Component, pageProps, router }) {
           <Head>
             <link rel="shortcut icon" href="https://raka.zone/internal_api/assets/logo.ico" />
           </Head>
-          <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360" crossorigin="anonymous" strategy="beforeInteractive">
-          </Script>
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
             <Component {...pageProps} />

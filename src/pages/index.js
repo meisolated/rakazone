@@ -14,6 +14,8 @@ import { GreyMedium, OutlineMedium, Primary } from "../components/Buttons"
 import { EmptyVideoItem, VideoItemRegular } from "../components/VideoItem"
 
 // assets
+import { GoogleAdsenseContainer } from "components/Adsense/index.js"
+import Script from "next/script"
 import about_channel_image_one from "../assets/img/png/about_channel_image_one.png"
 import about_channel_image_two from "../assets/img/png/about_channel_image_two.png"
 import merch1 from "../assets/img/png/merch1.png"
@@ -57,6 +59,12 @@ function Home(props) {
         : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
   // RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master.
+
+  useEffect(() => {
+    (window.adsbygoogle = window.adsbygoogle || []).push({})
+  }, [])
+
+
   return (
     <>
       <Head>
@@ -171,6 +179,8 @@ function Home(props) {
         </div>
         {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
         <div className="divider" />
+        <GoogleAdsenseContainer slot={"5057715242"} />
+        <div className="divider" />
         <div className={css.about_channel_grid}>
           <div className={css.about_channel_left}>
             <h1>Hey there!</h1>
@@ -244,6 +254,7 @@ function Home(props) {
             </div>
           </div>
         </section>
+        <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
       </div>
     </>
   )
