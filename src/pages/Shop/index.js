@@ -1,3 +1,4 @@
+import { GoogleAdsenseContainer } from "components/Adsense/index.js"
 import Head from "next/head.js"
 import Image from "next/image"
 import Link from "next/link.js"
@@ -60,6 +61,7 @@ function Shop(props) {
           })}
           <div className="pd-bottom-high" />
         </div>
+        <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
       </div>
     </>
   )

@@ -1,3 +1,4 @@
+import { GoogleAdsenseContainer } from "components/Adsense/index.js"
 import Head from "next/head.js"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -311,6 +312,7 @@ export default function Product(props) {
           </div>
         </div>
         <div className="divider-small" />
+        <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
       </div>
     </>
   )

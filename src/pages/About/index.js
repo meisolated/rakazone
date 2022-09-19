@@ -1,4 +1,5 @@
 import axios from "axios"
+import { GoogleAdsenseContainer } from "components/Adsense/index.js"
 import getConfig from "next/config.js"
 import Head from "next/head"
 import Image from "next/image"
@@ -139,6 +140,7 @@ function About(props) {
         </div>
         <div className="divider" />
       </div>
+      <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
       <div className={css.instagram_showcase_grid}>
         <InstaImage img={insta1} />
         <InstaImage img={insta2} />
