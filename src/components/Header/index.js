@@ -24,7 +24,7 @@ import {
   Profile,
   ProfileClicked,
   Wallpaper,
-  WallpaperClicked,
+  WallpaperClicked
 } from "../../assets/svg/navicons"
 import shoppingCart from "../../assets/svg/src/bag-2.svg"
 import useWindowSize from "../../Hooks/windowResize.hook.js"
@@ -249,7 +249,7 @@ export default function Header() {
       <div className={css.container}>
         <div className="container-default">
           <div className={css.header_wrapper}>
-            <Link prefetch={false} href="/">
+            <Link prefetch={true} href="/">
               <div className={css.left}>
                 <Image src="https://raka.zone/internal_api/assets/img/logo.png" className={css.logoimg} alt="a" width={164} height={60} />
               </div>
@@ -258,28 +258,28 @@ export default function Header() {
               <nav className={css.nav_menu}>
                 <ul className={css.header_navigation}>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/"} passHref>
+                    <Link prefetch={true} href={"/"} passHref>
                       <a>Home</a>
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/About"} passHref>
+                    <Link prefetch={true} href={"/About"} passHref>
                       <a>About</a>
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/Shop"} passHref>
+                    <Link prefetch={true} href={"/Shop"} passHref>
                       <a>Shop</a>
                     </Link>
                   </li>
 
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/Contact"} passHref>
+                    <Link prefetch={true} href={"/Contact"} passHref>
                       <a>Contact</a>
                     </Link>
                   </li>
                   <li className={css.nav_item_wrapper}>
-                    <Link prefetch={false} href={"/Wallpapers"} passHref>
+                    <Link prefetch={true} href={"/Wallpapers"} passHref>
                       <a>Wallpapers</a>
                     </Link>
                   </li>
@@ -297,18 +297,20 @@ export default function Header() {
                     </li>
                   )}
                 </ul>
-              </nav>
-              {windowSize.width < 788 ? (
-                <div className={css.nav_item_wrapper} onClick={() => setCartModal(true)}>
-                  <Image src={shoppingCart} alt="" />
-                </div>
-              ) : (
-                []
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+              </nav >
+              {
+                windowSize.width < 788 ? (
+                  <div className={css.nav_item_wrapper} onClick={() => setCartModal(true)}>
+                    <Image src={shoppingCart} alt="" />
+                  </div>
+                ) : (
+                  []
+                )
+              }
+            </div >
+          </div >
+        </div >
+      </div >
 
       <div className={css.bottom_navbar_wrapper}>
         <div className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show}`}>
@@ -337,9 +339,8 @@ export default function Header() {
         </div>
         <div
           style={{ zIndex: 99 }}
-          className={`${css.bottom_navbar_container} ${
-            windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide
-          }`}>
+          className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide
+            }`}>
           <div className={css.bottom_navbar}>
             {exploreTabs.map((tab, index) => {
               let active = exploreClicked[tab.name].active

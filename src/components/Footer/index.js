@@ -67,22 +67,22 @@ function Footer() {
           <div className={css.footer_content_bottom}>
             <div className={`${css.footer_social_buttons}`}>
               {/* target="_blank" rel="noreferrer" */}
-              <Link prefetch={false} href="/yt">
+              <Link prefetch={true} href="/yt">
                 <p className={`${css.footer_social_button_icon_youtube}  ${css.footer_social_button}`}></p>
               </Link>
-              <Link prefetch={false} href="/fb">
+              <Link prefetch={true} href="/fb">
                 <p className={`${css.footer_social_button_icon_facebook}  ${css.footer_social_button}`}></p>
               </Link>
-              <Link prefetch={false} href="/twitter">
+              <Link prefetch={true} href="/twitter">
                 <p className={`${css.footer_social_button_icon_twitter}  ${css.footer_social_button}`}></p>
               </Link>
-              <Link prefetch={false} href="/insta">
+              <Link prefetch={true} href="/insta">
                 <p className={`${css.footer_social_button_icon_instagram}  ${css.footer_social_button}`}></p>
               </Link>
-              <Link prefetch={false} href="/twitch">
+              <Link prefetch={true} href="/twitch">
                 <p className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></p>
               </Link>
-            </div>
+            </div >
             <div className={css.footer_copyright}>
               Copyright © 2022 &nbsp;
               <a href="https://www.instagram.com/rakazonegaming/" className={css.footer_link}>
@@ -90,9 +90,9 @@ function Footer() {
               </a>
               .&nbsp;All rights reserved.
             </div>
-          </div>
-        </div>
-      </footer>
+          </div >
+        </div >
+      </footer >
     </>
   )
 }

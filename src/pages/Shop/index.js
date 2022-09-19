@@ -38,7 +38,8 @@ function Shop(props) {
         <div className={css.shop_grid}>
           {props.products_list.map((product, index) => {
             return (
-              <Link prefetch={false} href={`/Product/${product.seo_title}`} passHref key={index}>
+              <Link prefetch={true} href={`/Product/${product.seo_title}`
+              } passHref key={index} >
                 <div>
                   <div className={css.shop_item}>
                     <div className={css.shop_item_image}>

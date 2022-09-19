@@ -1,4 +1,3 @@
-import { GoogleAdsenseContainer } from "components/Adsense/index.js"
 import Head from "next/head.js"
 import Image from "next/image"
 import Link from "next/link.js"
@@ -29,14 +28,13 @@ export default function Wallpapers() {
               <div key={index} className={mobile ? css.wallpaper_wrapper_mobile : css.wallpaper_wrapper_desktop}>
                 {" "}
                 <Image src={baseUrl + downloadable} className={css.wallpaper} alt="a" width={10000} height={10000} quality={100} />
-                <Link prefetch={false} href={baseUrl + downloadable} download>
+                <Link prefetch={true} href={baseUrl + downloadable} download>
                   <div className={css.wallpaper_download}>Download</div>
                 </Link>
               </div>
             )
           })}
         </div>
-        <GoogleAdsenseContainer slot={"9667495433"} />
         <div className="center">
           <a>Wallpapers credit:</a>
           <a className={css.link} href="https://www.instagram.com/klm_gfx/">

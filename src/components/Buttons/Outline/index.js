@@ -5,31 +5,32 @@ export function OutlineSmall(props) {
   let link = props.link ? props.link : "#"
   if (props.background)
     return (
-      <Link prefetch={false} href={link}>
-        <button
+      <Link prefetch={true} href={link}>
+        < button
           style={{
             backgroundImage: "url(" + `${props.background}` + ")",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
-          }}
+          }
+          }
           className={`${css.OutlineSmall} ${css.button}`}>
           {props.text}
-        </button>
-      </Link>
+        </button >
+      </Link >
     )
   return (
-    <Link prefetch={false} href={link}>
-      <button className={`${css.OutlineSmall} ${css.button}`}>{props.text}</button>
-    </Link>
+    <Link prefetch={true} href={link}>
+      < button className={`${css.OutlineSmall} ${css.button}`}> {props.text}</button >
+    </Link >
   )
 }
 
 export function OutlineMedium(props) {
   return (
-    <Link prefetch={false} href={props.link}>
+    <Link prefetch={true} href={props.link}>
       <button className={`${css.OutlineMedium} ${css.button}`}>{props.text}</button>
-    </Link>
+    </Link >
   )
 }
 

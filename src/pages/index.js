@@ -3,19 +3,18 @@ import getConfig from "next/config"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 //other components
 import { convertToInternationalCurrencySystem, since } from "../util/functions.js"
 import css from "./index.module.css"
 
 // components
+import { GoogleAdsenseContainer } from "components/Adsense/index.js"
 import { GreyMedium, OutlineMedium, Primary } from "../components/Buttons"
 import { EmptyVideoItem, VideoItemRegular } from "../components/VideoItem"
 
 // assets
-import { GoogleAdsenseContainer } from "components/Adsense/index.js"
-import Script from "next/script"
 import about_channel_image_one from "../assets/img/png/about_channel_image_one.png"
 import about_channel_image_two from "../assets/img/png/about_channel_image_two.png"
 import merch1 from "../assets/img/png/merch1.png"
@@ -59,11 +58,6 @@ function Home(props) {
         : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
   // RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master.
-
-  useEffect(() => {
-    (window.adsbygoogle = window.adsbygoogle || []).push({})
-  }, [])
-
 
   return (
     <>
@@ -115,7 +109,7 @@ function Home(props) {
             <div className={css.image_wrapper}>
               <Image className={`${css.video_item_image} ${active ? css.image_active : css.image_inactive}`} src={youtube_thumbnail} width={1104} height={620} alt="" />
               <div className={css.video_featured_filter} />
-              <Link prefetch={false} href={link} passHref>
+              <Link prefetch={true} href={link} passHref>
                 <div className={`${css.video_featured_button_wrapper} ${active ? css.icon_active : css.icon_inactive}`} onMouseLeave={() => setActive(false)} onMouseOver={() => setActive(true)}>
                   <div className={css.video_featured_button}>
                     <div className={css.video_featured_button_icon_wrapper}>
@@ -164,7 +158,7 @@ function Home(props) {
             <h2 className={css.latest_videos_title}>Recommended videos</h2>
           </div>
           <div className={css.latest_videos_right}>
-            <Link prefetch={false} href="/yt" className={css.latest_videos_arrow_link}>
+            <Link prefetch={true} href="/yt" className={css.latest_videos_arrow_link}>
               <div className={css.latest_videos_arrow_link_text}>Browse more videos</div>
             </Link>
           </div>
@@ -179,7 +173,7 @@ function Home(props) {
         </div>
         {/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */}
         <div className="divider" />
-        <GoogleAdsenseContainer slot={"5057715242"} />
+        <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
         <div className="divider" />
         <div className={css.about_channel_grid}>
           <div className={css.about_channel_left}>
@@ -255,7 +249,7 @@ function Home(props) {
           </div>
         </section>
         <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
-      </div>
+      </div >
     </>
   )
 }
