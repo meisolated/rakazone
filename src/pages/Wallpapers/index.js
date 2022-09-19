@@ -1,3 +1,4 @@
+import { GoogleAdsenseContainer } from "components/Adsense/index.js"
 import Head from "next/head.js"
 import Image from "next/image"
 import Link from "next/link.js"
@@ -35,10 +36,11 @@ export default function Wallpapers() {
             )
           })}
         </div>
+        <GoogleAdsenseContainer slot={"9667495433"} />
         <div className="center">
-          <a>Wallpapers credit:</a>{" "}
+          <a>Wallpapers credit:</a>
           <a className={css.link} href="https://www.instagram.com/klm_gfx/">
-            klm_gfx{" "}
+            klm_gfx
           </a>
         </div>
       </div>

@@ -43,6 +43,10 @@
     color: #000;
 }
 
+.link {
+    margin-left: 10px;
+}
+
 .link:hover {
     color: var(--primary-color)
 }
