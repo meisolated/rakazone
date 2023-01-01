@@ -10,6 +10,4 @@ export const getThumbnail = (videoId) => {
     // https://img.youtube.com/vi/xqann191kbY/3.jpg
     // https://img.youtube.com/vi/xqann191kbY/4.jpg'
     // https://i.ytimg.com/vi/oZJLyWLUWrc/hq720.jpg
-
-
 }
