@@ -1,6 +1,6 @@
 {
     "name": "RakaZone",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": true,
     "homepage": "https://raka.zone",
     "author": {
@@ -19,13 +19,13 @@
         "svgs": "svgr -d ./src/assets/svg ./src/assets/svg/src",
         "install:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn",
         "pm2": "pm2",
-        "pm2:start": "pm2 start 'next start' --name RAKAZONE_FRONTEND_PRODUCTION -i 10",
+        "pm2:start": "pm2 start 'next start' --name RAKAZONE_FRONTEND_PRODUCTION",
+        "singleI": "pm2 start 'next start -p 3002' --name RAKAZONE_FRONTEND_PRODUCTION",
         "format": "prettier --write \"{src,test}/**/*.{js,ts}\" \"**/*.md\"",
         "prettier": "prettier"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.5",
-        "ackee-tracker": "^5.1.0",
         "axios": "^0.26.1",
         "classnames": "^2.3.1",
         "crypto": "^1.0.1",
@@ -46,7 +46,7 @@
     "devDependencies": {
         "@next/bundle-analyzer": "^12.2.5",
         "@svgr/cli": "^6.3.1",
-        "eslint": "^8.32.0",
+        "eslint": "^8.23.0",
         "eslint-config-next": "12.2.5",
         "gulp": "^4.0.2",
         "gulp-header": "^2.0.9",

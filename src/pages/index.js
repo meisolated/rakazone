@@ -10,7 +10,7 @@ import { convertToInternationalCurrencySystem, since } from "../util/functions.j
 import css from "./index.module.css"
 
 // components
-import { GoogleAdsenseContainer } from "components/Adsense/index.js"
+import { GoogleAdsenseContainer } from "../components/Adsense/index.js"
 import { GreyMedium, OutlineMedium, Primary } from "../components/Buttons"
 import { EmptyVideoItem, VideoItemRegular } from "../components/VideoItem"
 
@@ -52,8 +52,8 @@ function Home(props) {
     whatToShow.platform == "local"
       ? "/Watch/" + whatToShow.videoId
       : whatToShow.platform == "loco"
-      ? "https://loco.gg/streamers/RakaZone_Gaming"
-      : "https://www.youtube.com/watch?v=" + whatToShow.videoId
+        ? "https://loco.gg/streamers/RakaZone_Gaming"
+        : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
   // RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master.
 

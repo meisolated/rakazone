@@ -1,8 +1,6 @@
-import * as ackeeTracker from "ackee-tracker"
 import { motion } from "framer-motion"
 import Head from "next/head"
 import Script from "next/script"
-// import Router from "next/router"
 import { useEffect, useState } from "react"
 import { Provider } from "react-redux"
 import Layout from "../components/Layout"
@@ -33,6 +31,7 @@ import "../styles/globals.css"
 function MyApp({ Component, pageProps, router }) {
   // const isAdminRoute = router.pathname.includes("/Admin")
   const [commented, setCommented] = useState(false)
+  const adsStatus = false
   const fade = {
     variants: {
       initial: {
@@ -54,19 +53,7 @@ function MyApp({ Component, pageProps, router }) {
   }
 
   useEffect(() => {
-    const analyticsServerUrl = "https://keviv.xyz/"
-    const analyticsKey = "60e0cc8d-c2a6-42c5-9efa-a1609a5ce6f7"
-    ackeeTracker.create(analyticsServerUrl).record(analyticsKey)
-    const attributes = ackeeTracker.attributes(true)
-    const instance = ackeeTracker.create(analyticsServerUrl, {
-      detailed: true,
-      ignoreLocalhost: false,
-    })
-    instance.record(analyticsKey, {
-      ...attributes,
-      siteLocation: window.location.href,
-      siteReferrer: document.referrer,
-    })
+
 
     if (!commented) {
       if (document) {
@@ -117,14 +104,21 @@ function MyApp({ Component, pageProps, router }) {
       }
     }
 
-    const head = document.getElementsByTagName("head")[0]
-    const scriptElement = document.createElement(`script`)
-    scriptElement.type = `text/javascript`
-    scriptElement.async
-    scriptElement.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360`
-    scriptElement.crossOrigin = "anonymous"
-    head.appendChild(scriptElement)
+
+    if (adsStatus) {
+      const head = document.getElementsByTagName("head")[0]
+      const scriptElement = document.createElement(`script`)
+      scriptElement.type = `text/javascript`
+      scriptElement.async
+      scriptElement.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360`
+      scriptElement.crossOrigin = "anonymous"
+      head.appendChild(scriptElement)
+    }
+
+    //
   })
+
+
 
   // if (isAdminRoute)
   //   return (
@@ -138,6 +132,14 @@ function MyApp({ Component, pageProps, router }) {
         <Layout>
           <Head>
             <link rel="shortcut icon" href="https://raka.zone/internal_api/assets/logo.ico" />
+            <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-EJJSXHHFKZ`} />
+            <Script id='google-analytics'
+              strategy="lazyOnload" >
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-EJJSXHHFKZ');`}
+            </Script>
           </Head>
           <Toast fade={true} />
           <motion.div key={router.route} initial="initial" animate="animate" exit="exit" transition={fade.transition} variants={fade.variants}>
