@@ -24,7 +24,7 @@ import {
   Profile,
   ProfileClicked,
   Wallpaper,
-  WallpaperClicked
+  WallpaperClicked,
 } from "../../assets/svg/navicons"
 import shoppingCart from "../../assets/svg/src/bag-2.svg"
 import useWindowSize from "../../Hooks/windowResize.hook.js"
@@ -297,20 +297,18 @@ export default function Header() {
                     </li>
                   )}
                 </ul>
-              </nav >
-              {
-                windowSize.width < 788 ? (
-                  <div className={css.nav_item_wrapper} onClick={() => setCartModal(true)}>
-                    <Image src={shoppingCart} alt="" />
-                  </div>
-                ) : (
-                  []
-                )
-              }
-            </div >
-          </div >
-        </div >
-      </div >
+              </nav>
+              {windowSize.width < 788 ? (
+                <div className={css.nav_item_wrapper} onClick={() => setCartModal(true)}>
+                  <Image src={shoppingCart} alt="" />
+                </div>
+              ) : (
+                []
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className={css.bottom_navbar_wrapper}>
         <div className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.bottom_navbar_hide : scrollY.increasing ? css.bottom_navbar_hide : css.bottom_navbar_show}`}>
@@ -339,8 +337,9 @@ export default function Header() {
         </div>
         <div
           style={{ zIndex: 99 }}
-          className={`${css.bottom_navbar_container} ${windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide
-            }`}>
+          className={`${css.bottom_navbar_container} ${
+            windowSize.width > 788 ? css.sub_bottom_navbar_hide : subNavbar ? (scrollY.increasing ? css.sub_bottom_navbar_hide : css.sub_bottom_navbar_show) : css.sub_bottom_navbar_hide
+          }`}>
           <div className={css.bottom_navbar}>
             {exploreTabs.map((tab, index) => {
               let active = exploreClicked[tab.name].active

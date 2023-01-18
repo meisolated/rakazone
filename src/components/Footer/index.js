@@ -82,7 +82,7 @@ function Footer() {
               <Link prefetch={true} href="/twitch">
                 <p className={`${css.footer_social_button_icon_twitch}  ${css.footer_social_button}`}></p>
               </Link>
-            </div >
+            </div>
             <div className={css.footer_copyright}>
               Copyright © 2022 &nbsp;
               <a href="https://www.instagram.com/rakazonegaming/" className={css.footer_link}>
@@ -90,9 +90,9 @@ function Footer() {
               </a>
               .&nbsp;All rights reserved.
             </div>
-          </div >
-        </div >
-      </footer >
+          </div>
+        </div>
+      </footer>
     </>
   )
 }

@@ -501,8 +501,8 @@ export function VideoPlayerDesktop(props) {
           style={
             showSettings
               ? {
-                display: "block",
-              }
+                  display: "block",
+                }
               : []
           }>
           {!settingsShowQuality && !settingsShowSpeed && (
@@ -596,8 +596,8 @@ export function VideoPlayerDesktop(props) {
                     style={
                       showSettings
                         ? {
-                          transform: "rotateZ(30deg)",
-                        }
+                            transform: "rotateZ(30deg)",
+                          }
                         : []
                     }
                     onClick={() => handleSettings()}>
@@ -629,17 +629,15 @@ export function VideoPlayerDesktop(props) {
         <video autoPlay controls={false} ref={videoController} className={desktop_style.video} onClick={() => handlePlayPause()} />
         {/* <video onClick={() => handlePlayPause()} ref={videoController} className={desktop_style.video} src={`https://raka.zone/dev/api/downloads/output/${props.videoId}/HLS/index.m3u8`} /> */}
       </div>
-      {
-        playingAd && (
-          <div className={`${desktop_style.ad_wrapper}`}>
-            <Image src={AdImage} width={"100px"} height={"100px"} />
-            <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
-            <div className={desktop_style.ad_btn_wrapper}>
-              <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
-            </div>
+      {playingAd && (
+        <div className={`${desktop_style.ad_wrapper}`}>
+          <Image src={AdImage} width={"100px"} height={"100px"} />
+          <div className={desktop_style.ad_text}>boAt Immortal IM-1300 Over-Ear Wireless Gaming Headphone with Mic (Bluetooth 5.1, Driverless 3D Spatial Sound, Black Sabre)</div>
+          <div className={desktop_style.ad_btn_wrapper}>
+            <Primary link="https://www.amazon.in/shop/rakazonegaming" text={"BUY NOW"} />
           </div>
-        )
-      }
-    </div >
+        </div>
+      )}
+    </div>
   )
 }

@@ -117,14 +117,13 @@ function MyApp({ Component, pageProps, router }) {
       }
     }
 
-    const head = document.getElementsByTagName('head')[0]
+    const head = document.getElementsByTagName("head")[0]
     const scriptElement = document.createElement(`script`)
     scriptElement.type = `text/javascript`
     scriptElement.async
     scriptElement.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9270075046641360`
     scriptElement.crossOrigin = "anonymous"
     head.appendChild(scriptElement)
-
   })
 
   // if (isAdminRoute)

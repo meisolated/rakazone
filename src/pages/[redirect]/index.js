@@ -11,7 +11,7 @@ function Redirect(props) {
   let text = props.redirectto ? props.redirectto.split("//")[1].split(".")[1].toUpperCase() : "404"
   useEffect(() => {
     setTimeout(() => {
-      (redirect !== "nowhere") ? window.open(redirect) : window.location.href = "/404"
+      redirect !== "nowhere" ? window.open(redirect) : (window.location.href = "/404")
       router.push({
         pathname: redirect,
         query: { returnUrl: redirect },

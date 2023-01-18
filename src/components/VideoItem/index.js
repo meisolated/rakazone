@@ -23,7 +23,7 @@ export function EmptyVideoItem(props) {
           </div>
         </Link>
       </div>
-    </div >
+    </div>
   )
 }
 
@@ -71,6 +71,6 @@ export const VideoItemRegular = (props) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }

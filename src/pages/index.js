@@ -25,8 +25,6 @@ import bag from "../assets/svg/src/bag-3.svg"
 import playicon from "../assets/svg/src/playicon.svg"
 import youtube_logo from "../assets/svg/src/youtube_logo.svg"
 
-
-
 const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 // use other youtube thumbnail urls to check a valid url or not
@@ -54,8 +52,8 @@ function Home(props) {
     whatToShow.platform == "local"
       ? "/Watch/" + whatToShow.videoId
       : whatToShow.platform == "loco"
-        ? "https://loco.gg/streamers/RakaZone_Gaming"
-        : "https://www.youtube.com/watch?v=" + whatToShow.videoId
+      ? "https://loco.gg/streamers/RakaZone_Gaming"
+      : "https://www.youtube.com/watch?v=" + whatToShow.videoId
   const [active, setActive] = useState(false)
   // RakaZone Gaming is a popular Indian streamer who plays top video games live. Being the best is never easy specially in the competitive world of video games, there's always a high score to chase, a new weapon to unlock and an endless number games to master.
 
@@ -68,14 +66,8 @@ function Home(props) {
         <meta name="google" content="notranslate" />
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta property="og:title" content="RakaZone Gaming | Rishab Karanwal" />
-        <meta
-          name="description"
-          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA. This is RakaZone's Website"
-        />
-        <meta
-          property="og:description"
-          content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA. This is RakaZone's Website"
-        />
+        <meta name="description" content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA. This is RakaZone's Website" />
+        <meta property="og:description" content="Streamer Of The Year 2018 RakaZoneGaming A.K.A RAKA. This is RakaZone's Website" />
         <meta property="og:image" content="https://raka.zone/internal_api/assets/img/RakaZoneLogo.png" />
       </Head>
 
@@ -126,7 +118,14 @@ function Home(props) {
 
             <div className={css.video_featured_content}>
               <div className={`pd-right ${css.video_featured_channel_image}`}>
-                <Image className={css.video_featured_channel_image} src={`${publicRuntimeConfig.assetsUrl}assets/img/instadp.jpeg`} width={94} height={94} loading="eager" alt="Video Featured Channel Image" />
+                <Image
+                  className={css.video_featured_channel_image}
+                  src={`${publicRuntimeConfig.assetsUrl}assets/img/instadp.jpeg`}
+                  width={94}
+                  height={94}
+                  loading="eager"
+                  alt="Video Featured Channel Image"
+                />
               </div>
               <div>
                 <h2 className={css.video_featured_title}>{whatToShow.title}</h2>
@@ -249,7 +248,7 @@ function Home(props) {
           </div>
         </section>
         <GoogleAdsenseContainer layoutKey={"-gw-3+1f-3d+2z"} slot={"7029412083"} />
-      </div >
+      </div>
     </>
   )
 }

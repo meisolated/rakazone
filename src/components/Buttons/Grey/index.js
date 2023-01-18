@@ -9,9 +9,8 @@ export function GreyMedium(props) {
   const link = props.link ? props.link : "/"
   return (
     <Link prefetch={true} href={link} passHref>
-      < button className={`${css.GreyMedium} ${css.button}`
-      }> {props.text}</button >
-    </Link >
+      <button className={`${css.GreyMedium} ${css.button}`}> {props.text}</button>
+    </Link>
   )
 }
 
