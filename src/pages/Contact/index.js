@@ -29,7 +29,7 @@ export default function Contact(props) {
                 </div>
                 <div className={css.contact_item}>
                   <SvgCall />
-                  <a>+91 8448417051</a>
+                  <a>+91 000000000</a>
                 </div>
               </div>
             </div>
