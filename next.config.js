@@ -63,3 +63,22 @@ module.exports = nextConfig
 // ], nextConfig)
 
 
+
+
+
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   experimental: {
+//     appDir: true,
+//   },
+//   images: { domains: ["raka.zone"] },
+//   serverRuntimeConfig: {
+//     internalApiUrl: "http://localhost:" + process.env.NODE_ENV == "development" ? "5001" : "3001"
+
+//   },
+//   publicRuntimeConfig: {
+//     NODE_ENV: process.env.NODE_ENV
+//   }
+// }
+
+// module.exports = nextConfig

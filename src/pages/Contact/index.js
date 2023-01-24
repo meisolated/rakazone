@@ -25,7 +25,7 @@ export default function Contact(props) {
               <div>
                 <div className={css.contact_item}>
                   <SvgEmailContact />
-                  <a>raka.zonee@gmail.com</a>
+                  <a>rakazone@vedus.in</a>
                 </div>
                 <div className={css.contact_item}>
                   <SvgCall />
